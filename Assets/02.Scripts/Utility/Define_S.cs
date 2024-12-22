@@ -7,6 +7,15 @@ using UnityEngine;
  */
 public class Define_S : MonoBehaviour
 {
+    public enum DefPart // 캐릭터 기본 부위, 커스텀
+    {
+        Hair,           // 헤어
+        Head,           // 얼굴 문신
+        Eyebrows,       // 눈썹
+        FacialHair,     // 수염
+        Torso,          // 상체
+        Hips,           // 하체
+    }
     public enum Popup
     {
         Unknown,
@@ -25,6 +34,8 @@ public class Define_S : MonoBehaviour
     public enum KeySkill
     {
         Unknown,
+        A,
+        D,
     }
 
     public enum QuestType
@@ -49,11 +60,35 @@ public class Define_S : MonoBehaviour
         sword
     }
 
+    public enum ItemGrade
+    {
+        Common,     // 기본
+        Rare,       // 레어
+        Epic,       // 에픽
+        Legendary,  // 레전드
+    }
+
+    public enum ItemType
+    {
+        Unknown,
+        Use,
+        Armor,
+        Weapon,
+        ETC,
+    }
+
+
     public enum UseType
     {
         Unknown,
         Hp,
         Mp,
+    }
+    public enum MonsterType
+    {
+        Unknown,
+        Normal,
+        Boss
     }
 
     // 상태
@@ -65,7 +100,7 @@ public class Define_S : MonoBehaviour
         Attack,
         Skill,
         Hit,
-        Die
+        Die,
     }
 
     public enum W_Object//월드 내 오브젝트들 타입
@@ -78,10 +113,18 @@ public class Define_S : MonoBehaviour
     public enum Layer
     {
         UIWorldSpace = 6,
-        Monster = 8,
+        Monster = 7,
         Ground = 9,
         Block = 10,
         Npc = 11,
+    }
+    public enum Scene
+    {
+        Unknown,
+        Title,
+        Game,
+        Dungeon,
+        Boss,
     }
 
     public enum UIEvent
@@ -92,9 +135,17 @@ public class Define_S : MonoBehaviour
         DragIng,
         Drag,
         DragEnd,
-        Drop,
+        Drop
     }
-
+    public enum ArmorType
+    {
+        Unknown,
+        Helmet,       // 모자
+        Chest,      // 갑옷
+        Pants,      // 바지
+        Boots,      // 신발
+        MaxCount,
+    }
     public enum MouseEvent
     {
         Left,

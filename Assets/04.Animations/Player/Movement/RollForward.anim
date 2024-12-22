@@ -114321,10 +114321,10 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.5333333
+  - time: 1.5
     functionName: EventRoll
     data: 
-    objectReferenceParameter: {fileID: 6580788545903628040, guid: 12749c0df30b68344967dfb893dfe29b, type: 3}
+    objectReferenceParameter: {fileID: 6740323496896865897, guid: 12749c0df30b68344967dfb893dfe29b, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

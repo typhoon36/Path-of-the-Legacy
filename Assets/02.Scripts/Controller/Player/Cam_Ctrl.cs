@@ -17,8 +17,8 @@ public class Cam_Ctrl : MonoBehaviour
 
     //카메라 줌 및 거리들
     float ZoomSpeed = 1.0f;
-    float minDist = 3.0f;
-    float maxDist = 10.0f;
+    float minDist = 10.0f;
+    float maxDist = 15.0f;
     float m_DefDist = 5.2f;
     float m_CurDist = 17;
 
@@ -89,18 +89,5 @@ public class Cam_Ctrl : MonoBehaviour
         transform.LookAt(m_TargetPos);
         
     }
-
-    float ClampAngle(float a_Angle, float VMin, float VMax)
-    {
-        if (a_Angle < -360)
-            a_Angle += 360;
-
-        if (a_Angle > 360)
-            a_Angle -= 360;
-
-        return Mathf.Clamp(a_Angle, VMin, VMax);
-
-    }
-
 
 }

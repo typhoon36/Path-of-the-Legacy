@@ -4,26 +4,27 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - UMAKeepChain
-  - UMAIgnore
-  - Village
-  - MonsterArea
   - Fire
   - Monster
+  - MonsterWeapon
+  - PlayerWeapon
+  - Boss
+  - Npc
+  - PlayerSkill
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Invisible
   - Water
   - UI
   - 
-  - 
+  - Monster
   - 
   - Ground
-  - 
-  - 
-  - 
+  - Block
+  - Npc
+  - Item
   - 
   - 
   - 

@@ -21,7 +21,6 @@ public abstract class Base_Ctrl : MonoBehaviour
     protected Animator m_Anim;
     protected RaycastHit m_Hit;
 
-
     //캐릭터의 상태에 따라 애니메이션 작동
     public virtual Define_S.AllState State
     {
@@ -34,27 +33,33 @@ public abstract class Base_Ctrl : MonoBehaviour
             switch (m_State)
             {
                 case Define_S.AllState.Idle:
-                    m_Anim.CrossFade("Idle", 0.4f);
+                    if (m_Anim.HasState(0, Animator.StringToHash("Idle")))
+                        m_Anim.CrossFade("Idle", 0.4f);
                     break;
 
                 case Define_S.AllState.Moving:
-                    m_Anim.CrossFade("Run", 0.1f);
+                    if (m_Anim.HasState(0, Animator.StringToHash("Run")))
+                        m_Anim.CrossFade("Run", 0.1f);
                     break;
 
                 case Define_S.AllState.Roll:
-                    m_Anim.CrossFade("Roll", 0.1f, -1, 0);
+                    if (m_Anim.HasState(0, Animator.StringToHash("Roll")))
+                        m_Anim.CrossFade("Roll", 0.1f, -1, 0);
                     break;
 
                 case Define_S.AllState.Attack:
-                    Attack();
+                    if (m_Anim.HasState(0, Animator.StringToHash("Attack")))
+                        m_Anim.CrossFade("Attack", 0.2f);
                     break;
 
                 case Define_S.AllState.Hit:
-                    m_Anim.CrossFade("HiT", 0.1f, -1, 0);
+                    if (m_Anim.HasState(0, Animator.StringToHash("HiT")))
+                        m_Anim.CrossFade("HiT", 0.2f);
                     break;
 
                 case Define_S.AllState.Die:
-                    m_Anim.CrossFade("Die", 0.1f, -1, 0);
+                    if (m_Anim.HasState(0, Animator.StringToHash("Die")))
+                        m_Anim.CrossFade("Die", 0.1f);
                     break;
             }
         }
@@ -107,6 +112,9 @@ public abstract class Base_Ctrl : MonoBehaviour
             case Define_S.AllState.Attack:
                 Attack();
                 break;
+            case Define_S.AllState.Skill:
+                Skill();
+                break;
             case Define_S.AllState.Hit:
                 Hit();
                 break;
@@ -121,16 +129,13 @@ public abstract class Base_Ctrl : MonoBehaviour
     {
         if (m_WObject != Define_S.W_Object.Monster) return;
 
-        switch(m_State)
+        switch (m_State)
         {
             case Define_S.AllState.Idle:
                 Idle();
                 break;
             case Define_S.AllState.Moving:
                 Move();
-                break;
-            case Define_S.AllState.Roll:
-                Roll();
                 break;
             case Define_S.AllState.Attack:
                 Attack();
@@ -144,8 +149,6 @@ public abstract class Base_Ctrl : MonoBehaviour
         }
 
     }
-
-
 
     protected virtual void AnimAtt()
     {
@@ -161,6 +164,9 @@ public abstract class Base_Ctrl : MonoBehaviour
     protected virtual void Roll() { }
     protected virtual void Idle() { }
     protected virtual void Attack() { }
+
+
+    protected virtual void Skill() { }
     protected virtual void Hit() { }
 
     protected virtual void Die() { }
@@ -169,4 +175,5 @@ public abstract class Base_Ctrl : MonoBehaviour
     protected virtual void SetMouseEvent(Define_S.MouseEvent a_Event) { }
 
     protected virtual void OnKeyEvent() { }
+
 }

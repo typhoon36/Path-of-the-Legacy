@@ -1,0 +1,272 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+
+public class UI_Mgr : MonoBehaviour
+{
+    public bool IsPressed { get; private set; } = false;
+
+    [Header("HUD")]
+    public Image m_HPBar;
+    public Image m_MPBar;
+    public Image m_ExpBar;
+
+    [Header("Level")]
+    public Text m_LevelText;
+
+    #region DiePanel
+    [Header("Die")]
+    public GameObject m_DiePanel;
+    public Button m_ConfrimBtn;
+    #endregion
+
+    [Header("Menu")]
+    public GameObject m_MenuPanel;
+    public Button m_ResumeBtn;
+    public Button m_OptionBtn;
+    public Button m_ExitBtn;
+
+    [Header("Option")]
+    public GameObject m_OptionPanel;
+    public Slider m_SoundSlider;
+    public Slider m_MusicSlider;
+
+    [Header("Mobile_OFF")]
+    public GameObject m_Slots;
+
+    [Header("MiniMap")]
+    public GameObject m_MiniMap;
+    public Define_S.Scene m_TargetScene;
+
+    [Header("SkillBar")]
+    public Image m_SkillA;
+    public Image m_SkillD;
+    public Dictionary<Define_S.KeySkill, SkillData> SkillBarList = new Dictionary<Define_S.KeySkill, SkillData>();
+
+    [Header("ItemBar")]
+    public Image m_1stItem;
+    public Image m_2ndItem;
+
+    private Coroutine item1RecoveryCoroutine;
+    private Coroutine item2RecoveryCoroutine;
+
+    #region Singleton
+    public static UI_Mgr Inst;
+    private void Awake()
+    {
+        if (Inst == null)
+            Inst = this;
+    }
+    #endregion
+
+    void Start()
+    {
+        Data_Mgr.LoadData();
+
+        m_HPBar.fillAmount = 1;
+        m_MPBar.fillAmount = 1;
+        m_ExpBar.fillAmount = 0;
+
+        m_DiePanel.gameObject.SetActive(false);
+
+        if (m_ConfrimBtn != null)
+            m_ConfrimBtn.onClick.AddListener(() =>
+            {
+                IsPressed = true;
+                DieOff();
+                Scene_Mgr.Inst.ChangeScene(Define_S.Scene.Game);
+            });
+
+        m_MenuPanel.gameObject.SetActive(false);
+
+        if (m_MenuPanel != null)
+        {
+            if (m_ResumeBtn != null)
+                m_ResumeBtn.onClick.AddListener(() =>
+                {
+                    IsPressed = true;
+                    m_MenuPanel.gameObject.SetActive(false);
+                    Time.timeScale = 1;
+                });
+            if (m_OptionBtn != null)
+                m_OptionBtn.onClick.AddListener(() =>
+                {
+                    IsPressed = true;
+                    m_MenuPanel.gameObject.SetActive(false);
+                    m_OptionPanel.gameObject.SetActive(true);
+                });
+            if (m_ExitBtn != null)
+                m_ExitBtn.onClick.AddListener(() =>
+                {
+                    IsPressed = true;
+                    m_MenuPanel.gameObject.SetActive(false);
+                    Time.timeScale = 1;
+                    Data_Mgr.SaveData();
+                    SceneManager.LoadScene("TitleScene");
+                });
+        }
+
+        if (Application.isMobilePlatform)
+            m_Slots.gameObject.SetActive(false);
+
+        if (m_TargetScene == Define_S.Scene.Game)
+            m_MiniMap.gameObject.SetActive(true);
+        else
+            m_MiniMap.gameObject.SetActive(false);
+
+        if (Data_Mgr.m_SkillData.Count > 1)
+        {
+            SkillBarList.Add(Define_S.KeySkill.A, Data_Mgr.m_SkillData[0]);
+            SkillBarList.Add(Define_S.KeySkill.D, Data_Mgr.m_SkillData[1]);
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            IsPressed = true;
+            m_MenuPanel.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+        LevelRefresh();
+        CheckExpBar();
+        UpdateSkillCooldowns();
+    }
+
+    #region HUD
+    public void LevelRefresh()
+    {
+        m_LevelText.text = Data_Mgr.m_StartData.Level.ToString();
+    }
+
+    public void CheckExpBar()
+    {
+        if (m_ExpBar.fillAmount >= 1)
+        {
+            m_ExpBar.fillAmount = 0;
+            Data_Mgr.m_StartData.Level += 1;
+            LevelRefresh();
+        }
+    }
+
+    public void UpdateHPBar(float a_CurHp, float a_MaxHp)
+    {
+        if (a_MaxHp > 0)
+        {
+            m_HPBar.fillAmount = Mathf.Clamp01(a_CurHp / a_MaxHp);
+        }
+        else
+        {
+            m_HPBar.fillAmount = 0;
+        }
+    }
+
+    public void UpdateMpBar(float a_CurMp, float a_MaxMp)
+    {
+        if (a_MaxMp > 0)
+        {
+            m_MPBar.fillAmount = Mathf.Clamp01(a_CurMp / a_MaxMp);
+        }
+        else
+        {
+            m_MPBar.fillAmount = 0;
+        }
+    }
+
+    public void UpdateSkillBar(Define_S.KeySkill keySkill, float fillAmount)
+    {
+        switch (keySkill)
+        {
+            case Define_S.KeySkill.A:
+                m_SkillA.fillAmount = fillAmount;
+                break;
+            case Define_S.KeySkill.D:
+                m_SkillD.fillAmount = fillAmount;
+                break;
+        }
+    }
+
+    public void UpdateSkillCooldowns()
+    {
+        foreach (var skill in SkillBarList)
+        {
+            if (skill.Value.isCoolDown)
+            {
+                float cooldownProgress = (Time.time - skill.Value.skillCoolDown) / skill.Value.skillCoolDown;
+                UpdateSkillBar(skill.Key, Mathf.Clamp01(cooldownProgress));
+                if (cooldownProgress >= 1)
+                {
+                    skill.Value.isCoolDown = false;
+                    skill.Value.skillCoolDown = 0; // 쿨다운 초기화
+                }
+            }
+        }
+    }
+    #endregion
+
+    public void DieOn()
+    {
+        m_DiePanel.gameObject.SetActive(true);
+        m_HPBar.fillAmount = 0;
+    }
+
+    public void DieOff()
+    {
+        m_DiePanel.gameObject.SetActive(false);
+    }
+
+    public void ResetButtonPress()
+    {
+        IsPressed = false;
+    }
+
+    public void UseItem(int itemIndex)
+    {
+        switch (itemIndex)
+        {
+            case 0:
+                {
+                    // 1아이템 사용
+                    m_1stItem.fillAmount = 0;
+                    m_HPBar.fillAmount += 0.5f;
+                    Data_Mgr.m_StartData.CurHp += 50;
+                    if (item1RecoveryCoroutine != null)
+                        StopCoroutine(item1RecoveryCoroutine);
+                    item1RecoveryCoroutine = StartCoroutine(RecoverItemFillAmount(m_1stItem, 5f)); // 5초 동안 회복
+                    break;
+                }
+            case 1:
+                {
+                    // 2아이템 사용
+                    m_2ndItem.fillAmount = 0;
+                    m_MPBar.fillAmount += 0.5f;
+                    Data_Mgr.m_StartData.CurMp += 50;
+                    if (item2RecoveryCoroutine != null)
+                        StopCoroutine(item2RecoveryCoroutine);
+                    item2RecoveryCoroutine = StartCoroutine(RecoverItemFillAmount(m_2ndItem, 5f)); // 5초 동안 회복
+                    break;
+                }
+            default:
+                {
+                    Debug.LogWarning("Invalid item index");
+                    break;
+                }
+        }
+    }
+
+    private IEnumerator RecoverItemFillAmount(Image itemImage, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            itemImage.fillAmount = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        itemImage.fillAmount = 1f;
+    }
+}

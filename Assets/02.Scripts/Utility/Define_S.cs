@@ -51,7 +51,8 @@ public class Define_S : MonoBehaviour
         Unknown,
         Used,
         Armor,
-        Weapon
+        Weapon,
+        ETC
     }
 
     public enum WeaponType

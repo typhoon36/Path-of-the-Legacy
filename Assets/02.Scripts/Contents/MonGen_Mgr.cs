@@ -7,7 +7,7 @@ public class MonGen_Mgr : MonoBehaviour
     public GameObject[] m_Monster; // 소환할 몬스터들
     public Transform[] m_SpawnPos; // 소환할 위치들
 
-   [HideInInspector] public List<GameObject> m_Monsters = new List<GameObject>(); // 소환된 몬스터들 리스트
+    [HideInInspector] public List<GameObject> m_Monsters; // 소환된 몬스터들 리스트
 
     float m_ReSpawnTime = 10f; // 몬스터 리스폰 시간
 
@@ -17,6 +17,8 @@ public class MonGen_Mgr : MonoBehaviour
     {
         if (Inst == null)
             Inst = this;
+
+        m_Monsters = new List<GameObject>(); // 리스트 초기화
     }
     #endregion
 
@@ -31,12 +33,17 @@ public class MonGen_Mgr : MonoBehaviour
         {
             for (int i = 0; i < m_SpawnPos.Length; i++)
             {
-                if (m_Monsters.Count >= m_SpawnPos.Length)
+                bool isPositionOccupied = false;
+                foreach (var monster in m_Monsters)
                 {
-                    yield break; // 모든 위치가 가득 차면 스폰 중지
+                    if (Vector3.Distance(monster.transform.position, m_SpawnPos[i].position) < 0.1f)
+                    {
+                        isPositionOccupied = true;
+                        break;
+                    }
                 }
 
-                if (m_Monsters.Count < m_SpawnPos.Length)
+                if (!isPositionOccupied)
                 {
                     GameObject monster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[i].position, Quaternion.identity);
                     m_Monsters.Add(monster);

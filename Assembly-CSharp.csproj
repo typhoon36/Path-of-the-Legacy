@@ -64,6 +64,7 @@
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
+    <Compile Include="Assets\02.Scripts\Manager\Contents\Game_Mgr.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\AutoMoveAndRotate.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\FireLight.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\02.Scripts\Utility\CameraResolution.cs" />
     <Compile Include="Assets\02.Scripts\Controller\NPC\Npc_Ctrl.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\ShopPopup_UI.cs" />
+    <Compile Include="Assets\02.Scripts\UI\SubItem\Shop\ProductInfo.cs" />
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\EqStatPopup_UI.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\FollowTarget.cs" />
@@ -93,12 +95,14 @@
     <Compile Include="Assets\02.Scripts\Utility\Sound_Mgr.cs" />
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\02.Scripts\Contents\Portal\BossPortal.cs" />
+    <Compile Include="Assets\02.Scripts\UI\Popup\QuestMark_UI.cs" />
     <Compile Include="Assets\02.Scripts\Manager\Contents\Title_Mgr.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\TimedObjectActivator.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
     <Compile Include="Assets\07.Model\Monster\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
     <Compile Include="Assets\07.Model\AA_UniversalCharacter\Scripts\CustomButton.cs" />
     <Compile Include="Assets\02.Scripts\UI\SubItem\Drag&amp;Drop\Drag_UI.cs" />
+    <Compile Include="Assets\02.Scripts\UI\SubItem\Shop\Product_Nd.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Base_Ctrl.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Monster\MonsterAttColl.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\ExtinguishableParticleSystem.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\ConfirmPopup_UI.cs" />
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
+    <Compile Include="Assets\02.Scripts\UI\Popup\QuestPopup_UI.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Player\PlayerAnim.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\AlphaButtonClickMask.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\ObjectResetter.cs" />
@@ -130,6 +135,8 @@
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\SmokeParticles.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
     <Compile Include="Assets\07.Model\Portals\Scripts\SimpleCameraControllerPortals.cs" />
+    <Compile Include="Assets\02.Scripts\Controller\NPC\QuestNpc_Ctrl.cs" />
+    <Compile Include="Assets\02.Scripts\UI\Popup\TalkPopup_UI.cs" />
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\02.Scripts\Manager\Core\UI_Mgr.cs" />
     <Compile Include="Assets\05.Images\UI\Mobile_UI\Joystick Pack\Scripts\Base\Joystick.cs" />

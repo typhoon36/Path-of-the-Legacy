@@ -187,6 +187,28 @@ public class Data_Mgr
             {
                 InitializeDefaultSkillData();
             }
+
+            // 기본 퀘스트 데이터 초기화
+            if (m_QuestData.Count == 0)
+            {
+                InitQuestData();
+            }
+
+            // 기본 대화 데이터 초기화
+            if (m_TalkData.Count == 0)
+            {
+                InitTalkData();
+            }
+
+            if (m_ItemData.Count == 0)
+            {
+                InitItemData();
+            }
+
+        }
+        else
+        {
+            Debug.LogError("GameData.json 파일을 찾을 수 없습니다.");
         }
     }
 
@@ -212,7 +234,7 @@ public class Data_Mgr
         OnLevelUp?.Invoke();
     }
 
-    private static void InitializeDefaultSkillData()
+    static void InitializeDefaultSkillData()
     {
         m_SkillData.Add(new SkillData
         {
@@ -224,7 +246,7 @@ public class Data_Mgr
             isCoolDown = false,
             isLock = false,
             discription = "Warrior`s auror gave Damage Reduce.",
-            skillSprite = null, 
+            skillSprite = null,
             powerList = new List<int> { 10, 20, 30 }
         });
 
@@ -238,8 +260,221 @@ public class Data_Mgr
             isCoolDown = false,
             isLock = true,
             discription = "Enermy gave Damage",
-            skillSprite = null, 
+            skillSprite = null,
             powerList = new List<int> { 15, 25, 35 }
         });
+    }
+
+    static void InitQuestData()
+    {
+        m_QuestData.Add(new QuestData
+        {
+            Id = 1,
+            TitleName = "몬스터 저지",
+            QuestType = Define_S.QuestType.Monster,
+            MinLevel = 1,
+            TargetCnt = 10,
+            CurTargetCnt = 0,
+            RewardGold = 100,
+            RewardExp = 100,
+            RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 1, ItemCount = 1 } },
+            Desc = "마을 근처 트롤 저지",
+            TargetDesc = "10마리 사냥.",
+            TargetPos = Vector3.zero,
+            IsAccept = false,
+            IsClear = false
+        });
+        m_QuestData.Add(new QuestData
+        {
+            Id = 1,
+            TitleName = "몬스터 저지",
+            QuestType = Define_S.QuestType.Monster,
+            MinLevel = 1,
+            TargetCnt = 10,
+            CurTargetCnt = 0,
+            RewardGold = 100,
+            RewardExp = 100,
+            RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 1, ItemCount = 1 } },
+            Desc = "마을 근처 홉고블린 저지",
+            TargetDesc = "10마리 사냥.",
+            TargetPos = Vector3.zero,
+            IsAccept = false,
+            IsClear = false
+        });
+
+    }
+
+    static void InitTalkData()
+    {
+        m_TalkData.Add(new TalkData
+        {
+            id = 1,
+            basicsTalk = "안녕하신가",
+            questStartTalk = new List<string> { "안녕하신가", "자네에게 부탁이 있네." },
+            acceptTalk = "부탁하네",
+            refusalTalk = "아쉽군",
+            procTalk = "행운을 비네",
+            clearTalk = "고맙네."
+        });
+        m_TalkData.Add(new TalkData
+        {
+            id = 2,
+            basicsTalk = "안녕하신가",
+            questStartTalk = new List<string> { "안녕하신가", "자네에게 부탁이 있네." },
+            acceptTalk = "부탁하네",
+            refusalTalk = "아쉽군",
+            procTalk = "행운을 비네",
+            clearTalk = "고맙네."
+        });
+
+    }
+
+    static void InitItemData()
+    {
+        //포션 종류
+        m_ItemData.Add(new ItemData
+        {
+            Id = 1,
+            ItemName = "회복의 포션",
+            ItemType = Define_S.ItemType.Use,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 99,
+            ItemObj = null,
+            ItemDesc = "서서히 회복되는 포션(지속시간 3분)",
+            ItemIcon = Resources.Load<Sprite>("Items/Potions/grass_potion")
+        });
+        m_ItemData.Add(new ItemData
+        {
+            Id = 2,
+            ItemName = "이동의 포션",
+            ItemType = Define_S.ItemType.Use,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 99,
+            ItemObj = null,
+            ItemDesc = "바람처럼 빠르게 움직일수있게한다.",
+            ItemIcon = Resources.Load<Sprite>("Items/Potions/wind_potion")
+        });
+
+        //갑옷 종류
+        m_ItemData.Add(new ItemData
+        {
+            Id = 3,
+            ItemName = "Leather Armor",
+            ItemType = Define_S.ItemType.Armor,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "방어력 10 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Armor/01_Leather_chest")
+        });
+        m_ItemData.Add(new ItemData
+        {
+            Id = 4,
+            ItemName = "Iron Armor",
+            ItemType = Define_S.ItemType.Armor,
+            ItemGrade = Define_S.ItemGrade.Rare,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "방어력 20 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Armor/01_plate_chest")
+        });
+
+        m_ItemData.Add(new ItemData
+        {
+            Id = 5,
+            ItemName = "Leather Pants",
+            ItemType = Define_S.ItemType.Armor,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "방어력 10 증가",
+            ItemIcon =  Resources.Load<Sprite>("Items/Armor/06_leather_pants")
+        });
+        m_ItemData.Add(new ItemData
+        {
+            Id = 6,
+            ItemName = "Iron Pants",
+            ItemType = Define_S.ItemType.Armor,
+            ItemGrade = Define_S.ItemGrade.Rare,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "방어력 20 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Armor/06_plate_pants")
+        });
+
+        //신발 종류
+        m_ItemData.Add(new ItemData
+        {
+            Id = 7,
+            ItemName = "Leather Boots",
+            ItemType = Define_S.ItemType.Armor,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "이동속도 10 증가, 방어력 5증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Armor/05_leather_boots")
+        });
+
+        m_ItemData.Add(new ItemData
+        {
+            Id = 8,
+            ItemName = "Iron Boots",
+            ItemType = Define_S.ItemType.Armor,
+            ItemGrade = Define_S.ItemGrade.Rare,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "이동속도 20 감소,방어력 10 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Armor/05_plate_boots")
+        });
+
+        //무기 종류
+        m_ItemData.Add(new ItemData
+        {
+            Id = 9,
+            ItemName = "연습용 칼",
+            ItemType = Define_S.ItemType.Weapon,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "공격력 10 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Weapons/Sword_1")
+        });
+
+        m_ItemData.Add(new ItemData
+        {
+            Id = 10,
+            ItemName = "기사의 검",
+            ItemType = Define_S.ItemType.Weapon,
+            ItemGrade = Define_S.ItemGrade.Rare,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "공격력 20 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Weapons/Sword_2")
+        });
+
+        m_ItemData.Add(new ItemData
+        {
+            Id = 11,
+            ItemName = "무딘 도끼",
+            ItemType = Define_S.ItemType.Weapon,
+            ItemGrade = Define_S.ItemGrade.Common,
+            ItemPrice = 100,
+            ItemMaxCount = 1,
+            ItemObj = null,
+            ItemDesc = "공격력 25 증가",
+            ItemIcon = Resources.Load<Sprite>("Items/Weapons/Ax_1")
+        });
+
+
     }
 }

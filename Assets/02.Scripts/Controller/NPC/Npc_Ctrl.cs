@@ -19,9 +19,8 @@ public abstract class Npc_Ctrl : Base_Ctrl
     public override void Init()
     {
         if (m_NameTxt != null)
-        {
-            m_NameTxt.text = m_NpcName + "[F]";
-        }
+            m_NameTxt.text = m_NpcName;
+
     }
 
     public void GetInteract() { OnInteract(); }
@@ -52,9 +51,7 @@ public abstract class Npc_Ctrl : Base_Ctrl
         {
             m_Target = null;
             if (m_NameTxt != null)
-            {
                 m_NameTxt.gameObject.SetActive(false);
-            }
         }
     }
 

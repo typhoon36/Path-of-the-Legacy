@@ -24,6 +24,9 @@ public class ShopNpc_Ctrl : Npc_Ctrl
         // 팝업 활성화
         ShopPopup_UI.Inst.m_ShopPopup.gameObject.SetActive(true);
         InvenPopup_UI.Inst.m_InvenPopup.gameObject.SetActive(true);
+
+        // 상점 타입에 따라 상품 로드
+        ShopPopup_UI.Inst.LoadProducts(m_ShopType);
     }
 
     void ExitShop()

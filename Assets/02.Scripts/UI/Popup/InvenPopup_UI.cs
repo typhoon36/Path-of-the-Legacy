@@ -40,7 +40,7 @@ public class InvenPopup_UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             m_InvenPopup.SetActive(!m_InvenPopup.activeSelf);
-            
+
             if (m_InvenPopup.activeSelf)
             {
                 m_Content.anchoredPosition = m_OriginalPosition;
@@ -48,7 +48,7 @@ public class InvenPopup_UI : MonoBehaviour
             }
             else
             {
-                m_Content.anchoredPosition = Vector3.zero;
+                m_Content.anchoredPosition = m_OriginalPosition;
             }
         }
     }
@@ -65,7 +65,7 @@ public class InvenPopup_UI : MonoBehaviour
         Data_Mgr.SaveData(); // 골드 값을 저장
     }
 
-  
+
 
     private void CheckInventoryItems()
     {
@@ -100,6 +100,7 @@ public class InvenPopup_UI : MonoBehaviour
 
     public void AddItem()
     {
-        //m_Content.GetChild(index).gameObject.SetActive(true);
+        
+
     }
 }

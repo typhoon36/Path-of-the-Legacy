@@ -94,7 +94,7 @@ public class Player_Ctrl : Base_Ctrl
         State = Define_S.AllState.Idle;
 
 
-        SetPart();
+        //SetPart();
     }
     #endregion
 
@@ -108,7 +108,7 @@ public class Player_Ctrl : Base_Ctrl
     IEnumerator LevelUpCoroutine()
     {
         // 레벨업 이펙트 Prefab 생성
-        GameObject effect = Instantiate(Resources.Load("Effect/LevelUpEffect")) as GameObject;
+        GameObject effect = Instantiate(Resources.Load("Effect/LevelupBuff")) as GameObject;
         effect.transform.localPosition = Vector3.zero;
 
         yield return new WaitForSeconds(4f);
@@ -123,9 +123,6 @@ public class Player_Ctrl : Base_Ctrl
         if (IsStopAtt == false)
             StopAtt();
     }
-
-    #region Levelup
-    #endregion
 
 
     #region Moving
@@ -142,16 +139,13 @@ public class Player_Ctrl : Base_Ctrl
 
                 //타겟이 NPC라면 상호작용
                 if (m_Target.GetComponent<Npc_Ctrl>() != null)
-                {
                     m_Target.GetComponent<Npc_Ctrl>().GetInteract();
-                }
-
                 return;
             }
 
         }
 
-        m_DPos.y = 0;
+        m_DPos.y = 0;//높이값 0으로 고정
 
         //타겟과 거리
         m_Dir = m_DPos - transform.position;
@@ -598,7 +592,7 @@ public class Player_Ctrl : Base_Ctrl
                 {
                     // 인벤토리에 넣기
                     Debug.Log("아이템 줍기 : " + a_Item.item.ItemName);
-                    InvenPopup_UI.Inst.AddItem(); 
+                    InvenPopup_UI.Inst.AddItem();
 
                     Destroy(coll[i].gameObject);//필드 아이템 삭제
 
@@ -654,10 +648,8 @@ public class Player_Ctrl : Base_Ctrl
 
     void OnTriggerEnter(Collider coll)
     {
-
         if (coll.CompareTag("MonsterWeapon"))
         {
-
             Monster_Ctrl monster = coll.GetComponent<Monster_Ctrl>();
 
             if (monster != null)
@@ -667,7 +659,6 @@ public class Player_Ctrl : Base_Ctrl
                 if (a_MonStat != null)
                 {
                     OnHit(a_MonStat, a_Dmg);
-
                 }
             }
         }
@@ -685,23 +676,23 @@ public class Player_Ctrl : Base_Ctrl
     }
 
 
-    public void SetPart()
-    {
-        // 모든 장비 오브젝트 저장
-        m_Equipment.Clear();
+    //public void SetPart()
+    //{
+    //    // 모든 장비 오브젝트 저장
+    //    m_Equipment.Clear();
 
-        foreach (var itemData in Data_Mgr.m_ItemData)
-        {
-            if (itemData.ItemType == Define_S.ItemType.Armor)
-            {
-                GameObject a_Obj = Instantiate(itemData.ItemObj);
-                a_Obj.SetActive(false);
+    //    foreach (var itemData in Data_Mgr.m_ItemData)
+    //    {
+    //        if (itemData.ItemType == Define_S.ItemType.Armor)
+    //        {
+    //            GameObject a_Obj = Instantiate(itemData.ItemObj);
+    //            a_Obj.SetActive(false);
 
-                if (m_Equipment.ContainsKey((int)Define_S.ItemType.Armor) == false)
-                    m_Equipment.Add((int)Define_S.ItemType.Armor, new List<GameObject>());
-            }
-        }
-    }
+    //            if (m_Equipment.ContainsKey((int)Define_S.ItemType.Armor) == false)
+    //                m_Equipment.Add((int)Define_S.ItemType.Armor, new List<GameObject>());
+    //        }
+    //    }
+    //}
     #endregion
 
 }

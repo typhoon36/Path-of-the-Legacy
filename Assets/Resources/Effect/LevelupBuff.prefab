@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9027470221571850155}
   - component: {fileID: 1696471460245884442}
   m_Layer: 0
-  m_Name: Levelup Buff
+  m_Name: LevelupBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -50,12 +50,12 @@ public class UI_Mgr : MonoBehaviour
     public Image m_1stItem;
     public Image m_2ndItem;
 
-    private Coroutine item1RecoveryCoroutine;
-    private Coroutine item2RecoveryCoroutine;
+    Coroutine Co_Item1Recovery;
+    Coroutine Co_Item2Recovery;
 
     #region Singleton
     public static UI_Mgr Inst;
-    private void Awake()
+    void Awake()
     {
         if (Inst == null)
             Inst = this;
@@ -134,7 +134,7 @@ public class UI_Mgr : MonoBehaviour
         }
         LevelRefresh();
         CheckExpBar();
-        UpdateSkillCooldowns();
+        UpdateSkillCooldowns();// 스킬 쿨다운 갱신
     }
 
     #region HUD
@@ -150,6 +150,11 @@ public class UI_Mgr : MonoBehaviour
             m_ExpBar.fillAmount = 0;
             Data_Mgr.m_StartData.Level += 1;
             LevelRefresh();
+            Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
+            if (a_Player != null)
+            {
+                a_Player.LevelUpEffect();
+            }
         }
     }
 
@@ -224,6 +229,7 @@ public class UI_Mgr : MonoBehaviour
         IsPressed = false;
     }
 
+    #region ItemSlotUse
     public void UseItem(int itemIndex)
     {
         switch (itemIndex)
@@ -234,9 +240,9 @@ public class UI_Mgr : MonoBehaviour
                     m_1stItem.fillAmount = 0;
                     m_HPBar.fillAmount += 0.5f;
                     Data_Mgr.m_StartData.CurHp += 50;
-                    if (item1RecoveryCoroutine != null)
-                        StopCoroutine(item1RecoveryCoroutine);
-                    item1RecoveryCoroutine = StartCoroutine(RecoverItemFillAmount(m_1stItem, 5f)); // 5초 동안 회복
+                    if (Co_Item1Recovery != null)
+                        StopCoroutine(Co_Item1Recovery);
+                    Co_Item1Recovery = StartCoroutine(RecoverItemFillAmount(m_1stItem, 5f)); // 5초 동안 회복
                     break;
                 }
             case 1:
@@ -245,9 +251,9 @@ public class UI_Mgr : MonoBehaviour
                     m_2ndItem.fillAmount = 0;
                     m_MPBar.fillAmount += 0.5f;
                     Data_Mgr.m_StartData.CurMp += 50;
-                    if (item2RecoveryCoroutine != null)
-                        StopCoroutine(item2RecoveryCoroutine);
-                    item2RecoveryCoroutine = StartCoroutine(RecoverItemFillAmount(m_2ndItem, 5f)); // 5초 동안 회복
+                    if (Co_Item2Recovery != null)
+                        StopCoroutine(Co_Item2Recovery);
+                    Co_Item2Recovery = StartCoroutine(RecoverItemFillAmount(m_2ndItem, 5f)); // 5초 동안 회복
                     break;
                 }
             default:
@@ -258,7 +264,7 @@ public class UI_Mgr : MonoBehaviour
         }
     }
 
-    private IEnumerator RecoverItemFillAmount(Image itemImage, float duration)
+    IEnumerator RecoverItemFillAmount(Image itemImage, float duration)
     {
         float elapsed = 0f;
         while (elapsed < duration)
@@ -269,4 +275,5 @@ public class UI_Mgr : MonoBehaviour
         }
         itemImage.fillAmount = 1f;
     }
+    #endregion
 }

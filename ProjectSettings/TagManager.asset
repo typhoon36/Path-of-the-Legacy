@@ -11,6 +11,7 @@ TagManager:
   - Boss
   - Npc
   - PlayerSkill
+  - Item
   layers:
   - Default
   - TransparentFX

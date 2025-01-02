@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{60FF69C5-FB93-DB0D-E4B0-6B9EF11DA4B3}</ProjectGuid>
+    <ProjectGuid>{83D17E3D-4EEB-A2ED-523E-26F9B697CB36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -1098,11 +1098,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Hierarchy2.Runtime.csproj">
-      <Project>{5C381FFA-C2E5-9BE1-80AF-219F6B3FC3DF}</Project>
+      <Project>{600F66D1-503A-900C-36F1-6E9745562CE0}</Project>
       <Name>Hierarchy2.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Hierarchy2.Editor.csproj">
-      <Project>{98665F8A-D98C-BAD4-33A4-4304F60F9255}</Project>
+      <Project>{7F7DA9A2-090A-95AC-5CB8-192A427C7852}</Project>
       <Name>Hierarchy2.Editor</Name>
     </ProjectReference>
   </ItemGroup>

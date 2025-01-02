@@ -14,11 +14,16 @@ public class Product_Nd : MonoBehaviour
     public GameObject m_MoreInfo; //상품 상세 정보 팝업
 
     ItemData m_ItemData;
-    ShopPopup_UI m_ShopPopup;
 
     void Start()
     {
-
+        m_BuyBtn.onClick.AddListener(() =>
+        {
+            if (InvenPopup_UI.Inst != null)
+            {
+                InvenPopup_UI.Inst.AddItem(m_ItemData);
+            }
+        });
     }
 
     public void Init(ItemData a_ItemData)

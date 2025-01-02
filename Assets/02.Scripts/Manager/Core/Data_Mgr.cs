@@ -350,7 +350,7 @@ public class Data_Mgr
             ItemName = "이동의 포션",
             ItemType = Define_S.ItemType.Use,
             ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
+            ItemPrice = 150,
             ItemMaxCount = 99,
             ItemObj = null,
             ItemDesc = "바람처럼 빠르게 움직일수있게한다.",
@@ -361,10 +361,10 @@ public class Data_Mgr
         m_ItemData.Add(new ItemData
         {
             Id = 3,
-            ItemName = "Leather Armor",
+            ItemName = "가죽 갑옷",
             ItemType = Define_S.ItemType.Armor,
             ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
+            ItemPrice = 200,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "방어력 10 증가",
@@ -373,10 +373,10 @@ public class Data_Mgr
         m_ItemData.Add(new ItemData
         {
             Id = 4,
-            ItemName = "Iron Armor",
+            ItemName = "철제 갑옷",
             ItemType = Define_S.ItemType.Armor,
             ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 100,
+            ItemPrice = 300,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "방어력 20 증가",
@@ -386,10 +386,10 @@ public class Data_Mgr
         m_ItemData.Add(new ItemData
         {
             Id = 5,
-            ItemName = "Leather Pants",
+            ItemName = "가죽 바지",
             ItemType = Define_S.ItemType.Armor,
             ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
+            ItemPrice = 200,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "방어력 10 증가",
@@ -398,10 +398,10 @@ public class Data_Mgr
         m_ItemData.Add(new ItemData
         {
             Id = 6,
-            ItemName = "Iron Pants",
+            ItemName = "철 바지",
             ItemType = Define_S.ItemType.Armor,
             ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 100,
+            ItemPrice = 300,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "방어력 20 증가",
@@ -412,10 +412,10 @@ public class Data_Mgr
         m_ItemData.Add(new ItemData
         {
             Id = 7,
-            ItemName = "Leather Boots",
+            ItemName = "가죽 신발",
             ItemType = Define_S.ItemType.Armor,
             ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
+            ItemPrice = 200,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "이동속도 10 증가, 방어력 5증가",
@@ -425,10 +425,10 @@ public class Data_Mgr
         m_ItemData.Add(new ItemData
         {
             Id = 8,
-            ItemName = "Iron Boots",
+            ItemName = "철 부츠",
             ItemType = Define_S.ItemType.Armor,
             ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 100,
+            ItemPrice = 300,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "이동속도 20 감소,방어력 10 증가",
@@ -442,7 +442,7 @@ public class Data_Mgr
             ItemName = "연습용 칼",
             ItemType = Define_S.ItemType.Weapon,
             ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
+            ItemPrice = 10,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "공격력 10 증가",
@@ -468,7 +468,7 @@ public class Data_Mgr
             ItemName = "무딘 도끼",
             ItemType = Define_S.ItemType.Weapon,
             ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
+            ItemPrice = 150,
             ItemMaxCount = 1,
             ItemObj = null,
             ItemDesc = "공격력 25 증가",

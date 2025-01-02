@@ -66,6 +66,8 @@ public class Player_Ctrl : Base_Ctrl
     [SerializeField]
     private List<EffectData> m_Effects;
 
+    ItemData a_ItemData;
+
     #region JoyStick & Buttons
     #endregion
 
@@ -531,7 +533,7 @@ public class Player_Ctrl : Base_Ctrl
         }
 
         GetUseItem();
-        GetPickUp();
+        //GetPickUp();
 
     }
 
@@ -575,33 +577,33 @@ public class Player_Ctrl : Base_Ctrl
         }
     }
 
-    [SerializeField]
-    float a_ItemMaxRadius = 5f; // 아이템 줍기 최대 반경
-    void GetPickUp()
-    {
-        // 주변 아이템 탐색
-        Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 12); //Item = 12 Layer
+    //[SerializeField]
+    //float a_ItemMaxRadius = 5f; // 아이템 줍기 최대 반경
+    //void GetPickUp()
+    //{
+    //    // 주변 아이템 탐색
+    //    Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 12); //Item = 12 Layer
 
-        // F 키를 누르면 줍기
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            for (int i = 0; i < coll.Length; i++)
-            {
-                ItemPickUp a_Item = coll[i].GetComponent<ItemPickUp>();
-                if (a_Item != null)
-                {
-                    // 인벤토리에 넣기
-                    Debug.Log("아이템 줍기 : " + a_Item.item.ItemName);
-                    InvenPopup_UI.Inst.AddItem();
+    //    // F 키를 누르면 줍기
+    //    if (Input.GetKeyDown(KeyCode.F))
+    //    {
+    //        for (int i = 0; i < coll.Length; i++)
+    //        {
+    //            ItemPickUp a_Item = coll[i].GetComponent<ItemPickUp>();
+    //            if (a_Item != null)
+    //            {
+    //                // 인벤토리에 넣기
+    //                Debug.Log("아이템 줍기 : " + a_Item.item.ItemName);
+    //                //InvenPopup_UI.Inst.AddItem(a_ItemData);
 
-                    Destroy(coll[i].gameObject);//필드 아이템 삭제
+    //                Destroy(coll[i].gameObject);//필드 아이템 삭제
 
-                    return;
-                }
-            }
-        }
+    //                return;
+    //            }
+    //        }
+    //    }
 
-    }
+    //}
 
     // 스킬 사용 
     void GetSkill()

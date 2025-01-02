@@ -14,6 +14,8 @@ public class InvenPopup_UI : MonoBehaviour
 
     public Text m_GoldText;
 
+    ItemData m_ItemData;
+
     #region Singleton
     public static InvenPopup_UI Inst;
     private void Awake()
@@ -50,6 +52,12 @@ public class InvenPopup_UI : MonoBehaviour
             {
                 m_Content.anchoredPosition = m_OriginalPosition;
             }
+        }
+
+        //컨트롤키를 누르고 왼쪽마우스 클릭시 아이템 판매
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && ShopPopup_UI.Inst.m_ShopPopup.activeSelf == true)
+        {
+          
         }
     }
 
@@ -98,9 +106,36 @@ public class InvenPopup_UI : MonoBehaviour
         m_ScrollRect.enabled = hasItems; // 스크롤 활성화 여부 설정
     }
 
-    public void AddItem()
+    //아이템 추가
+    public void AddItem(ItemData a_ItemData)
     {
-        
+        foreach (Transform a_Slot in m_Content)
+        {
+            if (a_Slot.GetChild(0).gameObject.activeSelf == false)
+            {
+                // 아이템 추가
+                a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
+                // 활성화 후 아이템 정보 설정
+                a_Slot.GetChild(0).GetComponent<Image>().sprite = a_ItemData.ItemIcon;
 
+                break;
+            }
+        }
+    }
+
+    //아이템 판매
+    public void SellItem(ItemData a_ItemData)
+    {
+        foreach (Transform a_Slot in m_Content)
+        {
+            if (a_Slot.GetChild(0).gameObject.activeSelf == true)
+            {
+                // 아이템 판매
+                a_Slot.GetChild(0).gameObject.SetActive(false); // 비활성화
+                // 판매 후 아이템 정보 초기화
+                a_Slot.GetChild(0).GetComponent<Image>().sprite = null;
+                break;
+            }
+        }
     }
 }

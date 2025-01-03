@@ -2,7 +2,6 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using I18N.Common;
 
 #region Data Structure
 [System.Serializable]
@@ -329,152 +328,52 @@ public class Data_Mgr
 
     }
 
+
     static void InitItemData()
     {
-        //포션 종류
-        m_ItemData.Add(new ItemData
-        {
-            Id = 1,
-            ItemName = "회복의 포션",
-            ItemType = Define_S.ItemType.Use,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 100,
-            ItemMaxCount = 99,
-            ItemObj = null,
-            ItemDesc = "서서히 회복되는 포션(지속시간 3분)",
-            ItemIcon = Resources.Load<Sprite>("Items/Potions/grass_potion")
-        });
-        m_ItemData.Add(new ItemData
-        {
-            Id = 2,
-            ItemName = "이동의 포션",
-            ItemType = Define_S.ItemType.Use,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 150,
-            ItemMaxCount = 99,
-            ItemObj = null,
-            ItemDesc = "바람처럼 빠르게 움직일수있게한다.",
-            ItemIcon = Resources.Load<Sprite>("Items/Potions/wind_potion")
-        });
+        // 포션 종류
+        AddItemData(1, "회복의 포션", Define_S.ItemType.Use, Define_S.ItemGrade.Common, 100, 99, null, "서서히 회복되는 포션(지속시간 3분)", "Items/Potions/grass_potion");
+        AddItemData(2, "이동의 포션", Define_S.ItemType.Use, Define_S.ItemGrade.Common, 150, 99, null, "바람처럼 빠르게 움직일수있게한다.", "Items/Potions/wind_potion");
 
-        //갑옷 종류
-        m_ItemData.Add(new ItemData
-        {
-            Id = 3,
-            ItemName = "가죽 갑옷",
-            ItemType = Define_S.ItemType.Armor,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 200,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "방어력 10 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Armor/01_Leather_chest")
-        });
-        m_ItemData.Add(new ItemData
-        {
-            Id = 4,
-            ItemName = "철제 갑옷",
-            ItemType = Define_S.ItemType.Armor,
-            ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 300,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "방어력 20 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Armor/01_plate_chest")
-        });
+        // 갑옷 종류
+        AddItemData(3, "가죽 갑옷", Define_S.ItemType.Armor, Define_S.ItemGrade.Common, 200, 1, null, "방어력 10 증가", "Items/Armor/01_Leather_chest");
+        AddItemData(4, "철제 갑옷", Define_S.ItemType.Armor, Define_S.ItemGrade.Rare, 300, 1, null, "방어력 20 증가", "Items/Armor/01_plate_chest");
+        AddItemData(5, "가죽 바지", Define_S.ItemType.Armor, Define_S.ItemGrade.Common, 200, 1, null, "방어력 10 증가", "Items/Armor/06_leather_pants");
+        AddItemData(6, "철 바지", Define_S.ItemType.Armor, Define_S.ItemGrade.Rare, 300, 1, null, "방어력 20 증가", "Items/Armor/06_plate_pants");
 
-        m_ItemData.Add(new ItemData
-        {
-            Id = 5,
-            ItemName = "가죽 바지",
-            ItemType = Define_S.ItemType.Armor,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 200,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "방어력 10 증가",
-            ItemIcon =  Resources.Load<Sprite>("Items/Armor/06_leather_pants")
-        });
-        m_ItemData.Add(new ItemData
-        {
-            Id = 6,
-            ItemName = "철 바지",
-            ItemType = Define_S.ItemType.Armor,
-            ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 300,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "방어력 20 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Armor/06_plate_pants")
-        });
+        // 신발 종류
+        AddItemData(7, "가죽 신발", Define_S.ItemType.Armor, Define_S.ItemGrade.Common, 200, 1, null, "이동속도 10 증가, 방어력 5증가", "Items/Armor/05_leather_boots");
+        AddItemData(8, "철 부츠", Define_S.ItemType.Armor, Define_S.ItemGrade.Rare, 300, 1, null, "이동속도 20 감소,방어력 10 증가", "Items/Armor/05_plate_boots");
 
-        //신발 종류
-        m_ItemData.Add(new ItemData
-        {
-            Id = 7,
-            ItemName = "가죽 신발",
-            ItemType = Define_S.ItemType.Armor,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 200,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "이동속도 10 증가, 방어력 5증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Armor/05_leather_boots")
-        });
-
-        m_ItemData.Add(new ItemData
-        {
-            Id = 8,
-            ItemName = "철 부츠",
-            ItemType = Define_S.ItemType.Armor,
-            ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 300,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "이동속도 20 감소,방어력 10 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Armor/05_plate_boots")
-        });
-
-        //무기 종류
-        m_ItemData.Add(new ItemData
-        {
-            Id = 9,
-            ItemName = "연습용 칼",
-            ItemType = Define_S.ItemType.Weapon,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 10,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "공격력 10 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Weapons/Sword_1")
-        });
-
-        m_ItemData.Add(new ItemData
-        {
-            Id = 10,
-            ItemName = "기사의 검",
-            ItemType = Define_S.ItemType.Weapon,
-            ItemGrade = Define_S.ItemGrade.Rare,
-            ItemPrice = 100,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "공격력 20 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Weapons/Sword_2")
-        });
-
-        m_ItemData.Add(new ItemData
-        {
-            Id = 11,
-            ItemName = "무딘 도끼",
-            ItemType = Define_S.ItemType.Weapon,
-            ItemGrade = Define_S.ItemGrade.Common,
-            ItemPrice = 150,
-            ItemMaxCount = 1,
-            ItemObj = null,
-            ItemDesc = "공격력 25 증가",
-            ItemIcon = Resources.Load<Sprite>("Items/Weapons/Ax_1")
-        });
-
-
+        // 무기 종류
+        AddItemData(9, "연습용 칼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 10, 1, null, "공격력 10 증가", "Items/Weapons/Sword_1");
+        AddItemData(10, "기사의 검", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 100, 1, null, "공격력 20 증가", "Items/Weapons/Sword_2");
+        AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, null, "공격력 25 증가", "Items/Weapons/Ax_1");
     }
+
+    static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type, 
+        Define_S.ItemGrade a_Grade, int a_Price, int a_MaxCount, 
+        GameObject a_Obj, string a_Desc, string a_IconPath)
+    {
+        Sprite itemIcon = Resources.Load<Sprite>(a_IconPath);
+        if (itemIcon == null)
+        {
+            Debug.LogError($"Failed to load item icon at path: {a_IconPath}");
+        }
+
+        m_ItemData.Add(new ItemData
+        {
+            Id = Id,
+            ItemName = a_Name,
+            ItemType = a_Type,
+            ItemGrade = a_Grade,
+            ItemPrice = a_Price,
+            ItemMaxCount = a_MaxCount,
+            ItemObj = a_Obj,
+            ItemDesc = a_Desc,
+            ItemIcon = itemIcon
+        });
+    }
+
+
 }

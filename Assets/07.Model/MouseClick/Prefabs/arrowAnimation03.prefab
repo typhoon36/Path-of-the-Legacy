@@ -590,7 +590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4963178004393498}
-  - component: {fileID: 114454963741826298}
+  - component: {fileID: 3303143987853265280}
   m_Layer: 0
   m_Name: arrowAnimation03
   m_TagString: Untagged
@@ -620,7 +620,7 @@ Transform:
   - {fileID: 4135408272309016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114454963741826298
+--- !u!114 &3303143987853265280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -629,18 +629,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1653588710512018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c1c427d733ad24eb627d177aa639ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d11147f46497ac49848c55249eb9917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 1029273643163980}
-  - {fileID: 1232946881511628}
-  - {fileID: 1285830798982966}
-  - {fileID: 1402272889123426}
-  - {fileID: 1036119581765442}
-  - {fileID: 1651435136379724}
-  circle: {fileID: 0}
+  frames: []
+  circle: {fileID: 1332417276296076}
   pacing: 0
   frameOffset: 0
-  frameSpeed: 6
-  loop: 1
+  frameSpeed: 10
+  timeLoop: 0
+  loop: 0

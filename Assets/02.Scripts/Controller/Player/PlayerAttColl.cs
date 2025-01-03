@@ -1,5 +1,3 @@
-using I18N.Common;
-using SkeletonEditor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

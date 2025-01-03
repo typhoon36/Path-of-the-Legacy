@@ -28,7 +28,7 @@ public class ShopPopup_UI : MonoBehaviour
         m_CloseBtn.onClick.AddListener(() =>
         {
             m_ShopPopup.SetActive(false);
-            InvenPopup_UI.Inst.m_InvenPopup.SetActive(true);
+            InvenPopup_UI.Inst.m_InvenPopup.SetActive(false);
         });
     }
 

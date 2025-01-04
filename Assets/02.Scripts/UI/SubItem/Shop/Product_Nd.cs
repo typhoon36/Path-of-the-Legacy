@@ -22,15 +22,35 @@ public class Product_Nd : MonoBehaviour
             if (InvenPopup_UI.Inst != null)
             {
                 InvenPopup_UI.Inst.AddItem(m_ItemData);
+                InvenPopup_UI.Inst.AddGold(-m_ItemData.ItemPrice);
             }
         });
     }
 
+    //주소를 받아오기(ReadOnly인 이유는 다른 곳에서 값을 변경하지 못하게 하기 위함)
+    static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
+    {
+        { 1,    "Items/Potions/grass_potion" },
+        { 2,    "Items/Potions/wind_potion" },
+        { 3,    "Items/Armor/01_Leather_chest" },
+        { 4,    "Items/Armor/01_plate_chest" },
+        { 5,    "Items/Armor/06_leather_pants" },
+        { 6,    "Items/Armor/06_plate_pants" },
+        { 7,    "Items/Armor/05_leather_boots" },
+        {8,     "Items/Armor/05_plate_boots" },
+        {9,     "Items/Weapons/Sword_1" },
+        {10,    "Items/Weapons/Sword_2" },
+        {11,    "Items/Weapons/Ax_1" }
+    };
+
     public void Init(ItemData a_ItemData)
     {
         m_ItemData = a_ItemData;
-        m_Icon.sprite = m_ItemData.ItemIcon;
-        m_ItemTxt.text = m_ItemData.ItemName;
-        m_PriceTxt.text = m_ItemData.ItemPrice.ToString();
+        if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
+        {
+            m_Icon.sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
+        }
+        m_ItemTxt.text = a_ItemData.ItemName;
+        m_PriceTxt.text = a_ItemData.ItemPrice.ToString();
     }
 }

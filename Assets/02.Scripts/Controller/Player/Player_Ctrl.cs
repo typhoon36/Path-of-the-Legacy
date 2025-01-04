@@ -1,8 +1,6 @@
-using I18N.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player_Ctrl : Base_Ctrl
 {
@@ -21,7 +19,6 @@ public class Player_Ctrl : Base_Ctrl
 
     public float m_MaxHp = 100;
     private float m_CurHp;
-    //public 대신 get,set 사용 -- 나중에 Data로 되어 제거할 예정
     public float CurHp
     {
         get { return m_CurHp; }

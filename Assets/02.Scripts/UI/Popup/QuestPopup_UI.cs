@@ -9,30 +9,43 @@ public class QuestPopup_UI : MonoBehaviour
 {
     [Header("QuestPopup")]
     public GameObject m_QuestPopup;
-    public GameObject m_QuestView;    
-   // public Button m_RefreshBtn;
+    public GameObject m_QuestContent;
 
-    //[Header("QuestNode")]
-    //public GameObject m_QuestNode;
+    [Header("QuestButton")]
+    public Button m_CloseBtn;
+
+    [Header("QuestText")]
+    public Text m_QuestTitle;
+    public Text m_QuestDesc;
+
+    [Header("QuestNode")]
+    public GameObject m_QuestNode;
 
     QuestData m_QuestData;
 
-    private void Start()
+    void Start()
     {
-        //m_RefreshBtn.onClick.AddListener(() =>
-        //{
-        //    //퀘스트 갱신
-        //});
+        m_QuestPopup.SetActive(false);
+        //m_CloseBtn.onClick.AddListener(() => m_QuestPopup.SetActive(false));
+        //m_QuestTitle.text = m_QuestData.TitleName;
+        //m_QuestDesc.text = m_QuestData.Desc;
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            
+            m_QuestPopup.SetActive(!m_QuestPopup.activeSelf);
         }
+    }
+
+    //노드 생성
+    public void CreateNode(QuestData a_QuestData)
+    {
 
     }
+
 
 
 }

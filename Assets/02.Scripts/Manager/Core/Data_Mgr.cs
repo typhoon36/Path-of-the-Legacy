@@ -49,7 +49,7 @@ public class ItemData
     public int ItemMaxCount = 99;
     public GameObject ItemObj;
     public string ItemDesc;
-    public Sprite ItemIcon;
+    public string ItemIconPath; // 아이콘 경로로 변경
 }
 [System.Serializable]
 public class UseItemData
@@ -351,16 +351,10 @@ public class Data_Mgr
         AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, null, "공격력 25 증가", "Items/Weapons/Ax_1");
     }
 
-    static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type, 
-        Define_S.ItemGrade a_Grade, int a_Price, int a_MaxCount, 
+    static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type,
+        Define_S.ItemGrade a_Grade, int a_Price, int a_MaxCount,
         GameObject a_Obj, string a_Desc, string a_IconPath)
     {
-        Sprite itemIcon = Resources.Load<Sprite>(a_IconPath);
-        if (itemIcon == null)
-        {
-            Debug.LogError($"Failed to load item icon at path: {a_IconPath}");
-        }
-
         m_ItemData.Add(new ItemData
         {
             Id = Id,
@@ -371,7 +365,8 @@ public class Data_Mgr
             ItemMaxCount = a_MaxCount,
             ItemObj = a_Obj,
             ItemDesc = a_Desc,
-            ItemIcon = itemIcon
+            ItemIconPath = a_IconPath // 경로 저장
+            
         });
     }
 

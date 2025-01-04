@@ -57,7 +57,7 @@ public class InvenPopup_UI : MonoBehaviour
         //컨트롤키를 누르고 왼쪽마우스 클릭시 아이템 판매
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && ShopPopup_UI.Inst.m_ShopPopup.activeSelf == true)
         {
-          
+            SellItem(m_ItemData);
         }
     }
 
@@ -75,7 +75,7 @@ public class InvenPopup_UI : MonoBehaviour
 
 
 
-    private void CheckInventoryItems()
+    void CheckInventoryItems()
     {
         bool hasItems = false;
         foreach (Transform slot in m_Content)
@@ -116,8 +116,7 @@ public class InvenPopup_UI : MonoBehaviour
                 // 아이템 추가
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
                 // 활성화 후 아이템 정보 설정
-                a_Slot.GetChild(0).GetComponent<Image>().sprite = a_ItemData.ItemIcon;
-
+                a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(a_ItemData.ItemIconPath); // 아이콘 로드
                 break;
             }
         }

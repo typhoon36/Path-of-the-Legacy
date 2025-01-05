@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ShopPopup_UI : MonoBehaviour
@@ -23,10 +24,12 @@ public class ShopPopup_UI : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    void Start()
     {
         m_CloseBtn.onClick.AddListener(() =>
         {
+            if (EventSystem.current.IsPointerOverGameObject() == false) return;
+
             m_ShopPopup.SetActive(false);
             InvenPopup_UI.Inst.m_InvenPopup.SetActive(false);
         });

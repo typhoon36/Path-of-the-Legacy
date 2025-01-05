@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class Npc_Ctrl : Base_Ctrl
@@ -81,7 +82,7 @@ public abstract class Npc_Ctrl : Base_Ctrl
     // 플레이어가 가까이 있다면 상호작용 가능
     private void InteractCheck()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !EventSystem.current.IsPointerOverGameObject())
             OnInteract();
 
         // 상호작용 중이라면

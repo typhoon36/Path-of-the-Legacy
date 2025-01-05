@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Npc
+  - Monster
+  - MonsterWeapon
+  - Item
+  - PlayerWeapon
+  - PlayerSkill
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -11,12 +18,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Invisible
+  - Monster
+  - Ground
+  - Block
+  - Npc
+  - Item
   - 
   - 
   - 

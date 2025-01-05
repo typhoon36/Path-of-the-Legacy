@@ -107,6 +107,24 @@ public class InvenPopup_UI : MonoBehaviour
     }
 
     //아이템 추가
+    //주소를 받아오기(ReadOnly인 이유는 다른 곳에서 값을 변경하지 못하게 하기 위함)
+    static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
+    {
+        { 1,    "Items/Potions/grass_potion" },
+        { 2,    "Items/Potions/wind_potion" },
+        { 3,    "Items/Armor/01_Leather_chest" },
+        { 4,    "Items/Armor/01_plate_chest" },
+        { 5,    "Items/Armor/06_leather_pants" },
+        { 6,    "Items/Armor/06_plate_pants" },
+        { 7,    "Items/Armor/05_leather_boots" },
+        {8,     "Items/Armor/05_plate_boots" },
+        {9,     "Items/Weapons/Sword_1" },
+        {10,    "Items/Weapons/Sword_2" },
+        {11,    "Items/Weapons/Ax_1" },
+        {12,    "Items/Weapons/Ax_2" },
+        {13,    "Items/Weapons/Ax_3" }
+    };
+
     public void AddItem(ItemData a_ItemData)
     {
         foreach (Transform a_Slot in m_Content)
@@ -116,7 +134,10 @@ public class InvenPopup_UI : MonoBehaviour
                 // 아이템 추가
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
                 // 활성화 후 아이템 정보 설정
-                a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(a_ItemData.ItemIconPath); // 아이콘 로드
+                if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
+                {
+                    a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
+                }
                 break;
             }
         }

@@ -349,6 +349,9 @@ public class Data_Mgr
         AddItemData(9, "연습용 칼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 10, 1, null, "공격력 10 증가", "Items/Weapons/Sword_1");
         AddItemData(10, "기사의 검", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 100, 1, null, "공격력 20 증가", "Items/Weapons/Sword_2");
         AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, null, "공격력 25 증가", "Items/Weapons/Ax_1");
+        AddItemData(12, "황금 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 250, 1, null, "공격력 30 증가", "Items/Weapons/Ax_2");
+        AddItemData(13, "전투 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 50, 1, null, "공격력 45 증가", "Items/Weapons/Ax_3");
+
     }
 
     static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type,

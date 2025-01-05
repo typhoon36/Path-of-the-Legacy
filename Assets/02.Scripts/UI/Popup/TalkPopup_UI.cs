@@ -193,7 +193,11 @@ public class TalkPopup_UI : MonoBehaviour
     void ClickAccept()
     {
         QuestActive(false);
-        SetInfo(m_TalkData.acceptTalk); 
+        SetInfo(m_TalkData.acceptTalk);
+
+
+        // 퀘스트 수락 시 퀘스트 노드 생성
+        QuestPopup_UI.Inst.CreateNode(m_QuestData);
     }
     #endregion
 
@@ -211,7 +215,7 @@ public class TalkPopup_UI : MonoBehaviour
         m_QTitleTxt.text = m_QuestData.TitleName;
         m_QContentTxt.text = m_QuestData.Desc;
         m_QTargetTxt.text = m_QuestData.TargetDesc;
-        m_QRewardGoldTxt.text = "<보상 :" + m_QuestData.RewardGold.ToString() + "골드,";
+        m_QRewardGoldTxt.text = "< 보상 :" + m_QuestData.RewardGold.ToString() + "골드 ,";
         m_QRewardExpTxt.text = "Exp :"+ m_QuestData.RewardExp.ToString() + ">";
     }
 

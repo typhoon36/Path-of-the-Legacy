@@ -7,14 +7,22 @@ public class Quest_Nd : MonoBehaviour
 {
     public Button m_NodeBtn;
     public Text m_QTitleTxt;
+    QuestData m_QuestData;
 
     void Start()
     {
-        m_NodeBtn.onClick.AddListener(() =>
+        if (m_QuestData != null)
         {
-
-        });
-
+            m_QTitleTxt.text = m_QuestData.TitleName;
+        }
     }
 
+    public void Init(QuestData a_QuestData)
+    {
+        m_QuestData = a_QuestData;
+        if (m_QTitleTxt != null)
+        {
+            m_QTitleTxt.text = m_QuestData.TitleName;
+        }
+    }
 }

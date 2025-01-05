@@ -13,6 +13,8 @@ public class QuestPopup_UI : MonoBehaviour
 
     [Header("QuestButton")]
     public Button m_CloseBtn;
+    public Button m_ProgresBtn;
+    public Button m_CompleteBtn;
 
     [Header("QuestText")]
     public Text m_QuestTitle;
@@ -21,15 +23,36 @@ public class QuestPopup_UI : MonoBehaviour
     [Header("QuestNode")]
     public GameObject m_QuestNode;
 
-    QuestData m_QuestData;
+    List<QuestData> m_AcceptedQuests = new List<QuestData>();
+
+    #region Singleton
+    public static QuestPopup_UI Inst;
+    void Awake()
+    {
+        Inst = this;
+    }
+    #endregion
 
     void Start()
     {
         m_QuestPopup.SetActive(false);
-        //m_CloseBtn.onClick.AddListener(() => m_QuestPopup.SetActive(false));
-        //m_QuestTitle.text = m_QuestData.TitleName;
-        //m_QuestDesc.text = m_QuestData.Desc;
+        m_CloseBtn.onClick.AddListener(() => m_QuestPopup.SetActive(false));
+        m_QuestTitle.text = "";
+        m_QuestDesc.text = "";
 
+        // 퀘스트 진행 버튼
+        m_ProgresBtn.onClick.AddListener(() =>
+        {
+            // 퀘스트 진행 노드 생성, 완료된 퀘스트 노드 삭제
+
+
+        });
+
+        // 퀘스트 완료 버튼
+        m_CompleteBtn.onClick.AddListener(() =>
+        {
+            Debug.Log("퀘스트 완료");
+        });
     }
 
     void Update()
@@ -40,12 +63,29 @@ public class QuestPopup_UI : MonoBehaviour
         }
     }
 
-    //노드 생성
+    // 노드 생성
     public void CreateNode(QuestData a_QuestData)
     {
+        if (a_QuestData == null) return;
 
+        m_AcceptedQuests.Add(a_QuestData);
+
+        GameObject t_Node = Instantiate(m_QuestNode, m_QuestContent.transform);
+        Quest_Nd questNode = t_Node.GetComponent<Quest_Nd>();
+        questNode.Init(a_QuestData);
     }
 
+    // 완료된 퀘스트 노드 삭제
+    public void RemoveNode(QuestData a_QuestData)
+    {
+        if (a_QuestData == null) return;
+        m_AcceptedQuests.Remove(a_QuestData);
+        foreach (Transform t_Node in m_QuestContent.transform)
+        {
+            Quest_Nd questNode = t_Node.GetComponent<Quest_Nd>();
+            
+        }
+    }
 
 
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player_Ctrl : Base_Ctrl
 {
@@ -423,7 +424,7 @@ public class Player_Ctrl : Base_Ctrl
 
     protected override void SetMouseEvent(Define_S.MouseEvent a_Event)
     {
-        if (UI_Mgr.Inst.IsPressed)
+        if (UI_Mgr.Inst.IsPressed || EventSystem.current.IsPointerOverGameObject())
         {
             UI_Mgr.Inst.ResetButtonPress();
             return;
@@ -435,7 +436,7 @@ public class Player_Ctrl : Base_Ctrl
     float m_MinDist = 0.3f;
     void GetMouseEvent(Define_S.MouseEvent evt)
     {
-        if (UI_Mgr.Inst.IsPressed)
+        if (UI_Mgr.Inst.IsPressed || EventSystem.current.IsPointerOverGameObject())
         {
             UI_Mgr.Inst.ResetButtonPress();
             return;
@@ -520,7 +521,7 @@ public class Player_Ctrl : Base_Ctrl
     #region 키입력
     protected override void OnKeyEvent()
     {
-        if (State == Define_S.AllState.Die) return;
+        if (State == Define_S.AllState.Die || EventSystem.current.IsPointerOverGameObject()) return;
 
         //구르지 않을때 
         if (IsRoll == false)
@@ -579,7 +580,7 @@ public class Player_Ctrl : Base_Ctrl
     //void GetPickUp()
     //{
     //    // 주변 아이템 탐색
-    //    Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 12); //Item = 12 Layer
+    //    Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 11); //Item = 11 
 
     //    // F 키를 누르면 줍기
     //    if (Input.GetKeyDown(KeyCode.F))
@@ -639,7 +640,7 @@ public class Player_Ctrl : Base_Ctrl
     bool BlockCheck()
     {
         // 전방 Block 체크하여 멈추기 
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.5f), m_Dir, 1.0f, 1 << 10)) // 10 : Block
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.5f), m_Dir, 1.0f, 1 << 9)) // 9 : Block
             return true;
 
         return false;

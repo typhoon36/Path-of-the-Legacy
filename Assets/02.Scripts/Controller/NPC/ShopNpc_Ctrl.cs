@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShopNpc_Ctrl : Npc_Ctrl
 {
@@ -11,6 +12,7 @@ public class ShopNpc_Ctrl : Npc_Ctrl
 
     protected override void OpenPopup()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         OpenShop();
     }
 

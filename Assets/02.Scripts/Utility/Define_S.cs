@@ -115,9 +115,9 @@ public class Define_S : MonoBehaviour
     {
         UIWorldSpace = 6,
         Monster = 7,
-        Ground = 9,
-        Block = 10,
-        Npc = 11,
+        Ground = 8,
+        Block = 9,
+        Npc = 10,
     }
     public enum Scene
     {

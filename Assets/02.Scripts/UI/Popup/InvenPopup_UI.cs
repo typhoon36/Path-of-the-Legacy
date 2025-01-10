@@ -8,9 +8,9 @@ public class InvenPopup_UI : MonoBehaviour
     public GameObject m_InvenPopup;
     public Button m_CloseBtn;
     public RectTransform m_Content;
-    public ScrollRect m_ScrollRect; // ScrollRect 컴포넌트 추가
+    public ScrollRect m_ScrollRect;
 
-    private Vector3 m_OriginalPosition;
+    Vector3 m_OriginPos;
 
     public Text m_GoldText;
 
@@ -18,14 +18,14 @@ public class InvenPopup_UI : MonoBehaviour
 
     #region Singleton
     public static InvenPopup_UI Inst;
-    private void Awake()
+    void Awake()
     {
         Data_Mgr.LoadData(); // 데이터 로드
 
         if (Inst == null)
             Inst = this;
 
-        m_OriginalPosition = m_Content.anchoredPosition; // 원래 위치를 저장
+        m_OriginPos = m_Content.anchoredPosition; // 원래 위치를 저장
     }
     #endregion
 
@@ -45,12 +45,12 @@ public class InvenPopup_UI : MonoBehaviour
 
             if (m_InvenPopup.activeSelf)
             {
-                m_Content.anchoredPosition = m_OriginalPosition;
+                m_Content.anchoredPosition = m_OriginPos;
                 CheckInventoryItems(); // 인벤토리 아이템 확인
             }
             else
             {
-                m_Content.anchoredPosition = m_OriginalPosition;
+                m_Content.anchoredPosition = m_OriginPos;
             }
         }
 

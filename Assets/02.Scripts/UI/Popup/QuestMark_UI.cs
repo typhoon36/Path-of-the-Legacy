@@ -19,10 +19,10 @@ public class QuestMark_UI : MonoBehaviour
         }
 
         m_QuestMark.text = a_Text;
+
         if (a_Pos != new Vector3())
-        {
             transform.position = a_Pos + (Vector3.up * 3.0f);
-        }
+        
         return this;
     }
 }

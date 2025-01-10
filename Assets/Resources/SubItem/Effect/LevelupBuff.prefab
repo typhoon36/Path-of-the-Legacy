@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7604325560951443450}
   - component: {fileID: 9027470221571850155}
   - component: {fileID: 1696471460245884442}
+  - component: {fileID: 5200949834686406963}
   m_Layer: 0
   m_Name: LevelupBuff
   m_TagString: Untagged
@@ -4832,6 +4833,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5200949834686406963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419411002348774512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e73c49556a1c4444b9255c10609e1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  m_DisableTime: 3
 --- !u!1 &748887766612431244
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class Player_Ctrl : Base_Ctrl
     //ClickMark Layer
     int m_Mask = (1 << (int)Define_S.Layer.Ground) | (1 << (int)Define_S.Layer.Monster) | (1 << (int)Define_S.Layer.Npc);
 
-    #region 임시 변수
+
     float m_Speed = 5f;
 
     public float m_MaxHp = 100;
@@ -26,6 +26,7 @@ public class Player_Ctrl : Base_Ctrl
         set
         {
             m_CurHp = Mathf.Clamp(value, 0, m_MaxHp);
+            Data_Mgr.m_StartData.CurHp = (int)m_CurHp;
             UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
 
             if (m_CurHp <= 0)
@@ -34,9 +35,7 @@ public class Player_Ctrl : Base_Ctrl
             }
         }
     }
-    public float m_MaxMp = 100;
-    public float m_CurMp;
-    #endregion
+
 
 
     #region Bool
@@ -83,7 +82,8 @@ public class Player_Ctrl : Base_Ctrl
         m_Anim = GetComponent<Animator>();
 
         CurHp = m_MaxHp;
-        m_CurMp = m_MaxMp;
+        Data_Mgr.m_StartData.CurMp = Data_Mgr.m_StartData.MaxMp;
+        m_Speed = Data_Mgr.m_StartData.Speed;
 
         UI_Mgr.Inst.m_HPBar.fillAmount = 1;
 
@@ -102,18 +102,18 @@ public class Player_Ctrl : Base_Ctrl
     Coroutine Co_LevelUp;
     public void LevelUpEffect()
     {
-        if (Co_LevelUp == null) StopCoroutine(Co_LevelUp);
+        if (Co_LevelUp != null) StopCoroutine(Co_LevelUp);
+
         Co_LevelUp = StartCoroutine(LevelUpCoroutine());
     }
     IEnumerator LevelUpCoroutine()
     {
-        // 레벨업 이펙트 Prefab 생성
-        GameObject effect = Instantiate(Resources.Load("Effect/LevelupBuff")) as GameObject;
-        effect.transform.localPosition = Vector3.zero;
+        GameObject a_Eff = Instantiate(Resources.Load("SubItem/Effect/LevelUp_Eff")) as GameObject;
+        a_Eff.transform.position = Vector3.zero;
 
         yield return new WaitForSeconds(4f);
 
-        Destroy(effect);//이펙트 삭제
+        Destroy(a_Eff);
     }
     #endregion
 
@@ -356,7 +356,7 @@ public class Player_Ctrl : Base_Ctrl
         }
 
         // 마나 확인
-        if (a_Skill.skillConsumMp > m_CurMp)
+        if (a_Skill.skillConsumMp > Data_Mgr.m_StartData.CurMp)
         {
             Debug.Log("마나가 부족합니다.");
             return;
@@ -391,9 +391,9 @@ public class Player_Ctrl : Base_Ctrl
 
         m_CurSkill.isCoolDown = true;
         m_CurSkill.skillCoolDown = (int)Time.time; // 쿨다운 시작 시간 설정
-        m_CurMp -= m_CurSkill.skillConsumMp;
+        Data_Mgr.m_StartData.CurMp -= m_CurSkill.skillConsumMp;
 
-        UI_Mgr.Inst.UpdateMpBar(m_CurMp, m_MaxMp);
+        UI_Mgr.Inst.UpdateMpBar(Data_Mgr.m_StartData.CurMp, Data_Mgr.m_StartData.MaxMp);
 
         // 스킬 이펙트 활성화
         if (m_CurEff != null)
@@ -551,10 +551,10 @@ public class Player_Ctrl : Base_Ctrl
             m_DPos = GetMouseRay();
             m_Dir = m_DPos - transform.position;
 
-            m_CurMp -= 5;
+            Data_Mgr.m_StartData.CurMp -= 5;
             m_Speed = 8f;
 
-            UI_Mgr.Inst.UpdateMpBar(m_CurMp, m_MaxMp);
+            UI_Mgr.Inst.UpdateMpBar(Data_Mgr.m_StartData.CurMp, Data_Mgr.m_StartData.MaxMp);
 
             State = Define_S.AllState.Roll;
 

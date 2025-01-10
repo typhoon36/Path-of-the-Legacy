@@ -88,6 +88,7 @@ public class TalkPopup_UI : MonoBehaviour
             InvenPopup_UI.Inst.m_InvenPopup.SetActive(false);
             EqStatPopup_UI.Inst.m_StatPopup.SetActive(false);
             EqStatPopup_UI.Inst.m_EquipPopup.SetActive(false);
+            ShopPopup_UI.Inst.m_ShopPopup.SetActive(false);
         }
     }
 
@@ -131,18 +132,18 @@ public class TalkPopup_UI : MonoBehaviour
 
     void NextTalk()
     {
-        if (m_TalkIdx >= m_TalkData.questStartTalk.Count)
+        if (m_TalkIdx >= m_TalkData.QuestStartTalk.Count)
         {
             Clear();
             return;
         }
 
-        StartCoroutine(TypingText(m_TalkData.questStartTalk[m_TalkIdx]));
+        StartCoroutine(TypingText(m_TalkData.QuestStartTalk[m_TalkIdx]));
 
         m_TalkIdx++;
 
         // 다음 대화가 없으면 퀘스트 정보 활성화
-        if (m_TalkIdx >= m_TalkData.questStartTalk.Count)
+        if (m_TalkIdx >= m_TalkData.QuestStartTalk.Count)
         {
             IsNextTalk = false;
             m_QuestPanel.SetActive(true);
@@ -188,13 +189,12 @@ public class TalkPopup_UI : MonoBehaviour
     void OnClickRefuse()
     {
         QuestActive(false);
-        SetInfo(m_TalkData.refusalTalk);
+        SetInfo(m_TalkData.RefusalTalk);
     }
     void ClickAccept()
     {
         QuestActive(false);
-        SetInfo(m_TalkData.acceptTalk);
-
+        SetInfo(m_TalkData.AcceptTalk);
 
         // 퀘스트 수락 시 퀘스트 노드 생성
         QuestPopup_UI.Inst.CreateNode(m_QuestData);

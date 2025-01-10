@@ -10,6 +10,7 @@ public class MonGen_Mgr : MonoBehaviour
     [HideInInspector] public List<GameObject> m_Monsters; // 소환된 몬스터들 리스트
 
     float m_ReSpawnTime = 10f; // 몬스터 리스폰 시간
+    int m_MaxMonsters = 10; // 최대 몬스터 수
 
     #region Singleton
     public static MonGen_Mgr Inst;
@@ -31,22 +32,25 @@ public class MonGen_Mgr : MonoBehaviour
     {
         while (true)
         {
-            for (int i = 0; i < m_SpawnPos.Length; i++)
+            if (m_Monsters.Count < m_MaxMonsters)
             {
-                bool isPositionOccupied = false;
-                foreach (var monster in m_Monsters)
+                for (int i = 0; i < m_SpawnPos.Length; i++)
                 {
-                    if (Vector3.Distance(monster.transform.position, m_SpawnPos[i].position) < 0.1f)
+                    bool isPositionOccupied = false;
+                    foreach (var monster in m_Monsters)
                     {
-                        isPositionOccupied = true;
-                        break;
+                        if (monster != null && Vector3.Distance(monster.transform.position, m_SpawnPos[i].position) < 0.1f)
+                        {
+                            isPositionOccupied = true;
+                            break;
+                        }
                     }
-                }
 
-                if (!isPositionOccupied)
-                {
-                    GameObject monster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[i].position, Quaternion.identity);
-                    m_Monsters.Add(monster);
+                    if (!isPositionOccupied)
+                    {
+                        GameObject monster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[i].position, Quaternion.identity);
+                        m_Monsters.Add(monster);
+                    }
                 }
             }
             yield return new WaitForSeconds(1f); // 1초마다 스폰 시도
@@ -59,9 +63,12 @@ public class MonGen_Mgr : MonoBehaviour
         m_Monsters.Remove(monster);
         Destroy(monster);
 
-        yield return new WaitForSeconds(m_ReSpawnTime - 2f); // 나머지 시간 대기 후 다시 스폰
-        GameObject newMonster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[spawnIndex].position, Quaternion.identity);
-        m_Monsters.Add(newMonster);
+        if (spawnIndex >= 0 && spawnIndex < m_SpawnPos.Length)
+        {
+            yield return new WaitForSeconds(m_ReSpawnTime - 2f); // 나머지 시간 대기 후 다시 스폰
+            GameObject newMonster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[spawnIndex].position, Quaternion.identity);
+            m_Monsters.Add(newMonster);
+        }
     }
 
     public void OnMonsterDeath(GameObject monster)

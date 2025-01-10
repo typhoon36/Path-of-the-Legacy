@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6959914774300640250}
   m_Layer: 0
   m_Name: Shockwave
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 1860551659543354204}
   m_Layer: 0
   m_Name: Hit
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9792,7 +9792,7 @@ GameObject:
   - component: {fileID: 240907162584735930}
   m_Layer: 0
   m_Name: Basic Slash Blue
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14695,7 +14695,7 @@ GameObject:
   - component: {fileID: 5246517689844900732}
   m_Layer: 0
   m_Name: Shockwave 2
-  m_TagString: Untagged
+  m_TagString: PlayerSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

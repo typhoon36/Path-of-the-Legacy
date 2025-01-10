@@ -6489,6 +6489,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2129968810}
     - target: {fileID: 5884958436347222306, guid: 12749c0df30b68344967dfb893dfe29b, type: 3}
+      propertyPath: m_Effects.Array.data[2]
+      value: 
+      objectReference: {fileID: 5200949834686406963, guid: f1970989371fd2b499003e6f313f6c26, type: 3}
+    - target: {fileID: 5884958436347222306, guid: 12749c0df30b68344967dfb893dfe29b, type: 3}
       propertyPath: m_CurSkill.skillConsumMp
       value: 5
       objectReference: {fileID: 0}
@@ -8146,7 +8150,7 @@ Transform:
   m_GameObject: {fileID: 440865289}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.6936784, z: -0, w: 0.72028494}
-  m_LocalPosition: {x: 120.3, y: -0.07, z: 74.2}
+  m_LocalPosition: {x: 86.6, y: -0.07, z: 117.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11309,7 +11313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1714858865}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -18349,8 +18353,8 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9c218ddfe270cbe4c906d96b2748bb68, type: 3}
-    m_FontSize: 33
-    m_FontStyle: 1
+    m_FontSize: 22
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -22604,7 +22608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1287700161
 Transform:
   m_ObjectHideFlags: 0
@@ -31235,7 +31239,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9c218ddfe270cbe4c906d96b2748bb68, type: 3}
-    m_FontSize: 200
+    m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2

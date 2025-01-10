@@ -4791,8 +4791,6 @@ MonoBehaviour:
     skillSprite: {fileID: 0}
     powerList: 
   m_MaxHp: 100
-  m_MaxMp: 100
-  m_CurMp: 100
   IsHit: 0
   m_Att: 10
   m_SkinnedObjs:
@@ -4815,7 +4813,6 @@ MonoBehaviour:
   m_Effects:
   - {fileID: 2969922485112485698}
   - {fileID: 5283290393816326968}
-  a_ItemMaxRadius: 5
 --- !u!95 &6981720856593174203
 Animator:
   serializedVersion: 5

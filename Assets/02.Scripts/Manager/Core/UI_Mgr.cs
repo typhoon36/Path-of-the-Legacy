@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+///메인 UI 매니저 : 메인 UI를 위한 스크립트
 public class UI_Mgr : MonoBehaviour
 {
     public bool IsPressed { get; private set; } = false;
@@ -230,9 +230,9 @@ public class UI_Mgr : MonoBehaviour
     }
 
     #region ItemSlotUse
-    public void UseItem(int itemIndex)
+    public void UseItem(int Idx)
     {
-        switch (itemIndex)
+        switch (Idx)
         {
             case 0:
                 {
@@ -240,9 +240,15 @@ public class UI_Mgr : MonoBehaviour
                     m_1stItem.fillAmount = 0;
                     m_HPBar.fillAmount += 0.5f;
                     Data_Mgr.m_StartData.CurHp += 50;
+
+                    if(Data_Mgr.m_StartData.CurHp > Data_Mgr.m_StartData.MaxHp)
+                    {
+                        Data_Mgr.m_StartData.CurHp = Data_Mgr.m_StartData.MaxHp;
+                    }
+
                     if (Co_Item1Recovery != null)
                         StopCoroutine(Co_Item1Recovery);
-                    Co_Item1Recovery = StartCoroutine(RecoverItemFillAmount(m_1stItem, 5f)); // 5초 동안 회복
+                    Co_Item1Recovery = StartCoroutine(RecoverItem(m_1stItem, 5f)); // 5초 동안 회복
                     break;
                 }
             case 1:
@@ -251,9 +257,17 @@ public class UI_Mgr : MonoBehaviour
                     m_2ndItem.fillAmount = 0;
                     m_MPBar.fillAmount += 0.5f;
                     Data_Mgr.m_StartData.CurMp += 50;
+
+                    if(Data_Mgr.m_StartData.CurMp > Data_Mgr.m_StartData.MaxMp)
+                    {
+                        Data_Mgr.m_StartData.CurMp = Data_Mgr.m_StartData.MaxMp;
+                    }
+
+
                     if (Co_Item2Recovery != null)
                         StopCoroutine(Co_Item2Recovery);
-                    Co_Item2Recovery = StartCoroutine(RecoverItemFillAmount(m_2ndItem, 5f)); // 5초 동안 회복
+
+                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 5f)); // 5초 동안 회복
                     break;
                 }
             default:
@@ -264,16 +278,16 @@ public class UI_Mgr : MonoBehaviour
         }
     }
 
-    IEnumerator RecoverItemFillAmount(Image itemImage, float duration)
+    IEnumerator RecoverItem(Image Icon, float a_Dur)
     {
-        float elapsed = 0f;
-        while (elapsed < duration)
+        float a_Dealy = 0f;
+        while (a_Dealy < a_Dur)
         {
-            elapsed += Time.deltaTime;
-            itemImage.fillAmount = Mathf.Clamp01(elapsed / duration);
+            a_Dealy += Time.deltaTime;
+            Icon.fillAmount = Mathf.Clamp01(a_Dealy / a_Dur);
             yield return null;
         }
-        itemImage.fillAmount = 1f;
+        Icon.fillAmount = 1f;
     }
     #endregion
 }

@@ -16,6 +16,7 @@ public class AllData
     public List<ArmorItemData> m_AromrData;
     public List<EquipItemData> m_EquipData;
     public List<UseItemData> m_UseItemData;
+    public List<int> AcceptedQuest;
 }
 [System.Serializable]
 public class StartData
@@ -49,7 +50,7 @@ public class ItemData
     public int ItemMaxCount = 99;
     public GameObject ItemObj;
     public string ItemDesc;
-    public string ItemIconPath; // 아이콘 경로로 변경
+    public string ItemIconPath; 
 }
 [System.Serializable]
 public class UseItemData
@@ -129,13 +130,13 @@ public class RewardItemData
 [System.Serializable]
 public class TalkData
 {
-    public int id;
-    public string basicsTalk;
-    public List<string> questStartTalk;
-    public string acceptTalk;
-    public string refusalTalk;
-    public string procTalk;
-    public string clearTalk;
+    public int Id;
+    public string BasicsTalk;
+    public List<string> QuestStartTalk;
+    public string AcceptTalk;
+    public string RefusalTalk;
+    public string ProcTalk;
+    public string ClearTalk;
 }
 [System.Serializable]
 public class LevelData
@@ -160,6 +161,7 @@ public class Data_Mgr
     public static List<ArmorItemData> m_AromrData = new List<ArmorItemData>();
     public static List<EquipItemData> m_EquipData = new List<EquipItemData>();
     public static List<UseItemData> m_UseItemData = new List<UseItemData>();
+    public static List<int> m_AcceptedQuest = new List<int>(); 
 
     public static event Action OnLevelUp;
 
@@ -180,11 +182,21 @@ public class Data_Mgr
             m_AromrData = m_AllData.m_AromrData ?? new List<ArmorItemData>();
             m_EquipData = m_AllData.m_EquipData ?? new List<EquipItemData>();
             m_UseItemData = m_AllData.m_UseItemData ?? new List<UseItemData>();
+            m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>(); // 수락된 퀘스트 ID 리스트 로드
+
+            // 수락된 퀘스트 상태 업데이트
+            foreach (var a_Quest in m_QuestData)
+            {
+                if (m_AcceptedQuest.Contains(a_Quest.Id))
+                {
+                    a_Quest.IsAccept = true;
+                }
+            }
 
             // 기본 스킬 데이터 초기화
             if (m_SkillData.Count == 0)
             {
-                InitializeDefaultSkillData();
+                InitSkillData();
             }
 
             // 기본 퀘스트 데이터 초기화
@@ -203,7 +215,6 @@ public class Data_Mgr
             {
                 InitItemData();
             }
-
         }
         else
         {
@@ -222,9 +233,24 @@ public class Data_Mgr
         m_AllData.m_AromrData = m_AromrData;
         m_AllData.m_EquipData = m_EquipData;
         m_AllData.m_UseItemData = m_UseItemData;
+        m_AllData.AcceptedQuest = m_AcceptedQuest; // 수락된 퀘스트 ID 리스트 저장
 
         string jsonData = JsonUtility.ToJson(m_AllData, true);
         File.WriteAllText(Application.dataPath + "/Resources/Data/GameData.json", jsonData);
+    }
+
+    public static void AcceptQuest(int a_Id)
+    {
+        if (!m_AcceptedQuest.Contains(a_Id))
+            m_AcceptedQuest.Add(a_Id);
+        
+    }
+
+    public static void CompleteQuest(int a_Id)
+    {
+        if (m_AcceptedQuest.Contains(a_Id))
+            m_AcceptedQuest.Remove(a_Id);
+        
     }
 
     public static void LevelUp()
@@ -233,7 +259,7 @@ public class Data_Mgr
         OnLevelUp?.Invoke();
     }
 
-    static void InitializeDefaultSkillData()
+    static void InitSkillData()
     {
         m_SkillData.Add(new SkillData
         {
@@ -253,7 +279,7 @@ public class Data_Mgr
         {
             skillId = 2,
             skillName = "Spin Slice",
-            minLevel = 2,
+            minLevel = 1,
             skillCoolDown = 7,
             skillConsumMp = 35,
             isCoolDown = false,
@@ -269,7 +295,7 @@ public class Data_Mgr
         m_QuestData.Add(new QuestData
         {
             Id = 1,
-            TitleName = "몬스터 저지",
+            TitleName = "트롤 처치",
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
             TargetCnt = 10,
@@ -285,15 +311,15 @@ public class Data_Mgr
         });
         m_QuestData.Add(new QuestData
         {
-            Id = 1,
-            TitleName = "몬스터 저지",
+            Id = 2,
+            TitleName = "홉고블린 소탕",
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
             TargetCnt = 10,
             CurTargetCnt = 0,
             RewardGold = 100,
             RewardExp = 100,
-            RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 1, ItemCount = 1 } },
+            RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 2, ItemCount = 1 } },
             Desc = "마을 근처 홉고블린 저지",
             TargetDesc = "10마리 사냥.",
             TargetPos = Vector3.zero,
@@ -307,27 +333,26 @@ public class Data_Mgr
     {
         m_TalkData.Add(new TalkData
         {
-            id = 1,
-            basicsTalk = "안녕하신가",
-            questStartTalk = new List<string> { "안녕하신가", "자네에게 부탁이 있네." },
-            acceptTalk = "부탁하네",
-            refusalTalk = "아쉽군",
-            procTalk = "행운을 비네",
-            clearTalk = "고맙네."
+            Id = 1,
+            BasicsTalk = "안녕하신가",
+            QuestStartTalk = new List<string> { "자네에게 부탁이 있네." },
+            AcceptTalk = "부탁하네",
+            RefusalTalk = "아쉽군",
+            ProcTalk = "행운을 비네",
+            ClearTalk = "고맙네."
         });
         m_TalkData.Add(new TalkData
         {
-            id = 2,
-            basicsTalk = "안녕하신가",
-            questStartTalk = new List<string> { "안녕하신가", "자네에게 부탁이 있네." },
-            acceptTalk = "부탁하네",
-            refusalTalk = "아쉽군",
-            procTalk = "행운을 비네",
-            clearTalk = "고맙네."
+            Id = 2,
+            BasicsTalk = "안녕하신가",
+            QuestStartTalk = new List<string> { "자네에게 부탁이 있네." },
+            AcceptTalk = "부탁하네",
+            RefusalTalk = "아쉽군",
+            ProcTalk = "행운을 비네",
+            ClearTalk = "고맙네."
         });
 
     }
-
 
     static void InitItemData()
     {
@@ -350,7 +375,7 @@ public class Data_Mgr
         AddItemData(10, "기사의 검", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 100, 1, null, "공격력 20 증가", "Items/Weapons/Sword_2");
         AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, null, "공격력 25 증가", "Items/Weapons/Ax_1");
         AddItemData(12, "황금 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 250, 1, null, "공격력 30 증가", "Items/Weapons/Ax_2");
-        AddItemData(13, "전투 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 50, 1, null, "공격력 45 증가", "Items/Weapons/Ax_3");
+        AddItemData(13, "전투 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 350, 1, null, "공격력 45 증가", "Items/Weapons/Ax_3");
 
     }
 
@@ -369,9 +394,6 @@ public class Data_Mgr
             ItemObj = a_Obj,
             ItemDesc = a_Desc,
             ItemIconPath = a_IconPath // 경로 저장
-            
         });
     }
-
-
 }

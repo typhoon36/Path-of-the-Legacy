@@ -118,7 +118,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         //이미 퀘스트가 클리어 되었거나 퀘스트가 없는 경우
         if (m_CurQuest.IsClear == true || IsQuest == false)
         {
-            SetTalk(m_CurTalk.basicsTalk);
+            SetTalk(m_CurTalk.BasicsTalk);
             return;
         }
 
@@ -128,12 +128,13 @@ public class QuestNpc_Ctrl : Npc_Ctrl
             //퀘스트 목표 달성 여부 확인
             if (m_CurQuest.CurTargetCnt >= m_CurQuest.TargetCnt)
             {
-                SetTalk(m_CurTalk.clearTalk);
+                SetTalk(m_CurTalk.ClearTalk);
                 m_CurQuest.QuestClear();
+                Data_Mgr.CompleteQuest(m_CurQuest.Id); 
                 QuestCheck();
             }
             else
-                SetTalk(m_CurTalk.procTalk);
+                SetTalk(m_CurTalk.ProcTalk);
 
             return;
         }
@@ -142,10 +143,12 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         if (m_CurQuest.MinLevel <= Data_Mgr.m_StartData.Level)
         {
             SetTalk(m_CurTalk);
+            m_CurQuest.IsAccept = true;
+            Data_Mgr.AcceptQuest(m_CurQuest.Id); 
             return;
         }
 
-        SetTalk(m_CurTalk.basicsTalk);
+        SetTalk(m_CurTalk.BasicsTalk);
     }
 
     //기본 대화 설정(문자열)

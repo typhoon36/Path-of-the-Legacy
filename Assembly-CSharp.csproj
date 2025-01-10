@@ -118,9 +118,9 @@
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\ExtinguishableParticleSystem.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\ConfirmPopup_UI.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\QuestPopup_UI.cs" />
-    <Compile Include="Assets\02.Scripts\Controller\Player\PlayerAnim.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\AlphaButtonClickMask.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\ObjectResetter.cs" />
+    <Compile Include="Assets\02.Scripts\Controller\Player\PlayerAtt.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\WaterHoseParticles.cs" />

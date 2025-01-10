@@ -23,7 +23,7 @@ public class QuestPopup_UI : MonoBehaviour
     [Header("QuestNode")]
     public GameObject m_QuestNode;
 
-    List<QuestData> m_AcceptedQuests = new List<QuestData>();
+    QuestData m_QuestData;
 
     #region Singleton
     public static QuestPopup_UI Inst;
@@ -40,19 +40,18 @@ public class QuestPopup_UI : MonoBehaviour
         m_QuestTitle.text = "";
         m_QuestDesc.text = "";
 
-        // 퀘스트 진행 버튼
-        m_ProgresBtn.onClick.AddListener(() =>
+        Data_Mgr.LoadData();//<--먼저 데이터를 불러오고 퀘스트 데이터를 가져오기 위해 
+
+        // 수락된 퀘스트 데이터를 가져와서 진행중인 퀘스트 생성
+        foreach (var Id in Data_Mgr.m_AcceptedQuest)
         {
-            // 퀘스트 진행 노드 생성, 완료된 퀘스트 노드 삭제
+            var a_Quest = Data_Mgr.m_QuestData.Find(q => q.Id == Id);
 
+            //진행중 상태라면 노드 생성
+            if (a_Quest != null && a_Quest.IsClear == false)
+                CreateNode(a_Quest);
+        }
 
-        });
-
-        // 퀘스트 완료 버튼
-        m_CompleteBtn.onClick.AddListener(() =>
-        {
-            Debug.Log("퀘스트 완료");
-        });
     }
 
     void Update()
@@ -63,29 +62,25 @@ public class QuestPopup_UI : MonoBehaviour
         }
     }
 
-    // 노드 생성
+    // 진행중인 노드 생성
     public void CreateNode(QuestData a_QuestData)
     {
         if (a_QuestData == null) return;
 
-        m_AcceptedQuests.Add(a_QuestData);
+        GameObject a_Obj = Instantiate(m_QuestNode, m_QuestContent.transform);
+        Quest_Nd a_Node = a_Obj.GetComponent<Quest_Nd>();
+        a_Node.Init(a_QuestData);
 
-        GameObject t_Node = Instantiate(m_QuestNode, m_QuestContent.transform);
-        Quest_Nd questNode = t_Node.GetComponent<Quest_Nd>();
-        questNode.Init(a_QuestData);
-    }
-
-    // 완료된 퀘스트 노드 삭제
-    public void RemoveNode(QuestData a_QuestData)
-    {
-        if (a_QuestData == null) return;
-        m_AcceptedQuests.Remove(a_QuestData);
-        foreach (Transform t_Node in m_QuestContent.transform)
+        // 노드 클릭시 퀘스트 정보 보여주기
+        a_Node.m_NodeBtn.onClick.AddListener(() =>
         {
-            Quest_Nd questNode = t_Node.GetComponent<Quest_Nd>();
-            
-        }
+            m_QuestData = a_QuestData;
+            // 퀘스트 제목 표시
+            m_QuestTitle.text = m_QuestData.TitleName;
+
+            // 퀘스트 설명, 목표, 보상 표시
+            m_QuestDesc.text = m_QuestData.Desc + "\n" + m_QuestData.TargetCnt + "마리" + "\n" + m_QuestData.RewardGold +
+            "골드" + "\n" + m_QuestData.RewardExp + "경험치";
+        });
     }
-
-
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnim : MonoBehaviour
+public class PlayerAtt : MonoBehaviour
 {
     [SerializeField]
     private CapsuleCollider Collider;

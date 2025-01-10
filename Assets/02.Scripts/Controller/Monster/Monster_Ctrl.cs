@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;//NavMeshAgent 사용을 위해 추가
+using UnityEngine.AI;//NavMeshAgent 사용
 using UnityEngine.UI;
 
 public class Monster_Ctrl : Base_Ctrl

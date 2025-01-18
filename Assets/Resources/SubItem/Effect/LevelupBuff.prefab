@@ -4846,7 +4846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  m_DisableTime: 3
+  m_DisableTime: 50
 --- !u!1 &748887766612431244
 GameObject:
   m_ObjectHideFlags: 0

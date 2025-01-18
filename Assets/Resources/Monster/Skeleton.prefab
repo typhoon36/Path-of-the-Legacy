@@ -807,7 +807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349150361055734}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
@@ -817,7 +817,7 @@ Transform:
   - {fileID: 4050709745616824}
   - {fileID: 6892787867340965490}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &95690985424869934
 Animator:
   serializedVersion: 5
@@ -924,12 +924,13 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_DPos: {x: 0, y: 0, z: 0}
   m_State: 0
+  m_MonsterType: 1
+  m_SpawnPos: {x: 0, y: 0, z: 0}
+  HPBack: {fileID: 1706775138178826710}
+  HPBar: {fileID: 5082292611636782394}
   m_ScanRange: 10
   m_AttRange: 2
-  m_Speed: 2
-  m_Att: 0
-  HPBar: {fileID: 5082292611636782394}
-  m_MonsterType: 1
+  m_SpawnRange: 16
 --- !u!114 &3874445412303140885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,7 +946,7 @@ MonoBehaviour:
   Id: 2
   m_CurHp: 130
   m_MaxHp: 130
-  m_Att: 0
+  m_Att: 10
   m_Exp: 150
   m_Gold: 100
   Item_Id: 4

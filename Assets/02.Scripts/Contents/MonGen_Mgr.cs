@@ -1,82 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonGen_Mgr : MonoBehaviour
 {
     public GameObject[] m_Monster; // 소환할 몬스터들
-    public Transform[] m_SpawnPos; // 소환할 위치들
+    [SerializeField] Transform[] m_SpawnPos; // 소환할 위치들
 
-    [HideInInspector] public List<GameObject> m_Monsters; // 소환된 몬스터들 리스트
+    [SerializeField] float m_SpawnRaidus = 10.0f; // 소환 범위
+    [SerializeField] float m_SpawnTime = 2.0f; // 소환 주기
+    [SerializeField] int m_SpawnCnt = 0; // 소환할 몬스터 수
+    int m_OldCnt = 0;
+    [SerializeField] int m_MaxSpawnCnt = 15; // 최대 소환할 몬스터 수
 
-    float m_ReSpawnTime = 10f; // 몬스터 리스폰 시간
-    int m_MaxMonsters = 10; // 최대 몬스터 수
+    private bool IsSpawn = false;
+    private Coroutine m_SpawnCo;
+    private int m_CurSpawnIdx = 0; // 현재 소환 위치 인덱스
 
     #region Singleton
     public static MonGen_Mgr Inst;
-    private void Awake()
+    void Awake()
     {
-        if (Inst == null)
-            Inst = this;
-
-        m_Monsters = new List<GameObject>(); // 리스트 초기화
+        Inst = this;
     }
     #endregion
 
     private void Start()
     {
-        StartCoroutine(SpawnMonsters());
+        m_OldCnt = m_SpawnCnt;
+
     }
 
-    public IEnumerator SpawnMonsters()
+    void Update()
     {
-        while (true)
+        if ((m_OldCnt + m_SpawnCnt) < m_MaxSpawnCnt && !IsSpawn)
         {
-            if (m_Monsters.Count < m_MaxMonsters)
+            m_SpawnCo = StartCoroutine(SpawnMob());
+        }
+        else if ((m_OldCnt + m_SpawnCnt) >= m_MaxSpawnCnt && IsSpawn)
+        {
+            if (m_SpawnCo != null)
             {
-                for (int i = 0; i < m_SpawnPos.Length; i++)
-                {
-                    bool isPositionOccupied = false;
-                    foreach (var monster in m_Monsters)
-                    {
-                        if (monster != null && Vector3.Distance(monster.transform.position, m_SpawnPos[i].position) < 0.1f)
-                        {
-                            isPositionOccupied = true;
-                            break;
-                        }
-                    }
-
-                    if (!isPositionOccupied)
-                    {
-                        GameObject monster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[i].position, Quaternion.identity);
-                        m_Monsters.Add(monster);
-                    }
-                }
+                StopCoroutine(m_SpawnCo);
+                m_SpawnCo = null;
+                Debug.Log("소환 중지");
             }
-            yield return new WaitForSeconds(1f); // 1초마다 스폰 시도
         }
     }
 
-    public IEnumerator ReSpawnMonsters(GameObject monster, int spawnIndex)
+    //몬스터 스폰
+    IEnumerator SpawnMob()
     {
-        yield return new WaitForSeconds(2f); // 2초 후에 제거
-        m_Monsters.Remove(monster);
-        Destroy(monster);
+        IsSpawn = true; // 코루틴 실행 중으로 설정
+        m_SpawnCnt++; // 소환할 몬스터 수 증가
 
-        if (spawnIndex >= 0 && spawnIndex < m_SpawnPos.Length)
-        {
-            yield return new WaitForSeconds(m_ReSpawnTime - 2f); // 나머지 시간 대기 후 다시 스폰
-            GameObject newMonster = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], m_SpawnPos[spawnIndex].position, Quaternion.identity);
-            m_Monsters.Add(newMonster);
-        }
-    }
+        yield return new WaitForSeconds(m_SpawnTime);
 
-    public void OnMonsterDeath(GameObject monster)
-    {
-        int index = m_Monsters.IndexOf(monster);
-        if (index != -1)
+        if (m_Monster.Length == 0 || m_SpawnPos.Length == 0)
         {
-            StartCoroutine(ReSpawnMonsters(monster, index));
+            m_SpawnCnt--; // 소환할 몬스터 수 감소
+            IsSpawn = false;
+            yield break;
         }
+
+        // 순차적으로 소환 위치 선택
+        Transform a_Pos = m_SpawnPos[m_CurSpawnIdx];
+        m_CurSpawnIdx = (m_CurSpawnIdx + 1) % m_SpawnPos.Length;
+
+        GameObject a_Obj = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)],
+            a_Pos.position + new Vector3(Random.Range(-m_SpawnRaidus, m_SpawnRaidus),
+            0, Random.Range(-m_SpawnRaidus, m_SpawnRaidus)),
+            Quaternion.identity);
+
+        NavMeshAgent a_Nav = a_Obj.GetComponent<NavMeshAgent>();
+
+        Vector3 a_RandPos = Vector3.zero; // 기본값으로 초기화
+        int a_Maxtemp = 10; // 최대 시도 횟수
+        int a_Temp = 0;
+
+        while (a_Temp < a_Maxtemp)
+        {
+            Vector3 a_RandDir = Random.insideUnitSphere * m_SpawnRaidus;
+            a_RandDir.y = 0;
+            a_RandPos = a_Pos.position + a_RandDir;
+
+            NavMeshPath a_Path = new NavMeshPath();
+
+            if (a_Nav.CalculatePath(a_RandPos, a_Path))
+            {
+                a_Obj.transform.position = a_RandPos;
+                break;
+            }
+
+            a_Temp++;
+        }
+
+        a_Nav.nextPosition = a_Obj.transform.position;
+        a_Obj.GetComponent<Monster_Ctrl>().m_SpawnPos = a_RandPos;
+
+        // 플레이어를 바라보도록 회전
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Vector3 directionToPlayer = player.transform.position - a_Obj.transform.position;
+            directionToPlayer.y = 0; // y축 회전 방지
+            a_Obj.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+        }
+
+        m_OldCnt++; // 소환된 몬스터 수 증가
+        m_SpawnCnt--; // 소환할 몬스터 수 감소
+        IsSpawn = false; // 코루틴 실행 완료로 설정
     }
 }

@@ -20105,8 +20105,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8620929576256890557}
   - component: {fileID: 6401343945968985159}
-  - component: {fileID: 6796406417203622569}
-  - component: {fileID: 7996565048344741078}
   m_Layer: 7
   m_Name: Mesh_Weapon_002
   m_TagString: MonsterWeapon
@@ -20183,41 +20181,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000009536743, y: 0, z: 7.522299}
     m_Extent: {x: 4.0702085, y: 4.070209, z: 10.089914}
   m_DirtyAABB: 0
---- !u!65 &6796406417203622569
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4996727351873304859}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 8.14042, y: 8.140422, z: 20.179834}
-  m_Center: {x: 0.0000028610227, y: -0.000021050548, z: 9.671989}
---- !u!114 &7996565048344741078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4996727351873304859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1611307789307f94fa9531e9d541f284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damage: 10
-  m_Collider: {fileID: 6796406417203622569}
 --- !u!1 &5015994314060058820
 GameObject:
   m_ObjectHideFlags: 0
@@ -26205,12 +26168,13 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_DPos: {x: 0, y: 0, z: 0}
   m_State: 0
+  m_MonsterType: 1
+  m_SpawnPos: {x: 0, y: 0, z: 0}
+  HPBack: {fileID: 2321266967730836422}
+  HPBar: {fileID: 5785285948202383489}
   m_ScanRange: 10
   m_AttRange: 2
-  m_Speed: 2
-  m_Att: 0
-  HPBar: {fileID: 5785285948202383489}
-  m_MonsterType: 1
+  m_SpawnRange: 16
 --- !u!114 &8287508385821318303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26223,10 +26187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7cb01690ca6994cbaf4211926af00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 3
   m_CurHp: 120
   m_MaxHp: 120
-  m_Att: 0
+  m_Att: 5
   m_Exp: 200
   m_Gold: 120
   Item_Id: 1

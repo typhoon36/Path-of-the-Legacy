@@ -2065,12 +2065,13 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_DPos: {x: 0, y: 0, z: 34.22}
   m_State: 0
+  m_MonsterType: 2
+  m_SpawnPos: {x: 0, y: 0, z: 0}
+  HPBack: {fileID: 0}
+  HPBar: {fileID: 0}
   m_ScanRange: 10
   m_AttRange: 2
-  m_Speed: 2
-  m_Att: 10
-  HPBar: {fileID: 0}
-  m_MonsterType: 2
+  m_SpawnRange: 16
 --- !u!65 &6141337568552821675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2107,7 +2108,7 @@ MonoBehaviour:
   Id: 4
   m_CurHp: 2000
   m_MaxHp: 2000
-  m_Att: 0
+  m_Att: 100
   m_Exp: 10000
   m_Gold: 5000
   Item_Id: 5

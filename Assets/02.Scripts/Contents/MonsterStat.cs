@@ -18,8 +18,8 @@ public class MonsterStat : MonoBehaviour
     [SerializeField] protected float m_Speed;
 
     public int m_Id { get { return Id; } set { Id = value; } }//몬스터 ID
-    public int Hp { get { return m_CurHp; } set { m_CurHp = Mathf.Clamp(value, 0, MaxHp); } }//몬스터 현재 체력
-    public int MaxHp { get { return m_MaxHp; } set { m_MaxHp = value; Hp = MaxHp; } }//몬스터 최대 체력
+    public int  CurHp { get { return m_CurHp; } set { m_CurHp = Mathf.Clamp(value, 0, MaxHp); } }//몬스터 현재 체력
+    public int MaxHp { get { return m_MaxHp; } set { m_MaxHp = value; CurHp = MaxHp; } }//몬스터 최대 체력
     public int Attack { get { return m_Att; } set { m_Att = value; } }//몬스터 공격력
     public int Exp { get { return m_Exp; } set { m_Exp = value; } }//몬스터 잡았을시의 경험치
     public int Gold { get { return m_Gold; } set { m_Gold = value; } }//몬스터가 떨어트릴 골드값
@@ -32,6 +32,7 @@ public class MonsterStat : MonoBehaviour
         m_Monster = GetComponent<Monster_Ctrl>();
         GameObject Obj = this.gameObject;
 
+        
         MonsterStat a_Stat = Obj.GetComponent<MonsterStat>();
         MaxHp = a_Stat.MaxHp;
         Attack = a_Stat.Attack;
@@ -51,8 +52,12 @@ public class MonsterStat : MonoBehaviour
             m_Monster.State = Define_S.AllState.Hit;
         }
 
-        Hp -= a_Damage; // 체력 감소
-        m_Monster.UpdateHPBar(); // HP바 업데이트
+        //몬스터 HP바와 HPBar 활성화
+        m_Monster.HPBar.fillAmount = (float)m_CurHp / m_MaxHp;
+        m_Monster.HPBack.SetActive(true);
+        m_Monster.HPBar.gameObject.SetActive(true);
+
+        CurHp -= a_Damage; // 체력 감소
 
         if (m_CurHp <= 0)
         {
@@ -77,29 +82,15 @@ public class MonsterStat : MonoBehaviour
         // 퀘스트 정보 반영
 
         // 아이템 드랍
-        // OnDropItem();
+        OnDropItem();
+
+        //전투 종료
+        m_Monster.BattleEnd();
     }
 
     //아이템 드랍
     void OnDropItem()
     {
-        //데이터 매니저에서 아이템 정보 가져오기
-        //ItemData a_Item = Item_Mgr.Inst.GetItemData(ItemId);
-
-        //아이템 개수 0~2 
-        int MaxCnt = Random.Range(0, 3);
-
-        for (int i = 0; i < Random.Range(0, MaxCnt); i++)
-        {
-            //int a_RandId = Random.Range(0, 2);
-
-            //아이템 생성
-            //ItemData a_Item = Item_Mgr.Inst.GetItemData(ItemId);
-            //GameObject Obj = Resources.Load<GameObject>("Prefabs/Item/" + a_Item.PrefabName);
-
-            //드랍 위치 설정
-            float a_RandPos = Random.Range(-0.5f, 0.5f);
-            //Obj.transform.position = new Vector3(transform.position.x + a_RandPos, 0, transform.position.z + a_RandPos);
-        }
+       
     }
 }

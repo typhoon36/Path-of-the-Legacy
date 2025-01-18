@@ -248,7 +248,7 @@ public class UI_Mgr : MonoBehaviour
 
                     if (Co_Item1Recovery != null)
                         StopCoroutine(Co_Item1Recovery);
-                    Co_Item1Recovery = StartCoroutine(RecoverItem(m_1stItem, 5f)); // 5초 동안 회복
+                    Co_Item1Recovery = StartCoroutine(RecoverItem(m_1stItem, 5f));
                     break;
                 }
             case 1:
@@ -256,18 +256,18 @@ public class UI_Mgr : MonoBehaviour
                     // 2아이템 사용
                     m_2ndItem.fillAmount = 0;
                     m_MPBar.fillAmount += 0.5f;
-                    Data_Mgr.m_StartData.CurMp += 50;
+                    Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
+                    a_Player.CurMp += 50;
 
-                    if(Data_Mgr.m_StartData.CurMp > Data_Mgr.m_StartData.MaxMp)
+                    if (a_Player.CurMp > a_Player.MaxMp)
                     {
-                        Data_Mgr.m_StartData.CurMp = Data_Mgr.m_StartData.MaxMp;
+                        a_Player.CurMp = a_Player.MaxMp;
                     }
-
 
                     if (Co_Item2Recovery != null)
                         StopCoroutine(Co_Item2Recovery);
 
-                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 5f)); // 5초 동안 회복
+                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 5f)); 
                     break;
                 }
             default:

@@ -16,38 +16,7 @@ public class Player_Ctrl : Base_Ctrl
     int m_Mask = (1 << (int)Define_S.Layer.Ground) | (1 << (int)Define_S.Layer.Monster) | (1 << (int)Define_S.Layer.Npc);
 
 
-    float m_Speed = 5f;
-
-    public float m_MaxHp = 100;
-    private float m_CurHp;
-    public float CurHp
-    {
-        get { return m_CurHp; }
-        set
-        {
-            m_CurHp = Mathf.Clamp(value, 0, m_MaxHp);
-            Data_Mgr.m_StartData.CurHp = (int)m_CurHp;
-            UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
-
-            if (m_CurHp <= 0)
-            {
-                OnDie();
-            }
-        }
-    }
-
-
-
-    #region Bool
-    bool IsStopAtt = true;//공격 가능인지 여부
-    bool IsRoll = false;//구르기 상태
-    [HideInInspector] public bool IsHit = false; //피격 상태
-    #endregion
-
-    #region Float
-    float m_RollTime = 0f;//구르기 시간
-    float m_AttTime = 0f;//공격 취소 시간
-    #endregion
+    float m_Speed = 5f;// 이동속도 = 스탯에 맞춰야함
 
     [SerializeField]
     public int m_Att = 10; // 플레이어 공격력 추가
@@ -65,7 +34,73 @@ public class Player_Ctrl : Base_Ctrl
 
     ItemData a_ItemData;
 
-    #region JoyStick & Buttons
+    #region HP & MP
+    float m_MaxHp = 100f;
+    public float MaxHp
+    {
+        get { return m_MaxHp; }
+        set
+        {
+            m_MaxHp = Mathf.Clamp(value, 0, m_MaxHp);
+            Data_Mgr.m_StartData.MaxHp = (int)m_MaxHp;
+            UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
+        }
+    }
+    private float m_CurHp;
+    public float CurHp
+    {
+        get { return m_CurHp; }
+        set
+        {
+            m_CurHp = Mathf.Clamp(value, 0, m_MaxHp);
+            Data_Mgr.m_StartData.CurHp = (int)m_CurHp;
+            UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
+
+            if (m_CurHp <= 0)
+            {
+                OnDie();
+            }
+        }
+    }
+    float m_MaxMp = 100f;
+    public float MaxMp
+    {
+        get { return m_MaxMp; }
+        set
+        {
+            m_MaxMp = Mathf.Clamp(value, 0, m_MaxMp);
+            Data_Mgr.m_StartData.MaxMp = (int)m_MaxMp;
+            UI_Mgr.Inst.UpdateMpBar(m_CurMp, m_MaxMp);
+        }
+    }
+
+    float m_CurMp;
+    public float CurMp
+    {
+        get { return m_CurMp; }
+        set
+        {
+            m_CurMp = Mathf.Clamp(value, 0, m_MaxMp);
+            Data_Mgr.m_StartData.CurMp = (int)m_CurMp;
+            UI_Mgr.Inst.UpdateMpBar(m_CurMp, m_MaxMp);
+        }
+    }
+    #endregion
+
+    #region Bool
+    bool IsStopAtt = true;//공격 가능인지 여부
+    bool IsRoll = false;//구르기 상태
+    [HideInInspector] public bool IsHit = false; //피격 상태
+    #endregion
+
+    #region Float
+    float m_RollTime = 0f;//구르기 시간
+    float m_AttTime = 0f;//공격 취소 시간
+    #endregion
+
+   
+
+    #region Mobile
     #endregion
 
     #region Init
@@ -82,7 +117,7 @@ public class Player_Ctrl : Base_Ctrl
         m_Anim = GetComponent<Animator>();
 
         CurHp = m_MaxHp;
-        Data_Mgr.m_StartData.CurMp = Data_Mgr.m_StartData.MaxMp;
+        CurMp = m_MaxMp;
         m_Speed = Data_Mgr.m_StartData.Speed;
 
         UI_Mgr.Inst.m_HPBar.fillAmount = 1;
@@ -98,7 +133,7 @@ public class Player_Ctrl : Base_Ctrl
     }
     #endregion
 
-    #region Levelup
+    #region Levelup -- Fix needed
     Coroutine Co_LevelUp;
     public void LevelUpEffect()
     {
@@ -108,7 +143,10 @@ public class Player_Ctrl : Base_Ctrl
     }
     IEnumerator LevelUpCoroutine()
     {
-        GameObject a_Eff = Instantiate(Resources.Load("SubItem/Effect/LevelUp_Eff")) as GameObject;
+        GameObject a_Eff = Instantiate(Resources.Load("SubItem/Effect/LevelupBuff")) as GameObject;
+
+        Debug.Log(a_Eff + " : " + a_Eff.transform.position);
+
         a_Eff.transform.position = Vector3.zero;
 
         yield return new WaitForSeconds(4f);
@@ -278,7 +316,7 @@ public class Player_Ctrl : Base_Ctrl
     #endregion
 
     #region Hit
-    private Coroutine Co_HitDown;
+    Coroutine Co_HitDown;
     public void OnHit(MonsterStat attacker, int a_Dmg = 0)
     {
         if (IsRoll == true) return;
@@ -356,7 +394,7 @@ public class Player_Ctrl : Base_Ctrl
         }
 
         // 마나 확인
-        if (a_Skill.skillConsumMp > Data_Mgr.m_StartData.CurMp)
+        if (a_Skill.skillConsumMp > m_CurMp)
         {
             Debug.Log("마나가 부족합니다.");
             return;
@@ -391,9 +429,10 @@ public class Player_Ctrl : Base_Ctrl
 
         m_CurSkill.isCoolDown = true;
         m_CurSkill.skillCoolDown = (int)Time.time; // 쿨다운 시작 시간 설정
-        Data_Mgr.m_StartData.CurMp -= m_CurSkill.skillConsumMp;
+        CurMp -= m_CurSkill.skillConsumMp; // CurMp 프로퍼티를 사용하여 MP 감소
 
-        UI_Mgr.Inst.UpdateMpBar(Data_Mgr.m_StartData.CurMp, Data_Mgr.m_StartData.MaxMp);
+        // MP 바 업데이트
+        UI_Mgr.Inst.UpdateMpBar(CurMp, MaxMp);
 
         // 스킬 이펙트 활성화
         if (m_CurEff != null)
@@ -654,8 +693,8 @@ public class Player_Ctrl : Base_Ctrl
 
             if (monster != null)
             {
-                int a_Dmg = monster.m_Att;
                 MonsterStat a_MonStat = monster.GetComponent<MonsterStat>();
+                int a_Dmg = a_MonStat.Attack;
                 if (a_MonStat != null)
                 {
                     OnHit(a_MonStat, a_Dmg);
@@ -668,7 +707,7 @@ public class Player_Ctrl : Base_Ctrl
     {
         State = Define_S.AllState.Die;
 
-        UI_Mgr.Inst.UpdateHPBar(CurHp, m_MaxHp);
+        UI_Mgr.Inst.UpdateHPBar(CurHp, MaxHp);
 
         UI_Mgr.Inst.DieOn();
 

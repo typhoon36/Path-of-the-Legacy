@@ -150,14 +150,6 @@ public abstract class Base_Ctrl : MonoBehaviour
 
     }
 
-    protected virtual void AnimAtt()
-    {
-        string attackStateName = "Attack";
-        if (m_Anim.HasState(0, Animator.StringToHash(attackStateName)))
-        {
-            m_Anim.CrossFade(attackStateName, 0.1f);
-        }
-    }
 
     #region State
     protected virtual void Move() { }

@@ -3365,7 +3365,7 @@ GameObject:
   - component: {fileID: 2505848506595524531}
   - component: {fileID: 7940977980271484482}
   - component: {fileID: 8496151564245344764}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Mark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4733,7 +4733,6 @@ GameObject:
   - component: {fileID: 6647191562132133227}
   - component: {fileID: 7777299318238688208}
   - component: {fileID: 2930526887163846701}
-  - component: {fileID: 2900039385821378450}
   m_Layer: 0
   m_Name: Adventure
   m_TagString: Player
@@ -4790,8 +4789,6 @@ MonoBehaviour:
     discription: 
     skillSprite: {fileID: 0}
     powerList: 
-  m_MaxHp: 100
-  IsHit: 0
   m_Att: 10
   m_SkinnedObjs:
   - {fileID: 6596831850486823255}
@@ -4813,6 +4810,7 @@ MonoBehaviour:
   m_Effects:
   - {fileID: 2969922485112485698}
   - {fileID: 5283290393816326968}
+  IsHit: 0
 --- !u!95 &6981720856593174203
 Animator:
   serializedVersion: 5
@@ -4896,19 +4894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8c2396f022d604e8947afca4714aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2900039385821378450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740323496896865897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe705a25c9948c24aa5ea79b832d15d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Collider: {fileID: 7777299318238688208}
 --- !u!1 &6947989270219343679
 GameObject:
   m_ObjectHideFlags: 0

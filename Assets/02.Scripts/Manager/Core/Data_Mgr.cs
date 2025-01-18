@@ -24,10 +24,10 @@ public class StartData
     public int Id;
     public int Exp = 100;
     public int Level = 1;
-    public int MaxHp;
-    public int CurHp;
-    public int MaxMp;
-    public int CurMp;
+    public int MaxHp = 100;
+    public int CurHp = 100;
+    public int MaxMp = 100;
+    public int CurMp = 100;
     public int ATK = 10;
     public int STR = 2;
     public int Speed = 5;
@@ -182,8 +182,9 @@ public class Data_Mgr
             m_AromrData = m_AllData.m_AromrData ?? new List<ArmorItemData>();
             m_EquipData = m_AllData.m_EquipData ?? new List<EquipItemData>();
             m_UseItemData = m_AllData.m_UseItemData ?? new List<UseItemData>();
-            m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>(); // 수락된 퀘스트 ID 리스트 로드
+            m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>();
 
+            #region Init
             // 수락된 퀘스트 상태 업데이트
             foreach (var a_Quest in m_QuestData)
             {
@@ -211,10 +212,13 @@ public class Data_Mgr
                 InitTalkData();
             }
 
+            // 기본 아이템 데이터 초기화
             if (m_ItemData.Count == 0)
             {
                 InitItemData();
             }
+            #endregion
+
         }
         else
         {
@@ -281,7 +285,7 @@ public class Data_Mgr
             skillName = "Spin Slice",
             minLevel = 1,
             skillCoolDown = 7,
-            skillConsumMp = 35,
+            skillConsumMp = 10,
             isCoolDown = false,
             isLock = true,
             discription = "Enermy gave Damage",

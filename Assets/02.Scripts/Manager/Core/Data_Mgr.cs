@@ -1,9 +1,10 @@
-using System.IO;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.IO;
 
-#region Data Structure
+
+#region Data Structures
 [System.Serializable]
 public class AllData
 {
@@ -17,7 +18,10 @@ public class AllData
     public List<EquipItemData> m_EquipData;
     public List<UseItemData> m_UseItemData;
     public List<int> AcceptedQuest;
+    public Dictionary<int, List<int>> DropItem;
 }
+
+
 [System.Serializable]
 public class StartData
 {
@@ -38,7 +42,20 @@ public class StartData
     public int StatPoint = 5;
     public Vector3 m_Pos;
 }
-//아이템 데이터 구조체
+
+[System.Serializable]
+public class LevelData
+{
+    public int Level;
+    public int TotalExp;
+    public int StatPoint;
+    public int MaxHp;
+    public int MaxMp;
+}
+
+#region Items
+
+// 아이템 데이터 구조체
 [System.Serializable]
 public class ItemData
 {
@@ -50,8 +67,12 @@ public class ItemData
     public int ItemMaxCount = 99;
     public GameObject ItemObj;
     public string ItemDesc;
-    public string ItemIconPath; 
+    public string ItemIconPath;
 }
+
+
+#region Item(Use, Armor, Equip) Data
+//아이템 사용 데이터 구조체
 [System.Serializable]
 public class UseItemData
 {
@@ -60,6 +81,7 @@ public class UseItemData
     public int ItemCnt = 0;
 }
 
+//방어구 아이템 데이터 구조체
 [System.Serializable]
 public class ArmorItemData
 {
@@ -74,12 +96,22 @@ public class ArmorItemData
     public int addMoveSpeed = 0;
 }
 
+//장비 아이템 데이터 구조체
 [System.Serializable]
 public class EquipItemData
 {
     public int MinLevel;
 }
+#endregion
 
+//보상 아이템 데이터 구조체
+[System.Serializable]
+public class RewardItemData
+{
+    public int ItemId;
+    public int ItemCount;
+}
+#endregion
 
 //스킬 데이터 구조체
 [System.Serializable]
@@ -96,6 +128,8 @@ public class SkillData
     public Sprite skillSprite;
     public List<int> powerList;
 }
+
+#region Dialogue
 [System.Serializable]
 public class QuestData
 {
@@ -122,12 +156,6 @@ public class QuestData
     }
 }
 [System.Serializable]
-public class RewardItemData
-{
-    public int ItemId;
-    public int ItemCount;
-}
-[System.Serializable]
 public class TalkData
 {
     public int Id;
@@ -138,15 +166,8 @@ public class TalkData
     public string ProcTalk;
     public string ClearTalk;
 }
-[System.Serializable]
-public class LevelData
-{
-    public int Level;
-    public int TotalExp;
-    public int StatPoint;
-    public int MaxHp;
-    public int MaxMp;
-}
+#endregion
+
 #endregion
 
 public class Data_Mgr
@@ -154,24 +175,45 @@ public class Data_Mgr
     public static AllData m_AllData = new AllData();
     public static StartData m_StartData = new StartData();
     public static List<ItemData> m_ItemData = new List<ItemData>();
+    public static List<ArmorItemData> m_AromrData = new List<ArmorItemData>();
+    public static List<EquipItemData> m_EquipData = new List<EquipItemData>();
+    public static List<UseItemData> m_UseItemData = new List<UseItemData>();
+
+    public static Dictionary<int, List<int>> DropItem { get; private set; } = new Dictionary<int, List<int>>();
+    public static Dictionary<int, GameObject> ItemObjects { get; private set; } = new Dictionary<int, GameObject>();
+
     public static List<SkillData> m_SkillData = new List<SkillData>();
     public static List<QuestData> m_QuestData = new List<QuestData>();
     public static List<TalkData> m_TalkData = new List<TalkData>();
     public static List<LevelData> m_LevelData = new List<LevelData>();
-    public static List<ArmorItemData> m_AromrData = new List<ArmorItemData>();
-    public static List<EquipItemData> m_EquipData = new List<EquipItemData>();
-    public static List<UseItemData> m_UseItemData = new List<UseItemData>();
-    public static List<int> m_AcceptedQuest = new List<int>(); 
-
+    public static List<int> m_AcceptedQuest = new List<int>();
     public static event Action OnLevelUp;
+
+    public static void SaveData()
+    {
+        m_AllData.m_StartData = m_StartData;
+        m_AllData.m_ItemData = m_ItemData;
+        m_AllData.m_SkillData = m_SkillData;
+        m_AllData.m_QuestData = m_QuestData;
+        m_AllData.m_TalkData = m_TalkData;
+        m_AllData.m_LevelData = m_LevelData;
+        m_AllData.m_AromrData = m_AromrData;
+        m_AllData.m_EquipData = m_EquipData;
+        m_AllData.m_UseItemData = m_UseItemData;
+        m_AllData.AcceptedQuest = m_AcceptedQuest;
+        m_AllData.DropItem = DropItem;
+
+        string a_JsonData = JsonUtility.ToJson(m_AllData, true);
+        File.WriteAllText(Application.dataPath + "/Resources/Data/GameData.json", a_JsonData);
+    }
 
     public static void LoadData()
     {
         string filePath = Application.dataPath + "/Resources/Data/GameData.json";
         if (File.Exists(filePath))
         {
-            string jsonData = File.ReadAllText(filePath);
-            m_AllData = JsonUtility.FromJson<AllData>(jsonData);
+            string a_JsonData = File.ReadAllText(filePath);
+            m_AllData = JsonUtility.FromJson<AllData>(a_JsonData);
 
             m_StartData = m_AllData.m_StartData;
             m_ItemData = m_AllData.m_ItemData ?? new List<ItemData>();
@@ -183,15 +225,14 @@ public class Data_Mgr
             m_EquipData = m_AllData.m_EquipData ?? new List<EquipItemData>();
             m_UseItemData = m_AllData.m_UseItemData ?? new List<UseItemData>();
             m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>();
+            DropItem = m_AllData.DropItem ?? new Dictionary<int, List<int>>();
 
             #region Init
             // 수락된 퀘스트 상태 업데이트
             foreach (var a_Quest in m_QuestData)
             {
                 if (m_AcceptedQuest.Contains(a_Quest.Id))
-                {
                     a_Quest.IsAccept = true;
-                }
             }
 
             // 기본 스킬 데이터 초기화
@@ -213,10 +254,9 @@ public class Data_Mgr
             }
 
             // 기본 아이템 데이터 초기화
-            if (m_ItemData.Count == 0)
-            {
-                InitItemData();
-            }
+            InitItemData();
+
+            InitDropData();
             #endregion
 
         }
@@ -226,36 +266,24 @@ public class Data_Mgr
         }
     }
 
-    public static void SaveData()
+    public static ItemData CallItem(int a_Id)
     {
-        m_AllData.m_StartData = m_StartData;
-        m_AllData.m_ItemData = m_ItemData;
-        m_AllData.m_SkillData = m_SkillData;
-        m_AllData.m_QuestData = m_QuestData;
-        m_AllData.m_TalkData = m_TalkData;
-        m_AllData.m_LevelData = m_LevelData;
-        m_AllData.m_AromrData = m_AromrData;
-        m_AllData.m_EquipData = m_EquipData;
-        m_AllData.m_UseItemData = m_UseItemData;
-        m_AllData.AcceptedQuest = m_AcceptedQuest; // 수락된 퀘스트 ID 리스트 저장
-
-        string jsonData = JsonUtility.ToJson(m_AllData, true);
-        File.WriteAllText(Application.dataPath + "/Resources/Data/GameData.json", jsonData);
+        return m_ItemData.Find(i => i.Id == a_Id);
     }
 
+    #region Dialogue
     public static void AcceptQuest(int a_Id)
     {
         if (!m_AcceptedQuest.Contains(a_Id))
             m_AcceptedQuest.Add(a_Id);
-        
     }
 
     public static void CompleteQuest(int a_Id)
     {
         if (m_AcceptedQuest.Contains(a_Id))
             m_AcceptedQuest.Remove(a_Id);
-        
     }
+    #endregion
 
     public static void LevelUp()
     {
@@ -330,7 +358,6 @@ public class Data_Mgr
             IsAccept = false,
             IsClear = false
         });
-
     }
 
     static void InitTalkData()
@@ -355,9 +382,9 @@ public class Data_Mgr
             ProcTalk = "행운을 비네",
             ClearTalk = "고맙네."
         });
-
     }
 
+    /*<Items*/
     static void InitItemData()
     {
         // 포션 종류
@@ -377,15 +404,14 @@ public class Data_Mgr
         // 무기 종류
         AddItemData(9, "연습용 칼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 10, 1, null, "공격력 10 증가", "Items/Weapons/Sword_1");
         AddItemData(10, "기사의 검", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 100, 1, null, "공격력 20 증가", "Items/Weapons/Sword_2");
-        AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, null, "공격력 25 증가", "Items/Weapons/Ax_1");
-        AddItemData(12, "황금 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 250, 1, null, "공격력 30 증가", "Items/Weapons/Ax_2");
+        AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, LoadPrefab("Items/Roots/Axe_1"), "공격력 25 증가", "Items/Weapons/Ax_1");
+        AddItemData(12, "황금 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 250, 1, LoadPrefab("Items/Roots/Axe_2"), "공격력 30 증가", "Items/Weapons/Ax_2");
         AddItemData(13, "전투 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 350, 1, null, "공격력 45 증가", "Items/Weapons/Ax_3");
-
     }
 
     static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type,
-        Define_S.ItemGrade a_Grade, int a_Price, int a_MaxCount,
-        GameObject a_Obj, string a_Desc, string a_IconPath)
+      Define_S.ItemGrade a_Grade, int a_Price, int a_MaxCount,
+      GameObject a_Obj, string a_Desc, string a_IconPath)
     {
         m_ItemData.Add(new ItemData
         {
@@ -397,7 +423,36 @@ public class Data_Mgr
             ItemMaxCount = a_MaxCount,
             ItemObj = a_Obj,
             ItemDesc = a_Desc,
-            ItemIconPath = a_IconPath // 경로 저장
+            ItemIconPath = a_IconPath
         });
+    }
+
+    /*DropItems*/
+    static void InitDropData()
+    {
+        AddDropData(1, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
+        AddDropData(2, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
+        AddDropData(3, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
+    }
+
+    static void AddDropData(int MonsterId, int ItemId, GameObject a_Obj, string a_Path)
+    {
+        if (!DropItem.ContainsKey(MonsterId))
+        {
+            DropItem[MonsterId] = new List<int>();
+        }
+        DropItem[MonsterId].Add(ItemId);
+
+        // 아이템 오브젝트를 저장하는 딕셔너리 추가
+        if (!ItemObjects.ContainsKey(ItemId))
+        {
+            ItemObjects[ItemId] = a_Obj;
+        }
+    }
+
+    //Prefab
+    static GameObject LoadPrefab(string path)
+    {
+        return Resources.Load<GameObject>(path);
     }
 }

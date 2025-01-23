@@ -69,47 +69,53 @@ public class MonGen_Mgr : MonoBehaviour
         Transform a_Pos = m_SpawnPos[m_CurSpawnIdx];
         m_CurSpawnIdx = (m_CurSpawnIdx + 1) % m_SpawnPos.Length;
 
-        GameObject a_Obj = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)],
-            a_Pos.position + new Vector3(Random.Range(-m_SpawnRaidus, m_SpawnRaidus),
-            0, Random.Range(-m_SpawnRaidus, m_SpawnRaidus)),
-            Quaternion.identity);
-
-        NavMeshAgent a_Nav = a_Obj.GetComponent<NavMeshAgent>();
-
-        Vector3 a_RandPos = Vector3.zero; // 기본값으로 초기화
-        int a_Maxtemp = 10; // 최대 시도 횟수
-        int a_Temp = 0;
-
-        while (a_Temp < a_Maxtemp)
+        Vector3 spawnPosition = a_Pos.position + new Vector3(Random.Range(-m_SpawnRaidus, m_SpawnRaidus), 0, Random.Range(-m_SpawnRaidus, m_SpawnRaidus));
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(spawnPosition, out hit, m_SpawnRaidus, NavMesh.AllAreas))
         {
-            Vector3 a_RandDir = Random.insideUnitSphere * m_SpawnRaidus;
-            a_RandDir.y = 0;
-            a_RandPos = a_Pos.position + a_RandDir;
+            GameObject a_Obj = Instantiate(m_Monster[Random.Range(0, m_Monster.Length)], hit.position, Quaternion.identity);
+            NavMeshAgent a_Nav = a_Obj.GetComponent<NavMeshAgent>();
 
-            NavMeshPath a_Path = new NavMeshPath();
+            Vector3 a_RandPos = hit.position; // 기본값으로 초기화
+            int a_Maxtemp = 10; // 최대 시도 횟수
+            int a_Temp = 0;
 
-            if (a_Nav.CalculatePath(a_RandPos, a_Path))
+            while (a_Temp < a_Maxtemp)
             {
-                a_Obj.transform.position = a_RandPos;
-                break;
+                Vector3 a_RandDir = Random.insideUnitSphere * m_SpawnRaidus;
+                a_RandDir.y = 0;
+                a_RandPos = a_Pos.position + a_RandDir;
+
+                NavMeshPath a_Path = new NavMeshPath();
+
+                if (a_Nav.CalculatePath(a_RandPos, a_Path))
+                {
+                    a_Obj.transform.position = a_RandPos;
+                    break;
+                }
+
+                a_Temp++;
             }
 
-            a_Temp++;
+            a_Nav.nextPosition = a_Obj.transform.position;
+            a_Obj.GetComponent<Monster_Ctrl>().m_SpawnPos = a_RandPos;
+
+            // 플레이어를 바라보도록 회전
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                Vector3 directionToPlayer = player.transform.position - a_Obj.transform.position;
+                directionToPlayer.y = 0; // y축 회전 방지
+                a_Obj.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+            }
+
+            m_OldCnt++; // 소환된 몬스터 수 증가
         }
-
-        a_Nav.nextPosition = a_Obj.transform.position;
-        a_Obj.GetComponent<Monster_Ctrl>().m_SpawnPos = a_RandPos;
-
-        // 플레이어를 바라보도록 회전
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        else
         {
-            Vector3 directionToPlayer = player.transform.position - a_Obj.transform.position;
-            directionToPlayer.y = 0; // y축 회전 방지
-            a_Obj.transform.rotation = Quaternion.LookRotation(directionToPlayer);
+            Debug.LogError("NavMesh 위에 몬스터를 배치할 수 없습니다.");
         }
 
-        m_OldCnt++; // 소환된 몬스터 수 증가
         m_SpawnCnt--; // 소환할 몬스터 수 감소
         IsSpawn = false; // 코루틴 실행 완료로 설정
     }

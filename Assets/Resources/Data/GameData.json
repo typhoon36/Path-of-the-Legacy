@@ -2,9 +2,9 @@
     "m_StartData": {
         "Id": 0,
         "Exp": 100,
-        "Level": 30,
+        "Level": 31,
         "MaxHp": 0,
-        "CurHp": 47,
+        "CurHp": 90,
         "MaxMp": 0,
         "CurMp": 0,
         "ATK": 10,
@@ -12,7 +12,7 @@
         "Speed": 6,
         "Int": 2,
         "Luk": 3,
-        "Gold": 25890,
+        "Gold": 37610,
         "SkillPoint": 5,
         "StatPoint": 0,
         "m_Pos": {

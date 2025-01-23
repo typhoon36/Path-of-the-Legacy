@@ -43,6 +43,8 @@ public class ShopPopup_UI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        HashSet<int> addedItemIds = new HashSet<int>();
+
         // 상품 생성
         foreach (var itemData in Data_Mgr.m_ItemData)
         {
@@ -53,9 +55,14 @@ public class ShopPopup_UI : MonoBehaviour
             if (shopType == Define_S.ShopType.Used && itemData.ItemType != Define_S.ItemType.Use)
                 continue;
 
+            if (addedItemIds.Contains(itemData.Id))
+                continue;
+
             GameObject t_Product = Instantiate(m_Products, m_ShopContent.transform);
             Product_Nd productNd = t_Product.GetComponent<Product_Nd>();
             productNd.Init(itemData);
+
+            addedItemIds.Add(itemData.Id);
         }
     }
 }

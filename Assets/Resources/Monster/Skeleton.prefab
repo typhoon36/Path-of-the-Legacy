@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Att: 10
   m_Exp: 150
   m_Gold: 100
-  Item_Id: 4
+  Item_Id: 1
   m_Speed: 5
 --- !u!1 &1358933833218600
 GameObject:

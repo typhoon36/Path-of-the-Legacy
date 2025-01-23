@@ -98,7 +98,7 @@ public class Player_Ctrl : Base_Ctrl
     float m_AttTime = 0f;//공격 취소 시간
     #endregion
 
-   
+
 
     #region Mobile
     #endregion
@@ -110,6 +110,14 @@ public class Player_Ctrl : Base_Ctrl
 
         if (a_CamCtrl != null)
             a_CamCtrl.InitCam(gameObject);
+    }
+
+    //나가기 전에 저장
+    void OnApplicationQuit()
+    {
+        Data_Mgr.m_StartData.CurHp = (int)CurHp;
+        Data_Mgr.m_StartData.CurMp = (int)CurMp;
+        Data_Mgr.m_StartData.m_Pos = transform.position;
     }
 
     public override void Init()
@@ -614,33 +622,32 @@ public class Player_Ctrl : Base_Ctrl
         }
     }
 
-    //[SerializeField]
-    //float a_ItemMaxRadius = 5f; // 아이템 줍기 최대 반경
-    //void GetPickUp()
-    //{
-    //    // 주변 아이템 탐색
-    //    Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 11); //Item = 11 
+    [SerializeField]
+    float a_ItemMaxRadius = 5f; // 아이템 줍기 최대 반경
+    void GetPickUp()
+    {
+        // 주변 아이템 탐색
+        Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 11); //Item = 11 
 
-    //    // F 키를 누르면 줍기
-    //    if (Input.GetKeyDown(KeyCode.F))
-    //    {
-    //        for (int i = 0; i < coll.Length; i++)
-    //        {
-    //            ItemPickUp a_Item = coll[i].GetComponent<ItemPickUp>();
-    //            if (a_Item != null)
-    //            {
-    //                // 인벤토리에 넣기
-    //                Debug.Log("아이템 줍기 : " + a_Item.item.ItemName);
-    //                //InvenPopup_UI.Inst.AddItem(a_ItemData);
+        // F 키를 누르면 줍기
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            for (int i = 0; i < coll.Length; i++)
+            {
+                ItemPickUp a_Item = coll[i].GetComponent<ItemPickUp>();
+                if (a_Item != null)
+                {
+                    // 인벤토리에 넣기
+                    //InvenPopup_UI.Inst.AddItem(a_ItemData);
 
-    //                Destroy(coll[i].gameObject);//필드 아이템 삭제
+                    Destroy(coll[i].gameObject);//필드 아이템 삭제
 
-    //                return;
-    //            }
-    //        }
-    //    }
+                    return;
+                }
+            }
+        }
 
-    //}
+    }
 
     // 스킬 사용 
     void GetSkill()

@@ -83,4 +83,8 @@ public class QuestPopup_UI : MonoBehaviour
             "골드" + "\n" + m_QuestData.RewardExp + "경험치";
         });
     }
+
+
+    //퀘스트 추적
+
 }

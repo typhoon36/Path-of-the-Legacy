@@ -11,7 +11,7 @@ public class Product_Nd : MonoBehaviour
     public Text m_PriceTxt;
     public Button m_BuyBtn;
 
-    public GameObject m_MoreInfo; //상품 상세 정보 팝업
+    //public GameObject m_MoreInfo; //상품 상세 정보 팝업
 
     ItemData m_ItemData;
 
@@ -37,12 +37,13 @@ public class Product_Nd : MonoBehaviour
         { 5,    "Items/Armor/06_leather_pants" },
         { 6,    "Items/Armor/06_plate_pants" },
         { 7,    "Items/Armor/05_leather_boots" },
-        {8,     "Items/Armor/05_plate_boots" },
-        {9,     "Items/Weapons/Sword_1" },
-        {10,    "Items/Weapons/Sword_2" },
-        {11,    "Items/Weapons/Ax_1" },
-        {12,    "Items/Weapons/Ax_2" },
-        {13,    "Items/Weapons/Ax_3" }
+        { 8,     "Items/Armor/05_plate_boots" },
+        { 9,     "Items/Weapons/Sword_1" },
+        { 10,    "Items/Weapons/Sword_2" },
+        { 11,    "Items/Weapons/Ax_1" },
+        { 12,    "Items/Weapons/Ax_2" },
+        { 13,    "Items/Weapons/Ax_3" },
+        { 14,     "Items/Weapon/Hammer"}
     };
 
     public void Init(ItemData a_ItemData)

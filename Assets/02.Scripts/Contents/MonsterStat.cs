@@ -9,6 +9,7 @@ public class MonsterStat : MonoBehaviour
     //Stats
     #region Stats
     [SerializeField] protected int Id;
+    [SerializeField] protected string Name;
     [SerializeField] protected int m_CurHp;
     [SerializeField] protected int m_MaxHp;
     [SerializeField] protected int m_Att;
@@ -18,6 +19,7 @@ public class MonsterStat : MonoBehaviour
     [SerializeField] protected float m_Speed;
 
     public int m_Id { get { return Id; } set { Id = value; } } //몬스터 ID
+    public string m_Name { get { return Name; } set { Name = value; } } //몬스터 이름
     public int CurHp { get { return m_CurHp; } set { m_CurHp = Mathf.Clamp(value, 0, MaxHp); } } //몬스터 현재 체력
     public int MaxHp { get { return m_MaxHp; } set { m_MaxHp = value; CurHp = MaxHp; } } //몬스터 최대 체력
     public int Attack { get { return m_Att; } set { m_Att = value; } } //몬스터 공격력
@@ -33,6 +35,7 @@ public class MonsterStat : MonoBehaviour
         GameObject Obj = this.gameObject;
 
         MonsterStat a_Stat = Obj.GetComponent<MonsterStat>();
+        m_Name = a_Stat.Name;
         MaxHp = a_Stat.MaxHp;
         Attack = a_Stat.Attack;
         Exp = a_Stat.Exp;
@@ -98,25 +101,27 @@ public class MonsterStat : MonoBehaviour
             //랜덤 id 설정
             int a_RandId = Random.Range(0, ItemList.Count);
 
-            //아이템 소환
-            int itemId = ItemList[a_RandId];
-            GameObject itemObj;
-            //예외처리
-            if (!Data_Mgr.ItemObjects.TryGetValue(itemId, out itemObj) || itemObj == null)
+            //아이템 설정
+            int Id = ItemList[a_RandId];
+            GameObject a_Obj;
+
+            //오류 방지(오류가 일어나면 디버그 로그 출력)
+            if (!Data_Mgr.ItemObjects.TryGetValue(Id, out a_Obj) || a_Obj == null)
             {
-                Debug.LogError($"Item object with Id {itemId} is null or not found.");
+                Debug.Log($"Item object with Id {Id} is null or not found.");
                 continue;
             }
 
-            GameObject a_Obj = Instantiate(itemObj);
+            //실제 아이템 생성
+            GameObject a_Item = Instantiate(a_Obj);
 
             //ItemPickUp 컴포넌트 추가
-            ItemPickUp a_Data = a_Obj.AddComponent<ItemPickUp>();
-            a_Data.m_Item = Data_Mgr.CallItem(itemId);
+            ItemPickUp a_Data = a_Item.AddComponent<ItemPickUp>();
+            a_Data.m_Item = Data_Mgr.CallItem(Id);
 
             //아이템 위치 설정
             float a_RandPos = Random.Range(-0.5f, 0.5f);
-            a_Obj.transform.position = new Vector3(transform.position.x + a_RandPos, 0, transform.position.z + a_RandPos);
+            a_Item.transform.position = new Vector3(transform.position.x + a_RandPos, 1.5f, transform.position.z + a_RandPos); 
         }
     }
 }

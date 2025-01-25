@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\WaypointProgressTracker.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
-    <Compile Include="Assets\02.Scripts\Manager\Contents\Game_Mgr.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\AutoMoveAndRotate.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\FireLight.cs" />

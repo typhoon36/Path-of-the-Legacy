@@ -174,6 +174,7 @@ public class Data_Mgr
 {
     public static AllData m_AllData = new AllData();
     public static StartData m_StartData = new StartData();
+    #region Items
     public static List<ItemData> m_ItemData = new List<ItemData>();
     public static List<ArmorItemData> m_AromrData = new List<ArmorItemData>();
     public static List<EquipItemData> m_EquipData = new List<EquipItemData>();
@@ -181,12 +182,17 @@ public class Data_Mgr
 
     public static Dictionary<int, List<int>> DropItem { get; private set; } = new Dictionary<int, List<int>>();
     public static Dictionary<int, GameObject> ItemObjects { get; private set; } = new Dictionary<int, GameObject>();
-
+    #endregion
+    public static List<LevelData> m_LevelData = new List<LevelData>();
     public static List<SkillData> m_SkillData = new List<SkillData>();
+    #region Dialogue
     public static List<QuestData> m_QuestData = new List<QuestData>();
     public static List<TalkData> m_TalkData = new List<TalkData>();
-    public static List<LevelData> m_LevelData = new List<LevelData>();
     public static List<int> m_AcceptedQuest = new List<int>();
+    #endregion
+
+
+
     public static event Action OnLevelUp;
 
     public static void SaveData()
@@ -227,6 +233,8 @@ public class Data_Mgr
             m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>();
             DropItem = m_AllData.DropItem ?? new Dictionary<int, List<int>>();
 
+
+
             #region Init
             // 수락된 퀘스트 상태 업데이트
             foreach (var a_Quest in m_QuestData)
@@ -255,7 +263,7 @@ public class Data_Mgr
 
             // 기본 아이템 데이터 초기화
             InitItemData();
-
+            // 기본 드랍 아이템 데이터 초기화
             InitDropData();
             #endregion
 
@@ -403,10 +411,11 @@ public class Data_Mgr
 
         // 무기 종류
         AddItemData(9, "연습용 칼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 10, 1, null, "공격력 10 증가", "Items/Weapons/Sword_1");
-        AddItemData(10, "기사의 검", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 100, 1, null, "공격력 20 증가", "Items/Weapons/Sword_2");
+        AddItemData(10, "기사의 검", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 100, 1, LoadPrefab("Items/Roots/Warriors_Sword"), "공격력 20 증가", "Items/Weapons/Sword_2");
         AddItemData(11, "무딘 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, LoadPrefab("Items/Roots/Axe_1"), "공격력 25 증가", "Items/Weapons/Ax_1");
         AddItemData(12, "황금 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 250, 1, LoadPrefab("Items/Roots/Axe_2"), "공격력 30 증가", "Items/Weapons/Ax_2");
         AddItemData(13, "전투 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 350, 1, null, "공격력 45 증가", "Items/Weapons/Ax_3");
+        AddItemData(14, "낡은 해머", Define_S.ItemType.Weapon, Define_S.ItemGrade.Epic, 550, 1, LoadPrefab("Items/Roots/Hammer"), "공격력 55 증가", "Items/Weapons/Hammer");
     }
 
     static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type,
@@ -430,9 +439,20 @@ public class Data_Mgr
     /*DropItems*/
     static void InitDropData()
     {
+        // 몬스터 1에 대한 드랍 아이템 설정(홉고블린)
         AddDropData(1, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
-        AddDropData(2, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
+        AddDropData(1, 12, LoadPrefab("Items/Roots/Axe_2"), "Items/Roots/Axe_2");
+        AddDropData(1, 14, LoadPrefab("Items/Roots/Hammer"), "Items/Roots/Hammer");
+
+        // 몬스터 2에 대한 드랍 아이템 설정(해골병사)
+        AddDropData(2, 10, LoadPrefab("Items/Roots/Warriors_Sword"), "Items/Roots/Warriors_Sword");
+
+        // 몬스터 3에 대한 드랍 아이템 설정(오우거)
+        AddDropData(3, 10, LoadPrefab("Items/Roots/Warriors_Sword"), "Items/Roots/Warriors_Sword");
         AddDropData(3, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
+        AddDropData(3, 12, LoadPrefab("Items/Roots/Axe_2"), "Items/Roots/Axe_2");
+
+      
     }
 
     static void AddDropData(int MonsterId, int ItemId, GameObject a_Obj, string a_Path)

@@ -4,15 +4,15 @@
         "Exp": 100,
         "Level": 31,
         "MaxHp": 0,
-        "CurHp": 90,
+        "CurHp": 0,
         "MaxMp": 0,
-        "CurMp": 0,
+        "CurMp": 90,
         "ATK": 10,
         "STR": 5,
         "Speed": 6,
         "Int": 2,
         "Luk": 3,
-        "Gold": 37610,
+        "Gold": 41700,
         "SkillPoint": 5,
         "StatPoint": 0,
         "m_Pos": {
@@ -164,6 +164,6259 @@
             },
             "ItemDesc": "공격력 25 증가",
             "ItemIconPath": ""
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33786
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33752
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33786
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33752
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33786
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33752
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33786
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33752
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33828
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33850
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33814
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33830
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33852
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33816
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33830
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33852
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33816
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33834
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33856
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33820
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
+        },
+        {
+            "Id": 1,
+            "ItemName": "회복의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 100,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "서서히 회복되는 포션(지속시간 3분)",
+            "ItemIconPath": "Items/Potions/grass_potion"
+        },
+        {
+            "Id": 2,
+            "ItemName": "이동의 포션",
+            "ItemType": 1,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 99,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "바람처럼 빠르게 움직일수있게한다.",
+            "ItemIconPath": "Items/Potions/wind_potion"
+        },
+        {
+            "Id": 3,
+            "ItemName": "가죽 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/01_Leather_chest"
+        },
+        {
+            "Id": 4,
+            "ItemName": "철제 갑옷",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/01_plate_chest"
+        },
+        {
+            "Id": 5,
+            "ItemName": "가죽 바지",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 10 증가",
+            "ItemIconPath": "Items/Armor/06_leather_pants"
+        },
+        {
+            "Id": 6,
+            "ItemName": "철 바지",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "방어력 20 증가",
+            "ItemIconPath": "Items/Armor/06_plate_pants"
+        },
+        {
+            "Id": 7,
+            "ItemName": "가죽 신발",
+            "ItemType": 2,
+            "ItemGrade": 0,
+            "ItemPrice": 200,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 10 증가, 방어력 5증가",
+            "ItemIconPath": "Items/Armor/05_leather_boots"
+        },
+        {
+            "Id": 8,
+            "ItemName": "철 부츠",
+            "ItemType": 2,
+            "ItemGrade": 1,
+            "ItemPrice": 300,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "이동속도 20 감소,방어력 10 증가",
+            "ItemIconPath": "Items/Armor/05_plate_boots"
+        },
+        {
+            "Id": 9,
+            "ItemName": "연습용 칼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 10,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 10 증가",
+            "ItemIconPath": "Items/Weapons/Sword_1"
+        },
+        {
+            "Id": 10,
+            "ItemName": "기사의 검",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 100,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33832
+            },
+            "ItemDesc": "공격력 20 증가",
+            "ItemIconPath": "Items/Weapons/Sword_2"
+        },
+        {
+            "Id": 11,
+            "ItemName": "무딘 도끼",
+            "ItemType": 3,
+            "ItemGrade": 0,
+            "ItemPrice": 150,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33854
+            },
+            "ItemDesc": "공격력 25 증가",
+            "ItemIconPath": "Items/Weapons/Ax_1"
+        },
+        {
+            "Id": 12,
+            "ItemName": "황금 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 250,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 33818
+            },
+            "ItemDesc": "공격력 30 증가",
+            "ItemIconPath": "Items/Weapons/Ax_2"
+        },
+        {
+            "Id": 13,
+            "ItemName": "전투 도끼",
+            "ItemType": 3,
+            "ItemGrade": 1,
+            "ItemPrice": 350,
+            "ItemMaxCount": 1,
+            "ItemObj": {
+                "instanceID": 0
+            },
+            "ItemDesc": "공격력 45 증가",
+            "ItemIconPath": "Items/Weapons/Ax_3"
         }
     ],
     "m_SkillData": [

@@ -56,9 +56,8 @@ public class InvenPopup_UI : MonoBehaviour
 
         //컨트롤키를 누르고 왼쪽마우스 클릭시 아이템 판매
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && ShopPopup_UI.Inst.m_ShopPopup.activeSelf == true)
-        {
             SellItem(m_ItemData);
-        }
+
     }
 
     void RefreshGold()
@@ -122,7 +121,9 @@ public class InvenPopup_UI : MonoBehaviour
         { 10,    "Items/Weapons/Sword_2" },
         { 11,    "Items/Weapons/Ax_1" },
         { 12,    "Items/Weapons/Ax_2" },
-        { 13,    "Items/Weapons/Ax_3" }
+        { 13,    "Items/Weapons/Ax_3" },
+        { 14,     "Items/Weapon/Hammer"}
+
     };
 
     public void AddItem(ItemData a_ItemData)
@@ -135,9 +136,9 @@ public class InvenPopup_UI : MonoBehaviour
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
                 // 활성화 후 아이템 정보 설정
                 if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
-                {
                     a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
-                }
+
+                m_ItemData = a_ItemData;
                 break;
             }
         }
@@ -154,8 +155,31 @@ public class InvenPopup_UI : MonoBehaviour
                 a_Slot.GetChild(0).gameObject.SetActive(false); // 비활성화
                 // 판매 후 아이템 정보 초기화
                 a_Slot.GetChild(0).GetComponent<Image>().sprite = null;
+
+                AddGold(a_ItemData.ItemPrice); // 골드 추가
                 break;
             }
         }
     }
+
+    //인벤토리 슬롯 아이템 저장
+    public bool SaveItem(ItemData a_Item, int a_Count = 1)
+    {
+        //모든 슬롯 확인
+        foreach (Transform a_Slot in m_Content)
+        {
+            //슬롯이 비어있으면 아이템 추가
+            if (a_Slot.GetChild(0).gameObject.activeSelf == false)
+            {
+                m_ItemData = a_Item;
+                AddItem(a_Item);
+                return true;
+            }
+        }
+
+        //인벤토리가 가득 찼을 때
+        return false;
+    }
+
+
 }

@@ -9,8 +9,10 @@ public class Monster_Ctrl : Base_Ctrl
 {
     public Define_S.MonsterType m_MonsterType; // 몬스터 타입
     public Vector3 m_SpawnPos;//몬스터 스폰 위치
+    [Header("HUD")]
     public GameObject HPBack;
     public Image HPBar;
+    public Text m_NickTxt;
 
     protected MonsterStat m_Stat;//몬스터 스텟
     NavMeshAgent m_Nav;
@@ -39,6 +41,8 @@ public class Monster_Ctrl : Base_Ctrl
         HPBack.gameObject.SetActive(false);
         HPBar.gameObject.SetActive(false);
 
+        m_NickTxt.text = m_Stat.m_Name.ToString();
+
     }
 
     protected virtual void IdleDetective()
@@ -47,6 +51,10 @@ public class Monster_Ctrl : Base_Ctrl
         HPBar.fillAmount = (float)m_Stat.CurHp / m_Stat.MaxHp;
         HPBack.gameObject.SetActive(true);
         HPBar.gameObject.SetActive(true);
+
+        //닉네임 설정
+        m_NickTxt.text = m_Stat.m_Name.ToString();
+
 
         //타겟을 플레이어로 설정
         m_Target = GameObject.FindGameObjectWithTag("Player");
@@ -99,6 +107,7 @@ public class Monster_Ctrl : Base_Ctrl
         m_Dist = TargetDist(m_Target);
         HPBack.gameObject.SetActive(true);
         HPBar.gameObject.SetActive(true);
+        m_NickTxt.text = m_Stat.m_Name.ToString();
 
         if (m_Dist > m_ScanRange)
         {
@@ -114,6 +123,11 @@ public class Monster_Ctrl : Base_Ctrl
         {
             m_Nav.SetDestination(this.transform.position);
             State = Define_S.AllState.Attack;
+        }
+        else if(m_Dist > m_AttRange)
+        {
+           
+            State = Define_S.AllState.Moving;
         }
     }
 

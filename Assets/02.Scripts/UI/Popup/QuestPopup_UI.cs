@@ -86,5 +86,15 @@ public class QuestPopup_UI : MonoBehaviour
 
 
     //퀘스트 추적
+    public void QuestTargetCheck(GameObject gameObject)
+    {
+        //퀘스트 데이터가 없다면 리턴
+        if (m_QuestData == null) return;
+
+        //퀘스트 데이터의 목표 카운트 증가
+        m_QuestData.CurTargetCnt++;
+
+
+    }
 
 }

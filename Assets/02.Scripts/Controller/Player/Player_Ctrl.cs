@@ -32,8 +32,6 @@ public class Player_Ctrl : Base_Ctrl
     [SerializeField]
     private List<EffectData> m_Effects;
 
-    ItemData a_ItemData;
-
     #region HP & MP
     float m_MaxHp = 100f;
     public float MaxHp
@@ -578,7 +576,7 @@ public class Player_Ctrl : Base_Ctrl
         }
 
         GetUseItem();
-        //GetPickUp();
+        GetPickUp();
 
     }
 
@@ -626,8 +624,7 @@ public class Player_Ctrl : Base_Ctrl
     float a_ItemMaxRadius = 5f; // 아이템 줍기 최대 반경
     void GetPickUp()
     {
-        // 주변 아이템 탐색
-        Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 11); //Item = 11 
+        Collider[] coll = Physics.OverlapSphere(transform.position, a_ItemMaxRadius, 1 << 11);
 
         // F 키를 누르면 줍기
         if (Input.GetKeyDown(KeyCode.F))
@@ -635,18 +632,20 @@ public class Player_Ctrl : Base_Ctrl
             for (int i = 0; i < coll.Length; i++)
             {
                 ItemPickUp a_Item = coll[i].GetComponent<ItemPickUp>();
+
                 if (a_Item != null)
                 {
-                    // 인벤토리에 넣기
-                    //InvenPopup_UI.Inst.AddItem(a_ItemData);
-
-                    Destroy(coll[i].gameObject);//필드 아이템 삭제
+                    //인벤에 넣기
+                    if(InvenPopup_UI.Inst.SaveItem(a_Item.m_Item, a_Item.m_ItemCount) == true)
+                        Destroy(coll[i].gameObject);
+                    
 
                     return;
+
                 }
+
             }
         }
-
     }
 
     // 스킬 사용 

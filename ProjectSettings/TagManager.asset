@@ -7,10 +7,12 @@ TagManager:
   - Npc
   - Monster
   - MonsterWeapon
-  - Item
   - PlayerWeapon
   - PlayerSkill
   - Fire
+  - Equipment
+  - Item
+  - EquipSlot
   layers:
   - Default
   - TransparentFX

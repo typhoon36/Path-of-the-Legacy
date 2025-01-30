@@ -26254,7 +26254,7 @@ MonoBehaviour:
   HPBar: {fileID: 5785285948202383489}
   m_NickTxt: {fileID: 5877392599808585942}
   m_ScanRange: 10
-  m_AttRange: 2
+  m_AttRange: 6
   m_SpawnRange: 16
 --- !u!114 &8287508385821318303
 MonoBehaviour:
@@ -26274,7 +26274,7 @@ MonoBehaviour:
   m_MaxHp: 120
   m_Att: 5
   m_Exp: 200
-  m_Gold: 120
+  m_Gold: 999999
   Item_Id: 11
   m_Speed: 2
 --- !u!1 &8691903220206794301

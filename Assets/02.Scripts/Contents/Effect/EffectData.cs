@@ -13,6 +13,12 @@ public class EffectData : Effects
     // ~ PlayerController.cs 에서 스킬 이펙트 비활성화를 위해 호출
     public void EffectDisableDelay()
     {
+        // 게임 오브젝트가 비활성화된 경우 활성화
+        if (!gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(true);
+        }
+
         // 딜레이 시간이 0이라면 바로 비활성화
         if (m_DisableTime == 0)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,7 +14,9 @@ public class Player_Ctrl : Base_Ctrl
     public SkillData m_CurSkill;
 
     //ClickMark Layer
-    int m_Mask = (1 << (int)Define_S.Layer.Ground) | (1 << (int)Define_S.Layer.Monster) | (1 << (int)Define_S.Layer.Npc);
+    int m_Mask = (1 << (int)Define_S.Layer.Ground)
+        | (1 << (int)Define_S.Layer.Monster)
+        | (1 << (int)Define_S.Layer.Npc);
 
 
     float m_Speed = 5f;// 이동속도 = 스탯에 맞춰야함
@@ -23,11 +26,11 @@ public class Player_Ctrl : Base_Ctrl
 
     Vector3 m_Dir; //이동 방향
 
-    public GameObject[] m_SkinnedObjs;
+    public GameObject[] m_SkinnedObjs;//장착 아이템 오브젝트(장착시 보이는 오브젝트)
 
 
     [SerializeField]
-    private GameObject m_WeaponList;
+    private GameObject m_WeaponList;//무기 리스트
 
     [SerializeField]
     private List<EffectData> m_Effects;
@@ -114,7 +117,9 @@ public class Player_Ctrl : Base_Ctrl
     void OnApplicationQuit()
     {
         Data_Mgr.m_StartData.CurHp = (int)CurHp;
+        Data_Mgr.m_StartData.MaxHp = (int)MaxHp;
         Data_Mgr.m_StartData.CurMp = (int)CurMp;
+        Data_Mgr.m_StartData.MaxMp = (int)MaxMp;
         Data_Mgr.m_StartData.m_Pos = transform.position;
     }
 
@@ -135,11 +140,12 @@ public class Player_Ctrl : Base_Ctrl
         State = Define_S.AllState.Idle;
 
 
-        //SetPart();
+        SetPart();
     }
+
     #endregion
 
-    #region Levelup -- Fix needed
+    #region Levelup 
     Coroutine Co_LevelUp;
     public void LevelUpEffect()
     {
@@ -151,9 +157,7 @@ public class Player_Ctrl : Base_Ctrl
     {
         GameObject a_Eff = Instantiate(Resources.Load("SubItem/Effect/LevelupBuff")) as GameObject;
 
-        Debug.Log(a_Eff + " : " + a_Eff.transform.position);
-
-        a_Eff.transform.position = Vector3.zero;
+        a_Eff.transform.position = this.transform.position;
 
         yield return new WaitForSeconds(4f);
 
@@ -636,9 +640,9 @@ public class Player_Ctrl : Base_Ctrl
                 if (a_Item != null)
                 {
                     //인벤에 넣기
-                    if(InvenPopup_UI.Inst.SaveItem(a_Item.m_Item, a_Item.m_ItemCount) == true)
+                    if (InvenPopup_UI.Inst.SaveItem(a_Item.m_Item, a_Item.m_ItemCount) == true)
                         Destroy(coll[i].gameObject);
-                    
+
 
                     return;
 
@@ -695,16 +699,15 @@ public class Player_Ctrl : Base_Ctrl
     {
         if (coll.CompareTag("MonsterWeapon"))
         {
-            Monster_Ctrl monster = coll.GetComponent<Monster_Ctrl>();
+            Monster_Ctrl a_Monster = coll.GetComponent<Monster_Ctrl>();
 
-            if (monster != null)
+            if (a_Monster != null)
             {
-                MonsterStat a_MonStat = monster.GetComponent<MonsterStat>();
+                MonsterStat a_MonStat = a_Monster.GetComponent<MonsterStat>();
                 int a_Dmg = a_MonStat.Attack;
                 if (a_MonStat != null)
-                {
                     OnHit(a_MonStat, a_Dmg);
-                }
+
             }
         }
     }
@@ -717,27 +720,69 @@ public class Player_Ctrl : Base_Ctrl
 
         UI_Mgr.Inst.DieOn();
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 4f);
     }
-
-
-    //public void SetPart()
-    //{
-    //    // 모든 장비 오브젝트 저장
-    //    m_Equipment.Clear();
-
-    //    foreach (var itemData in Data_Mgr.m_ItemData)
-    //    {
-    //        if (itemData.ItemType == Define_S.ItemType.Armor)
-    //        {
-    //            GameObject a_Obj = Instantiate(itemData.ItemObj);
-    //            a_Obj.SetActive(false);
-
-    //            if (m_Equipment.ContainsKey((int)Define_S.ItemType.Armor) == false)
-    //                m_Equipment.Add((int)Define_S.ItemType.Armor, new List<GameObject>());
-    //        }
-    //    }
-    //}
     #endregion
 
+
+
+    void SetPart()
+    {
+        // 캐릭터 파츠 가져오기
+        GameObject a_Obj = GameObject.FindWithTag("Player");
+
+        if (a_Obj == null)
+        {
+            Debug.Log("플레이어를 찾을수없습니다.");
+            return;
+        }
+
+        // Starter_ 및 Plate_ 접두사를 제거한 후 올바른 데이터 이름으로 매핑하는 딕셔너리
+        Dictionary<string, string> itemNameMap = new Dictionary<string, string>
+        {
+            { "Starter_Boots", "가죽 신발" },
+            { "Starter_Chest", "가죽 갑옷" },
+            { "Starter_Pants", "가죽 바지" },
+            { "Plate_Boots", "철 부츠" },
+            { "Plate_Chest", "철제 갑옷" },
+            { "Plate_Pants", "철 바지" },
+        };
+
+        foreach (Transform a_Child in a_Obj.GetComponentsInChildren<Transform>())
+        {
+            // 장비 파츠 가져오기
+            if (a_Child.CompareTag("Equipment"))
+            {
+                // 장비 이름 가져오기(매핑)
+                string a_ItName = a_Child.name.Replace("Starter_", "").Replace("Plate_", "");
+                if (itemNameMap.TryGetValue(a_ItName, out string a_MapName))
+                {
+                    // 장비 데이터 찾기(매핑)
+                    /// system.StringComparison.OrdinalIgnoreCase : 대소문자 구분 없이 비교해주기
+                    ArmorItemData a_Armor = Data_Mgr.m_AromrData.Find(ID => ID.ItemName.Equals(a_MapName, System.StringComparison.OrdinalIgnoreCase));
+
+                    if (a_Armor != null)
+                    {
+                        if (a_Armor.Equipment == null)
+                            a_Armor.Equipment = new List<GameObject>();
+
+                        a_Armor.Equipment.Add(a_Child.gameObject);
+
+                        // 플레이어 안에서 장비 파츠 저장
+                        List<GameObject> equipList;
+                        if (m_Equipment.TryGetValue(a_Armor.Id, out equipList) == false)
+                        {
+                            equipList = new List<GameObject>();
+                            m_Equipment.Add(a_Armor.Id, equipList);
+                        }
+
+                        equipList.Add(a_Child.gameObject);
+
+                        a_Child.gameObject.SetActive(false);
+                    }
+                }
+            }
+
+        }
+    }
 }

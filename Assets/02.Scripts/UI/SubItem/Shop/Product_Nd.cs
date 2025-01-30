@@ -43,7 +43,8 @@ public class Product_Nd : MonoBehaviour
         { 11,    "Items/Weapons/Ax_1" },
         { 12,    "Items/Weapons/Ax_2" },
         { 13,    "Items/Weapons/Ax_3" },
-        { 14,     "Items/Weapon/Hammer"}
+        { 14,     "Items/Weapons/Hammer"},
+        { 15,     "Items/Weapons/Shield"}
     };
 
     public void Init(ItemData a_ItemData)

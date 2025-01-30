@@ -12,7 +12,7 @@ public class Drag_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     CanvasGroup m_CanvasGroup;
     ScrollRect m_ScrollRect;
 
-    private void Awake()
+    void Awake()
     {
         m_Canvas = FindObjectOfType<Canvas>().transform;
         m_Rect = GetComponent<RectTransform>();
@@ -36,9 +36,7 @@ public class Drag_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
         // 드래그 중에 ScrollRect 비활성화
         if (m_ScrollRect != null)
-        {
             m_ScrollRect.enabled = false;
-        }
     }
 
     // 드래그 중
@@ -50,7 +48,7 @@ public class Drag_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     // 드래그 끝
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 엉뚱한곳에 드롭을 했다는 뜻이기 때문에 드래그 직전에 소속된 슬롯으로 이동
+        // 엉뚱한 곳에 드롭을 했다는 뜻이기 때문에 드래그 직전에 소속된 슬롯으로 이동
         if (transform.parent == m_Canvas)
         {
             transform.SetParent(m_PrevParent);
@@ -63,8 +61,12 @@ public class Drag_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
         // 드래그가 끝난 후 ScrollRect 활성화
         if (m_ScrollRect != null)
-        {
             m_ScrollRect.enabled = true;
+
+        // 장착 슬롯으로 드롭되었는지 확인
+        if (transform.parent.CompareTag("EquipSlot"))
+        {
+            EqStatPopup_UI.Inst.SetEquip(gameObject);
         }
     }
 }

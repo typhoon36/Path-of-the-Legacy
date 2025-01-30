@@ -74,7 +74,7 @@ public class InvenPopup_UI : MonoBehaviour
 
 
 
-    void CheckInventoryItems()
+    public void CheckInventoryItems()
     {
         bool hasItems = false;
         foreach (Transform slot in m_Content)
@@ -122,7 +122,8 @@ public class InvenPopup_UI : MonoBehaviour
         { 11,    "Items/Weapons/Ax_1" },
         { 12,    "Items/Weapons/Ax_2" },
         { 13,    "Items/Weapons/Ax_3" },
-        { 14,     "Items/Weapon/Hammer"}
+        { 14,     "Items/Weapons/Hammer"},
+        { 15,     "Items/Weapons/Shield"}
 
     };
 
@@ -169,7 +170,7 @@ public class InvenPopup_UI : MonoBehaviour
         foreach (Transform a_Slot in m_Content)
         {
             //슬롯이 비어있으면 아이템 추가
-            if (a_Slot.GetChild(0).gameObject.activeSelf == false)
+            if (a_Slot.childCount > 0 && a_Slot.GetChild(0).gameObject.activeSelf == false)
             {
                 m_ItemData = a_Item;
                 AddItem(a_Item);

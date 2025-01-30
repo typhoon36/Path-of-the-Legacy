@@ -928,7 +928,7 @@ MonoBehaviour:
   m_SpawnPos: {x: 0, y: 0, z: 0}
   HPBack: {fileID: 1706775138178826710}
   HPBar: {fileID: 5082292611636782394}
-  m_NickTxt: {fileID: 0}
+  m_NickTxt: {fileID: 4414949989911890365}
   m_ScanRange: 10
   m_AttRange: 2
   m_SpawnRange: 16

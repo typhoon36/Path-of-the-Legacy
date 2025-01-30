@@ -132,9 +132,11 @@ public class UI_Mgr : MonoBehaviour
             m_MenuPanel.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
+
+
         LevelRefresh();
         CheckExpBar();
-        UpdateSkillCooldowns();// 스킬 쿨다운 갱신
+        UpdateSkillCooldowns();
     }
 
     #region HUD
@@ -154,6 +156,8 @@ public class UI_Mgr : MonoBehaviour
             if (a_Player != null)
             {
                 a_Player.LevelUpEffect();
+                Data_Mgr.m_StartData.StatPoint += 5;
+                Data_Mgr.m_StartData.MaxHp += 50;
             }
         }
     }

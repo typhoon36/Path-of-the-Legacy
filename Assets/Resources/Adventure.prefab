@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 738036379984718314}
   - component: {fileID: 416879091070813928}
   m_Layer: 0
-  m_Name: PP_Theme_06_Sword_Two-Handed_001
+  m_Name: TwoHandSword
   m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1381,7 +1381,7 @@ GameObject:
   - component: {fileID: 6552270433577094642}
   m_Layer: 0
   m_Name: PlateSet1_Gloves
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1747,7 +1747,7 @@ GameObject:
   - component: {fileID: 4874642903669042660}
   m_Layer: 0
   m_Name: PlateSet1_Shoulders
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1959,7 +1959,7 @@ GameObject:
   - component: {fileID: 7113452572516112572}
   m_Layer: 0
   m_Name: Starter_Pants
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2095,7 +2095,7 @@ GameObject:
   - component: {fileID: 6557475838365423076}
   m_Layer: 0
   m_Name: PlateSet1_Pants
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2403,7 +2403,7 @@ GameObject:
   - component: {fileID: 5029259666989896445}
   m_Layer: 0
   m_Name: Starter_Chest
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2722,7 +2722,7 @@ GameObject:
   - component: {fileID: 6684885829456584005}
   m_Layer: 0
   m_Name: Starter_Boots
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2952,7 +2952,7 @@ GameObject:
   - component: {fileID: 8669366502979313465}
   m_Layer: 0
   m_Name: PlateSet1_Helmet
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3163,7 +3163,7 @@ GameObject:
   - component: {fileID: 6457601372607073586}
   m_Layer: 0
   m_Name: PlateSet1_Chest
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4318,7 +4318,7 @@ GameObject:
   - component: {fileID: 6938457278645881423}
   m_Layer: 0
   m_Name: PlateSet1_Boots
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4791,26 +4791,27 @@ MonoBehaviour:
     powerList: 
   m_Att: 10
   m_SkinnedObjs:
-  - {fileID: 6596831850486823255}
-  - {fileID: 5203478034011443672}
+  - {fileID: 707950156538140521}
   - {fileID: 1002239434406667395}
+  - {fileID: 5203478034011443672}
   - {fileID: 8629550905398809102}
-  - {fileID: 8833368218011989322}
+  - {fileID: 2564281717773540456}
   - {fileID: 7173069070910596292}
+  - {fileID: 8833368218011989322}
   - {fileID: 4049926072354395887}
   - {fileID: 3394236509942443873}
   - {fileID: 4547536718897584881}
-  - {fileID: 4676882381257462802}
   - {fileID: 4793125914900068708}
-  - {fileID: 3421812339211610646}
-  - {fileID: 2997975672591431579}
   - {fileID: 6189851797166297501}
   - {fileID: 2675444920320132221}
+  - {fileID: 3421812339211610646}
+  - {fileID: 2997975672591431579}
   m_WeaponList: {fileID: 1212336112019186939}
   m_Effects:
   - {fileID: 2969922485112485698}
   - {fileID: 5283290393816326968}
   IsHit: 0
+  a_ItemMaxRadius: 5
 --- !u!95 &6981720856593174203
 Animator:
   serializedVersion: 5

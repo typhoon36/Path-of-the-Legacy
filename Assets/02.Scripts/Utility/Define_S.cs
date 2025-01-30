@@ -7,7 +7,7 @@ using UnityEngine;
  */
 public class Define_S : MonoBehaviour
 {
-    public enum DefPart // 캐릭터 기본 부위, 커스텀
+    public enum DefaultPart // 캐릭터 기본 부위, 커스텀
     {
         Hair,           // 헤어
         Head,           // 얼굴 문신
@@ -16,20 +16,6 @@ public class Define_S : MonoBehaviour
         Torso,          // 상체
         Hips,           // 하체
     }
-    public enum Popup
-    {
-        Unknown,
-        Inventory,
-        Equipment,
-        Skill,
-        Talk,
-        Quest,
-        Menu,
-        Shop,
-        Upgrade,
-        Max
-    }
-
 
     public enum KeySkill
     {
@@ -55,12 +41,6 @@ public class Define_S : MonoBehaviour
         ETC
     }
 
-    public enum WeaponType
-    {
-        unknown,
-        sword
-    }
-
     public enum ItemGrade
     {
         Common,     // 기본
@@ -78,6 +58,13 @@ public class Define_S : MonoBehaviour
         ETC,
     }
 
+    public enum WeaponType
+    {
+        Unknown,
+        Sword,
+        Bow,
+        Staff,
+    }
 
     public enum UseType
     {
@@ -128,16 +115,6 @@ public class Define_S : MonoBehaviour
         Boss,
     }
 
-    public enum UIEvent
-    {
-        Enter,
-        Exit,
-        Click,
-        DragIng,
-        Drag,
-        DragEnd,
-        Drop
-    }
     public enum ArmorType
     {
         Unknown,
@@ -147,6 +124,7 @@ public class Define_S : MonoBehaviour
         Boots,      // 신발
         MaxCount,
     }
+
     public enum MouseEvent
     {
         Left,

@@ -30738,8 +30738,8 @@ MonoBehaviour:
   HPBack: {fileID: 2713290193714640734}
   HPBar: {fileID: 9198660065097077862}
   m_NickTxt: {fileID: 7161829961704925930}
-  m_ScanRange: 20
-  m_AttRange: 2
+  m_ScanRange: 10
+  m_AttRange: 4
   m_SpawnRange: 16
 --- !u!114 &4101275522227734874
 MonoBehaviour:

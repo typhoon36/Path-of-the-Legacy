@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-
 #region Data Structures
 [System.Serializable]
 public class AllData
@@ -17,10 +16,10 @@ public class AllData
     public List<ArmorItemData> m_AromrData;
     public List<EquipItemData> m_EquipData;
     public List<UseItemData> m_UseItemData;
+    public List<WeaponItemData> m_WeaponData;
     public List<int> AcceptedQuest;
     public Dictionary<int, List<int>> DropItem;
 }
-
 
 [System.Serializable]
 public class StartData
@@ -70,11 +69,10 @@ public class ItemData
     public string ItemIconPath;
 }
 
-
 #region Item(Use, Armor, Equip) Data
 //아이템 사용 데이터 구조체
 [System.Serializable]
-public class UseItemData
+public class UseItemData : ItemData
 {
     public Define_S.UseType useType = Define_S.UseType.Unknown;
     public int UseValue = 0;
@@ -83,7 +81,7 @@ public class UseItemData
 
 //방어구 아이템 데이터 구조체
 [System.Serializable]
-public class ArmorItemData
+public class ArmorItemData : ItemData
 {
     public Define_S.ArmorType m_ArmorType = Define_S.ArmorType.Unknown;
     public int defnece = 0;
@@ -94,11 +92,22 @@ public class ArmorItemData
     public int addHp = 0;
     public int addMp = 0;
     public int addMoveSpeed = 0;
+    public List<GameObject> Equipment;
+}
+
+//무기 아이템 데이터 구조체
+[System.Serializable]
+public class WeaponItemData : ItemData
+{
+    public Define_S.WeaponType m_WeaponType = Define_S.WeaponType.Unknown;
+    public int attack = 0;
+    public int addAttack = 0;
+    public GameObject charEquipment;
 }
 
 //장비 아이템 데이터 구조체
 [System.Serializable]
-public class EquipItemData
+public class EquipItemData : ItemData
 {
     public int MinLevel;
 }
@@ -179,6 +188,7 @@ public class Data_Mgr
     public static List<ArmorItemData> m_AromrData = new List<ArmorItemData>();
     public static List<EquipItemData> m_EquipData = new List<EquipItemData>();
     public static List<UseItemData> m_UseItemData = new List<UseItemData>();
+    public static List<WeaponItemData> m_WeaponData = new List<WeaponItemData>();
 
     public static Dictionary<int, List<int>> DropItem { get; private set; } = new Dictionary<int, List<int>>();
     public static Dictionary<int, GameObject> ItemObjects { get; private set; } = new Dictionary<int, GameObject>();
@@ -190,8 +200,6 @@ public class Data_Mgr
     public static List<TalkData> m_TalkData = new List<TalkData>();
     public static List<int> m_AcceptedQuest = new List<int>();
     #endregion
-
-
 
     public static event Action OnLevelUp;
 
@@ -205,6 +213,7 @@ public class Data_Mgr
         m_AllData.m_LevelData = m_LevelData;
         m_AllData.m_AromrData = m_AromrData;
         m_AllData.m_EquipData = m_EquipData;
+        m_AllData.m_WeaponData = m_WeaponData;
         m_AllData.m_UseItemData = m_UseItemData;
         m_AllData.AcceptedQuest = m_AcceptedQuest;
         m_AllData.DropItem = DropItem;
@@ -228,12 +237,11 @@ public class Data_Mgr
             m_TalkData = m_AllData.m_TalkData ?? new List<TalkData>();
             m_LevelData = m_AllData.m_LevelData ?? new List<LevelData>();
             m_AromrData = m_AllData.m_AromrData ?? new List<ArmorItemData>();
+            m_WeaponData = m_AllData.m_WeaponData ?? new List<WeaponItemData>();
             m_EquipData = m_AllData.m_EquipData ?? new List<EquipItemData>();
             m_UseItemData = m_AllData.m_UseItemData ?? new List<UseItemData>();
             m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>();
             DropItem = m_AllData.DropItem ?? new Dictionary<int, List<int>>();
-
-
 
             #region Init
             // 수락된 퀘스트 상태 업데이트
@@ -266,6 +274,7 @@ public class Data_Mgr
             // 기본 드랍 아이템 데이터 초기화
             InitDropData();
             #endregion
+
 
         }
         else
@@ -393,7 +402,7 @@ public class Data_Mgr
     }
 
     /*<Items*/
-    static void InitItemData()
+    public static void InitItemData()
     {
         // 포션 종류
         AddItemData(1, "회복의 포션", Define_S.ItemType.Use, Define_S.ItemGrade.Common, 100, 99, null, "서서히 회복되는 포션(지속시간 3분)", "Items/Potions/grass_potion");
@@ -416,6 +425,7 @@ public class Data_Mgr
         AddItemData(12, "황금 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 250, 1, LoadPrefab("Items/Roots/Axe_2"), "공격력 30 증가", "Items/Weapons/Ax_2");
         AddItemData(13, "전투 도끼", Define_S.ItemType.Weapon, Define_S.ItemGrade.Rare, 350, 1, null, "공격력 45 증가", "Items/Weapons/Ax_3");
         AddItemData(14, "낡은 해머", Define_S.ItemType.Weapon, Define_S.ItemGrade.Epic, 550, 1, LoadPrefab("Items/Roots/Hammer"), "공격력 55 증가", "Items/Weapons/Hammer");
+        AddItemData(15, "낡은 방패", Define_S.ItemType.Weapon, Define_S.ItemGrade.Common, 150, 1, LoadPrefab("Items/Roots/Sheild"), "방어력 10 증가", "Items/Weapons/Shield");
     }
 
     static void AddItemData(int Id, string a_Name, Define_S.ItemType a_Type,
@@ -446,13 +456,14 @@ public class Data_Mgr
 
         // 몬스터 2에 대한 드랍 아이템 설정(해골병사)
         AddDropData(2, 10, LoadPrefab("Items/Roots/Warriors_Sword"), "Items/Roots/Warriors_Sword");
+        AddDropData(2, 15, LoadPrefab("Items/Roots/Sheild"), "Items/Roots/Sheild");
 
         // 몬스터 3에 대한 드랍 아이템 설정(오우거)
         AddDropData(3, 10, LoadPrefab("Items/Roots/Warriors_Sword"), "Items/Roots/Warriors_Sword");
         AddDropData(3, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
         AddDropData(3, 12, LoadPrefab("Items/Roots/Axe_2"), "Items/Roots/Axe_2");
 
-      
+
     }
 
     static void AddDropData(int MonsterId, int ItemId, GameObject a_Obj, string a_Path)

@@ -15,6 +15,7 @@ public abstract class Npc_Ctrl : Base_Ctrl
     [SerializeField]
     protected Text m_NameTxt; // NPC의 이름을 표시할 텍스트
 
+
     protected bool IsInteract = false; // 상호작용 중인지 체크
 
     public override void Init()

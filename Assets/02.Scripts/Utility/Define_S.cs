@@ -22,6 +22,8 @@ public class Define_S : MonoBehaviour
         Unknown,
         A,
         D,
+        W,
+        R,
     }
 
     public enum QuestType

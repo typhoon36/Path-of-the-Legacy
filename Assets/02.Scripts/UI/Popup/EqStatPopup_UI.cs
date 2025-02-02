@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 //장비&스텟 팝업창
 public class EqStatPopup_UI : MonoBehaviour
@@ -28,11 +31,11 @@ public class EqStatPopup_UI : MonoBehaviour
     public Text m_LevelTxt;
     public Text m_StatPointTxt;
 
-    EventHandler_UI m_EquipCloseBtnHandler;
+    ItemData m_ItemData;
 
     #region Singleton
     public static EqStatPopup_UI Inst;
-    private void Awake()
+    void Awake()
     {
         Inst = this;
     }
@@ -42,8 +45,8 @@ public class EqStatPopup_UI : MonoBehaviour
     {
         #region EquipPopup
         m_EquipPopup.gameObject.SetActive(false);
-        m_EquipCloseBtnHandler = m_EquipCloseBtn.gameObject.AddComponent<EventHandler_UI>();
-        m_EquipCloseBtnHandler.OnClickHandler += OnCloseBtnClick;
+
+        m_EquipCloseBtn.onClick.AddListener(() => { m_EquipPopup.SetActive(false); });
         #endregion
 
         #region StatPopup
@@ -103,40 +106,6 @@ public class EqStatPopup_UI : MonoBehaviour
         #endregion
 
         Data_Mgr.LoadData(); // 데이터 로드
-
-        // 장비 슬롯의 아이템 오브젝트 배열 초기화
-        m_ItemObj = new GameObject[m_EquipSlot.Length];
-        CheckEquipSlot();
-
-        // 레벨업 이벤트 핸들러 등록
-        Data_Mgr.OnLevelUp += OnLevelUp;
-
-        // 장비 슬롯 아이템 초기화
-        for (int i = 0; i < m_EquipSlot.Length; i++)
-        {
-            if (m_EquipSlot[i].transform.childCount > 0)
-            {
-                GameObject item = m_EquipSlot[i].transform.GetChild(0).gameObject;
-                m_ItemObj[i] = item;
-            }
-            else
-            {
-                m_ItemObj[i] = null;
-            }
-        }
-    }
-
-    void OnLevelUp()
-    {
-        Data_Mgr.m_StartData.StatPoint += 5;
-        m_LevelTxt.text = "레벨 : " + Data_Mgr.m_StartData.Level.ToString();
-        m_StatPointTxt.text = "스텟 포인트 : " + Data_Mgr.m_StartData.StatPoint.ToString();
-    }
-
-    void OnDestroy()
-    {
-        // 이벤트 핸들러 해제
-        Data_Mgr.OnLevelUp -= OnLevelUp;
     }
 
     void Update()
@@ -144,16 +113,15 @@ public class EqStatPopup_UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             m_EquipPopup.SetActive(!m_EquipPopup.activeSelf);
+
             if (m_EquipPopup.activeSelf)
                 CheckEquipSlot(); // 장비 슬롯 아이템 확인
-
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             m_StatPopup.SetActive(!m_StatPopup.activeSelf);
         }
-
     }
 
     public void CheckEquipSlot()
@@ -163,8 +131,8 @@ public class EqStatPopup_UI : MonoBehaviour
         {
             if (m_EquipSlot[i].transform.childCount > 0)
             {
-                GameObject item = m_EquipSlot[i].transform.GetChild(0).gameObject;
-                m_ItemObj[i] = item;
+                GameObject a_Item = m_EquipSlot[i].transform.GetChild(0).gameObject;
+                m_ItemObj[i] = a_Item;
             }
             else
             {
@@ -174,15 +142,11 @@ public class EqStatPopup_UI : MonoBehaviour
         }
     }
 
-    void OnCloseBtnClick(UnityEngine.EventSystems.PointerEventData eventData)
-    {
-        m_EquipPopup.SetActive(false);
-    }
-
     //장비 장착
-    public void SetEquip(GameObject item)
+    public void SetEquip(GameObject a_Item)
     {
         Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
+
         if (a_Player != null)
         {
             foreach (GameObject obj in a_Player.m_SkinnedObjs)
@@ -190,7 +154,7 @@ public class EqStatPopup_UI : MonoBehaviour
                 obj.SetActive(true);
 
                 //장착되지않은 아이템(만약 철제갑옷을 장착하면 Starter_Chest는 비활성화)
-                if (obj.name != item.name)
+                if (obj.name != a_Item.name)
                 {
                     a_Player.m_SkinnedObjs[1].gameObject.SetActive(false);
                     a_Player.m_SkinnedObjs[2].gameObject.SetActive(false);
@@ -204,32 +168,29 @@ public class EqStatPopup_UI : MonoBehaviour
             }
 
             // 장착된 아이템 활성화
-            item.SetActive(true);
+            a_Item.SetActive(true);
         }
     }
 
     //장비 해제
-    public void RemoveEquip(GameObject item)
+    public void RemoveEquip(GameObject a_Item)
     {
         Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
         if (a_Player != null)
         {
             foreach (GameObject obj in a_Player.m_SkinnedObjs)
             {
-                if (obj.name == item.name)
-                {
+                if (obj.name == a_Item.name)
                     obj.SetActive(false);
-                }
             }
 
-            // 특정 인덱스 활성화
             a_Player.m_SkinnedObjs[0].SetActive(true);
             a_Player.m_SkinnedObjs[4].SetActive(true);
             a_Player.m_SkinnedObjs[7].SetActive(true);
             a_Player.m_SkinnedObjs[8].SetActive(true);
             a_Player.m_SkinnedObjs[9].SetActive(true);
 
-            // 추가된 부분: 10~14 인덱스 비활성화
+            // 장비 해제시 비활성화
             for (int i = 10; i <= 14; i++)
             {
                 if (i < a_Player.m_SkinnedObjs.Length)
@@ -239,4 +200,6 @@ public class EqStatPopup_UI : MonoBehaviour
             }
         }
     }
+
 }
+

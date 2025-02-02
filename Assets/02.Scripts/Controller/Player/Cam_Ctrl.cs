@@ -13,13 +13,13 @@ public class Cam_Ctrl : MonoBehaviour
     float m_RotV = 0;
 
     float m_DefRotH = 3;
-    float m_DefRotV = 15.0f;
+    float m_DefRotV = 20.0f;
 
     //카메라 줌 및 거리들
     float ZoomSpeed = 1.0f;
     float minDist = 10.0f;
-    float maxDist = 15.0f;
-    float m_DefDist = 5.2f;
+    float maxDist = 20.0f;
+    float m_DefDist = 8f;
     float m_CurDist = 17;
 
     Quaternion m_BuffRot;
@@ -32,7 +32,7 @@ public class Cam_Ctrl : MonoBehaviour
         if (m_Player == null) return;
 
         m_TargetPos = m_Player.transform.position;
-        m_TargetPos.y += 1.4f;
+        m_TargetPos.y += 2f;
 
         //카메라 위치 
         m_RotH = m_DefRotH;
@@ -41,7 +41,7 @@ public class Cam_Ctrl : MonoBehaviour
 
 
         m_BuffRot = Quaternion.Euler(m_RotV, m_RotH, 0);
-        m_BasePos.x = 0;
+        m_BasePos.x = 20;
         m_BasePos.y = 0;
         m_BasePos.z = -m_CurDist;
 

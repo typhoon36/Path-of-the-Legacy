@@ -13,6 +13,8 @@ public class UI_Mgr : MonoBehaviour
     public Image m_HPBar;
     public Image m_MPBar;
     public Image m_ExpBar;
+    public Text m_HpTxt;
+    public Text m_MpTxt;
 
     [Header("Level")]
     public Text m_LevelText;
@@ -69,6 +71,9 @@ public class UI_Mgr : MonoBehaviour
         m_HPBar.fillAmount = 1;
         m_MPBar.fillAmount = 1;
         m_ExpBar.fillAmount = 0;
+
+        m_HpTxt.text = Data_Mgr.m_StartData.CurHp.ToString() + " / " + Data_Mgr.m_StartData.MaxHp.ToString();
+        m_MpTxt.text = Data_Mgr.m_StartData.CurMp.ToString() + " / " + Data_Mgr.m_StartData.MaxMp.ToString();
 
         m_DiePanel.gameObject.SetActive(false);
 
@@ -156,8 +161,6 @@ public class UI_Mgr : MonoBehaviour
             if (a_Player != null)
             {
                 a_Player.LevelUpEffect();
-                Data_Mgr.m_StartData.StatPoint += 5;
-                Data_Mgr.m_StartData.MaxHp += 50;
             }
         }
     }
@@ -185,6 +188,8 @@ public class UI_Mgr : MonoBehaviour
             m_MPBar.fillAmount = 0;
         }
     }
+    #endregion
+
 
     public void UpdateSkillBar(Define_S.KeySkill keySkill, float fillAmount)
     {
@@ -205,9 +210,9 @@ public class UI_Mgr : MonoBehaviour
         {
             if (skill.Value.isCoolDown)
             {
-                float cooldownProgress = (Time.time - skill.Value.skillCoolDown) / skill.Value.skillCoolDown;
-                UpdateSkillBar(skill.Key, Mathf.Clamp01(cooldownProgress));
-                if (cooldownProgress >= 1)
+                float a_CoolProgress = (Time.time - skill.Value.skillCoolDown) / skill.Value.skillCoolDown;
+                UpdateSkillBar(skill.Key, Mathf.Clamp01(a_CoolProgress));
+                if (a_CoolProgress >= 1)
                 {
                     skill.Value.isCoolDown = false;
                     skill.Value.skillCoolDown = 0; // 쿨다운 초기화
@@ -215,8 +220,8 @@ public class UI_Mgr : MonoBehaviour
             }
         }
     }
-    #endregion
 
+    #region Die
     public void DieOn()
     {
         m_DiePanel.gameObject.SetActive(true);
@@ -227,6 +232,7 @@ public class UI_Mgr : MonoBehaviour
     {
         m_DiePanel.gameObject.SetActive(false);
     }
+    #endregion
 
     public void ResetButtonPress()
     {
@@ -252,7 +258,7 @@ public class UI_Mgr : MonoBehaviour
 
                     if (Co_Item1Recovery != null)
                         StopCoroutine(Co_Item1Recovery);
-                    Co_Item1Recovery = StartCoroutine(RecoverItem(m_1stItem, 5f));
+                    Co_Item1Recovery = StartCoroutine(RecoverItem(m_1stItem, 15f));
                     break;
                 }
             case 1:
@@ -271,27 +277,27 @@ public class UI_Mgr : MonoBehaviour
                     if (Co_Item2Recovery != null)
                         StopCoroutine(Co_Item2Recovery);
 
-                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 5f)); 
-                    break;
-                }
-            default:
-                {
-                    Debug.LogWarning("Invalid item index");
+                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 15f)); 
                     break;
                 }
         }
     }
 
-    IEnumerator RecoverItem(Image Icon, float a_Dur)
+    //쿨타임 복구
+    IEnumerator RecoverItem(Image a_Icon, float a_Dur)
     {
         float a_Dealy = 0f;
+        
         while (a_Dealy < a_Dur)
         {
             a_Dealy += Time.deltaTime;
-            Icon.fillAmount = Mathf.Clamp01(a_Dealy / a_Dur);
+            a_Icon.fillAmount = Mathf.Clamp01(a_Dealy / a_Dur);
             yield return null;
         }
-        Icon.fillAmount = 1f;
+
+
+        a_Icon.fillAmount = 1f;
     }
     #endregion
+
 }

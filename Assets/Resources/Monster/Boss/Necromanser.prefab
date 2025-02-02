@@ -1996,9 +1996,9 @@ GameObject:
   - component: {fileID: 6899316202062105892}
   - component: {fileID: 8829126238457984488}
   - component: {fileID: 7284356578610318059}
-  - component: {fileID: 6141337568552821675}
   - component: {fileID: 2139870444087187151}
   - component: {fileID: 3559339504831492673}
+  - component: {fileID: 6141337568552821675}
   m_Layer: 7
   m_Name: Necromanser
   m_TagString: Boss
@@ -2069,30 +2069,10 @@ MonoBehaviour:
   m_SpawnPos: {x: 0, y: 0, z: 0}
   HPBack: {fileID: 0}
   HPBar: {fileID: 0}
+  m_NickTxt: {fileID: 0}
   m_ScanRange: 10
   m_AttRange: 2
   m_SpawnRange: 16
---- !u!65 &6141337568552821675
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863850546622503603}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.1766572, y: 2.8183255, z: 1.7678947}
-  m_Center: {x: 0.2645602, y: 0.90916276, z: 0.26504326}
 --- !u!114 &2139870444087187151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2106,6 +2086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 4
+  Name: "\uB124\uD06C\uB85C\uB9E8\uC11C"
   m_CurHp: 2000
   m_MaxHp: 2000
   m_Att: 100
@@ -2135,6 +2116,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6141337568552821675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863850546622503603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1766572, y: 2.8183255, z: 1.7678947}
+  m_Center: {x: 0.2645602, y: 0.90916276, z: 0.26504326}
 --- !u!1 &870406767813943282
 GameObject:
   m_ObjectHideFlags: 0

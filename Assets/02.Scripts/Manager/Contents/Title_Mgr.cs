@@ -9,7 +9,6 @@ public class Title_Mgr : MonoBehaviour
     public Button m_newStartBtn;
     public Button m_ContinueBtn;
     public Button m_ExitBtn;
-    public Button m_LoadBtn;
 
     void Start()
     {
@@ -43,10 +42,5 @@ public class Title_Mgr : MonoBehaviour
 #endif
             });
 
-        if (m_LoadBtn != null)
-            m_LoadBtn.onClick.AddListener(() =>
-            {
-                Data_Mgr.LoadData();
-            });
     }
 }

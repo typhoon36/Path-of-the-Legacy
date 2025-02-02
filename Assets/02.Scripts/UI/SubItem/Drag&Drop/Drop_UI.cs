@@ -32,7 +32,7 @@ public class Drop_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         // 드래그 중인 아이템이 있다면
         if (eventData.pointerDrag != null)
         {
-            if (eventData.pointerDrag.tag == "EquipSlot")
+            if (transform.CompareTag("EquipSlot"))
             {
                 // 드래그 중인 아이템의 부모를 현재 슬롯으로 설정
                 eventData.pointerDrag.transform.SetParent(transform);

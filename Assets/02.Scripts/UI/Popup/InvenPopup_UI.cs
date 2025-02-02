@@ -26,9 +26,9 @@ public class InvenPopup_UI : MonoBehaviour
             Inst = this;
 
         m_OriginPos = m_Content.anchoredPosition; // 원래 위치를 저장
+        LoadInven(); // 인벤토리 로드
     }
     #endregion
-
     void Start()
     {
         m_InvenPopup.gameObject.SetActive(false);// 인벤토리 팝업 비활성화상태로 시작
@@ -57,8 +57,14 @@ public class InvenPopup_UI : MonoBehaviour
         //컨트롤키를 누르고 왼쪽마우스 클릭시 아이템 판매
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && ShopPopup_UI.Inst.m_ShopPopup.activeSelf == true)
             SellItem(m_ItemData);
-
     }
+
+
+    void OnApplicationQuit()
+    {
+        SaveInven(); // 게임 종료 시 인벤토리 저장
+    }
+
 
     void RefreshGold()
     {
@@ -71,8 +77,6 @@ public class InvenPopup_UI : MonoBehaviour
         RefreshGold();
         Data_Mgr.SaveData(); // 골드 값을 저장
     }
-
-
 
     public void CheckInventoryItems()
     {
@@ -106,8 +110,7 @@ public class InvenPopup_UI : MonoBehaviour
     }
 
     //아이템 추가
-    //주소를 받아오기(ReadOnly인 이유는 다른 곳에서 값을 변경하지 못하게 하기 위함)
-    static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
+    public static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
     {
         { 1,    "Items/Potions/grass_potion" },
         { 2,    "Items/Potions/wind_potion" },
@@ -124,7 +127,6 @@ public class InvenPopup_UI : MonoBehaviour
         { 13,    "Items/Weapons/Ax_3" },
         { 14,     "Items/Weapons/Hammer"},
         { 15,     "Items/Weapons/Shield"}
-
     };
 
     public void AddItem(ItemData a_ItemData)
@@ -137,9 +139,12 @@ public class InvenPopup_UI : MonoBehaviour
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
                 // 활성화 후 아이템 정보 설정
                 if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
+                {
                     a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
+                }
 
                 m_ItemData = a_ItemData;
+                SaveInven(); // 인벤토리 저장
                 break;
             }
         }
@@ -158,6 +163,7 @@ public class InvenPopup_UI : MonoBehaviour
                 a_Slot.GetChild(0).GetComponent<Image>().sprite = null;
 
                 AddGold(a_ItemData.ItemPrice); // 골드 추가
+                SaveInven(); // 인벤토리 저장
                 break;
             }
         }
@@ -182,5 +188,49 @@ public class InvenPopup_UI : MonoBehaviour
         return false;
     }
 
+    // 인벤토리 저장
+    public void SaveInven()
+    {
+        List<int> Items = new List<int>();
+        foreach (Transform a_Slot in m_Content)
+        {
+            if (a_Slot.childCount > 0 && a_Slot.GetChild(0).gameObject.activeSelf)
+            {
+                Image itemImage = a_Slot.GetChild(0).GetComponent<Image>();
+                if (itemImage != null && itemImage.sprite != null)
+                {
+                    foreach (var key in IconPathMap)
+                    {
+                        if (Resources.Load<Sprite>(key.Value) == itemImage.sprite)
+                        {
+                            Items.Add(key.Key);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        PlayerPrefs.SetString("Inventory", string.Join(",", Items));
+        PlayerPrefs.Save();
+    }
 
+    // 인벤토리 로드
+    public void LoadInven()
+    {
+        string a_Data = PlayerPrefs.GetString("Inventory", "");
+        if (!string.IsNullOrEmpty(a_Data))
+        {
+            string[] Items = a_Data.Split(',');
+            foreach (string Id in Items)
+            {
+                if (int.TryParse(Id, out int a_Id))
+                {
+                    ItemData a_ItData = new ItemData { Id = a_Id };
+                    AddItem(a_ItData);
+                }
+            }
+        }
+    }
+
+  
 }

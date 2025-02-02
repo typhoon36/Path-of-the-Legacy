@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1529540056450591395}
   - component: {fileID: 3986727852269181362}
   m_Layer: 5
-  m_Name: Image
+  m_Name: GoldIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c8977b1ade051034dbfed01d0465020e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 108ca3e7dda90d945b0914bf9259ec94, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 1504139438922178084}
   - component: {fileID: 2607428434692661881}
   - component: {fileID: 5843441188193225588}
+  - component: {fileID: 8304960274322623104}
   m_Layer: 5
   m_Name: Product_Txt
   m_TagString: Untagged
@@ -212,8 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.78616345, g: 0.7787468, b: 0.7787468, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -233,6 +234,21 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\uCCA0 \uAC11\uC637"
+--- !u!114 &8304960274322623104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785160360877094667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4109893575127090644
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 986689675, guid: 0063bcccf49d42b4db279df47d7bbf6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e91c1f2c7d59cd34489b6e05ece3f8d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -500,7 +516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 43a7d98bd4222b64e933596512dc09ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c241e847af767d148b898393a975bb22, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -526,7 +542,6 @@ MonoBehaviour:
   m_ItemTxt: {fileID: 5843441188193225588}
   m_PriceTxt: {fileID: 830940029499295753}
   m_BuyBtn: {fileID: 960865230576615899}
-  m_MoreInfo: {fileID: 5591972323662861532, guid: 07b70276bef181b46bedce45ebf43c09, type: 3}
 --- !u!1 &6865390850817064225
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +553,7 @@ GameObject:
   - component: {fileID: 3041371152592932778}
   - component: {fileID: 7342970384859812545}
   - component: {fileID: 830940029499295753}
+  - component: {fileID: 147029850143619440}
   m_Layer: 5
   m_Name: GoldTxt
   m_TagString: Untagged
@@ -585,8 +601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.8050314, g: 0.77718437, b: 0.77718437, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -606,3 +622,18 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 200
+--- !u!114 &147029850143619440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865390850817064225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1

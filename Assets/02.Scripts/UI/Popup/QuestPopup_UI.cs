@@ -86,13 +86,17 @@ public class QuestPopup_UI : MonoBehaviour
 
 
     //퀘스트 추적
-    public void QuestTargetCheck(GameObject gameObject)
+    public void QuestTargetCnt(GameObject a_Obj)
     {
-        //퀘스트 데이터가 없다면 리턴
+        //  수락한 퀘스트가 없다면 종료
         if (m_QuestData == null) return;
 
-        //퀘스트 데이터의 목표 카운트 증가
-        m_QuestData.CurTargetCnt++;
+        //몬스터 체크
+        if (a_Obj.GetComponent<MonsterStat>())
+        {
+            //수락한 퀘스트만큼 반복
+            //foreach(QuestData a_Quest in m_QuestData)
+        }
 
 
     }

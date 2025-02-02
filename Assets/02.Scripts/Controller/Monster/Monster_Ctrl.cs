@@ -199,7 +199,18 @@ public class Monster_Ctrl : Base_Ctrl
     /// [공격 이벤트 종료]
     protected virtual void ExitAttEvent()
     {
-        State = Define_S.AllState.Moving;
+        // 거리값
+        m_Dist = TargetDist(m_Target);
+
+        // 공격 사거리 안에 있으면
+        if (m_Dist <= m_AttRange)
+        {
+            State = Define_S.AllState.Attack;
+        }
+        else
+        {
+            State = Define_S.AllState.Moving;
+        }
     }
 
     //피격 이벤트

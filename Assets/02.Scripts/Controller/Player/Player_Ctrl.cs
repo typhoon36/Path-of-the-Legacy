@@ -47,7 +47,9 @@ public class Player_Ctrl : Base_Ctrl
             UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
         }
     }
+    
     private float m_CurHp;
+    
     public float CurHp
     {
         get { return m_CurHp; }
@@ -58,11 +60,11 @@ public class Player_Ctrl : Base_Ctrl
             UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
 
             if (m_CurHp <= 0)
-            {
                 OnDie();
-            }
+            
         }
     }
+
     float m_MaxMp = 100f;
     public float MaxMp
     {
@@ -121,6 +123,8 @@ public class Player_Ctrl : Base_Ctrl
         Data_Mgr.m_StartData.CurMp = (int)CurMp;
         Data_Mgr.m_StartData.MaxMp = (int)MaxMp;
         Data_Mgr.m_StartData.m_Pos = transform.position;
+
+        Data_Mgr.SaveData();
     }
 
     public override void Init()
@@ -138,7 +142,6 @@ public class Player_Ctrl : Base_Ctrl
 
         m_WObject = Define_S.W_Object.Player;
         State = Define_S.AllState.Idle;
-
 
         SetPart();
     }
@@ -643,9 +646,7 @@ public class Player_Ctrl : Base_Ctrl
                     if (InvenPopup_UI.Inst.SaveItem(a_Item.m_Item, a_Item.m_ItemCount) == true)
                         Destroy(coll[i].gameObject);
 
-
                     return;
-
                 }
 
             }
@@ -725,8 +726,8 @@ public class Player_Ctrl : Base_Ctrl
     #endregion
 
 
-
-    void SetPart()
+    //장비 설정
+    public void SetPart()
     {
         // 캐릭터 파츠 가져오기
         GameObject a_Obj = GameObject.FindWithTag("Player");
@@ -769,14 +770,14 @@ public class Player_Ctrl : Base_Ctrl
                         a_Armor.Equipment.Add(a_Child.gameObject);
 
                         // 플레이어 안에서 장비 파츠 저장
-                        List<GameObject> equipList;
-                        if (m_Equipment.TryGetValue(a_Armor.Id, out equipList) == false)
+                        List<GameObject> a_EquipList;
+                        if (m_Equipment.TryGetValue(a_Armor.Id, out a_EquipList) == false)
                         {
-                            equipList = new List<GameObject>();
-                            m_Equipment.Add(a_Armor.Id, equipList);
+                            a_EquipList = new List<GameObject>();
+                            m_Equipment.Add(a_Armor.Id, a_EquipList);
                         }
 
-                        equipList.Add(a_Child.gameObject);
+                        a_EquipList.Add(a_Child.gameObject);
 
                         a_Child.gameObject.SetActive(false);
                     }
@@ -784,5 +785,9 @@ public class Player_Ctrl : Base_Ctrl
             }
 
         }
+
+
     }
+
+
 }

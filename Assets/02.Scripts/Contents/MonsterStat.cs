@@ -80,7 +80,7 @@ public class MonsterStat : MonoBehaviour
             InvenPopup_UI.Inst.AddGold(Gold);
 
         // 퀘스트 정보 반영
-
+        
 
         // 아이템 드랍
         OnDropItem();

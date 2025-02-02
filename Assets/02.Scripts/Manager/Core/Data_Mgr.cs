@@ -38,7 +38,7 @@ public class StartData
     public int Luk = 2;
     public int Gold;
     public int SkillPoint = 5;
-    public int StatPoint = 5;
+    public int StatPoint = 0;
     public Vector3 m_Pos;
 }
 
@@ -122,6 +122,7 @@ public class RewardItemData
 }
 #endregion
 
+
 //스킬 데이터 구조체
 [System.Serializable]
 public class SkillData
@@ -193,6 +194,7 @@ public class Data_Mgr
     public static Dictionary<int, List<int>> DropItem { get; private set; } = new Dictionary<int, List<int>>();
     public static Dictionary<int, GameObject> ItemObjects { get; private set; } = new Dictionary<int, GameObject>();
     #endregion
+
     public static List<LevelData> m_LevelData = new List<LevelData>();
     public static List<SkillData> m_SkillData = new List<SkillData>();
     #region Dialogue
@@ -274,7 +276,6 @@ public class Data_Mgr
             // 기본 드랍 아이템 데이터 초기화
             InitDropData();
             #endregion
-
 
         }
         else
@@ -486,4 +487,7 @@ public class Data_Mgr
     {
         return Resources.Load<GameObject>(path);
     }
+
+
+
 }

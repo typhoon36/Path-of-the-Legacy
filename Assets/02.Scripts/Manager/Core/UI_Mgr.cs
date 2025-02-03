@@ -7,53 +7,37 @@ using UnityEngine.SceneManagement;
 ///메인 UI 매니저 : 메인 UI를 위한 스크립트
 public class UI_Mgr : MonoBehaviour
 {
-    public bool IsPressed { get; private set; } = false;
-
     [Header("HUD")]
     public Image m_HPBar;
     public Image m_MPBar;
     public Image m_ExpBar;
     public Text m_HpTxt;
     public Text m_MpTxt;
-
-    [Header("Level")]
     public Text m_LevelText;
 
-    #region DiePanel
-    [Header("Die")]
-    public GameObject m_DiePanel;
-    public Button m_ConfrimBtn;
-    #endregion
-
-    [Header("Menu")]
-    public GameObject m_MenuPanel;
-    public Button m_ResumeBtn;
-    public Button m_OptionBtn;
-    public Button m_ExitBtn;
-
-    [Header("Option")]
-    public GameObject m_OptionPanel;
-    public Slider m_SoundSlider;
-    public Slider m_MusicSlider;
-
-    [Header("Mobile_OFF")]
+    [Header("Slots")]
     public GameObject m_Slots;
 
     [Header("MiniMap")]
     public GameObject m_MiniMap;
     public Define_S.Scene m_TargetScene;
 
-    [Header("SkillBar")]
+    [Header("Skill&Item")]
     public Image m_SkillA;
     public Image m_SkillD;
-    public Dictionary<Define_S.KeySkill, SkillData> SkillBarList = new Dictionary<Define_S.KeySkill, SkillData>();
-
-    [Header("ItemBar")]
     public Image m_1stItem;
     public Image m_2ndItem;
-
+    public Dictionary<Define_S.KeySkill, SkillData> SkillBarList 
+        = new Dictionary<Define_S.KeySkill, SkillData>();
+    
     Coroutine Co_Item1Recovery;
     Coroutine Co_Item2Recovery;
+
+    [Header("Die")]
+    public GameObject m_DiePanel;
+    public Button m_ConfrimBtn;
+
+    public bool IsPressed { get; private set; } = false;
 
     #region Singleton
     public static UI_Mgr Inst;
@@ -68,12 +52,14 @@ public class UI_Mgr : MonoBehaviour
     {
         Data_Mgr.LoadData();
 
+        #region HUD
         m_HPBar.fillAmount = 1;
         m_MPBar.fillAmount = 1;
         m_ExpBar.fillAmount = 0;
 
         m_HpTxt.text = Data_Mgr.m_StartData.CurHp.ToString() + " / " + Data_Mgr.m_StartData.MaxHp.ToString();
         m_MpTxt.text = Data_Mgr.m_StartData.CurMp.ToString() + " / " + Data_Mgr.m_StartData.MaxMp.ToString();
+        #endregion
 
         m_DiePanel.gameObject.SetActive(false);
 
@@ -85,42 +71,11 @@ public class UI_Mgr : MonoBehaviour
                 Scene_Mgr.Inst.ChangeScene(Define_S.Scene.Game);
             });
 
-        m_MenuPanel.gameObject.SetActive(false);
+        //모바일 플랫폼이라면 슬롯 비활성화
+        if (Application.isMobilePlatform) m_Slots.gameObject.SetActive(false);
 
-        if (m_MenuPanel != null)
-        {
-            if (m_ResumeBtn != null)
-                m_ResumeBtn.onClick.AddListener(() =>
-                {
-                    IsPressed = true;
-                    m_MenuPanel.gameObject.SetActive(false);
-                    Time.timeScale = 1;
-                });
-            if (m_OptionBtn != null)
-                m_OptionBtn.onClick.AddListener(() =>
-                {
-                    IsPressed = true;
-                    m_MenuPanel.gameObject.SetActive(false);
-                    m_OptionPanel.gameObject.SetActive(true);
-                });
-            if (m_ExitBtn != null)
-                m_ExitBtn.onClick.AddListener(() =>
-                {
-                    IsPressed = true;
-                    m_MenuPanel.gameObject.SetActive(false);
-                    Time.timeScale = 1;
-                    Data_Mgr.SaveData();
-                    SceneManager.LoadScene("TitleScene");
-                });
-        }
-
-        if (Application.isMobilePlatform)
-            m_Slots.gameObject.SetActive(false);
-
-        if (m_TargetScene == Define_S.Scene.Game)
-            m_MiniMap.gameObject.SetActive(true);
-        else
-            m_MiniMap.gameObject.SetActive(false);
+        if (m_TargetScene == Define_S.Scene.Game) m_MiniMap.gameObject.SetActive(true);
+        else m_MiniMap.gameObject.SetActive(false);
 
         if (Data_Mgr.m_SkillData.Count > 1)
         {
@@ -131,17 +86,10 @@ public class UI_Mgr : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            IsPressed = true;
-            m_MenuPanel.gameObject.SetActive(true);
-            Time.timeScale = 0;
-        }
-
-
         LevelRefresh();
         CheckExpBar();
         UpdateSkillCooldowns();
+        RefreshUI();
     }
 
     #region HUD
@@ -158,10 +106,12 @@ public class UI_Mgr : MonoBehaviour
             Data_Mgr.m_StartData.Level += 1;
             LevelRefresh();
             Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
+
             if (a_Player != null)
-            {
                 a_Player.LevelUpEffect();
-            }
+            
+            Data_Mgr.m_StartData.StatPoint += 5;
+            Data_Mgr.SaveData();
         }
     }
 
@@ -170,10 +120,12 @@ public class UI_Mgr : MonoBehaviour
         if (a_MaxHp > 0)
         {
             m_HPBar.fillAmount = Mathf.Clamp01(a_CurHp / a_MaxHp);
+            m_HpTxt.text = $"{a_CurHp} / {a_MaxHp}";
         }
         else
         {
             m_HPBar.fillAmount = 0;
+            m_HpTxt.text = "0 / 0";
         }
     }
 
@@ -221,6 +173,13 @@ public class UI_Mgr : MonoBehaviour
         }
     }
 
+    public void RefreshUI()
+    {
+        m_HpTxt.text = Data_Mgr.m_StartData.CurHp.ToString() + " / " + Data_Mgr.m_StartData.MaxHp.ToString();
+        m_MpTxt.text = Data_Mgr.m_StartData.CurMp.ToString() + " / " + Data_Mgr.m_StartData.MaxMp.ToString();
+
+    }
+
     #region Die
     public void DieOn()
     {
@@ -239,21 +198,22 @@ public class UI_Mgr : MonoBehaviour
         IsPressed = false;
     }
 
-    #region ItemSlotUse
+    #region Item
     public void UseItem(int Idx)
     {
+        Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
+
         switch (Idx)
         {
             case 0:
                 {
                     // 1아이템 사용
                     m_1stItem.fillAmount = 0;
-                    m_HPBar.fillAmount += 0.5f;
-                    Data_Mgr.m_StartData.CurHp += 50;
+                    a_Player.CurHp += 50; // CurHp 프로퍼티를 사용하여 HP 증가
 
-                    if(Data_Mgr.m_StartData.CurHp > Data_Mgr.m_StartData.MaxHp)
+                    if (a_Player.CurHp > a_Player.MaxHp)
                     {
-                        Data_Mgr.m_StartData.CurHp = Data_Mgr.m_StartData.MaxHp;
+                        a_Player.CurHp = a_Player.MaxHp;
                     }
 
                     if (Co_Item1Recovery != null)
@@ -265,9 +225,7 @@ public class UI_Mgr : MonoBehaviour
                 {
                     // 2아이템 사용
                     m_2ndItem.fillAmount = 0;
-                    m_MPBar.fillAmount += 0.5f;
-                    Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
-                    a_Player.CurMp += 50;
+                    a_Player.CurMp += 50; // CurMp 프로퍼티를 사용하여 MP 증가
 
                     if (a_Player.CurMp > a_Player.MaxMp)
                     {
@@ -277,7 +235,7 @@ public class UI_Mgr : MonoBehaviour
                     if (Co_Item2Recovery != null)
                         StopCoroutine(Co_Item2Recovery);
 
-                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 15f)); 
+                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 15f));
                     break;
                 }
         }
@@ -287,7 +245,7 @@ public class UI_Mgr : MonoBehaviour
     IEnumerator RecoverItem(Image a_Icon, float a_Dur)
     {
         float a_Dealy = 0f;
-        
+
         while (a_Dealy < a_Dur)
         {
             a_Dealy += Time.deltaTime;

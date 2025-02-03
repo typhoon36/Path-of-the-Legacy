@@ -148,6 +148,7 @@ public class QuestData
     public Define_S.QuestType QuestType;
     public int MinLevel;
     public int TargetCnt;
+    public int TargetId;
     public int CurTargetCnt;
     public int RewardGold;
     public int RewardExp;

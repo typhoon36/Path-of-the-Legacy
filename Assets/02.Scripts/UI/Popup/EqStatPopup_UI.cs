@@ -31,8 +31,6 @@ public class EqStatPopup_UI : MonoBehaviour
     public Text m_LevelTxt;
     public Text m_StatPointTxt;
 
-    ItemData m_ItemData;
-
     #region Singleton
     public static EqStatPopup_UI Inst;
     void Awake()
@@ -75,9 +73,7 @@ public class EqStatPopup_UI : MonoBehaviour
         {
             if (Data_Mgr.m_StartData.StatPoint > 0)
             {
-                Data_Mgr.m_StartData.Speed += 1;
-                Data_Mgr.m_StartData.StatPoint -= 1;
-                m_StatPointTxt.text = "스텟 포인트 : " + Data_Mgr.m_StartData.StatPoint.ToString();
+               
                 m_DEXTxt.text = "민첩 : " + Data_Mgr.m_StartData.Speed.ToString();
             }
         });
@@ -153,7 +149,6 @@ public class EqStatPopup_UI : MonoBehaviour
             {
                 obj.SetActive(true);
 
-                //장착되지않은 아이템(만약 철제갑옷을 장착하면 Starter_Chest는 비활성화)
                 if (obj.name != a_Item.name)
                 {
                     a_Player.m_SkinnedObjs[1].gameObject.SetActive(false);
@@ -167,8 +162,13 @@ public class EqStatPopup_UI : MonoBehaviour
                 }
             }
 
-            // 장착된 아이템 활성화
             a_Item.SetActive(true);
+
+            // 장비 장착시 체력 증가
+            a_Player.MaxHp += 20; // MaxHp 프로퍼티를 사용하여 최대 체력 증가
+            Data_Mgr.SaveData();
+
+            Debug.Log(a_Player.MaxHp);
         }
     }
 
@@ -198,6 +198,12 @@ public class EqStatPopup_UI : MonoBehaviour
                     a_Player.m_SkinnedObjs[i].SetActive(false);
                 }
             }
+
+            // 장비 해제시 체력 감소
+            a_Player.MaxHp -= 20; // MaxHp 프로퍼티를 사용하여 최대 체력 감소
+            Data_Mgr.SaveData();
+
+            Debug.Log(a_Player.MaxHp);
         }
     }
 

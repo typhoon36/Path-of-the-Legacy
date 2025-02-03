@@ -94,8 +94,27 @@ public class QuestPopup_UI : MonoBehaviour
         //몬스터 체크
         if (a_Obj.GetComponent<MonsterStat>())
         {
-            //수락한 퀘스트만큼 반복
-            //foreach(QuestData a_Quest in m_QuestData)
+            //플레이어가 수락한 퀘스트만큼 반복
+            for (int i = 0; i < Data_Mgr.m_AcceptedQuest.Count; i++)
+            {
+                //오브젝트 Id가 퀘스트 타겟 Id와 같다면
+                if (a_Obj.GetComponent<MonsterStat>().m_Id == m_QuestData.TargetId)
+                {
+                    //퀘스트 타겟 카운트 증가
+                    m_QuestData.CurTargetCnt++;
+
+                    //퀘스트 완료
+                    if (m_QuestData.CurTargetCnt == m_QuestData.TargetCnt)
+                    {
+                        m_QuestData.IsClear = true;
+                        m_QuestData.CurTargetCnt = m_QuestData.TargetCnt;
+                    }
+
+                    return;
+                }
+
+            }
+
         }
 
 

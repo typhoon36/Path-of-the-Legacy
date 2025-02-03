@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,7 +18,7 @@ public class Player_Ctrl : Base_Ctrl
         | (1 << (int)Define_S.Layer.Npc);
 
 
-    float m_Speed = 5f;// 이동속도 = 스탯에 맞춰야함
+    public float m_Speed = 5; //플레이어 이동속도
 
     [SerializeField]
     public int m_Att = 10; // 플레이어 공격력 추가
@@ -42,7 +41,9 @@ public class Player_Ctrl : Base_Ctrl
         get { return m_MaxHp; }
         set
         {
-            m_MaxHp = Mathf.Clamp(value, 0, m_MaxHp);
+            float delta = value - m_MaxHp;
+            m_MaxHp = Mathf.Clamp(value, 0, m_MaxHp + delta);
+            CurHp += delta; // 최대 체력이 증가할 때 현재 체력도 함께 증가
             Data_Mgr.m_StartData.MaxHp = (int)m_MaxHp;
             UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
         }
@@ -103,9 +104,6 @@ public class Player_Ctrl : Base_Ctrl
 
 
 
-    #region Mobile
-    #endregion
-
     #region Init
     void Awake()
     {
@@ -127,6 +125,7 @@ public class Player_Ctrl : Base_Ctrl
         Data_Mgr.SaveData();
     }
 
+
     public override void Init()
     {
         m_Anim = GetComponent<Animator>();
@@ -135,8 +134,6 @@ public class Player_Ctrl : Base_Ctrl
         CurMp = m_MaxMp;
         m_Speed = Data_Mgr.m_StartData.Speed;
 
-        UI_Mgr.Inst.m_HPBar.fillAmount = 1;
-
         m_Equipment = new Dictionary<int, List<GameObject>>();
         m_CurEff = null;
 
@@ -144,6 +141,9 @@ public class Player_Ctrl : Base_Ctrl
         State = Define_S.AllState.Idle;
 
         SetPart();
+
+        Data_Mgr.LoadData();
+        transform.position = Data_Mgr.m_StartData.m_Pos;
     }
 
     #endregion

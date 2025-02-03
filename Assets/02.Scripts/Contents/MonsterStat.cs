@@ -80,7 +80,7 @@ public class MonsterStat : MonoBehaviour
             InvenPopup_UI.Inst.AddGold(Gold);
 
         // 퀘스트 정보 반영
-        
+        QuestPopup_UI.Inst.QuestTargetCnt(this.gameObject);
 
         // 아이템 드랍
         OnDropItem();
@@ -121,7 +121,7 @@ public class MonsterStat : MonoBehaviour
 
             //아이템 위치 설정
             float a_RandPos = Random.Range(-0.5f, 0.5f);
-            a_Item.transform.position = new Vector3(transform.position.x + a_RandPos, 1.5f, transform.position.z + a_RandPos); 
+            a_Item.transform.position = new Vector3(transform.position.x + a_RandPos, 1.5f, transform.position.z + a_RandPos);
         }
     }
 }

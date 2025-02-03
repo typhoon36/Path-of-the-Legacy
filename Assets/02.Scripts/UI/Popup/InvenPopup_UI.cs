@@ -5,18 +5,17 @@ using UnityEngine.UI;
 
 public class InvenPopup_UI : MonoBehaviour
 {
+    [Header("Inventory")]
     public GameObject m_InvenPopup;
     public Button m_CloseBtn;
+    public Text m_GoldText;
     public RectTransform m_Content;
     public ScrollRect m_ScrollRect;
 
     Vector3 m_OriginPos;
-
-    public Text m_GoldText;
-
     ItemData m_ItemData;
 
-    #region Singleton
+
     public static InvenPopup_UI Inst;
     void Awake()
     {
@@ -28,7 +27,7 @@ public class InvenPopup_UI : MonoBehaviour
         m_OriginPos = m_Content.anchoredPosition; // 원래 위치를 저장
         LoadInven(); // 인벤토리 로드
     }
-    #endregion
+
     void Start()
     {
         m_InvenPopup.gameObject.SetActive(false);// 인벤토리 팝업 비활성화상태로 시작
@@ -71,9 +70,9 @@ public class InvenPopup_UI : MonoBehaviour
         m_GoldText.text = Data_Mgr.m_StartData.Gold.ToString();
     }
 
-    public void AddGold(int amount)
+    public void AddGold(int a_Amount)
     {
-        Data_Mgr.m_StartData.Gold += amount;
+        Data_Mgr.m_StartData.Gold += a_Amount;
         RefreshGold();
         Data_Mgr.SaveData(); // 골드 값을 저장
     }
@@ -133,7 +132,7 @@ public class InvenPopup_UI : MonoBehaviour
     {
         foreach (Transform a_Slot in m_Content)
         {
-            if (a_Slot.GetChild(0).gameObject.activeSelf == false)
+            if (a_Slot.childCount > 0 && a_Slot.GetChild(0).gameObject.activeSelf == false)
             {
                 // 아이템 추가
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
@@ -155,7 +154,7 @@ public class InvenPopup_UI : MonoBehaviour
     {
         foreach (Transform a_Slot in m_Content)
         {
-            if (a_Slot.GetChild(0).gameObject.activeSelf == true)
+            if (a_Slot.childCount > 0 && a_Slot.GetChild(0).gameObject.activeSelf == true)
             {
                 // 아이템 판매
                 a_Slot.GetChild(0).gameObject.SetActive(false); // 비활성화
@@ -232,5 +231,5 @@ public class InvenPopup_UI : MonoBehaviour
         }
     }
 
-  
+
 }

@@ -76,6 +76,7 @@
     <Compile Include="Assets\02.Scripts\Controller\Player\Cam_Ctrl.cs" />
     <Compile Include="Assets\02.Scripts\UI\EventHandler_UI.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\ForcedReset.cs" />
+    <Compile Include="Assets\02.Scripts\Contents\SettingBox.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\SimpleMouseRotator.cs" />
     <Compile Include="Assets\02.Scripts\Contents\ItemPickUp.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\SimpleActivatorMenu.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\02.Scripts\Utility\Define_S.cs" />
     <Compile Include="Assets\02.Scripts\Utility\Sound_Mgr.cs" />
     <Compile Include="Assets\02.Scripts\Contents\Portal\BossPortal.cs" />
+    <Compile Include="Assets\02.Scripts\Manager\Core\Menu_Mgr.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\QuestMark_UI.cs" />
     <Compile Include="Assets\02.Scripts\Manager\Contents\Title_Mgr.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\TimedObjectActivator.cs" />

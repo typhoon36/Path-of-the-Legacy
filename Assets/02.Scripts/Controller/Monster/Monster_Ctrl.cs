@@ -288,14 +288,14 @@ public class Monster_Ctrl : Base_Ctrl
             yield return null;
         }
 
-        //// 플레이어를 바라보도록 회전 설정
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-        //if (player != null)
-        //{
-        //    Vector3 directionToPlayer = player.transform.position - this.transform.position;
-        //    directionToPlayer.y = 0; // y축 회전 방지
-        //    transform.rotation = Quaternion.LookRotation(directionToPlayer);
-        //}
+        // 플레이어를 바라보도록 회전 설정
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Vector3 a_Dir = player.transform.position - this.transform.position;
+            a_Dir.y = 0; // y축 회전 방지
+            transform.rotation = Quaternion.LookRotation(a_Dir);
+        }
 
         State = Define_S.AllState.Idle; // Idle 상태로 변경
         IsOver = false; // IsOver 상태 초기화

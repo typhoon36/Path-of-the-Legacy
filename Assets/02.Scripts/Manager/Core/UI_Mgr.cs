@@ -109,7 +109,7 @@ public class UI_Mgr : MonoBehaviour
 
             if (a_Player != null)
                 a_Player.LevelUpEffect();
-            
+
             Data_Mgr.m_StartData.StatPoint += 5;
             Data_Mgr.SaveData();
         }

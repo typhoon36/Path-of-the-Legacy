@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,7 +71,9 @@ public class EqStatPopup_UI : MonoBehaviour
         {
             if (Data_Mgr.m_StartData.StatPoint > 0)
             {
-               
+                Data_Mgr.m_StartData.Speed += 1;
+                Data_Mgr.m_StartData.StatPoint -= 1;
+                m_StatPointTxt.text = "½ºÅÝ Æ÷ÀÎÆ® : " + Data_Mgr.m_StartData.StatPoint.ToString();
                 m_DEXTxt.text = "¹ÎÃ¸ : " + Data_Mgr.m_StartData.Speed.ToString();
             }
         });

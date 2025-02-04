@@ -48,9 +48,9 @@ public class Player_Ctrl : Base_Ctrl
             UI_Mgr.Inst.UpdateHPBar(m_CurHp, m_MaxHp);
         }
     }
-    
+
     private float m_CurHp;
-    
+
     public float CurHp
     {
         get { return m_CurHp; }
@@ -62,7 +62,7 @@ public class Player_Ctrl : Base_Ctrl
 
             if (m_CurHp <= 0)
                 OnDie();
-            
+
         }
     }
 
@@ -160,7 +160,7 @@ public class Player_Ctrl : Base_Ctrl
     {
         GameObject a_Eff = Instantiate(Resources.Load("SubItem/Effect/LevelupBuff")) as GameObject;
 
-        a_Eff.transform.position = this.transform.position;
+        a_Eff.transform.position = transform.position; // 플레이어 위치에 이펙트 생성(겹쳐서 생성해 이펙트가 보이게끔)
 
         yield return new WaitForSeconds(4f);
 

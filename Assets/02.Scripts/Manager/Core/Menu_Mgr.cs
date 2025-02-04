@@ -22,7 +22,16 @@ public class Menu_Mgr : MonoBehaviour
         // SettingBtn을 누르면 SettingPanel을 활성화
 
 
-        m_SettingBtn.onClick.AddListener(() =>{ m_SettingPanel.SetActive(true);});
+        m_SettingBtn.onClick.AddListener(() => { m_SettingPanel.SetActive(true); });
+
+        if (m_ResumeBtn != null)
+            m_ResumeBtn.onClick.AddListener(() => { m_MenuPanel.SetActive(false); Time.timeScale = 1; });
+
+        if (m_SettingBtn != null)
+            m_SettingBtn.onClick.AddListener(() => { });
+
+        if (m_QuitBtn != null)
+            m_QuitBtn.onClick.AddListener(() => { Application.Quit(); });
 
     }
 

@@ -137,9 +137,9 @@ public class InvenPopup_UI : MonoBehaviour
                 // 아이템 추가
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
                 // 활성화 후 아이템 정보 설정
-                if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
+                if (IconPathMap.TryGetValue(a_ItemData.Id, out string a_IconPath))
                 {
-                    a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
+                    a_Slot.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(a_IconPath); // 아이콘 로드
                 }
 
                 m_ItemData = a_ItemData;

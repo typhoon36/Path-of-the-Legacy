@@ -44,7 +44,6 @@ public class MonGen_Mgr : MonoBehaviour
             {
                 StopCoroutine(m_SpawnCo);
                 m_SpawnCo = null;
-                Debug.Log("소환 중지");
             }
         }
     }

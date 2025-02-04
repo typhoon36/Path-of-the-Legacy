@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;//NavMeshAgent 사용
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Monster_Ctrl : Base_Ctrl
@@ -45,7 +45,7 @@ public class Monster_Ctrl : Base_Ctrl
 
     }
 
-    protected virtual void IdleDetective()
+    protected virtual void IdletoDetective()
     {
         //HP 설정
         HPBar.fillAmount = (float)m_Stat.CurHp / m_Stat.MaxHp;
@@ -74,7 +74,7 @@ public class Monster_Ctrl : Base_Ctrl
         // 플레이어가 스캔 범위 안에 들어오면 인식
         if (m_Dist <= m_ScanRange)
         {
-            IdleDetective();
+            IdletoDetective();
         }
         // 스캔 범위 밖에 있을 때
         else
@@ -152,8 +152,7 @@ public class Monster_Ctrl : Base_Ctrl
         m_Nav.SetDestination(this.transform.position);
 
         // 피격 애니메이션 시간 체크
-        if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") &&
-            m_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") && m_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             State = Define_S.AllState.Moving;
         }
@@ -167,7 +166,7 @@ public class Monster_Ctrl : Base_Ctrl
 
         State = Define_S.AllState.Die;
 
-        //콜라이더가 있으면 삭제 진행
+        //삭제 진행
         if (GetComponent<Collider>() != null)
             StartCoroutine(DelayDestroy());
 
@@ -248,64 +247,8 @@ public class Monster_Ctrl : Base_Ctrl
     }
     #endregion
 
-    #region Courutines
-    IEnumerator DelayDestroy()
-    {
-        //콜라이더 비활성화
-        GetComponent<Collider>().enabled = false;
 
-        yield return new WaitForSeconds(3f);
-
-        //몬스터 삭제
-        State = Define_S.AllState.Idle;
-        Destroy(this.gameObject);
-
-        //콜라이더 활성화
-        GetComponent<Collider>().enabled = true;
-
-        //체력 초기화
-        m_Stat.CurHp = m_Stat.MaxHp;
-
-    }
-
-    //스폰 지점으로 이동
-    IEnumerator ReturnSpawn()
-    {
-        IsOver = true;
-
-        //전투 종료
-        BattleEnd();
-
-        //스폰 지점으로 이동
-        m_Nav.SetDestination(m_SpawnPos);
-
-        //스폰에 가까워지면 멈추기
-        while (true)
-        {
-            if (Vector3.Distance(transform.position, m_SpawnPos) <= 0.7f)
-            {
-                m_Nav.SetDestination(this.transform.position);
-                State = Define_S.AllState.Idle; // Idle 상태로 변경
-                IsOver = false; // IsOver 상태 초기화
-                break;
-            }
-            yield return null;
-        }
-    }
-    #endregion
-
-    //전투 종료
-    public void BattleEnd()
-    {
-        m_Target = null;
-
-        //다시 스폰지점으로 이동
-        m_Nav.SetDestination(m_SpawnPos);
-        //전투 종료시 HP바 비활성화
-        HPBack.SetActive(false);
-        HPBar.gameObject.SetActive(false);
-    }
-
+ 
     protected float TargetDist(GameObject a_Target)
     {
         if (a_Target == null) return 0;
@@ -325,4 +268,65 @@ public class Monster_Ctrl : Base_Ctrl
         }
     }
 
+    //스폰 지점으로 이동
+    IEnumerator ReturnSpawn()
+    {
+        IsOver = true;
+
+        //전투 종료
+        BattleEnd();
+
+        //스폰 지점으로 이동
+        m_Nav.SetDestination(m_SpawnPos);
+
+        //스폰에 가까워지면 멈추기
+        while (true)
+        {
+            float a_Dist = (m_SpawnPos - this.transform.position).magnitude;
+            if (a_Dist <= 0.7f) break;
+
+            yield return null;
+        }
+
+        //// 플레이어를 바라보도록 회전 설정
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //if (player != null)
+        //{
+        //    Vector3 directionToPlayer = player.transform.position - this.transform.position;
+        //    directionToPlayer.y = 0; // y축 회전 방지
+        //    transform.rotation = Quaternion.LookRotation(directionToPlayer);
+        //}
+
+        State = Define_S.AllState.Idle; // Idle 상태로 변경
+        IsOver = false; // IsOver 상태 초기화
+    }
+    IEnumerator DelayDestroy()
+    {
+        //콜라이더 비활성화
+        GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(2f);
+
+        //몬스터 삭제
+        State = Define_S.AllState.Idle;
+        Destroy(this.gameObject);
+
+        //콜라이더 활성화
+        GetComponent<Collider>().enabled = true;
+
+        //체력 초기화
+        m_Stat.CurHp = m_Stat.MaxHp;
+
+    }
+    //전투 종료
+    public void BattleEnd()
+    {
+        m_Target = null;
+
+        //다시 스폰지점으로 이동
+        m_Nav.SetDestination(transform.position);
+        //전투 종료시 HP바 비활성화
+        HPBack.SetActive(false);
+        HPBar.gameObject.SetActive(false);
+    }
 }

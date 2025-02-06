@@ -204,7 +204,6 @@ public class Data_Mgr
     public static List<int> m_AcceptedQuest = new List<int>();
     #endregion
 
-    public static event Action OnLevelUp;
 
     public static void SaveData()
     {
@@ -246,7 +245,6 @@ public class Data_Mgr
             m_AcceptedQuest = m_AllData.AcceptedQuest ?? new List<int>();
             DropItem = m_AllData.DropItem ?? new Dictionary<int, List<int>>();
 
-            #region Init
             // 수락된 퀘스트 상태 업데이트
             foreach (var a_Quest in m_QuestData)
             {
@@ -276,8 +274,6 @@ public class Data_Mgr
             InitItemData();
             // 기본 드랍 아이템 데이터 초기화
             InitDropData();
-            #endregion
-
         }
         else
         {
@@ -304,11 +300,6 @@ public class Data_Mgr
     }
     #endregion
 
-    public static void LevelUp()
-    {
-        m_StartData.Level++;
-        OnLevelUp?.Invoke();
-    }
 
     static void InitSkillData()
     {
@@ -350,6 +341,7 @@ public class Data_Mgr
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
             TargetCnt = 10,
+            TargetId = 3, // TargetId를 올바르게 설정
             CurTargetCnt = 0,
             RewardGold = 100,
             RewardExp = 100,
@@ -366,6 +358,7 @@ public class Data_Mgr
             TitleName = "홉고블린 소탕",
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
+            TargetId = 1, // TargetId를 올바르게 설정
             TargetCnt = 10,
             CurTargetCnt = 0,
             RewardGold = 100,

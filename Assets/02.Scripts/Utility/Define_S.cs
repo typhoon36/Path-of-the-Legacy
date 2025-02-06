@@ -7,16 +7,7 @@ using UnityEngine;
  */
 public class Define_S : MonoBehaviour
 {
-    public enum DefaultPart // 캐릭터 기본 부위, 커스텀
-    {
-        Hair,           // 헤어
-        Head,           // 얼굴 문신
-        Eyebrows,       // 눈썹
-        FacialHair,     // 수염
-        Torso,          // 상체
-        Hips,           // 하체
-    }
-
+   
     public enum KeySkill
     {
         Unknown,

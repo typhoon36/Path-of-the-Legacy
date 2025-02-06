@@ -70,7 +70,7 @@
     <Compile Include="Assets\02.Scripts\Utility\CameraResolution.cs" />
     <Compile Include="Assets\02.Scripts\Controller\NPC\Npc_Ctrl.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\ShopPopup_UI.cs" />
-    <Compile Include="Assets\02.Scripts\UI\SubItem\Shop\ProductInfo.cs" />
+    <Compile Include="Assets\02.Scripts\UI\Popup\Quest\QuestMark_UI.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\EqStatPopup_UI.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\FollowTarget.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Player\Cam_Ctrl.cs" />
@@ -91,10 +91,10 @@
     <Compile Include="Assets\02.Scripts\Utility\Sound_Mgr.cs" />
     <Compile Include="Assets\02.Scripts\Contents\Portal\BossPortal.cs" />
     <Compile Include="Assets\02.Scripts\Manager\Core\Menu_Mgr.cs" />
-    <Compile Include="Assets\02.Scripts\UI\Popup\QuestMark_UI.cs" />
     <Compile Include="Assets\02.Scripts\Manager\Contents\Title_Mgr.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\TimedObjectActivator.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
+    <Compile Include="Assets\02.Scripts\UI\Popup\Quest\QuestPopup_UI.cs" />
     <Compile Include="Assets\02.Scripts\UI\SubItem\Drag&amp;Drop\Drag_UI.cs" />
     <Compile Include="Assets\02.Scripts\UI\SubItem\Shop\Product_Nd.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\WaypointCircuit.cs" />
@@ -118,7 +118,6 @@
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\ExtinguishableParticleSystem.cs" />
     <Compile Include="Assets\02.Scripts\UI\Popup\ConfirmPopup_UI.cs" />
-    <Compile Include="Assets\02.Scripts\UI\Popup\QuestPopup_UI.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\AlphaButtonClickMask.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\ObjectResetter.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Player\PlayerAtt.cs" />

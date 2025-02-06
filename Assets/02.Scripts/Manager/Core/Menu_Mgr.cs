@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class Menu_Mgr : MonoBehaviour
 {
@@ -28,11 +30,17 @@ public class Menu_Mgr : MonoBehaviour
             m_ResumeBtn.onClick.AddListener(() => { m_MenuPanel.SetActive(false); Time.timeScale = 1; });
 
         if (m_SettingBtn != null)
-            m_SettingBtn.onClick.AddListener(() => { });
+            m_SettingBtn.onClick.AddListener(() => { m_SettingPanel.SetActive(true); });
 
         if (m_QuitBtn != null)
-            m_QuitBtn.onClick.AddListener(() => { Application.Quit(); });
-
+            m_QuitBtn.onClick.AddListener(() =>
+            {
+#if UNITY_EDITOR
+                EditorApplication.isPlaying = false; // 유니티 에디터에서 플레이 멈춤
+#else
+                SceneManager.LoadScene("TitleScene"); // 빌드 상태에서는 타이틀 화면으로 전환
+#endif
+            });
     }
 
     void Update()

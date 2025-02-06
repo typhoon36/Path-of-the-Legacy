@@ -211,7 +211,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         //퀘스트 목표 달성 여부 확인
         if (m_CurQuest.CurTargetCnt >= m_CurQuest.TargetCnt)
         {
-            m_MarkObj.SetInfo("?", transform.position);
+            m_MarkObj.SetInfo("!", transform.position);
             return;
         }
 
@@ -222,7 +222,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         }
         else
         {
-            m_MarkObj.SetInfo("!", transform.position);
+            m_MarkObj.SetInfo("?", transform.position);
         }
     }
     #endregion

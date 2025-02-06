@@ -24175,7 +24175,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.53333336
-    functionName: OnHitEvent()
+    functionName: OnHitEvent
     data: 
     objectReferenceParameter: {fileID: 1349150361055734, guid: f106d0c4d7749ea40aa9a3ccc6c65469, type: 3}
     floatParameter: 0

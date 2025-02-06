@@ -143,7 +143,19 @@ public class Player_Ctrl : Base_Ctrl
         SetPart();
 
         Data_Mgr.LoadData();
-        transform.position = Data_Mgr.m_StartData.m_Pos;
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Level2Scene")
+        {
+            transform.position = new Vector3(0, 0, 0); //던전 입구 위치
+        }
+        else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "BossScene")
+        {
+            transform.position = new Vector3(4.5f, 0, 0); //보스 입구 위치
+        }
+        else 
+        {
+            transform.position = Data_Mgr.m_StartData.m_Pos;
+        }
     }
 
     #endregion

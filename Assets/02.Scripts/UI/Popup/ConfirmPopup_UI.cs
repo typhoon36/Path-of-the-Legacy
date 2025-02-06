@@ -16,7 +16,6 @@ public class ConfirmPopup_UI : MonoBehaviour
     private EventHandler_UI m_CancelBtnHandler;
 
     public Text m_ConfirmText;
-
     #region Singleton
     public static ConfirmPopup_UI Inst;
     void Awake()

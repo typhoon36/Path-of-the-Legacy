@@ -27,8 +27,8 @@ public class Portal : MonoBehaviour
         if (coll.CompareTag("Player") && IsPortal == false)
         {
             // 플레이어와 포탈의 거리 계산
-            Vector3 direction = coll.transform.position - this.transform.position;
-            if (direction.sqrMagnitude <= m_ScanRange * 10)
+            Vector3 a_Dir = coll.transform.position - this.transform.position;
+            if (a_Dir.sqrMagnitude <= m_ScanRange * 10)
             {
                 IsPortal = true;
                 ConfirmPopup_UI.Inst.ShowPopup(m_Scene);

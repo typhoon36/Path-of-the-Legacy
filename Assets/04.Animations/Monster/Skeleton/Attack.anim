@@ -42365,14 +42365,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: OnAttEvent()
+    functionName: OnAttEvent
     data: 
     objectReferenceParameter: {fileID: 1349150361055734, guid: f106d0c4d7749ea40aa9a3ccc6c65469, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: ExitAttEvent()
+    functionName: ExitAttEvent
     data: 
     objectReferenceParameter: {fileID: 1349150361055734, guid: f106d0c4d7749ea40aa9a3ccc6c65469, type: 3}
     floatParameter: 0

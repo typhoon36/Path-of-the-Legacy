@@ -21,8 +21,7 @@ public class ItemPickUp : MonoBehaviour
     void FixedUpdate()
     {
         // 이름 Null Check
-        if (m_NameTxt == null)
-            m_NameTxt = GetComponentInChildren<Text>();
+        if (m_NameTxt == null) m_NameTxt = GetComponentInChildren<Text>();
         
 
         float a_Dist = Vector3.Distance(transform.position, m_PlayerDist.position);
@@ -32,5 +31,12 @@ public class ItemPickUp : MonoBehaviour
             m_NameTxt.gameObject.SetActive(true);
         else
             m_NameTxt.gameObject.SetActive(false);
+
+        // 아이템 회전
+        transform.Rotate(Vector3.up, 100 * Time.deltaTime);
+
+        // 5초가 지나면 아이템 삭제
+        Destroy(gameObject, 5f);
+
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -15,14 +14,14 @@ public class Monster_Ctrl : Base_Ctrl
     public Text m_NickTxt;
 
     protected MonsterStat m_Stat;//몬스터 스텟
-    NavMeshAgent m_Nav;
+    protected NavMeshAgent m_Nav;
 
     protected float m_Dist;
     protected bool IsOver = false;
 
-    [SerializeField] float m_ScanRange;//플레이어 감지 거리
-    [SerializeField] float m_AttRange;//공격 사거리
-    [SerializeField] public int m_SpawnRange = 16; //스폰 범위
+    [SerializeField] protected float m_ScanRange;//플레이어 감지 거리
+    [SerializeField] protected float m_AttRange;//공격 사거리
+    [SerializeField] protected float m_SpawnRange = 16; //스폰 범위
 
 
     public override void Init()
@@ -189,7 +188,9 @@ public class Monster_Ctrl : Base_Ctrl
             //플레이어 데미지 반영(몬스터 스탯에 따라 데미지 설정)
             MonsterStat a_Stat = GetComponent<MonsterStat>();
             int a_Dmg = Random.Range(a_Stat.Attack - 5, a_Stat.Attack + 5);
-            m_Target.GetComponent<Player_Ctrl>().CurHp -= a_Dmg;
+            
+            if(m_Target != null)
+                m_Target.GetComponent<Player_Ctrl>().CurHp -= a_Dmg;
         }
 
 

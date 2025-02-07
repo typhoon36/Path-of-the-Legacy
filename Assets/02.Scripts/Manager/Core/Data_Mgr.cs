@@ -341,12 +341,12 @@ public class Data_Mgr
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
             TargetCnt = 10,
-            TargetId = 3, // TargetId를 올바르게 설정
+            TargetId = 3, 
             CurTargetCnt = 0,
             RewardGold = 100,
             RewardExp = 100,
             RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 1, ItemCount = 1 } },
-            Desc = "마을 근처 트롤 저지",
+            Desc = "트롤 저지",
             TargetDesc = "10마리 사냥.",
             TargetPos = Vector3.zero,
             IsAccept = false,
@@ -358,13 +358,13 @@ public class Data_Mgr
             TitleName = "홉고블린 소탕",
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
-            TargetId = 1, // TargetId를 올바르게 설정
+            TargetId = 1, 
             TargetCnt = 10,
             CurTargetCnt = 0,
             RewardGold = 100,
             RewardExp = 100,
             RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 2, ItemCount = 1 } },
-            Desc = "마을 근처 홉고블린 저지",
+            Desc = "홉고블린 저지",
             TargetDesc = "10마리 사냥.",
             TargetPos = Vector3.zero,
             IsAccept = false,
@@ -388,11 +388,11 @@ public class Data_Mgr
         {
             Id = 2,
             BasicsTalk = "안녕하신가",
-            QuestStartTalk = new List<string> { "자네에게 부탁이 있네." },
+            QuestStartTalk = new List<string> { "자네에게 다른 부탁이 있네." },
             AcceptTalk = "부탁하네",
             RefusalTalk = "아쉽군",
             ProcTalk = "행운을 비네",
-            ClearTalk = "고맙네."
+            ClearTalk = "벌써 온건가?고맙군."
         });
     }
 

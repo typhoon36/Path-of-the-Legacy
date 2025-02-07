@@ -6,22 +6,18 @@ using UnityEngine.UI;
 
 public abstract class Npc_Ctrl : Base_Ctrl
 {
-    [SerializeField]
-    protected string m_NpcName; // NPC의 이름
+    [SerializeField] protected string m_NpcName; // NPC의 이름
 
-    [SerializeField]
-    protected float m_Range; // NPC의 사정거리
+    [SerializeField] protected float m_Range; // NPC의 사정거리
 
-    [SerializeField]
-    protected Text m_NameTxt; // NPC의 이름을 표시할 텍스트
+    [SerializeField]protected Text m_NameTxt; // NPC의 이름을 표시할 텍스트
 
 
     protected bool IsInteract = false; // 상호작용 중인지 체크
 
     public override void Init()
     {
-        if (m_NameTxt != null)
-            m_NameTxt.text = m_NpcName;
+        if (m_NameTxt != null) m_NameTxt.text = m_NpcName;
 
     }
 
@@ -40,10 +36,8 @@ public abstract class Npc_Ctrl : Base_Ctrl
             // 상호작용 체크
             InteractCheck();
 
-            if (m_NameTxt != null)
-            {
-                m_NameTxt.gameObject.SetActive(true); // 이름바 활성화
-            }
+            if (m_NameTxt != null) m_NameTxt.gameObject.SetActive(true); // 이름바 활성화
+            
 
             // 방향 설정
             a_Dir.y = 0;
@@ -52,8 +46,7 @@ public abstract class Npc_Ctrl : Base_Ctrl
         else
         {
             m_Target = null;
-            if (m_NameTxt != null)
-                m_NameTxt.gameObject.SetActive(false);
+            if (m_NameTxt != null) m_NameTxt.gameObject.SetActive(false);
         }
     }
 
@@ -61,7 +54,6 @@ public abstract class Npc_Ctrl : Base_Ctrl
     {
         IsInteract = !IsInteract;
 
-        // 상호작용 시작
         if (IsInteract)
         {
             // 모든 팝업 비활성화
@@ -77,12 +69,14 @@ public abstract class Npc_Ctrl : Base_Ctrl
         }
     }
 
+
     protected virtual void OpenPopup() { }
     protected virtual void ExitPopup() { }
 
     // 플레이어가 가까이 있다면 상호작용 가능
-    private void InteractCheck()
+    void InteractCheck()
     {
+        //F키로 상호작용
         if (Input.GetKeyDown(KeyCode.F) && !EventSystem.current.IsPointerOverGameObject())
             OnInteract();
 
@@ -90,8 +84,7 @@ public abstract class Npc_Ctrl : Base_Ctrl
         if (IsInteract == true)
         {
             // Esc Key로 상호작용 종료
-            if (Input.GetKeyDown(KeyCode.Escape))
-                OnInteract();
+            if (Input.GetKeyDown(KeyCode.Escape)) OnInteract();
         }
     }
 }

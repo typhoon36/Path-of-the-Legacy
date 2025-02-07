@@ -100,8 +100,7 @@ public class TalkPopup_UI : MonoBehaviour
     {
         if (Info != null)
         {
-            if (a_Name != null)
-                m_NameTxt.text = a_Name;
+            if (a_Name != null) m_NameTxt.text = a_Name;
 
             //대화 진행 후 종료
             IsNextTalk = false;
@@ -114,11 +113,13 @@ public class TalkPopup_UI : MonoBehaviour
     public void SetInfo(TalkData a_Talk, QuestData a_Quest, string a_Name = null)
     {
         // 데이터들이 없으면 리턴
-        if (a_Talk == null || a_Quest == null) return;
-
+        if (a_Talk == null || a_Quest == null)
+        {
+            Debug.Log("Talk or Quest Data Is Null");
+            return;
+        }
         // 대화 설정
-        if (a_Name != null)
-            m_NameTxt.text = a_Name;
+        if (a_Name != null) m_NameTxt.text = a_Name;
 
         m_TalkData = a_Talk;
         m_QuestData = a_Quest;
@@ -171,7 +172,7 @@ public class TalkPopup_UI : MonoBehaviour
 
         IsNext = true;
 
-        //다음가 대화가 있으면 다음 버튼 활성화
+        //다음 대화가 있으면 다음 버튼 활성화
         if (IsNextTalk == true)
             m_NextBtn.gameObject.SetActive(true);
 

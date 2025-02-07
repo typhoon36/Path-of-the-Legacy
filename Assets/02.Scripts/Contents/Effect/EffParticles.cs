@@ -14,7 +14,7 @@ public class EffParticles : Effects
     }
 
     // 파티클 접촉 시 호출
-    private void ParticleCollider()
+    void ParticleCollider()
     {
         if (IsParticleColl != null)
         {

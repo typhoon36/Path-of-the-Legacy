@@ -14,9 +14,9 @@ public class MonGen_Mgr : MonoBehaviour
     int m_OldCnt = 0;
     [SerializeField] int m_MaxSpawnCnt = 15; // 최대 소환할 몬스터 수
 
-    private bool IsSpawn = false;
-    private Coroutine m_SpawnCo;
-    private int m_CurSpawnIdx = 0; // 현재 소환 위치 인덱스
+    bool IsSpawn = false;
+    Coroutine m_SpawnCo;
+    int m_CurSpawnIdx = 0; // 현재 소환 위치 인덱스
 
     #region Singleton
     public static MonGen_Mgr Inst;
@@ -26,7 +26,7 @@ public class MonGen_Mgr : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    void Start()
     {
         m_OldCnt = m_SpawnCnt;
 

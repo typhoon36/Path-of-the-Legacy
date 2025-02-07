@@ -62,7 +62,7 @@ public class SettingBox : MonoBehaviour
 
     }
 
-    private void SliderChanged(float value)
+    void SliderChanged(float value)
     {
         PlayerPrefs.SetFloat("SoundVolume", value);
         Sound_Mgr.Inst.SoundVolume(value);

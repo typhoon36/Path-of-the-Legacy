@@ -68,12 +68,25 @@ public class QuestPopup_UI : MonoBehaviour
         m_QuestCloseBtn.onClick.AddListener(() =>
         {
             m_QuestInfoObj.SetActive(false);
+
+            //m_QuestInfoObj가 꺼졌을시  버튼 위치 변경
+            if(m_QuestInfoObj.activeSelf == false)
+            {
+                RectTransform a_Rect = m_QuestOpenBtn.GetComponent<RectTransform>();
+                a_Rect.anchoredPosition = new Vector2(600, 120);
+            }
         });
 
         // 퀘스트 열기 버튼
         m_QuestOpenBtn.onClick.AddListener(() =>
         {
             m_QuestInfoObj.SetActive(true);
+
+            if(m_QuestInfoObj.activeSelf == true)
+            {
+                RectTransform a_Rect = m_QuestOpenBtn.GetComponent<RectTransform>();
+                a_Rect.anchoredPosition = new Vector2(375, 120);
+            }
         });
 
     }
@@ -113,33 +126,34 @@ public class QuestPopup_UI : MonoBehaviour
     //퀘스트 목표 개수 반영
     public void QuestTargetCnt(GameObject a_Obj)
     {
-        //수락한 퀘스트가 없으면 종료
+        // 수락한 퀘스트가 없으면 종료
         if (m_QuestData == null) return;
 
-        //몬스터 체크
+        // 몬스터 체크
         if (a_Obj.GetComponent<MonsterStat>())
         {
-            //수락한 퀘스트만큼 반복
-            foreach (var a_Quest in Data_Mgr.m_AcceptedQuest)
+            // 수락한 퀘스트만큼 반복
+            foreach (var a_Quest in Data_Mgr.m_QuestData)
             {
-                //오브젝트 ID와 퀘스트 타겟 ID가 같다면
-                if (a_Quest == m_QuestData.Id)
+                // 오브젝트 ID와 퀘스트 타겟 ID가 같다면
+                if (a_Quest.TargetId == a_Obj.GetComponent<MonsterStat>().m_Id && a_Quest.IsAccept && !a_Quest.IsClear)
                 {
-                    //퀘스트 목표 개수 증가
-                    m_QuestData.CurTargetCnt++;
+                    // 퀘스트 목표 개수 증가
+                    a_Quest.CurTargetCnt++;
                     RefreshUI();
-                }
 
-                //퀘스트 목표 개수와 현재 목표 개수가 같다면
-                if (m_QuestData.CurTargetCnt == m_QuestData.TargetCnt)
-                {
-                    //퀘스트 완료
-                    m_QuestData.IsClear = true;
+                    // 퀘스트 목표 개수와 현재 목표 개수가 같다면
+                    if (a_Quest.CurTargetCnt >= a_Quest.TargetCnt)
+                        // 퀘스트 완료
+                        a_Quest.IsClear = true;
+
+
+                    // 데이터 저장(목표 개수 반영 및 완료 퀘스트 저장)
+                    Data_Mgr.SaveData();
                     return;
                 }
             }
         }
-
     }
 
     public void RefreshUI()
@@ -150,6 +164,12 @@ public class QuestPopup_UI : MonoBehaviour
         {
             m_QuestInfo.text = m_QuestData.Desc;
             m_QuestTargetCnt.text = m_QuestData.CurTargetCnt + "/" + m_QuestData.TargetCnt;
+
+            // 퀘스트 완료시 m_QuestTargetCnt 텍스트 변경
+            if (m_QuestData.IsClear)
+                m_QuestTargetCnt.text = m_QuestData.CurTargetCnt + "/" + m_QuestData.TargetCnt + " (완료)";
+            
+
         }
 
     }

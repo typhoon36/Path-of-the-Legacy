@@ -18,9 +18,7 @@ public class Cursor_Ctrl : MonoBehaviour
     Texture2D m_HandIcon;    // 기본 icon
     Texture2D m_InteractIcon;    // 상호작용 icon
 
-    private int m_Mask = (1 << (int)Define_S.Layer.Ground)
-        | (1 << (int)Define_S.Layer.Monster)
-        | (1 << (int)Define_S.Layer.Npc);
+    int m_Mask = (1 << (int)Define_S.Layer.Ground)| (1 << (int)Define_S.Layer.Monster)| (1 << (int)Define_S.Layer.Npc);
 
     void Start()
     {
@@ -43,7 +41,7 @@ public class Cursor_Ctrl : MonoBehaviour
         CursorUpdate();
     }
 
-    private void CursorUpdate()
+    void CursorUpdate()
     {
         Ray a_Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(a_Ray, 600f, m_Mask);

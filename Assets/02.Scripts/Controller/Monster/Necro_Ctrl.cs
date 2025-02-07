@@ -100,7 +100,7 @@ public class Necro_Ctrl : Monster_Ctrl
 
         if (m_DisableCo != null) StopCoroutine(m_DisableCo);
 
-        //m_DisableCo = StartCoroutine(DisableColl());
+        m_DisableCo = StartCoroutine(DisableColl());
 
     }
 
@@ -109,11 +109,11 @@ public class Necro_Ctrl : Monster_Ctrl
         //공격 종료
         if (m_AttCnt++ >= Random.Range(2, m_SkillCnt + 1))
         {
-            //IsSkill = true; m_AttCnt = 0;
+            IsSkill = true; m_AttCnt = 0;
         }
 
         //종료했다면 콜리더 비활성화
-        //m_AttColl.IsCollider(false);
+        m_AttColl.IsCollider(false);
         //Idle상태 
         State = Define_S.AllState.Idle;
     }

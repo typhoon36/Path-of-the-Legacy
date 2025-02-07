@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 ///메인 UI 매니저 : 메인 UI를 위한 스크립트
 public class UI_Mgr : MonoBehaviour
@@ -27,8 +26,7 @@ public class UI_Mgr : MonoBehaviour
     public Image m_SkillD;
     public Image m_1stItem;
     public Image m_2ndItem;
-    public Dictionary<Define_S.KeySkill, SkillData> SkillBarList
-        = new Dictionary<Define_S.KeySkill, SkillData>();
+    public Dictionary<Define_S.KeySkill, SkillData> SkillBarList = new Dictionary<Define_S.KeySkill, SkillData>();
 
     Coroutine Co_Item1Recovery;
     Coroutine Co_Item2Recovery;
@@ -88,6 +86,7 @@ public class UI_Mgr : MonoBehaviour
         if (Application.isMobilePlatform) m_Slots.gameObject.SetActive(false);
 
         if (m_TargetScene == Define_S.Scene.Game) m_MiniMap.gameObject.SetActive(true);
+        //보스나 던전 씬이라면 미니맵 비활성화
         else m_MiniMap.gameObject.SetActive(false);
 
         if (Data_Mgr.m_SkillData.Count > 1)
@@ -224,6 +223,12 @@ public class UI_Mgr : MonoBehaviour
             case 0:
                 {
                     // 1아이템 사용
+                    if (m_1stItem.fillAmount < 1)
+                    {
+                        Debug.Log("Item 1 is still on cooldown.");
+                        return;
+                    }
+
                     m_1stItem.fillAmount = 0;
                     a_Player.CurHp += 50; // CurHp 프로퍼티를 사용하여 HP 증가
 
@@ -240,6 +245,12 @@ public class UI_Mgr : MonoBehaviour
             case 1:
                 {
                     // 2아이템 사용
+                    if (m_2ndItem.fillAmount < 1)
+                    {
+                        Debug.Log("Item 2 is still on cooldown.");
+                        return;
+                    }
+
                     m_2ndItem.fillAmount = 0;
                     a_Player.CurMp += 50; // CurMp 프로퍼티를 사용하여 MP 증가
 

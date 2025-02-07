@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Effects : MonoBehaviour
 {
-    private new ParticleSystem particleSystem;
+    new ParticleSystem particleSystem;
 
     void Awake()
     {

@@ -5,15 +5,13 @@ using UnityEngine;
 public class QuestNpc_Ctrl : Npc_Ctrl
 {
     //퀘스트 타입
-    public Define_S.QuestType m_QuestType;
+    public Define_S.QuestType m_QuestType; //퀘스트 타입(대화, 몬스터, 아이템)
 
-    [SerializeField]
-    private int[] m_QuestId; //퀘스트 id Array
+    [SerializeField] int[] m_QuestId; //퀘스트 id Array
 
-    [SerializeField]
-    private int[] m_TalkId;             // 대화 id Array
+    [SerializeField] int[] m_TalkId;             // 대화 id Array
 
-    private int m_NextQuestIdx;     // 다음 퀘스트 인덱스
+    int m_NextQuestIdx;     // 다음 퀘스트 인덱스
 
     [HideInInspector] public bool IsQuest;            // 퀘스트를 가지고 있는가?
 
@@ -36,30 +34,18 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         // id를 통해 퀘스트, 대화 데이터를 가져온다.
         for (int i = 0; i < m_QuestId.Length; i++)
         {
-            // m_QuestId와 m_TalkId의 길이가 다르다고 가정
-            if (i < Data_Mgr.m_QuestData.Count)
-            {
-                m_QuestDataList.Add(Data_Mgr.m_QuestData[m_QuestId[i]]);
-            }
-            if (i < Data_Mgr.m_TalkData.Count)
-            {
-                m_TalkDataList.Add(Data_Mgr.m_TalkData[m_TalkId[i]]);
-            }
+            m_QuestDataList.Add(Data_Mgr.m_QuestData[m_QuestId[i]]);
+            m_TalkDataList.Add(Data_Mgr.m_TalkData[m_TalkId[i]]);
         }
 
         m_NextQuestIdx = 0;
 
         // 현재 퀘스트 & 대화 설정
-        if (m_QuestDataList.Count > 0 && m_TalkDataList.Count > 0)
-        {
-            m_CurQuest = m_QuestDataList[m_NextQuestIdx];
-            m_CurTalk = m_TalkDataList[m_NextQuestIdx];
-            IsQuest = true;
-        }
-        else
-        {
-            IsQuest = false;
-        }
+
+        m_CurQuest = m_QuestDataList[m_NextQuestIdx];
+        m_CurTalk = m_TalkDataList[m_NextQuestIdx];
+        IsQuest = true;
+
 
         // QuestMark_UI 오브젝트를 찾아서 할당
         m_MarkObj = GetComponentInChildren<QuestMark_UI>();
@@ -101,6 +87,9 @@ public class QuestNpc_Ctrl : Npc_Ctrl
 
     protected override void OnInteract()
     {
+        //이미 대화중이라면 리턴
+        if (TalkPopup_UI.Inst.m_TalkPanel.gameObject.activeSelf) return;
+
         base.OnInteract();
     }
 
@@ -129,7 +118,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
             {
                 SetTalk(m_CurTalk.ClearTalk);
                 m_CurQuest.QuestClear();
-                Data_Mgr.CompleteQuest(m_CurQuest.Id); 
+                Data_Mgr.CompleteQuest(m_CurQuest.Id);
                 QuestCheck();
             }
             else
@@ -143,7 +132,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         {
             SetTalk(m_CurTalk);
             m_CurQuest.IsAccept = true;
-            Data_Mgr.AcceptQuest(m_CurQuest.Id); 
+            Data_Mgr.AcceptQuest(m_CurQuest.Id);
             return;
         }
 
@@ -204,7 +193,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         //퀘스트 클리어 여부 확인
         if (m_CurQuest.IsClear == true || IsQuest == false)
         {
-            m_MarkObj.SetInfo(" ", transform.position);
+            m_MarkObj.SetInfo("!", transform.position);
             return;
         }
 

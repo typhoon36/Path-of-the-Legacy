@@ -7,10 +7,9 @@ public class ItemPickUp : MonoBehaviour
 {
     public ItemData m_Item;
     public int m_ItemCount = 1;      // 아이템 전용 개수
-
-    private float m_ScanRange = 5f;     // 플레이어 스캔 거리
-
     public Text m_NameTxt = null;
+
+    float m_ScanRange = 5f;     // 플레이어 스캔 거리
     Transform m_PlayerDist;
 
     void Start()
@@ -22,7 +21,7 @@ public class ItemPickUp : MonoBehaviour
     {
         // 이름 Null Check
         if (m_NameTxt == null) m_NameTxt = GetComponentInChildren<Text>();
-        
+
 
         float a_Dist = Vector3.Distance(transform.position, m_PlayerDist.position);
 

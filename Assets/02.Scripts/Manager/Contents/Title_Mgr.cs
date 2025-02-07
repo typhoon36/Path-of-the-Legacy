@@ -29,6 +29,7 @@ public class Title_Mgr : MonoBehaviour
             m_ContinueBtn.onClick.AddListener(() =>
             {
                 Data_Mgr.LoadData();
+                SceneManager.LoadScene("Level1Scene");
             });
 
         if (m_ExitBtn != null)

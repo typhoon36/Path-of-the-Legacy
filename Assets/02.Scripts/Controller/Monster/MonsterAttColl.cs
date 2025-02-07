@@ -6,8 +6,7 @@ public class MonsterAttColl : MonoBehaviour
 {
     public int m_Damage;
 
-    [SerializeField]
-    private BoxCollider m_Collider;
+    [SerializeField] BoxCollider m_Collider;
 
     public void IsCollider(bool isActive) { m_Collider.enabled = isActive; }
 

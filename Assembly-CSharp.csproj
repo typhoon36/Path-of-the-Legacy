@@ -145,6 +145,7 @@
     <Compile Include="Assets\02.Scripts\Contents\Effect\Effects.cs" />
     <Compile Include="Assets\02.Scripts\Controller\NPC\ShopNpc_Ctrl.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
+    <Compile Include="Assets\02.Scripts\UI\SubItem\Desc_Nd.cs" />
     <Compile Include="Assets\02.Scripts\UI\SubItem\Quest\Quest_Nd.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\PlatformSpecificContent.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Monster\Monster_Ctrl.cs" />

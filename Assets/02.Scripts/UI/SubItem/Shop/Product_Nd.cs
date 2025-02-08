@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //상품 정보
-public class Product_Nd : MonoBehaviour
+public class Product_Nd : MonoBehaviour, IPointerClickHandler
 {
     public Image m_Icon;
     public Text m_ItemTxt;
     public Text m_PriceTxt;
     public Button m_BuyBtn;
-
-    //public GameObject m_MoreInfo; //상품 상세 정보 팝업
 
     ItemData m_ItemData;
 
@@ -26,9 +25,19 @@ public class Product_Nd : MonoBehaviour
             }
         });
     }
+  
+    public void Init(ItemData a_ItemData)
+    {
+        m_ItemData = a_ItemData;
+        if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
+            m_Icon.sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
+
+        m_ItemTxt.text = a_ItemData.ItemName;
+        m_PriceTxt.text = a_ItemData.ItemPrice.ToString();
+    }
 
     //주소를 받아오기(ReadOnly인 이유는 다른 곳에서 값을 변경하지 못하게 하기 위함)
-    static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
+    public static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
     {
         { 1,    "Items/Potions/grass_potion" },
         { 2,    "Items/Potions/wind_potion" },
@@ -47,14 +56,14 @@ public class Product_Nd : MonoBehaviour
         { 15,     "Items/Weapons/Shield"}
     };
 
-    public void Init(ItemData a_ItemData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        m_ItemData = a_ItemData;
-        if (IconPathMap.TryGetValue(a_ItemData.Id, out string iconPath))
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
-            m_Icon.sprite = Resources.Load<Sprite>(iconPath); // 아이콘 로드
+            if (ShopPopup_UI.Inst != null)
+            {
+                ShopPopup_UI.Inst.ShowDesc(m_ItemData);
+            }
         }
-        m_ItemTxt.text = a_ItemData.ItemName;
-        m_PriceTxt.text = a_ItemData.ItemPrice.ToString();
     }
 }

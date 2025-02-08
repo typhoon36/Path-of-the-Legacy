@@ -150,7 +150,7 @@ public class Player_Ctrl : Base_Ctrl
         }
         else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "BossScene")
         {
-            transform.position = new Vector3(4.5f, 0, 0); //보스 입구 위치
+            transform.position = new Vector3(4.5f, 0, 3f); //보스 입구 위치
         }
         else 
         {

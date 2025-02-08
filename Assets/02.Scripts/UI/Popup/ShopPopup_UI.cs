@@ -14,7 +14,6 @@ public class ShopPopup_UI : MonoBehaviour
     [Header("Products")]
     public GameObject m_Products;
 
-    ItemData m_ItemData;
 
     #region SingleTon
     public static ShopPopup_UI Inst;
@@ -34,7 +33,7 @@ public class ShopPopup_UI : MonoBehaviour
             InvenPopup_UI.Inst.m_InvenPopup.SetActive(false);
         });
     }
-
+   
     public void LoadProducts(Define_S.ShopType shopType)
     {
         // 기존 상품 제거
@@ -65,4 +64,19 @@ public class ShopPopup_UI : MonoBehaviour
             addedItemIds.Add(itemData.Id);
         }
     }
+
+    public void ShowDesc(ItemData itemData)
+    {
+        if (Desc_Nd.Inst != null && itemData != null)
+        {
+            Desc_Nd.Inst.m_DescObj.SetActive(true);
+            Desc_Nd.Inst.m_NameTxt.text = itemData.ItemName;
+            Desc_Nd.Inst.m_DescText.text = itemData.ItemDesc;
+            if (Product_Nd.IconPathMap.TryGetValue(itemData.Id, out string iconPath))
+            {
+                Desc_Nd.Inst.m_Icon.sprite = Resources.Load<Sprite>(iconPath);
+            }
+        }
+    }
+
 }

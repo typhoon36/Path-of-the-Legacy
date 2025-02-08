@@ -117,4 +117,7 @@ public class MonGen_Mgr : MonoBehaviour
         m_SpawnCnt--; // 소환할 몬스터 수 감소
         IsSpawn = false; // 코루틴 실행 완료로 설정
     }
+
+
+
 }

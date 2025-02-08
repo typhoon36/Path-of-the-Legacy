@@ -15,6 +15,9 @@ public class InvenPopup_UI : MonoBehaviour
     Vector3 m_OriginPos;
     ItemData m_ItemData;
 
+    [Header("ItemDesc")]
+    public GameObject m_ItemDesc;
+
 
     public static InvenPopup_UI Inst;
     void Awake()
@@ -34,6 +37,7 @@ public class InvenPopup_UI : MonoBehaviour
         m_CloseBtn.onClick.AddListener(() => m_InvenPopup.SetActive(false));
     }
 
+
     void Update()
     {
         RefreshGold(); // 골드 갱신
@@ -45,25 +49,67 @@ public class InvenPopup_UI : MonoBehaviour
             if (m_InvenPopup.activeSelf)
             {
                 m_Content.anchoredPosition = m_OriginPos;
-                CheckInventoryItems(); // 인벤토리 아이템 확인
+                CheckInvenItems(); // 인벤토리 아이템 확인
             }
             else
-            {
                 m_Content.anchoredPosition = m_OriginPos;
-            }
         }
 
-        //컨트롤키를 누르고 왼쪽마우스 클릭시 아이템 판매
+        // 컨트롤키를 누르고 왼쪽마우스 클릭시 아이템 판매
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0) && ShopPopup_UI.Inst.m_ShopPopup.activeSelf == true)
             SellItem(m_ItemData);
+
+        // 마우스 오른쪽 클릭시 설명창 스폰
+        if (Input.GetMouseButtonDown(1) && m_InvenPopup.activeSelf == true)
+        {
+            Vector2 a_MousePos = Input.mousePosition;
+            foreach (Transform slot in m_Content)
+            {
+                RectTransform a_SlotRect = slot.GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(a_SlotRect, a_MousePos))
+                {
+                    Image Icon = slot.GetChild(0).GetComponent<Image>();
+
+                    if (Icon != null && Icon.sprite != null)
+                        foreach (var a_Key in IconPathMap)
+                        {
+                            if (Resources.Load<Sprite>(a_Key.Value) == Icon.sprite)
+                            {
+                                m_ItemData = Data_Mgr.CallItem(a_Key.Key);
+                                ShowItemDesc(m_ItemData.Id);
+                                break;
+                            }
+                        }
+
+                }
+            }
+        }
+        else if (m_InvenPopup.activeSelf == false) m_ItemDesc.SetActive(false);
+
     }
 
+    void ShowItemDesc(int a_Id)
+    {
+        if (Desc_Nd.Inst == null)
+        {
+            Debug.LogError("Desc_Nd instance is not initialized.");
+            return;
+        }
+
+        ItemData a_ItemData = Data_Mgr.CallItem(a_Id);
+        if (a_ItemData != null)
+        {
+            Desc_Nd.Inst.m_DescText.text = a_ItemData.ItemDesc;
+            Desc_Nd.Inst.m_NameTxt.text = a_ItemData.ItemName +" ["+ a_ItemData.ItemGrade + "]";
+            Desc_Nd.Inst.m_Icon.sprite = Resources.Load<Sprite>(a_ItemData.ItemIconPath);
+            Desc_Nd.Inst.m_DescObj.SetActive(true);
+        }
+    }
 
     void OnApplicationQuit()
     {
         SaveInven(); // 게임 종료 시 인벤토리 저장
     }
-
 
     void RefreshGold()
     {
@@ -77,7 +123,7 @@ public class InvenPopup_UI : MonoBehaviour
         Data_Mgr.SaveData(); // 골드 값을 저장
     }
 
-    public void CheckInventoryItems()
+    public void CheckInvenItems()
     {
         bool hasItems = false;
         foreach (Transform slot in m_Content)

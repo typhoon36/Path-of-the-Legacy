@@ -18,6 +18,7 @@ public class EqStatPopup_UI : MonoBehaviour
     [Header("StatPopup")]
     public GameObject m_StatPopup;
     public Button m_StatCloseBtn;
+    public Button m_HPBtn;
     public Button m_STRBtn;
     public Button m_DEXBtn;
     public Button m_INTBtn;
@@ -64,6 +65,7 @@ public class EqStatPopup_UI : MonoBehaviour
                 Data_Mgr.m_StartData.StatPoint -= 1;
                 m_StatPointTxt.text = "½ºÅÝ Æ÷ÀÎÆ® : " + Data_Mgr.m_StartData.StatPoint.ToString();
                 m_STRTxt.text = "±Ù·Â : " + Data_Mgr.m_StartData.STR.ToString();
+                Data_Mgr.SaveData();
             }
         });
 
@@ -75,6 +77,7 @@ public class EqStatPopup_UI : MonoBehaviour
                 Data_Mgr.m_StartData.StatPoint -= 1;
                 m_StatPointTxt.text = "½ºÅÝ Æ÷ÀÎÆ® : " + Data_Mgr.m_StartData.StatPoint.ToString();
                 m_DEXTxt.text = "¹ÎÃ¸ : " + Data_Mgr.m_StartData.Speed.ToString();
+                Data_Mgr.SaveData();
             }
         });
 
@@ -86,6 +89,7 @@ public class EqStatPopup_UI : MonoBehaviour
                 Data_Mgr.m_StartData.StatPoint -= 1;
                 m_StatPointTxt.text = "½ºÅÝ Æ÷ÀÎÆ® : " + Data_Mgr.m_StartData.StatPoint.ToString();
                 m_INTTxt.text = "±â¾ï·Â : " + Data_Mgr.m_StartData.Int.ToString();
+                Data_Mgr.SaveData();
             }
         });
 
@@ -97,6 +101,7 @@ public class EqStatPopup_UI : MonoBehaviour
                 Data_Mgr.m_StartData.StatPoint -= 1;
                 m_StatPointTxt.text = "½ºÅÝ Æ÷ÀÎÆ® : " + Data_Mgr.m_StartData.StatPoint.ToString();
                 m_LUKTxt.text = "¿î : " + Data_Mgr.m_StartData.Luk.ToString();
+                Data_Mgr.SaveData();
             }
         });
         #endregion

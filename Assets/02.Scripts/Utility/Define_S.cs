@@ -129,4 +129,7 @@ public class Define_S : MonoBehaviour
         LeftClick,
         RightClick,
     }
+
+    public const string LoadMsg1 = "미니맵은 던전에서 작동하지않습니다.";
+    public const string LoadMsg2 = "상점 열렸을시 Ctrl키를 누르고 클릭시 판매됩니다.";
 }

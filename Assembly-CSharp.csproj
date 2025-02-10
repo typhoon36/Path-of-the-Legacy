@@ -99,6 +99,7 @@
     <Compile Include="Assets\02.Scripts\UI\SubItem\Shop\Product_Nd.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Base_Ctrl.cs" />
+    <Compile Include="Assets\02.Scripts\Manager\Contents\Load_Mgr.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Monster\MonsterAttColl.cs" />
     <Compile Include="Assets\02.Scripts\Controller\Monster\Necro_Ctrl.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
@@ -151,7 +152,9 @@
     <Compile Include="Assets\02.Scripts\Controller\Monster\Monster_Ctrl.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\07.Model\Monster\Drakonit_monster\Stand\Double Sided Transparent Diffuse Bump.shader" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\07.Model\Monster\Drakonit_monster\Stand\Double Sided Emissive Diffuse.shader" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Environments\Sources\Shaders\PT_Water_Shader_WebGl.shader" />
     <None Include="Assets\07.Model\Matthew Guz\Slash Effects FREE\Documentation\Readme IMPORTANT.txt" />
@@ -162,6 +165,7 @@
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Weapons\Sources\Shaders\PT_Weapons_Shader_Toon.shader" />
     <None Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\07.Model\Monster\Drakonit_monster\Stand\Double Sided Transparent Diffuse Bump Cutout.shader" />
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Weapons\Sources\Shaders\PT_Weapons_Shader_PBR.shader" />
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_PBR.shader" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
@@ -177,10 +181,10 @@
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Environments\Sources\Shaders\PT_Vegetation_Flowers_Shader.shader" />
     <None Include="Assets\08.Utility\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Environments\Sources\Shaders\PT_Rock_Shader_VS.shader" />
+    <None Include="Assets\07.Model\Monster\Drakonit_monster\Stand\Double Sided Standard Diffuse Bump.shader" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Environments\Sources\Shaders\PT_Vegetation_Plants_Shader_VS.shader" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\ImageEffects\Readme.txt" />
-    <None Include="Assets\07.Model\Monster\Necromanser\Stand\Standard_Two_Sided .shader" />
     <None Include="Assets\07.Model\NPC_Pack\Lowpoly_Environments\Sources\Shaders\PT_Vegetation_Flowers_Shader_VS.shader" />
     <None Include="Assets\08.Utility\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\08.Utility\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />

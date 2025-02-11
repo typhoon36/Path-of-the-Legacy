@@ -21,12 +21,12 @@ public class Scene_Mgr : MonoBehaviour
     {
         if (scene == Define_S.Scene.Game)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level1Scene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
             
         }
         else if (scene == Define_S.Scene.Dungeon)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level2Scene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("DungeonScene");
         }
         else if (scene == Define_S.Scene.Boss)
         {

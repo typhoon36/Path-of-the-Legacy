@@ -723,6 +723,17 @@ public class Player_Ctrl : Base_Ctrl
 
             }
         }
+        else if(coll.CompareTag("MonsterSkill"))
+        {
+            Monster_Ctrl a_Monster = coll.GetComponent<Monster_Ctrl>();
+            if (a_Monster != null)
+            {
+                MonsterStat a_MonStat = a_Monster.GetComponent<MonsterStat>();
+                int a_Dmg = a_MonStat.Attack * 2;
+                if (a_MonStat != null)
+                    OnHit(a_MonStat, a_Dmg);
+            }
+        }
     }
 
     void OnDie()

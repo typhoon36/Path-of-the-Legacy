@@ -109,6 +109,7 @@
     <Compile Include="Assets\02.Scripts\UI\SubItem\Drag&amp;Drop\Drop_UI.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
+    <Compile Include="Assets\02.Scripts\Controller\Monster\MonsterSkillColl.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\CameraRefocus.cs" />
     <Compile Include="Assets\02.Scripts\Contents\MonGen_Mgr.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\ParticleSystemDestroyer.cs" />

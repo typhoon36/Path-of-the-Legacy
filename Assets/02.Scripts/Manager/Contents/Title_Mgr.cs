@@ -10,22 +10,14 @@ public class Title_Mgr : MonoBehaviour
     public Button m_newStartBtn;
     public Button m_ContinueBtn;
     public Button m_ExitBtn;
-    public Button m_SettingBtn;
 
     void Start()
     {
-
-
         if (m_newStartBtn != null)
             m_newStartBtn.onClick.AddListener(() =>
             {
-                // 데이터 초기화
-                Data_Mgr.m_StartData = new StartData();
-                Data_Mgr.m_ItemData = new List<ItemData>();
-                Data_Mgr.m_SkillData = new List<SkillData>();
-                Data_Mgr.m_QuestData = new List<QuestData>();
-                Data_Mgr.m_TalkData = new List<TalkData>();
-
+                //데이터 초기화
+                InitData();
                 SceneManager.LoadScene("LoadScene");
             });
 
@@ -43,10 +35,9 @@ public class Title_Mgr : MonoBehaviour
                 UnityEditor.EditorApplication.isPlaying = false;
                 Data_Mgr.SaveData();
 #else
-                Application.Quit();
+                        Application.Quit();
 #endif
             });
-
     }
 
     float a_Time = 0;
@@ -57,20 +48,38 @@ public class Title_Mgr : MonoBehaviour
             a_Time += Time.deltaTime;
             m_TitleTxt.GetComponent<Outline>().effectColor = new Color(0, 0, 0, 1 - a_Time);
         }
-        else if(a_Time < 1)
+        else if (a_Time < 1)
         {
             a_Time = 1;
-            m_TitleTxt.GetComponent<Outline>().effectColor = new Color(0,0,0,1);
+            m_TitleTxt.GetComponent<Outline>().effectColor = new Color(0, 0, 0, 1);
         }
         else
         {
             m_TitleTxt.GetComponent<Outline>().effectColor = new Color(1, 1, 1, a_Time);
-
         }
 
         a_Time += Time.deltaTime;
     }
 
+    void InitData()
+    {
+        //퀘스트 초기화
+        Data_Mgr.m_AcceptedQuest.Clear();
+        //StartData 초기화
+        Data_Mgr.m_StartData.Exp = 0;
+        Data_Mgr.m_StartData.Level = 1;
+        Data_Mgr.m_StartData.MaxHp = 100;
+        Data_Mgr.m_StartData.CurHp = 100;
+        Data_Mgr.m_StartData.ATK = 10;
+        Data_Mgr.m_StartData.STR = 2;
+        Data_Mgr.m_StartData.Speed = 5;
+        Data_Mgr.m_StartData.Int = 2;
+        Data_Mgr.m_StartData.Luk = 2;
+        Data_Mgr.m_StartData.Gold = 100;
+        Data_Mgr.m_StartData.SkillPoint = 0;
+        Data_Mgr.m_StartData.StatPoint = 0;
+        Data_Mgr.m_StartData.m_Pos = new Vector3(147.201f, 0.064f, 22.87f);
 
-
+        Data_Mgr.SaveData();
+    }
 }

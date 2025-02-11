@@ -178,7 +178,6 @@ public class TalkData
     public string ClearTalk;
 }
 #endregion
-
 #endregion
 
 public class Data_Mgr
@@ -192,8 +191,8 @@ public class Data_Mgr
     public static List<UseItemData> m_UseItemData = new List<UseItemData>();
     public static List<WeaponItemData> m_WeaponData = new List<WeaponItemData>();
 
-    public static Dictionary<int, List<int>> DropItem { get; private set; } = new Dictionary<int, List<int>>();
-    public static Dictionary<int, GameObject> ItemObjects { get; private set; } = new Dictionary<int, GameObject>();
+    public static Dictionary<int, List<int>> DropItem { get; set; } = new Dictionary<int, List<int>>();
+    public static Dictionary<int, GameObject> ItemObjects { get; set; } = new Dictionary<int, GameObject>();
     #endregion
 
     public static List<LevelData> m_LevelData = new List<LevelData>();
@@ -203,7 +202,6 @@ public class Data_Mgr
     public static List<TalkData> m_TalkData = new List<TalkData>();
     public static List<int> m_AcceptedQuest = new List<int>();
     #endregion
-
 
     public static void SaveData()
     {
@@ -300,8 +298,7 @@ public class Data_Mgr
     }
     #endregion
 
-
-    static void InitSkillData()
+    public static void InitSkillData()
     {
         m_SkillData.Add(new SkillData
         {
@@ -332,7 +329,7 @@ public class Data_Mgr
         });
     }
 
-    static void InitQuestData()
+    public static void InitQuestData()
     {
         m_QuestData.Add(new QuestData
         {
@@ -341,7 +338,7 @@ public class Data_Mgr
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
             TargetCnt = 10,
-            TargetId = 3, 
+            TargetId = 3,
             CurTargetCnt = 0,
             RewardGold = 100,
             RewardExp = 100,
@@ -358,7 +355,7 @@ public class Data_Mgr
             TitleName = "홉고블린 소탕",
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
-            TargetId = 1, 
+            TargetId = 1,
             TargetCnt = 10,
             CurTargetCnt = 0,
             RewardGold = 100,
@@ -372,7 +369,7 @@ public class Data_Mgr
         });
     }
 
-    static void InitTalkData()
+    public static void InitTalkData()
     {
         m_TalkData.Add(new TalkData
         {
@@ -442,7 +439,7 @@ public class Data_Mgr
     }
 
     /*DropItems*/
-    static void InitDropData()
+    public static void InitDropData()
     {
         // 몬스터 1에 대한 드랍 아이템 설정(홉고블린)
         AddDropData(1, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
@@ -482,7 +479,4 @@ public class Data_Mgr
     {
         return Resources.Load<GameObject>(path);
     }
-
-
-
 }

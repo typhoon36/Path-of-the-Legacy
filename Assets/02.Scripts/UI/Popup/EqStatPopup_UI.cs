@@ -23,6 +23,7 @@ public class EqStatPopup_UI : MonoBehaviour
     public Button m_DEXBtn;
     public Button m_INTBtn;
     public Button m_LUKBtn;
+    public Text m_HPTxt;
     public Text m_STRTxt;
     public Text m_DEXTxt;
     public Text m_INTTxt;
@@ -54,8 +55,26 @@ public class EqStatPopup_UI : MonoBehaviour
         });
         m_LevelTxt.text = "레벨 : " + Data_Mgr.m_StartData.Level.ToString();
 
+        m_HPTxt.text = "생명력 : " + Data_Mgr.m_StartData.MaxHp.ToString();
+        m_STRTxt.text = "근력 : " + Data_Mgr.m_StartData.STR.ToString();
+        m_DEXTxt.text = "민첩 : " + Data_Mgr.m_StartData.Speed.ToString();
+        m_INTTxt.text = "기억력 : " + Data_Mgr.m_StartData.Int.ToString();
+        m_LUKTxt.text = "운 : " + Data_Mgr.m_StartData.Luk.ToString();
+
+
         //레벨업하면 스텟 포인트 5증가
         m_StatPointTxt.text = "스텟 포인트 : " + Data_Mgr.m_StartData.StatPoint.ToString();
+
+        m_HPBtn.onClick.AddListener(() =>
+        {
+            if (Data_Mgr.m_StartData.StatPoint > 0)
+            {
+                Data_Mgr.m_StartData.MaxHp += 20;
+                Data_Mgr.m_StartData.StatPoint -= 1;
+                m_StatPointTxt.text = "스텟 포인트 : " + Data_Mgr.m_StartData.StatPoint.ToString();
+                Data_Mgr.SaveData();
+            }
+        });
 
         m_STRBtn.onClick.AddListener(() =>
         {

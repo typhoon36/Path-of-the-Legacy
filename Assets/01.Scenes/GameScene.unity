@@ -53052,6 +53052,7 @@ MonoBehaviour:
   m_DEXBtn: {fileID: 772758326}
   m_INTBtn: {fileID: 69468219}
   m_LUKBtn: {fileID: 951275691}
+  m_HPTxt: {fileID: 1210726811}
   m_STRTxt: {fileID: 54843120}
   m_DEXTxt: {fileID: 1022630469}
   m_INTTxt: {fileID: 396524029}

@@ -8,6 +8,7 @@ public class ShopPopup_UI : MonoBehaviour
 {
     [Header("ShopPopup")]
     public GameObject m_ShopPopup;
+    public GameObject m_ShopBar;
     public GameObject m_ShopContent; // ScrollView Content
     public Button m_CloseBtn;
 

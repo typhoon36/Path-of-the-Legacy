@@ -90,6 +90,9 @@ public class Monster_Ctrl : Base_Ctrl
 
     protected override void Move()
     {
+        // 상태가 Die인 경우 리턴
+        if (State == Define_S.AllState.Die) return;
+
         //스폰거리에서 벗어나면 리턴
         if (IsOver == true) return;
 
@@ -128,15 +131,17 @@ public class Monster_Ctrl : Base_Ctrl
             m_Nav.SetDestination(this.transform.position);
             State = Define_S.AllState.Attack;
         }
-        else if(m_Dist > m_AttRange)
+        else if (m_Dist > m_AttRange)
         {
-           
             State = Define_S.AllState.Moving;
         }
     }
 
     protected override void Attack()
     {
+        // 상태가 Die인 경우 리턴
+        if (State == Define_S.AllState.Die) return;
+
         //플레이어가 죽었다면
         if (m_Target == null || m_Target.GetComponent<Player_Ctrl>().State == Define_S.AllState.Die)
         {
@@ -152,6 +157,9 @@ public class Monster_Ctrl : Base_Ctrl
 
     protected override void Hit()
     {
+        // 상태가 Die인 경우 리턴
+        if (State == Define_S.AllState.Die) return;
+
         //멈추기 
         m_Nav.SetDestination(this.transform.position);
 
@@ -160,20 +168,19 @@ public class Monster_Ctrl : Base_Ctrl
         {
             State = Define_S.AllState.Moving;
         }
-
     }
 
     protected override void Die()
     {
-        //멈추기
-        m_Nav.SetDestination(this.transform.position);
-
+        // 상태를 Die로 설정
         State = Define_S.AllState.Die;
 
-        //삭제 진행
+        // 멈추기
+        m_Nav.SetDestination(this.transform.position);
+
+        // 삭제 진행
         if (GetComponent<Collider>() != null)
             StartCoroutine(DelayDestroy());
-
     }
 
 

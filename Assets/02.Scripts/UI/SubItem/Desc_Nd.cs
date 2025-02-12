@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 //아이템 설명창
-public class Desc_Nd : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Desc_Nd : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     public GameObject m_DescObj; //설명창 오브젝트
     public Text m_NameTxt; //이름
@@ -14,7 +14,7 @@ public class Desc_Nd : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     public Button m_CloseBtn;
     public GameObject m_NameBar;
 
-    private Vector2 offset;
+    Vector2 offset;
 
     #region Singleton
     public static Desc_Nd Inst;
@@ -60,8 +60,4 @@ public class Desc_Nd : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        // 드래그 종료 시 추가 동작이 필요하면 여기에 작성
-    }
 }

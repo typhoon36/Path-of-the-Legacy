@@ -309,7 +309,7 @@ public class Data_Mgr
             skillConsumMp = 10,
             isCoolDown = false,
             isLock = false,
-            discription = "Warrior`s auror gave Damage Reduce.",
+            discription = "광전사의 축복을 걸어줘 데미지를 감소.",
             skillSprite = null,
             powerList = new List<int> { 10, 20, 30 }
         });
@@ -323,7 +323,7 @@ public class Data_Mgr
             skillConsumMp = 10,
             isCoolDown = false,
             isLock = true,
-            discription = "Enermy gave Damage",
+            discription = "적에게 강하게 내려친다.",
             skillSprite = null,
             powerList = new List<int> { 15, 25, 35 }
         });

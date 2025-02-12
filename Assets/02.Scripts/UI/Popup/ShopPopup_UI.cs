@@ -10,6 +10,7 @@ public class ShopPopup_UI : MonoBehaviour
     public GameObject m_ShopPopup;
     public GameObject m_ShopBar;
     public GameObject m_ShopContent; // ScrollView Content
+    public Text m_HelpTxt;
     public Button m_CloseBtn;
 
     [Header("Products")]
@@ -78,6 +79,19 @@ public class ShopPopup_UI : MonoBehaviour
                 Desc_Nd.Inst.m_Icon.sprite = Resources.Load<Sprite>(iconPath);
             }
         }
+    }
+
+    public void ShowMsg(string a_Msg)
+    {
+        m_HelpTxt.gameObject.SetActive(true);
+        m_HelpTxt.text = a_Msg;
+        StartCoroutine(HideMsg());
+    }
+
+    IEnumerator HideMsg()
+    {
+        yield return new WaitForSeconds(2f);
+        m_HelpTxt.gameObject.SetActive(false);
     }
 
 }

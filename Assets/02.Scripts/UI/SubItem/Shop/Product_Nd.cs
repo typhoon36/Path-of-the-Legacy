@@ -11,6 +11,7 @@ public class Product_Nd : MonoBehaviour, IPointerClickHandler
     public Text m_ItemTxt;
     public Text m_PriceTxt;
     public Button m_BuyBtn;
+    public Text m_HelpTxt;
 
     ItemData m_ItemData;
 
@@ -20,8 +21,15 @@ public class Product_Nd : MonoBehaviour, IPointerClickHandler
         {
             if (InvenPopup_UI.Inst != null)
             {
-                InvenPopup_UI.Inst.AddItem(m_ItemData);
-                InvenPopup_UI.Inst.AddGold(-m_ItemData.ItemPrice);
+                if (Data_Mgr.m_StartData.Gold >= m_ItemData.ItemPrice)
+                {
+                    InvenPopup_UI.Inst.AddItem(m_ItemData);
+                    InvenPopup_UI.Inst.AddGold(-m_ItemData.ItemPrice);
+                }
+
+                else
+                    ShopPopup_UI.Inst.ShowMsg("골드가 부족합니다!");
+                
             }
         });
     }

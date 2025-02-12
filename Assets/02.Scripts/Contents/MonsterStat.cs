@@ -57,7 +57,6 @@ public class MonsterStat : MonoBehaviour
         m_Monster.HPBar.fillAmount = (float)m_CurHp / m_MaxHp;
         m_Monster.HPBack.SetActive(true);
         m_Monster.HPBar.gameObject.SetActive(true);
-        m_Monster.m_HpTxt.text = m_CurHp + " / " + m_MaxHp;
 
         CurHp -= a_Damage; // 체력 감소
 

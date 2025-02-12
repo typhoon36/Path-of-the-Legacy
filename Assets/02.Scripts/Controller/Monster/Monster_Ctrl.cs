@@ -12,7 +12,6 @@ public class Monster_Ctrl : Base_Ctrl
     public GameObject HPBack;
     public Image HPBar;
     public Text m_NickTxt;
-    public Text m_HpTxt;
 
     [Header("Damage")]
     public Transform m_Canvas;
@@ -47,7 +46,6 @@ public class Monster_Ctrl : Base_Ctrl
         HPBar.gameObject.SetActive(false);
 
         m_NickTxt.text = m_Stat.m_Name.ToString();
-        m_HpTxt.text = m_Stat.CurHp + " / " + m_Stat.MaxHp;
 
     }
 
@@ -55,7 +53,6 @@ public class Monster_Ctrl : Base_Ctrl
     {
         //HP 설정
         HPBar.fillAmount = (float)m_Stat.CurHp / m_Stat.MaxHp;
-        m_HpTxt.text = m_Stat.CurHp + " / " + m_Stat.MaxHp;
         HPBack.gameObject.SetActive(true);
         HPBar.gameObject.SetActive(true);
 
@@ -205,8 +202,8 @@ public class Monster_Ctrl : Base_Ctrl
             //플레이어 데미지 반영(몬스터 스탯에 따라 데미지 설정)
             MonsterStat a_Stat = GetComponent<MonsterStat>();
             int a_Dmg = Random.Range(a_Stat.Attack - 5, a_Stat.Attack + 5);
-            
-            if(m_Target != null)
+
+            if (m_Target != null)
                 m_Target.GetComponent<Player_Ctrl>().CurHp -= a_Dmg;
 
             MonsterPopup_UI.Inst.ShowPopup(m_Stat);

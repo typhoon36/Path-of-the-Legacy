@@ -60,6 +60,12 @@ public class MonsterStat : MonoBehaviour
 
         CurHp -= a_Damage; // 체력 감소
 
+        if (m_Monster != null)
+        {
+            Vector3 a_DmgPos = m_Monster.m_SpawnTxtPos.position;
+            m_Monster.SpawnDmgTxt(-a_Damage, a_DmgPos, Color.red);
+        }
+
         if (m_CurHp <= 0)
         {
             m_CurHp = 0;

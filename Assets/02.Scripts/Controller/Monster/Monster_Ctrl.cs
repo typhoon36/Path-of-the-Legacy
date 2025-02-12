@@ -13,6 +13,11 @@ public class Monster_Ctrl : Base_Ctrl
     public Image HPBar;
     public Text m_NickTxt;
 
+    [Header("Damage")]
+    public Transform m_Canvas;
+    public GameObject m_DmgPrefab;
+    public Transform m_SpawnTxtPos;
+
     protected MonsterStat m_Stat;//몬스터 스텟
     protected NavMeshAgent m_Nav;
 
@@ -249,7 +254,35 @@ public class Monster_Ctrl : Base_Ctrl
     #endregion
 
 
- 
+    //데미지 텍스트 생성
+    public void SpawnDmgTxt(float a_Val, Vector3 a_TxtPos, Color a_Color)
+    {
+        if (m_DmgPrefab == null && m_Canvas == null) return;
+
+        GameObject a_Obj = Instantiate(m_DmgPrefab);
+
+        a_Obj.transform.SetParent(m_Canvas, false);
+        a_Obj.transform.position = a_TxtPos;
+
+        Text a_CurTxt = a_Obj.GetComponent<Text>();
+
+        if (0 < a_Val)
+        {
+            a_CurTxt.text = "+" + (int)a_Val;
+        }
+
+        else if (a_Val < 0)
+        {
+            a_Val = Mathf.Abs(a_Val);
+            a_CurTxt.text = "-" + (int)a_Val;
+        }
+
+        else
+            a_CurTxt.text = a_Val.ToString();
+
+        a_CurTxt.color = a_Color;
+        Destroy(a_Obj, 1.5f);
+    }
     protected float TargetDist(GameObject a_Target)
     {
         if (a_Target == null) return 0;

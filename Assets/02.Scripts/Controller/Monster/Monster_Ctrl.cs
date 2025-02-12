@@ -260,12 +260,13 @@ public class Monster_Ctrl : Base_Ctrl
     {
         if (coll.CompareTag("PlayerWeapon"))
         {
-            m_Stat.OnAttacked(10);
+            m_State = Define_S.AllState.Hit;
+            m_Stat.OnAttacked(Data_Mgr.m_StartData.STR + 10);
         }
         else if (coll.CompareTag("PlayerSkill"))
         {
             m_State = Define_S.AllState.Hit;
-            m_Stat.OnAttacked(20);
+            m_Stat.OnAttacked(40);
         }
     }
 
@@ -309,7 +310,7 @@ public class Monster_Ctrl : Base_Ctrl
         yield return new WaitForSeconds(2f);
 
         //몬스터 삭제
-        State = Define_S.AllState.Idle;
+        State = Define_S.AllState.Die;
         Destroy(this.gameObject);
 
         //콜라이더 활성화

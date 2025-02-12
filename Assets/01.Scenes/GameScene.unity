@@ -6265,7 +6265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3621169075710549571, guid: 12749c0df30b68344967dfb893dfe29b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4954899745207023690, guid: 12749c0df30b68344967dfb893dfe29b, type: 3}
       propertyPath: m_Layer

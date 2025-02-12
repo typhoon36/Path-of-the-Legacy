@@ -26273,7 +26273,7 @@ MonoBehaviour:
   m_CurHp: 120
   m_MaxHp: 120
   m_Att: 5
-  m_Exp: 200
+  m_Exp: 300
   m_Gold: 50
   Item_Id: 11
   m_Speed: 2

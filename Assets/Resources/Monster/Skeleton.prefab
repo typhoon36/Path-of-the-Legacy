@@ -949,7 +949,7 @@ MonoBehaviour:
   m_CurHp: 130
   m_MaxHp: 130
   m_Att: 10
-  m_Exp: 150
+  m_Exp: 500
   m_Gold: 100
   Item_Id: 1
   m_Speed: 5

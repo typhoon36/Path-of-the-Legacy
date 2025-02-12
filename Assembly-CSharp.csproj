@@ -107,6 +107,7 @@
     <Compile Include="Assets\08.Utility\Standard Assets\ParticleSystems\Scripts\Hose.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\DragRigidbody.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\Utility\CurveControlledBob.cs" />
+    <Compile Include="Assets\02.Scripts\UI\Popup\MonsterPopup_UI.cs" />
     <Compile Include="Assets\02.Scripts\UI\SubItem\Drag&amp;Drop\Drop_UI.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\08.Utility\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />

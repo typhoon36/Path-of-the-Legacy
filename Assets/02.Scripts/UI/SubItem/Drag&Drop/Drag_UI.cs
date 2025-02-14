@@ -24,8 +24,8 @@ public class Drag_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public void OnBeginDrag(PointerEventData eventData)
     {
         // 빈 슬롯시 드래그 불가능
-        if (!gameObject.activeSelf) return; 
-        
+        if (!gameObject.activeSelf) return;
+
         m_PrevParent = transform.parent;
 
         // 현재 드래그 중인 UI가 화면의 최상단에 보이도록 함
@@ -70,6 +70,10 @@ public class Drag_UI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         if (transform.parent.CompareTag("EquipSlot"))
         {
             EqStatPopup_UI.Inst.SetEquip(gameObject);
+        }
+        else
+        {
+            EqStatPopup_UI.Inst.RemoveEquip(gameObject);
         }
     }
 }

@@ -41,6 +41,7 @@ public class Drop_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
                 // 장비 장착
                 EqStatPopup_UI.Inst.SetEquip(eventData.pointerDrag);
+
             }
             // 인벤 슬롯일 경우
             else

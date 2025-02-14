@@ -68,12 +68,12 @@ public class InvenPopup_UI : MonoBehaviour
                 RectTransform a_SlotRect = slot.GetComponent<RectTransform>();
                 if (RectTransformUtility.RectangleContainsScreenPoint(a_SlotRect, a_MousePos))
                 {
-                    Image Icon = slot.GetChild(0).GetComponent<Image>();
+                    Image a_Icon = slot.GetChild(0).GetComponent<Image>();
 
-                    if (Icon != null && Icon.sprite != null)
+                    if (a_Icon != null && a_Icon.sprite != null)
                         foreach (var a_Key in IconPathMap)
                         {
-                            if (Resources.Load<Sprite>(a_Key.Value) == Icon.sprite)
+                            if (Resources.Load<Sprite>(a_Key.Value) == a_Icon.sprite)
                             {
                                 m_ItemData = Data_Mgr.CallItem(a_Key.Key);
                                 ShowItemDesc(m_ItemData.Id);
@@ -90,18 +90,15 @@ public class InvenPopup_UI : MonoBehaviour
 
     void ShowItemDesc(int a_Id)
     {
-        if (Desc_Nd.Inst == null)
-        {
-            Debug.LogError("Desc_Nd instance is not initialized.");
-            return;
-        }
+        if (Desc_Nd.Inst == null) return;
+        
+        ItemData a_ItData = Data_Mgr.CallItem(a_Id);
 
-        ItemData a_ItemData = Data_Mgr.CallItem(a_Id);
-        if (a_ItemData != null)
+        if (a_ItData != null)
         {
-            Desc_Nd.Inst.m_DescText.text = a_ItemData.ItemDesc;
-            Desc_Nd.Inst.m_NameTxt.text = a_ItemData.ItemName +" ["+ a_ItemData.ItemGrade + "]";
-            Desc_Nd.Inst.m_Icon.sprite = Resources.Load<Sprite>(a_ItemData.ItemIconPath);
+            Desc_Nd.Inst.m_DescText.text = a_ItData.ItemDesc;
+            Desc_Nd.Inst.m_NameTxt.text = a_ItData.ItemName +" ["+ a_ItData.ItemGrade + "]";
+            Desc_Nd.Inst.m_Icon.sprite = Resources.Load<Sprite>(a_ItData.ItemIconPath);
             Desc_Nd.Inst.m_DescObj.SetActive(true);
         }
     }
@@ -182,6 +179,7 @@ public class InvenPopup_UI : MonoBehaviour
             {
                 // 아이템 추가
                 a_Slot.GetChild(0).gameObject.SetActive(true); // 활성화
+                a_Slot.GetChild(0).name = a_ItemData.Id.ToString(); // 아이템 ID 설정
                 // 활성화 후 아이템 정보 설정
                 if (IconPathMap.TryGetValue(a_ItemData.Id, out string a_IconPath))
                 {
@@ -276,6 +274,5 @@ public class InvenPopup_UI : MonoBehaviour
             }
         }
     }
-
-
+   
 }

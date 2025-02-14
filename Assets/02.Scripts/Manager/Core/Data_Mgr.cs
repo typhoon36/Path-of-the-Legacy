@@ -203,6 +203,7 @@ public class Data_Mgr
     public static List<int> m_AcceptedQuest = new List<int>();
     #endregion
 
+
     public static void SaveData()
     {
         m_AllData.m_StartData = m_StartData;
@@ -272,6 +273,15 @@ public class Data_Mgr
             InitItemData();
             // 기본 드랍 아이템 데이터 초기화
             InitDropData();
+
+            // 아이템 오브젝트를 딕셔너리에 추가
+            foreach (var item in m_ItemData)
+            {
+                if (item.ItemObj != null)
+                {
+                    ItemObjects[item.Id] = item.ItemObj;
+                }
+            }
         }
         else
         {

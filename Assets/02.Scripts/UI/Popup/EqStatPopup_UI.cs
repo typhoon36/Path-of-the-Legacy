@@ -14,6 +14,7 @@ public class EqStatPopup_UI : MonoBehaviour
     //장비슬롯
     public GameObject[] m_EquipSlot;
     public GameObject[] m_ItemObj;
+    public Transform m_EquipContent;
 
     [Header("StatPopup")]
     public GameObject m_StatPopup;
@@ -30,6 +31,8 @@ public class EqStatPopup_UI : MonoBehaviour
     public Text m_LUKTxt;
     public Text m_LevelTxt;
     public Text m_StatPointTxt;
+
+    ItemData m_ItemData;
 
     #region Singleton
     public static EqStatPopup_UI Inst;
@@ -49,10 +52,7 @@ public class EqStatPopup_UI : MonoBehaviour
 
         #region StatPopup
         m_StatPopup.gameObject.SetActive(false);
-        m_StatCloseBtn.onClick.AddListener(() =>
-        {
-            m_StatPopup.SetActive(false);
-        });
+        m_StatCloseBtn.onClick.AddListener(() => { m_StatPopup.SetActive(false); });
         m_LevelTxt.text = "레벨 : " + Data_Mgr.m_StartData.Level.ToString();
 
         m_HPTxt.text = "생명력 : " + Data_Mgr.m_StartData.MaxHp.ToString();
@@ -60,7 +60,6 @@ public class EqStatPopup_UI : MonoBehaviour
         m_DEXTxt.text = "민첩 : " + Data_Mgr.m_StartData.Speed.ToString();
         m_INTTxt.text = "기억력 : " + Data_Mgr.m_StartData.Int.ToString();
         m_LUKTxt.text = "운 : " + Data_Mgr.m_StartData.Luk.ToString();
-
 
         //레벨업하면 스텟 포인트 5증가
         m_StatPointTxt.text = "스텟 포인트 : " + Data_Mgr.m_StartData.StatPoint.ToString();
@@ -126,6 +125,8 @@ public class EqStatPopup_UI : MonoBehaviour
         #endregion
 
         Data_Mgr.LoadData(); // 데이터 로드
+
+        LoadEquip(); // 장비 로드
     }
 
     void Update()
@@ -144,6 +145,7 @@ public class EqStatPopup_UI : MonoBehaviour
         }
     }
 
+    //장비 슬롯에 아이템이 있는지 확인
     public void CheckEquipSlot()
     {
         // 장비 슬롯에 아이템이 있는지 확인
@@ -160,6 +162,11 @@ public class EqStatPopup_UI : MonoBehaviour
                 m_ItemObj[i] = null;
             }
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveEquip();
     }
 
     //장비 장착
@@ -190,9 +197,21 @@ public class EqStatPopup_UI : MonoBehaviour
 
             // 장비 장착시 체력 증가
             a_Player.MaxHp += 20; // MaxHp 프로퍼티를 사용하여 최대 체력 증가
+
+            // 장비 슬롯에 아이템 추가
+            for (int i = 0; i < m_EquipSlot.Length; i++)
+            {
+                if (m_EquipSlot[i].transform.childCount > 0
+                    && m_EquipSlot[i].transform.GetChild(0).gameObject == a_Item)
+                {
+                    m_ItemObj[i] = a_Item;
+                    break;
+                }
+            }
+
             Data_Mgr.SaveData();
 
-            Debug.Log(a_Player.MaxHp);
+            SaveEquip();
         }
     }
 
@@ -226,10 +245,116 @@ public class EqStatPopup_UI : MonoBehaviour
             // 장비 해제시 체력 감소
             a_Player.MaxHp -= 20; // MaxHp 프로퍼티를 사용하여 최대 체력 감소
             Data_Mgr.SaveData();
+        }
 
-            Debug.Log(a_Player.MaxHp);
+    }
+
+    // 장착 저장
+    public void SaveEquip()
+    {
+        List<int> Items = new List<int>();
+        for (int i = 0; i < m_EquipSlot.Length; i++)
+        {
+            GameObject a_Slot = m_EquipSlot[i];
+            if (a_Slot.transform.childCount > 0 && a_Slot.transform.GetChild(0).gameObject.activeSelf)
+            {
+                GameObject a_ItemObj = a_Slot.transform.GetChild(0).gameObject;
+
+                if (int.TryParse(a_ItemObj.name, out int itemId))
+                    Items.Add(itemId);
+
+            }
+        }
+        string a_SvData = string.Join(",", Items);
+        PlayerPrefs.SetString("Equipment", a_SvData);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadEquip()
+    {
+        string a_EqData = PlayerPrefs.GetString("Equipment", "");
+
+        if (!string.IsNullOrEmpty(a_EqData))
+        {
+            string[] Items = a_EqData.Split(',');
+            for (int i = 0; i < Items.Length; i++)
+            {
+                if (int.TryParse(Items[i], out int a_Id))
+                {
+                    ItemData a_ItData = new ItemData { Id = a_Id };
+                    AddItem(a_ItData, i + 1); 
+
+                    SetEquip(m_ItemObj[i]);
+
+                    //장비 0번 슬롯만 비활성화
+                    if (i == 0) m_ItemObj[i].SetActive(false);
+                    
+                }
+            }
+        }
+        else
+            SetDefEquip(); // 기본 장비 설정
+    }
+
+    // 기본 장비 설정
+    void SetDefEquip()
+    {
+        int[] a_DefIds = { 3, 5, 7 };
+        int[] a_EquipSlots = { 1, 2, 3 };
+
+        for (int i = 0; i < a_DefIds.Length; i++)
+        {
+            int a_SlotIdx = a_EquipSlots[i];
+
+            if (a_SlotIdx < m_EquipSlot.Length)
+            {
+                ItemData a_ItData = new ItemData { Id = a_DefIds[i] };
+                AddItem(a_ItData, a_SlotIdx);
+            }
         }
     }
 
-}
+    //아이템 추가
+    public static readonly Dictionary<int, string> IconPathMap = new Dictionary<int, string>
+    {
+        { 1,    "Items/Potions/grass_potion" },
+        { 2,    "Items/Potions/wind_potion" },
+        { 3,    "Items/Armor/01_Leather_chest" },
+        { 4,    "Items/Armor/01_plate_chest" },
+        { 5,    "Items/Armor/06_leather_pants" },
+        { 6,    "Items/Armor/06_plate_pants" },
+        { 7,    "Items/Armor/05_leather_boots" },
+        { 8,     "Items/Armor/05_plate_boots" },
+        { 9,     "Items/Weapons/Sword_1" },
+        { 10,    "Items/Weapons/Sword_2" },
+        { 11,    "Items/Weapons/Ax_1" },
+        { 12,    "Items/Weapons/Ax_2" },
+        { 13,    "Items/Weapons/Ax_3" },
+        { 14,     "Items/Weapons/Hammer"},
+        { 15,     "Items/Weapons/Shield"}
+    };
 
+    public void AddItem(ItemData a_ItemData, int a_SlotIdx)
+    {
+        if (a_SlotIdx < 0 || a_SlotIdx >= m_EquipSlot.Length) return;
+
+        // 장비 슬롯에 아이템 추가
+        GameObject a_Slot = m_EquipSlot[a_SlotIdx];
+
+        // 슬롯에 아이템이 있으면 활성화
+        if (a_Slot.transform.childCount > 0)
+        {
+
+            GameObject a_ItemObj = a_Slot.transform.GetChild(0).gameObject;
+            a_ItemObj.SetActive(true); // 활성화
+            a_ItemObj.name = a_ItemData.Id.ToString(); // 아이템 ID 설정
+
+            // 아이콘 설정
+            if (IconPathMap.TryGetValue(a_ItemData.Id, out string a_IconPath))
+                a_ItemObj.GetComponent<Image>().sprite = Resources.Load<Sprite>(a_IconPath);
+
+            m_ItemObj[a_SlotIdx] = a_ItemObj;
+            m_ItemData = a_ItemData;
+        }
+    }
+}

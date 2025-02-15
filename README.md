@@ -1,8 +1,8 @@
 # Path-of-the-Legacy
-
+<p align="center">
 | <img src= (https://github.com/user-attachments/assets/347c8cbf-16ea-4575-badb-5c54e08ec313) align = "center" width= "50%"> 
 | <img src=(https://github.com/user-attachments/assets/b8effee5-a594-419b-b65c-a92d83bbb459) align = "center" width= "50%> |
-
+</p>
 
 ## 게임 소개
 - 장르 : 3D MMORPG

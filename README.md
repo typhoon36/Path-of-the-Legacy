@@ -1,1 +1,50 @@
 # Path-of-the-Legacy
+
+## 게임 소
+- 장르 : 3D MMORPG
+
+- 개발기간 2024.12.01 -> 2025.02.15
+
+- 목적  : 3d RPG를 만들어보고자 만들어본 프로젝트입니다.
+  
+- 관리 : Github/Jira
+
+## 개발 환경
+- 플랫폼 : Windows 11
+
+- 언어 : C#
+
+- 엔진 환경 : Unity 2022.03.15(LTS)
+
+## 구현 기능
+* UI
+  * Scene
+      * InGame :HUD (HP,Mp,경험치바,미니맵)
+      * Menu : 메뉴창(나가기,설정,일시정지)
+  * Popup
+      * 퀘스트 팝업창
+      * 장비,스탯창
+      * 인벤토리창
+      * 대화창
+  * World
+      * 몬스터 HP바,닉네임,퀘스트 마크
+
+
+## 사용 기술
+
+| 항목 | 설명 |
+| ------------ | ------------- |
+| 디자인 패턴 | 싱글톤 패턴을 사용해서 전역 접근 관리 & State Pattern을 사용해 캐릭터 애니메이션을 객체 관리|
+| Object Pooling | 오브젝트 풀링 기법을 사용해 자주 쓰는 객체를 미리 저장하고 생성 |
+| Save | 게임내 데이터를 글로벌 변수에 저장 및 관리 |
+| 포톤| 포톤으로 P2P 팀 대전을 관리|
+
+## 기술 문서
+[기술 문서](https://docs.google.com/presentation/d/17gUVNPHz_Csg8ZsBX49GK2CNHrIdn4ZIBZpw9Fcrn50/edit?usp=sharing)
+
+ ## velog
+
+[블로그](https://velog.io/@typhoon760/posts?tag=%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4)
+
+## 영상
+

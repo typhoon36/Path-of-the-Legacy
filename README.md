@@ -1,5 +1,6 @@
 # Path-of-the-Legacy
  <img src="https://github.com/user-attachments/assets/755bae6f-3436-4f0b-808a-40cf284d650e" width="50%" height="50%"> <img src="https://github.com/user-attachments/assets/b8effee5-a594-419b-b65c-a92d83bbb459" width="50%" height="50%"> <img src="https://github.com/user-attachments/assets/119a9700-780b-411c-9645-7a102f3873a8" width="50%" height="50%">
+ <img src="https://github.com/user-attachments/assets/6c90c021-6bbf-4095-a8c3-6bc5ab5b2b33" width="50%" height="50%">
 
 
 ## 게임 소개

@@ -35,9 +35,9 @@
 | 항목 | 설명 |
 | ------------ | ------------- |
 | 디자인 패턴 | 싱글톤 패턴을 사용해서 전역 접근 관리 & State Pattern을 사용해 캐릭터 애니메이션을 객체 관리|
-| Object Pooling | 오브젝트 풀링 기법을 사용해 자주 쓰는 객체를 미리 저장하고 생성 |
 | Save | 게임내 데이터를 글로벌 변수에 저장 및 관리 |
-| 포톤| 포톤으로 P2P 팀 대전을 관리|
+| SkinnedMesh| 장비 장착시 캐릭터의 의상이 변경되도록 구현|
+| 상속 | 상속을 통해 같은 패턴을 쓰는 캐릭터를 통합 관리|
 
 ## 기술 문서
 [기술 문서](https://docs.google.com/presentation/d/17gUVNPHz_Csg8ZsBX49GK2CNHrIdn4ZIBZpw9Fcrn50/edit?usp=sharing)

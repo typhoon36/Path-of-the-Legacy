@@ -37,6 +37,7 @@ public class QuestPopup_UI : MonoBehaviour
     {
         Inst = this;
     }
+
     #endregion
 
 
@@ -61,6 +62,8 @@ public class QuestPopup_UI : MonoBehaviour
             {
                 CreateNode(a_Quest);
                 m_QuestData = a_Quest; // 현재 퀘스트 데이터를 설정
+                m_QuestTargetCnt.text = $"{m_QuestData.CurTargetCnt}/{m_QuestData.TargetCnt}";
+                m_QuestInfo.text = m_QuestData.Desc;
             }
         }
 
@@ -70,7 +73,7 @@ public class QuestPopup_UI : MonoBehaviour
             m_QuestInfoObj.SetActive(false);
 
             //m_QuestInfoObj가 꺼졌을시  버튼 위치 변경
-            if(m_QuestInfoObj.activeSelf == false)
+            if (m_QuestInfoObj.activeSelf == false)
             {
                 RectTransform a_Rect = m_QuestOpenBtn.GetComponent<RectTransform>();
                 a_Rect.anchoredPosition = new Vector2(600, 120);
@@ -82,13 +85,14 @@ public class QuestPopup_UI : MonoBehaviour
         {
             m_QuestInfoObj.SetActive(true);
 
-            if(m_QuestInfoObj.activeSelf == true)
+            if (m_QuestInfoObj.activeSelf == true)
             {
                 RectTransform a_Rect = m_QuestOpenBtn.GetComponent<RectTransform>();
                 a_Rect.anchoredPosition = new Vector2(375, 120);
             }
         });
 
+        Data_Mgr.LoadData();
     }
 
     void Update()
@@ -97,6 +101,7 @@ public class QuestPopup_UI : MonoBehaviour
         {
             m_QuestPopup.SetActive(!m_QuestPopup.activeSelf);
         }
+
         RefreshUI();
     }
 
@@ -140,17 +145,18 @@ public class QuestPopup_UI : MonoBehaviour
                 {
                     // 퀘스트 목표 개수 증가
                     a_Quest.CurTargetCnt++;
-                    RefreshUI();
+                    Debug.Log($"Quest target count updated: {a_Quest.CurTargetCnt}/{a_Quest.TargetCnt}");
 
                     // 퀘스트 목표 개수와 현재 목표 개수가 같다면
                     if (a_Quest.CurTargetCnt >= a_Quest.TargetCnt)
+                    {
                         // 퀘스트 완료
                         a_Quest.IsClear = true;
+                    }
 
-
-                    // 데이터 저장(목표 개수 반영 및 완료 퀘스트 저장)
-                    Data_Mgr.SaveData();
-                    return;
+                    // 현재 퀘스트 데이터를 업데이트
+                    m_QuestData = a_Quest;
+                    RefreshUI();
                 }
             }
         }
@@ -158,19 +164,22 @@ public class QuestPopup_UI : MonoBehaviour
 
     public void RefreshUI()
     {
-        if (m_QuestData == null) return;
-
-        if (m_QuestData != null)
+        if (m_QuestData == null)
         {
-            m_QuestInfo.text = m_QuestData.Desc;
-            m_QuestTargetCnt.text = m_QuestData.CurTargetCnt + "/" + m_QuestData.TargetCnt;
-
-            // 퀘스트 완료시 m_QuestTargetCnt 텍스트 변경
-            if (m_QuestData.IsClear)
-                m_QuestTargetCnt.text = m_QuestData.CurTargetCnt + "/" + m_QuestData.TargetCnt + " (완료)";
-            
-
+            return;
         }
 
+        m_QuestInfo.text = m_QuestData.Desc;
+        m_QuestTargetCnt.text = $"{m_QuestData.CurTargetCnt}/{m_QuestData.TargetCnt}";
+    }
+    public void UpdateQuestInfo(QuestData a_QuestData)
+    {
+        if (a_QuestData == null) return;
+
+        m_QuestData = a_QuestData;
+        m_QuestInfo.text = m_QuestData.Desc;
+        m_QuestTargetCnt.text = $"{m_QuestData.CurTargetCnt}/{m_QuestData.TargetCnt}";
+
+        Data_Mgr.SaveData();
     }
 }

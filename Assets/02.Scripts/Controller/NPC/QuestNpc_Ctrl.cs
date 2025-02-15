@@ -98,41 +98,53 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         TalkCheck();
     }
 
-    #region Check
     void TalkCheck()
     {
         if (m_CurTalk == null) return;
 
-        //이미 퀘스트가 클리어 되었거나 퀘스트가 없는 경우
-        if (m_CurQuest.IsClear == true || IsQuest == false)
+        // 이미 퀘스트가 클리어 되었거나 퀘스트가 없는 경우
+        if (IsQuest == false)
         {
             SetTalk(m_CurTalk.BasicsTalk);
             return;
         }
 
-        //퀘스트가 수락된 상태인 경우
+        // 퀘스트가 수락된 상태인 경우
         if (m_CurQuest.IsAccept == true)
         {
-            //퀘스트 목표 달성 여부 확인
+            // 퀘스트 목표 달성 여부 확인
             if (m_CurQuest.CurTargetCnt >= m_CurQuest.TargetCnt)
             {
                 SetTalk(m_CurTalk.ClearTalk);
                 m_CurQuest.QuestClear();
                 Data_Mgr.CompleteQuest(m_CurQuest.Id);
                 QuestCheck();
+
+                //보상 지급
+                Data_Mgr.m_StartData.Gold += m_CurQuest.RewardGold;
+                Data_Mgr.m_StartData.Exp += m_CurQuest.RewardExp;
+
+                Data_Mgr.SaveData();
+
+                return; // 퀘스트 완료 대화 후 종료
             }
             else
+            {
                 SetTalk(m_CurTalk.ProcTalk);
-
-            return;
+                return;
+            }
         }
 
-        //레벨이 충족되면 퀘스트 대화 시작
+        // 레벨이 충족되면 퀘스트 대화 시작
         if (m_CurQuest.MinLevel <= Data_Mgr.m_StartData.Level)
         {
             SetTalk(m_CurTalk);
             m_CurQuest.IsAccept = true;
             Data_Mgr.AcceptQuest(m_CurQuest.Id);
+
+            // 퀘스트 수락 시 UI 업데이트
+            QuestPopup_UI.Inst.UpdateQuestInfo(m_CurQuest);
+
             return;
         }
 
@@ -159,20 +171,19 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     {
         m_NextQuestIdx++;
 
-        //퀘스트 리스트 범위 초과 확인
+        // 퀘스트 리스트 범위 초과 확인
         if (m_NextQuestIdx >= m_QuestId.Length)
         {
             IsQuest = false;
             return;
         }
 
-        //퀘스트, 대화 설정
+        // 퀘스트, 대화 설정
         m_CurQuest = m_QuestDataList[m_NextQuestIdx];
         m_CurTalk = m_TalkDataList[m_NextQuestIdx];
 
         IsQuest = true;
     }
-    #endregion
 
     #region <Mark>
     void MarkUpdate()

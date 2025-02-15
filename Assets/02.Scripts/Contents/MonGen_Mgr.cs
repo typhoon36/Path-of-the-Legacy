@@ -109,10 +109,7 @@ public class MonGen_Mgr : MonoBehaviour
 
             m_OldCnt++; // 소환된 몬스터 수 증가
         }
-        else
-        {
-            Debug.LogError("NavMesh 위에 몬스터를 배치할 수 없습니다.");
-        }
+       
 
         m_SpawnCnt--; // 소환할 몬스터 수 감소
         IsSpawn = false; // 코루틴 실행 완료로 설정

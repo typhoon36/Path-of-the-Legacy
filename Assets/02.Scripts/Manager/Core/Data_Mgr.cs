@@ -298,7 +298,10 @@ public class Data_Mgr
     public static void AcceptQuest(int a_Id)
     {
         if (!m_AcceptedQuest.Contains(a_Id))
+        {
             m_AcceptedQuest.Add(a_Id);
+            SaveData();
+        }
     }
 
     public static void CompleteQuest(int a_Id)

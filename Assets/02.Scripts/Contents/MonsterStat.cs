@@ -73,18 +73,19 @@ public class MonsterStat : MonoBehaviour
         }
     }
 
+
     protected virtual void OnDie()
     {
         m_Monster.State = Define_S.AllState.Die;
 
-        // 보상 반영
+        // 경험치 및 골드 반영
         if (UI_Mgr.Inst != null)
             UI_Mgr.Inst.m_ExpBar.fillAmount += (float)Exp / 800;
 
         if (InvenPopup_UI.Inst != null)
             InvenPopup_UI.Inst.AddGold(Gold);
 
-        // 퀘스트 정보 반영
+        // 퀘스트 목표 개수 반영
         QuestPopup_UI.Inst.QuestTargetCnt(this.gameObject);
 
         // 아이템 드랍

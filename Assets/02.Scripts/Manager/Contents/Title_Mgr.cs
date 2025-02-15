@@ -18,6 +18,8 @@ public class Title_Mgr : MonoBehaviour
             {
                 //데이터 초기화
                 InitData();
+                PlayerPrefs.DeleteAll();
+
                 SceneManager.LoadScene("LoadScene");
             });
 

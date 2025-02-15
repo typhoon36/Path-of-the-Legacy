@@ -5050,7 +5050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6344537574664178405, guid: 5c5d10e1fe9a20c448bc32c7ae15b6fd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28172,7 +28172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1355236311
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38284,8 +38284,8 @@ MonoBehaviour:
   m_Range: 8
   m_NameTxt: {fileID: 132665409}
   m_QuestType: 2
-  m_QuestId: 0000000001000000
-  m_TalkId: 0000000001000000
+  m_QuestId: 00000000
+  m_TalkId: 00000000
   IsQuest: 0
 --- !u!1 &1654497655
 GameObject:

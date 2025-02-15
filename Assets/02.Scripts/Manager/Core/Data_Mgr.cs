@@ -39,7 +39,7 @@ public class StartData
     public int Gold;
     public int SkillPoint = 5;
     public int StatPoint = 0;
-    public Vector3 m_Pos;
+    public Vector3 m_Pos = new Vector3(147.201f, 0.064f, 22.87f);
 }
 
 [System.Serializable]
@@ -220,12 +220,27 @@ public class Data_Mgr
         m_AllData.DropItem = DropItem;
 
         string a_JsonData = JsonUtility.ToJson(m_AllData, true);
-        File.WriteAllText(Application.dataPath + "/Resources/Data/GameData.json", a_JsonData);
+        string filePath = Application.dataPath + "/Resources/Data/GameData.json";
+        string directoryPath = Path.GetDirectoryName(filePath);
+
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        File.WriteAllText(filePath, a_JsonData);
     }
 
     public static void LoadData()
     {
         string filePath = Application.dataPath + "/Resources/Data/GameData.json";
+        string directoryPath = Path.GetDirectoryName(filePath);
+
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
         if (File.Exists(filePath))
         {
             string a_JsonData = File.ReadAllText(filePath);

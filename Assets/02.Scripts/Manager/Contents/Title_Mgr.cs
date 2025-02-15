@@ -16,8 +16,9 @@ public class Title_Mgr : MonoBehaviour
         if (m_newStartBtn != null)
             m_newStartBtn.onClick.AddListener(() =>
             {
-                //데이터 초기화
+                //빌드시 데이터 초기화
                 InitData();
+
                 PlayerPrefs.DeleteAll();
 
                 SceneManager.LoadScene("LoadScene");
@@ -33,12 +34,7 @@ public class Title_Mgr : MonoBehaviour
         if (m_ExitBtn != null)
             m_ExitBtn.onClick.AddListener(() =>
             {
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-                Data_Mgr.SaveData();
-#else
-                        Application.Quit();
-#endif
+                Application.Quit();
             });
     }
 

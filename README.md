@@ -1,4 +1,5 @@
 # Path-of-the-Legacy
+![Image](https://github.com/user-attachments/assets/347c8cbf-16ea-4575-badb-5c54e08ec313)
 
 ## 게임 소개
 - 장르 : 3D MMORPG

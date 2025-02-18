@@ -362,7 +362,7 @@ public class Data_Mgr
         m_QuestData.Add(new QuestData
         {
             Id = 1,
-            TitleName = "트롤 처치",
+            TitleName = "오우거 처치",
             QuestType = Define_S.QuestType.Monster,
             MinLevel = 1,
             TargetCnt = 10,
@@ -371,7 +371,7 @@ public class Data_Mgr
             RewardGold = 100,
             RewardExp = 100,
             RewardItems = new List<RewardItemData> { new RewardItemData { ItemId = 1, ItemCount = 1 } },
-            Desc = "트롤 저지",
+            Desc = "오우거 저지",
             TargetDesc = "10마리 사냥.",
             TargetPos = Vector3.zero,
             IsAccept = false,
@@ -402,22 +402,12 @@ public class Data_Mgr
         m_TalkData.Add(new TalkData
         {
             Id = 1,
-            BasicsTalk = "안녕하신가",
+            BasicsTalk = "안녕하신가!모험가여!",
             QuestStartTalk = new List<string> { "자네에게 부탁이 있네." },
             AcceptTalk = "부탁하네",
             RefusalTalk = "아쉽군",
             ProcTalk = "행운을 비네",
             ClearTalk = "고맙네."
-        });
-        m_TalkData.Add(new TalkData
-        {
-            Id = 2,
-            BasicsTalk = "안녕하신가",
-            QuestStartTalk = new List<string> { "자네에게 다른 부탁이 있네." },
-            AcceptTalk = "부탁하네",
-            RefusalTalk = "아쉽군",
-            ProcTalk = "행운을 비네",
-            ClearTalk = "벌써 온건가?고맙군."
         });
     }
 

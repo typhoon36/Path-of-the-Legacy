@@ -124,9 +124,12 @@ public class QuestNpc_Ctrl : Npc_Ctrl
                 Data_Mgr.m_StartData.Gold += m_CurQuest.RewardGold;
                 Data_Mgr.m_StartData.Exp += m_CurQuest.RewardExp;
 
+                Debug.Log($"퀘스트 클리어! 보상: {m_CurQuest.RewardGold}골드, {m_CurQuest.RewardExp}경험치");
+
                 Data_Mgr.SaveData();
 
-                return; // 퀘스트 완료 대화 후 종료
+                return; // 퀘스트 완료 대화 후 종료 
+
             }
             else
             {

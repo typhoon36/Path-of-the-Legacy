@@ -44,6 +44,7 @@ public class UI_Mgr : MonoBehaviour
         if (Inst == null)
             Inst = this;
     }
+
     #endregion
 
 
@@ -69,6 +70,9 @@ public class UI_Mgr : MonoBehaviour
                 IsPressed = true;
                 DieOff();
 
+                // 던전에서 죽었을 때 게임 씬으로 돌아가기 위해 m_TargetScene을 Define_S.Scene.Game으로 설정
+                m_TargetScene = Define_S.Scene.Game;
+
                 if (m_TargetScene == Define_S.Scene.Game)
                 {
                     Scene_Mgr.Inst.ChangeScene(m_TargetScene);
@@ -76,14 +80,11 @@ public class UI_Mgr : MonoBehaviour
                     Vector3 a_Pos = new Vector3(147.2f, 0.064f, 22.87f);
                     a_Player.transform.position = a_Pos;
                     a_Player.CurHp = a_Player.MaxHp;
-                    Data_Mgr.m_StartData.m_Pos = a_Pos; 
-                    Data_Mgr.SaveData(); 
+                    Data_Mgr.m_StartData.m_Pos = a_Pos;
+                    Data_Mgr.SaveData();
                 }
             });
         }
-
-        //모바일 플랫폼이라면 슬롯 비활성화
-        if (Application.isMobilePlatform) m_Slots.gameObject.SetActive(false);
 
         if (m_TargetScene == Define_S.Scene.Game) m_MiniMap.gameObject.SetActive(true);
         //보스나 던전 씬이라면 미니맵 비활성화
@@ -149,10 +150,10 @@ public class UI_Mgr : MonoBehaviour
     {
         if (a_MaxMp > 0)
             m_MPBar.fillAmount = Mathf.Clamp01(a_CurMp / a_MaxMp);
-        
+
         else
             m_MPBar.fillAmount = 0;
-        
+
     }
     #endregion
 

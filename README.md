@@ -6,7 +6,7 @@
 
   </tr>
   <tr>
-    <td><img src="" width="600"></td>
+    <td><img src="https://github.com/user-attachments/assets/5f7fe066-9502-414b-b3e8-08c6cdc5e564" width="600"></td>
     <td><img src="https://github.com/user-attachments/assets/b8effee5-a594-419b-b65c-a92d83bbb459" width="600"></td>
   </tr>
 </table>

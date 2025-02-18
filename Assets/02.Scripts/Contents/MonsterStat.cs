@@ -47,13 +47,13 @@ public class MonsterStat : MonoBehaviour
     Monster_Ctrl m_Monster;
     public virtual void OnAttacked(int a_Damage)
     {
-        //일반 몬스터만 피격 상태 진행
+        // 일반 몬스터만 피격 상태 진행
         if (m_Monster.m_MonsterType == Define_S.MonsterType.Normal)
         {
             m_Monster.State = Define_S.AllState.Hit;
         }
 
-        //몬스터 HP바와 HPBar 활성화
+        // 몬스터 HP바와 HPBar 활성화
         m_Monster.HPBar.fillAmount = (float)m_CurHp / m_MaxHp;
         m_Monster.HPBack.SetActive(true);
         m_Monster.HPBar.gameObject.SetActive(true);
@@ -66,9 +66,9 @@ public class MonsterStat : MonoBehaviour
             m_Monster.SpawnDmgTxt(-a_Damage, a_DmgPos, Color.red);
         }
 
-        if (m_CurHp <= 0)
+        if (CurHp <= 0)
         {
-            m_CurHp = 0;
+            CurHp = 0;
             OnDie();
         }
     }

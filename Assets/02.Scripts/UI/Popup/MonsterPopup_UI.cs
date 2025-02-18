@@ -34,6 +34,10 @@ public class MonsterPopup_UI : MonoBehaviour
 
     public void ShowPopup(MonsterStat monsterStat)
     {
+        Monster_Ctrl a_Monster = monsterStat.GetComponent<Monster_Ctrl>();
+        if (a_Monster != null && a_Monster.m_MonsterType == Define_S.MonsterType.Boss) return; // 보스 몬스터일 경우 팝업을 띄우지 않음
+        
+
         m_MonsterName.text = monsterStat.m_Name;
         m_MonsterHp.text = $"{monsterStat.CurHp} / {monsterStat.MaxHp}";
         m_HpBar.fillAmount = (float)monsterStat.CurHp / monsterStat.MaxHp;

@@ -32,7 +32,7 @@ public class Player_Ctrl : Base_Ctrl
     private GameObject m_WeaponList;//무기 리스트
 
     [SerializeField]
-    private List<EffectData> m_Effects;
+    public List<EffectData> m_Effects;
 
     #region HP & MP
     float m_MaxHp = 100f;
@@ -94,7 +94,7 @@ public class Player_Ctrl : Base_Ctrl
     #region Bool
     bool IsStopAtt = true;//공격 가능인지 여부
     bool IsRoll = false;//구르기 상태
-    [HideInInspector] public bool IsHit = false; //피격 상태
+    bool IsHit = false; //피격 상태
     #endregion
 
     #region Float
@@ -144,15 +144,11 @@ public class Player_Ctrl : Base_Ctrl
 
         Data_Mgr.LoadData();
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Level2Scene")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "DungeonScene")
         {
-            transform.position = new Vector3(0, 0, 0); //던전 입구 위치
+            transform.position = new Vector3(0, 0, 3f); // 던전 입구 위치
         }
-        else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "BossScene")
-        {
-            transform.position = new Vector3(4.5f, 0, 3f); //보스 입구 위치
-        }
-        else 
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene")
         {
             transform.position = Data_Mgr.m_StartData.m_Pos;
         }
@@ -296,7 +292,7 @@ public class Player_Ctrl : Base_Ctrl
             return;
         }
     }
-    bool OnAttack = false;//공격 중인지 여부
+    public bool OnAttack = false;//공격 중인지 여부
     void OnAtt()
     {
         if (OnAttack &&
@@ -463,6 +459,8 @@ public class Player_Ctrl : Base_Ctrl
         if (m_CurEff != null)
         {
             m_CurEff.SetActive(true);
+            // 스킬 이펙트 위치 설정
+            m_CurEff.transform.position = transform.position + (transform.forward * 2f);
         }
         else
         {
@@ -723,7 +721,7 @@ public class Player_Ctrl : Base_Ctrl
 
             }
         }
-        else if(coll.CompareTag("MonsterSkill"))
+        else if (coll.CompareTag("MonsterSkill"))
         {
             Monster_Ctrl a_Monster = coll.GetComponent<Monster_Ctrl>();
             if (a_Monster != null)

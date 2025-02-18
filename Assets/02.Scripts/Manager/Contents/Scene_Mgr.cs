@@ -28,9 +28,5 @@ public class Scene_Mgr : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("DungeonScene");
         }
-        else if (scene == Define_S.Scene.Boss)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("BossScene");
-        }
     }
 }

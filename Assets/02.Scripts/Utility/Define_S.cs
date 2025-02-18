@@ -104,8 +104,7 @@ public class Define_S : MonoBehaviour
         Unknown,
         Title,
         Game,
-        Dungeon,
-        Boss,
+        Dungeon
     }
 
     public enum ArmorType

@@ -776,7 +776,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2e9e861069de1cf44b418c57953a1f5b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Att: 25
   m_Exp: 1000
   m_Gold: 1000
-  Item_Id: 3
+  Item_Id: 11
   m_Speed: 3
 --- !u!195 &6097195039359141191
 NavMeshAgent:

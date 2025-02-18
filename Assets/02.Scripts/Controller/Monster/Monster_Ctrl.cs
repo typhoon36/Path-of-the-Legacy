@@ -180,6 +180,8 @@ public class Monster_Ctrl : Base_Ctrl
         // 멈추기
         m_Nav.SetDestination(this.transform.position);
 
+        MonsterPopup_UI.Inst.m_MonsterPopup.SetActive(false);
+
         // 삭제 진행
         if (GetComponent<Collider>() != null)
             StartCoroutine(DelayDestroy());
@@ -233,8 +235,7 @@ public class Monster_Ctrl : Base_Ctrl
     //피격 이벤트
     void OnHitEvent()
     {
-        if (m_Target == null)
-            State = Define_S.AllState.Idle;
+        if (m_Target == null) State = Define_S.AllState.Idle;
 
 
         if (m_Target != null)
@@ -305,13 +306,11 @@ public class Monster_Ctrl : Base_Ctrl
     {
         if (coll.CompareTag("PlayerWeapon"))
         {
-            m_State = Define_S.AllState.Hit;
             m_Stat.OnAttacked(Data_Mgr.m_StartData.STR + 10);
         }
         else if (coll.CompareTag("PlayerSkill"))
         {
-            m_State = Define_S.AllState.Hit;
-            m_Stat.OnAttacked(40);
+            m_Stat.OnAttacked(Data_Mgr.m_StartData.STR + 40);
         }
     }
 
@@ -345,6 +344,7 @@ public class Monster_Ctrl : Base_Ctrl
         }
 
         State = Define_S.AllState.Idle; // Idle 상태로 변경
+        MonsterPopup_UI.Inst.m_MonsterPopup.SetActive(false); // 몬스터 팝업창 비활성화
         IsOver = false; // IsOver 상태 초기화
     }
     IEnumerator DelayDestroy()

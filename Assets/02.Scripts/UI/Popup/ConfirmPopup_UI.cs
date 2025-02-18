@@ -43,6 +43,13 @@ public class ConfirmPopup_UI : MonoBehaviour
     {
         m_ConfirmObj.SetActive(false);
         Time.timeScale = 1;
+
+        if (m_TargetScene == Define_S.Scene.Game)
+        {
+            // 특정 좌표로 이동하도록 설정
+            Data_Mgr.m_StartData.m_Pos = new Vector3(147.201f, 0.064f, 22.87f);
+        }
+
         Scene_Mgr.Inst.ChangeScene(m_TargetScene);
     }
 
@@ -57,16 +64,12 @@ public class ConfirmPopup_UI : MonoBehaviour
         if (m_ConfirmObj != null)
         {
             m_TargetScene = scene; // m_TargetScene 설정
-           
-            if(scene == Define_S.Scene.Boss)
-            {
-                m_ConfirmText.text = "보스전으로 이동하시겠습니까?";
-            }
-            else if (scene == Define_S.Scene.Game)
+
+            if (scene == Define_S.Scene.Game)
             {
                 m_ConfirmText.text = "마을로 이동하시겠습니까?";
             }
-            else if(scene == Define_S.Scene.Dungeon)
+            else if (scene == Define_S.Scene.Dungeon)
             {
                 m_ConfirmText.text = "던전으로 이동하시겠습니까?";
             }

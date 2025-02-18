@@ -484,7 +484,11 @@ public class Data_Mgr
         AddDropData(3, 12, LoadPrefab("Items/Roots/Axe_2"), "Items/Roots/Axe_2");
 
 
+        AddDropData(4, 11, LoadPrefab("Items/Roots/Axe_1"), "Items/Roots/Axe_1");
         AddDropData(4, 12, LoadPrefab("Items/Roots/Axe_2"), "Items/Roots/Axe_2");
+        AddDropData(4, 14, LoadPrefab("Items/Roots/Hammer"), "Items/Roots/Hammer");
+        AddDropData(4, 10, LoadPrefab("Items/Roots/Warriors_Sword"), "Items/Roots/Warriors_Sword");
+        AddDropData(4, 15, LoadPrefab("Items/Roots/Sheild"), "Items/Roots/Sheild");
     }
 
     static void AddDropData(int MonsterId, int ItemId, GameObject a_Obj, string a_Path)

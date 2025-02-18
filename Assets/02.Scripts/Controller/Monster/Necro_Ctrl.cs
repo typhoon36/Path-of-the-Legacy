@@ -29,9 +29,12 @@ public class Necro_Ctrl : Monster_Ctrl
     {
         base.Init();
 
+        m_NickTxt.gameObject.SetActive(false);
+
         //데미지 적용
         m_AttColl.m_Damage = m_Stat.Attack;
         m_SkillColl.m_Damage = (int)(m_Stat.Attack * 1.2f);
+
 
         //나가는 포탈 찾기
         m_ExitPortal = GameObject.FindObjectOfType<Portal>();
@@ -45,6 +48,9 @@ public class Necro_Ctrl : Monster_Ctrl
     protected override void IdletoDetective()
     {
         base.IdletoDetective();
+
+        m_NickTxt.gameObject.SetActive(true);
+
     }
 
     protected override void Move()
@@ -99,6 +105,8 @@ public class Necro_Ctrl : Monster_Ctrl
         m_AttColl.IsCollider(false);
         State = Define_S.AllState.Idle;
     }
+
+
     #endregion
 
     // 다음 공격 확인
@@ -190,8 +198,7 @@ public class Necro_Ctrl : Monster_Ctrl
         // 애니메이션 실행
         m_Anim.CrossFade(a_AnimName, 0.1f, -1, 0);
     }
-
-
+ 
     //자연스러운 회전
     void OnRotate()
     {

@@ -5,7 +5,7 @@ using UnityEditor;
 #endif
 
 #pragma warning disable 618, 649
-namespace UnityStandardAssets.Utility
+namespace UnityStandardAssets.Utilityity
 {
 #if UNITY_EDITOR
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Utility
+namespace UnityStandardAssets.Utilityity
 {
     public class TimedObjectDestructor : MonoBehaviour
     {

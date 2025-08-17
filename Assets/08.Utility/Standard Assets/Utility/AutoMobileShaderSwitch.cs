@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace UnityStandardAssets.Utility
+namespace UnityStandardAssets.Utilityity
 {
     public class AutoMobileShaderSwitch : MonoBehaviour
     {
@@ -81,7 +81,7 @@ namespace UnityStandardAssets.Utility
     }
 }
 
-namespace UnityStandardAssets.Utility.Inspector
+namespace UnityStandardAssets.Utilityity.Inspector
 {
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof (AutoMobileShaderSwitch.ReplacementList))]

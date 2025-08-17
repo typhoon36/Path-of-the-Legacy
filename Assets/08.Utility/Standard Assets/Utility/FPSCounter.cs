@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UnityStandardAssets.Utility
+namespace UnityStandardAssets.Utilityity
 {
     [RequireComponent(typeof (Text))]
     public class FPSCounter : MonoBehaviour

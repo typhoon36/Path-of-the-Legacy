@@ -1,289 +1,195 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-///¸ŞÀÎ UI ¸Å´ÏÀú : ¸ŞÀÎ UI¸¦ À§ÇÑ ½ºÅ©¸³Æ®
-public class UI_Mgr : MonoBehaviour
+/*
+ * File :   UIManager.cs
+ * Desc :   UIì˜ Scene, Popup, WorldSpace ìƒì„±/ì œê±°ë¥¼ ë„ì™€ì£¼ëŠ” ë§¤ë‹ˆì €
+ *          [ Rookissì˜ MMORPG Game Part 3 ì°¸ê³ . ]
+ */
+
+public class UI_Mgr
 {
-    [Header("HUD")]
-    public Image m_HPBar;
-    public Image m_MPBar;
-    public Image m_ExpBar;
-    public Text m_HpTxt;
-    public Text m_MpTxt;
-    public Text m_LevelText;
+    int _order = 10;
 
-    [Header("Slots")]
-    public GameObject m_Slots;
+    List<UI_Popup> _popupList = new List<UI_Popup>();
+    UI_Scene _sceneUI = null;
 
-    [Header("MiniMap")]
-    public GameObject m_MiniMap;
-    public Define_S.Scene m_TargetScene;
-
-    [Header("Skill&Item")]
-    public Image m_SkillA;
-    public Image m_SkillD;
-    public Image m_1stItem;
-    public Image m_2ndItem;
-    public Dictionary<Define_S.KeySkill, SkillData> SkillBarList = new Dictionary<Define_S.KeySkill, SkillData>();
-
-    Coroutine Co_Item1Recovery;
-    Coroutine Co_Item2Recovery;
-
-    [Header("Die")]
-    public GameObject m_DiePanel;
-    public Button m_ConfrimBtn;
-
-    public bool IsPressed { get; private set; } = false;
-
-    #region Singleton
-    public static UI_Mgr Inst;
-    void Awake()
+    // í”„ë¦¬íŒ¹ ì˜¤ë¸Œì íŠ¸ ë¶€ëª¨ (í•˜ì´ë¼ì´ì»¤ ê¹”ë”í•˜ê²Œ ì •ë¦¬í•˜ë ¤ê³  ì‚¬ìš©)
+    public GameObject Root
     {
-        if (Inst == null)
-            Inst = this;
-    }
+        get{
+            GameObject root = GameObject.Find("@UI_Root");// ì˜¤ë¸Œì íŠ¸ ì°¾ê¸°
 
-    #endregion
+            if (root.IsNull() == true)
+                root = new GameObject{name = "@UI_Root"}; // ì˜¤ë¸Œì íŠ¸ ì´ë¦„ ì„¤ì •
 
-
-    void Start()
-    {
-        Data_Mgr.LoadData();
-
-        #region HUD
-        m_HPBar.fillAmount = 1;
-        m_MPBar.fillAmount = 1;
-        m_ExpBar.fillAmount = 0;
-
-        m_HpTxt.text = Data_Mgr.m_StartData.CurHp.ToString() + " / " + Data_Mgr.m_StartData.MaxHp.ToString();
-        m_MpTxt.text = Data_Mgr.m_StartData.CurMp.ToString() + " / " + Data_Mgr.m_StartData.MaxMp.ToString();
-        #endregion
-
-        m_DiePanel.gameObject.SetActive(false);
-
-        if (m_ConfrimBtn != null)
-        {
-            m_ConfrimBtn.onClick.AddListener(() =>
-            {
-                IsPressed = true;
-                DieOff();
-
-                // ´øÀü¿¡¼­ Á×¾úÀ» ¶§ °ÔÀÓ ¾ÀÀ¸·Î µ¹¾Æ°¡±â À§ÇØ m_TargetSceneÀ» Define_S.Scene.GameÀ¸·Î ¼³Á¤
-                m_TargetScene = Define_S.Scene.Game;
-
-                if (m_TargetScene == Define_S.Scene.Game)
-                {
-                    Scene_Mgr.Inst.ChangeScene(m_TargetScene);
-                    Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
-                    Vector3 a_Pos = new Vector3(147.2f, 0.064f, 22.87f);
-                    a_Player.transform.position = a_Pos;
-                    a_Player.CurHp = a_Player.MaxHp;
-                    Data_Mgr.m_StartData.m_Pos = a_Pos;
-                    Data_Mgr.SaveData();
-                }
-            });
-        }
-
-        if (m_TargetScene == Define_S.Scene.Game) m_MiniMap.gameObject.SetActive(true);
-        //º¸½º³ª ´øÀü ¾ÀÀÌ¶ó¸é ¹Ì´Ï¸Ê ºñÈ°¼ºÈ­
-        else m_MiniMap.gameObject.SetActive(false);
-
-        if (Data_Mgr.m_SkillData.Count > 1)
-        {
-            SkillBarList.Add(Define_S.KeySkill.A, Data_Mgr.m_SkillData[0]);
-            SkillBarList.Add(Define_S.KeySkill.D, Data_Mgr.m_SkillData[1]);
+            return root;
         }
     }
 
-    void Update()
+    // ì˜¤ë¸Œì íŠ¸ì— Canvasë¥¼ ì¶”ê°€í•˜ê³  orderì„ ì„¤ì •
+    public void SetCanvas(GameObject go, bool sort = true)
     {
-        LevelRefresh();
-        CheckExpBar();
-        UpdateSkillCool();
-        RefreshUI();
-    }
+        Canvas canvas = Utility.GetOrAddComponent<Canvas>(go);
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.overrideSorting = true;
 
-    #region HUD
-    public void LevelRefresh()
-    {
-        m_LevelText.text = Data_Mgr.m_StartData.Level.ToString();
-    }
-
-    public void CheckExpBar()
-    {
-        //·¹º§¾÷ 
-        if (1 <= m_ExpBar.fillAmount)
-        {
-            m_ExpBar.fillAmount = 0;//°æÇèÄ¡¹Ù ÃÊ±âÈ­
-
-            Data_Mgr.m_StartData.Level += 1; //·¹º§ Áõ°¡
-
-            LevelRefresh();//·¹º§ °»½Å(·¹º§ ÅØ½ºÆ®)
-
-            Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
-
-            if (a_Player != null) a_Player.LevelUpEffect();
-
-            Data_Mgr.m_StartData.StatPoint += 5; //½ºÅÈ Æ÷ÀÎÆ® 5Áõ°¡
-
-            Data_Mgr.SaveData();
-        }
-    }
-
-    public void UpdateHPBar(float a_CurHp, float a_MaxHp)
-    {
-        if (a_MaxHp > 0)
-        {
-            m_HPBar.fillAmount = Mathf.Clamp01(a_CurHp / a_MaxHp);
-            m_HpTxt.text = $"{a_CurHp} / {a_MaxHp}";
-        }
+        if (sort)
+            SetOrder(canvas);
         else
+            canvas.sortingOrder = 0;
+    }
+
+    public void SetOrder(Canvas canvas)
+    {
+        canvas.sortingOrder = _order;
+        _order++;
+    }
+
+    // 3D ì•ˆì— ìˆëŠ” WorldSpaceì—ì„œ UI ìƒì„± (ìºë¦­í„° ì²´ë ¥ UI ...)
+    public T MakeWorldSpaceUI<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/WorldSpace/{name}");
+
+        if (parent.IsNull() == false)
+            go.transform.SetParent(parent);
+
+        Canvas canvas = go.GetOrAddComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.worldCamera = Camera.main;
+
+        return go.GetOrAddComponent<T>();
+    }
+
+    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
+
+        if (parent.IsNull() == false)
+            go.transform.SetParent(parent);
+
+        return go.GetOrAddComponent<T>();
+    }
+
+    public T ShowSceneUI<T>(string name = null) where T : UI_Scene
+    {
+        // name = null ê²½ìš°
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+        T sceneUI = Utility.GetOrAddComponent<T>(go);
+        _sceneUI = sceneUI;
+
+        return sceneUI;
+    }
+
+    // UIì— ë§Œë“¤ì–´ì§ˆ í”„ë¦¬íŒ¹ì„ stackì— ë„£ì–´ orderì„ ê´€ë¦¬
+    public T ShowPopupUI<T>(string name = null) where T : UI_Popup
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        // ì´ë¯¸ ìƒì„±ëœ Popupì´ë©´ ì¢…ë£Œ
+        if (_popupList.Contains(Managers.Resource.Load<T>($"UI/Popup/{name}")) == true)
+            return null;
+
+        GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
+        T popup = Utility.GetOrAddComponent<T>(go);
+        _popupList.Add(popup);
+
+        go.transform.SetParent(Root.transform);
+
+        return popup;
+    }
+
+    // íŒì—…ì°½ ì¼œê¸°
+    public void OnPopupUI(UI_Popup popup)
+    {
+        // ì´ë¯¸ ì¼œì ¸ìˆìœ¼ë©´ ì§„í–‰ X
+        if (popup.gameObject.activeSelf == true)
+            return;
+
+        _popupList.Add(popup);
+        Managers.Pool.Pop(popup.gameObject);
+        SetOrder(popup.GetComponent<Canvas>());
+
+        Managers.Game.isPopups[popup.popupType] = true;
+
+        popup.transform.SetParent(Root.transform);
+    }
+
+    // ë¦¬ìŠ¤íŠ¸ì— popupì´ ìˆë‚˜ í™•ì¸ í›„ ì‚­ì œ
+    public void ClosePopupUI(UI_Popup popup)
+    {
+        if (_popupList.Count == 0)
+            return;
+        
+        if (_popupList.Contains(popup) == false)
         {
-            m_HPBar.fillAmount = 0;
-            m_HpTxt.text = "0 / 0";
+            Debug.Log("Close Popup Failed!");
+            return;
         }
+
+        _order--;
+
+        Managers.Game.isPopups[popup.popupType] = false;
+        _popupList.Remove(popup);
+        Managers.Resource.Destroy(popup.gameObject);
     }
 
-    public void UpdateMpBar(float a_CurMp, float a_MaxMp)
+    public bool ClosePopupUI()
     {
-        if (a_MaxMp > 0)
-            m_MPBar.fillAmount = Mathf.Clamp01(a_CurMp / a_MaxMp);
+        if (_popupList.Count == 0)
+            return false;
 
-        else
-            m_MPBar.fillAmount = 0;
-
-    }
-    #endregion
-
-
-    public void UpdateSkillBar(Define_S.KeySkill a_KSkill, float a_Idx)
-    {
-        switch (a_KSkill)
+        foreach(UI_Popup popup in _popupList)
         {
-            case Define_S.KeySkill.A:
-                m_SkillA.fillAmount = a_Idx; //½ºÅ³ AÀÇ fillAmount¸¦ a_Idx·Î ¼³Á¤
-                break;
-            case Define_S.KeySkill.D:
-                m_SkillD.fillAmount = a_Idx;//½ºÅ³ DÀÇ fillAmount¸¦ a_Idx·Î ¼³Á¤
-                break;
-        }
-    }
-
-    public void UpdateSkillCool()
-    {
-        foreach (var skill in SkillBarList)
-        {
-            if (skill.Value.isCoolDown)
+            if (popup.IsNull() == false)
             {
-                float a_CoolProgress = (Time.time - skill.Value.skillCoolDown) / skill.Value.skillCoolDown;
-                UpdateSkillBar(skill.Key, Mathf.Clamp01(a_CoolProgress));
-                if (a_CoolProgress >= 1)
-                {
-                    skill.Value.isCoolDown = false;
-                    skill.Value.skillCoolDown = 0; // Äğ´Ù¿î ÃÊ±âÈ­
-                }
+                OnClosePopup(popup);
+                return true;
             }
         }
+
+        return false;
     }
 
-    public void RefreshUI()
+    void OnClosePopup(UI_Popup popup)
     {
-        m_HpTxt.text = Data_Mgr.m_StartData.CurHp.ToString() + " / " + Data_Mgr.m_StartData.MaxHp.ToString();
-        m_MpTxt.text = Data_Mgr.m_StartData.CurMp.ToString() + " / " + Data_Mgr.m_StartData.MaxMp.ToString();
+        Managers.Game.isPopups[popup.popupType] = false;
+        _popupList.Remove(popup);
 
+        // fake null ì²´í¬
+        if (popup.IsFakeNull() == true)
+            popup = null;
+        else
+            Managers.Resource.Destroy(popup.gameObject);
+            
+        _order--;
     }
 
-    #region Die
-    public void DieOn()
+    // List ì „ì²´ Close
+    public void CloseAllPopupUI()
     {
-        m_DiePanel.gameObject.SetActive(true);
-        m_HPBar.fillAmount = 0;
-    }
-
-    public void DieOff()
-    {
-        m_DiePanel.gameObject.SetActive(false);
-        m_HPBar.fillAmount = 1;
-    }
-    #endregion
-
-    public void ResetButtonPress()
-    {
-        IsPressed = false;
-    }
-
-    #region Item
-    public void UseItem(int a_Idx)
-    {
-        Player_Ctrl a_Player = FindObjectOfType<Player_Ctrl>();
-
-        switch (a_Idx)
+        while (true)
         {
-            case 0:
-                {
-                    // 1¾ÆÀÌÅÛ »ç¿ë
-                    if (m_1stItem.fillAmount < 1)
-                    {
-                        Debug.Log("Item 1 is still on cooldown.");
-                        return;
-                    }
-
-                    m_1stItem.fillAmount = 0;
-                    a_Player.CurHp += 50; // CurHp ÇÁ·ÎÆÛÆ¼¸¦ »ç¿ëÇÏ¿© HP Áõ°¡
-
-                    if (a_Player.CurHp > a_Player.MaxHp)
-                    {
-                        a_Player.CurHp = a_Player.MaxHp;
-                    }
-
-                    if (Co_Item1Recovery != null)
-                        StopCoroutine(Co_Item1Recovery);
-                    Co_Item1Recovery = StartCoroutine(RecoverItem(m_1stItem, 15f));
-                    break;
-                }
-            case 1:
-                {
-                    // 2¾ÆÀÌÅÛ »ç¿ë
-                    if (m_2ndItem.fillAmount < 1)
-                    {
-                        Debug.Log("Item 2 is still on cooldown.");
-                        return;
-                    }
-
-                    m_2ndItem.fillAmount = 0;
-                    a_Player.CurMp += 50; // CurMp ÇÁ·ÎÆÛÆ¼¸¦ »ç¿ëÇÏ¿© MP Áõ°¡
-
-                    if (a_Player.CurMp > a_Player.MaxMp)
-                    {
-                        a_Player.CurMp = a_Player.MaxMp;
-                    }
-
-                    if (Co_Item2Recovery != null)
-                        StopCoroutine(Co_Item2Recovery);
-
-                    Co_Item2Recovery = StartCoroutine(RecoverItem(m_2ndItem, 15f));
-                    break;
-                }
-        }
-    }
-
-    //ÄğÅ¸ÀÓ º¹±¸
-    IEnumerator RecoverItem(Image a_Icon, float a_Dur)
-    {
-        float a_Dealy = 0f;
-
-        while (a_Dealy < a_Dur)
-        {
-            a_Dealy += Time.deltaTime;
-            a_Icon.fillAmount = Mathf.Clamp01(a_Dealy / a_Dur);
-            yield return null;
+            if (ClosePopupUI() == false)
+                break;
         }
 
-
-        a_Icon.fillAmount = 1f;
+        _popupList.Clear();
     }
-    #endregion
 
+    public void Clear()
+    {
+        CloseAllPopupUI();
+    }
 }

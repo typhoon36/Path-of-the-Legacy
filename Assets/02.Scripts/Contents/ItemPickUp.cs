@@ -1,41 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+/*
+ * File :   ItemPickUp.cs
+ * Desc :   ë•…ì— ë–¨ì–´ì§„ ì•„ì´í…œì˜ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆìœ¼ë©° í”Œë ˆì´ì–´ì™€ ê°€ê¹Œìš°ë©´ ì´ë¦„ ìƒì„±
+ *
+ & Functions
+ &  : Start()       - ì´ë¦„ë°” ìƒì„±
+ &  : FixedUpdate() - í”Œë ˆì´ì–´ ê·¼ì ‘ ì‹œ ì´ë¦„ë°” í™œì„±í™”
+ *
+ */
 
 public class ItemPickUp : MonoBehaviour
 {
-    public ItemData m_Item;
-    public int m_ItemCount = 1;      // ¾ÆÀÌÅÛ Àü¿ë °³¼ö
-    public Text m_NameTxt = null;
+    public  ItemData    item;
+    public  int         itemCount = 1;      // ì•„ì´í…œ ì „ìš© ê°œìˆ˜
 
-    float m_ScanRange = 5f;     // ÇÃ·¹ÀÌ¾î ½ºÄµ °Å¸®
-    Transform m_PlayerDist;
+    private float       scanRange = 5f;     // í”Œë ˆì´ì–´ ìŠ¤ìº” ê±°ë¦¬
+
+    private UI_NameBar  nameBarUI = null;
 
     void Start()
     {
-        m_PlayerDist = GameObject.FindObjectOfType<Player_Ctrl>().transform;
+        // ì´ë¦„ë°” ìƒì„± ë° ìì‹ìœ¼ë¡œ ë°°ì¹˜
+        nameBarUI = Managers.UI.MakeWorldSpaceUI<UI_NameBar>(transform);
+        if (itemCount > 1)
+            nameBarUI.nameText = item.itemName + $" ({itemCount})";
+        else
+            nameBarUI.nameText = item.itemName;
+
+        nameBarUI.nameText += "[ì¤ê¸°]";
     }
 
     void FixedUpdate()
     {
-        // ÀÌ¸§ Null Check
-        if (m_NameTxt == null) m_NameTxt = GetComponentInChildren<Text>();
+        // ì´ë¦„ë°” Null Check
+        if (nameBarUI.IsNull() == false)
+        {
+            // í”Œë ˆì´ì–´ Null Check
+            if (Managers.Game.GetPlayer().IsNull() == true)
+                return;
+                
+            // í”Œë ˆì´ì–´ì™€ ê±°ë¦¬ ì²´í¬
+            float distance = (Managers.Game.GetPlayer().transform.position - transform.position).magnitude;
 
-
-        float a_Dist = Vector3.Distance(transform.position, m_PlayerDist.position);
-
-        // scanRange¸¸Å­ °¡±î¿ì¸é È°¼ºÈ­
-        if (a_Dist <= m_ScanRange)
-            m_NameTxt.gameObject.SetActive(true);
-        else
-            m_NameTxt.gameObject.SetActive(false);
-
-        // ¾ÆÀÌÅÛ È¸Àü
-        transform.Rotate(Vector3.up, 100 * Time.deltaTime);
-
-        // 5ÃÊ°¡ Áö³ª¸é ¾ÆÀÌÅÛ »èÁ¦
-        Destroy(gameObject, 5f);
-
+            // scanRangeë§Œí¼ ê°€ê¹Œìš°ë©´ í™œì„±í™”
+            if (distance <= scanRange)
+                nameBarUI.gameObject.SetActive(true);
+            else
+                nameBarUI.gameObject.SetActive(false);
+        }
     }
 }

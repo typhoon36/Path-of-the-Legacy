@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityStandardAssets.Utility;
+using UnityStandardAssets.Utilityity;
 
 namespace UnityStandardAssets.Effects
 {

@@ -23,12 +23,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Invisible
+  - UIWorldSpace
+  - 
   - Monster
   - Ground
   - Block
   - Npc
-  - Item
   - 
   - 
   - 

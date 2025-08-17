@@ -2,132 +2,156 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*¸ó½ºÅÍ ±âº» Á¤º¸*/
+/*
+ * File :   MonsterStat.cs
+ * Desc :   ëª¬ìŠ¤í„° ê¸°ë³¸ ì •ë³´, í”¼ê²©, ë“œë ì•„ì´í…œì„ ê´€ë¦¬
+ *
+ & Functions
+ &  [Public]
+ &  : OnAttacked()  - ê³µê²© ë°›ì„ ë•Œ í˜¸ì¶œ
+ &
+ &  [Protected]
+ &  : OnDead()      - ì‚¬ë§ ì‹œ í˜¸ì¶œ
+ &
+ &  [Private]
+ &  : OnDropItem()  - ë“œë ì•„ì´í…œ ê´€ë¦¬
+ &  : HitEffect()   - í”¼ê²© ì´í™íŠ¸ ìƒì„±
+ *
+ */
+
 public class MonsterStat : MonoBehaviour
 {
-    //Stats
-    #region Stats
-    [SerializeField] protected int Id;
-    [SerializeField] protected string Name;
-    [SerializeField] protected int m_CurHp;
-    [SerializeField] protected int m_MaxHp;
-    [SerializeField] protected int m_Att;
-    [SerializeField] protected int m_Exp;
-    [SerializeField] protected int m_Gold;
-    [SerializeField] protected int Item_Id = 1;
-    [SerializeField] protected float m_Speed;
+    [SerializeField] protected int      _id;
+    [SerializeField] protected string   _name = "Monster";
+    [SerializeField] protected int      _hp;
+    [SerializeField] protected int      _maxHp;
+    [SerializeField] protected int      _attack;
+    [SerializeField] protected int      _dropExp;
+    [SerializeField] protected int      _dropGold;
+    [SerializeField] protected int      _dropItemId = 0;
+    [SerializeField] protected float    _movespeed;
 
-    public int m_Id { get { return Id; } set { Id = value; } } //¸ó½ºÅÍ ID
-    public string m_Name { get { return Name; } set { Name = value; } } //¸ó½ºÅÍ ÀÌ¸§
-    public int CurHp { get { return m_CurHp; } set { m_CurHp = Mathf.Clamp(value, 0, MaxHp); } } //¸ó½ºÅÍ ÇöÀç Ã¼·Â
-    public int MaxHp { get { return m_MaxHp; } set { m_MaxHp = value; CurHp = MaxHp; } } //¸ó½ºÅÍ ÃÖ´ë Ã¼·Â
-    public int Attack { get { return m_Att; } set { m_Att = value; } } //¸ó½ºÅÍ °ø°İ·Â
-    public int Exp { get { return m_Exp; } set { m_Exp = value; } } //¸ó½ºÅÍ Àâ¾ÒÀ»½ÃÀÇ °æÇèÄ¡
-    public int Gold { get { return m_Gold; } set { m_Gold = value; } } //¸ó½ºÅÍ°¡ ¶³¾îÆ®¸± °ñµå°ª
-    public int ItemId { get { return Item_Id; } set { Item_Id = value; } }  //¸ó½ºÅÍ°¡ ¶³¾îÆ®¸± ¾ÆÀÌÅÛID
-    public float Speed { get { return m_Speed; } set { m_Speed = value; } } //¸ó½ºÅÍ ÀÌµ¿¼Óµµ
-    #endregion
-
+    public int      Id          { get { return _id; } set { _id = value; } }
+    public string   Name        { get { return _name; } set { _name = value; } }
+    public int      Hp          { get { return _hp; } set { _hp = Mathf.Clamp(value, 0, MaxHp); } }
+    public int      MaxHp       { get { return _maxHp; } set { _maxHp = value; Hp = MaxHp; } }
+    public int      Attack      { get { return _attack; } set { _attack = value; } }
+    public int      DropExp     { get { return _dropExp; } set { _dropExp = value; } }
+    public int      DropGold    { get { return _dropGold; } set { _dropGold = value; } }
+    public int      DropItemId  { get { return _dropItemId; } set { _dropItemId = value; } }
+    public float    MoveSpeed   { get { return _movespeed; } set { _movespeed = value; } }
+    
     void Start()
     {
-        m_Monster = GetComponent<Monster_Ctrl>();
-        GameObject Obj = this.gameObject;
+        _monster = GetComponent<Monster_Ctrl>();
 
-        MonsterStat a_Stat = Obj.GetComponent<MonsterStat>();
-        m_Name = a_Stat.Name;
-        MaxHp = a_Stat.MaxHp;
-        Attack = a_Stat.Attack;
-        Exp = a_Stat.Exp;
-        Gold = a_Stat.Gold;
-        ItemId = a_Stat.ItemId;
-        Speed = a_Stat.Speed;
-    }
-
-    //°ø°İ ¹Ş¾ÒÀ»¶§
-    Monster_Ctrl m_Monster;
-    public virtual void OnAttacked(int a_Damage)
-    {
-        // ÀÏ¹İ ¸ó½ºÅÍ¸¸ ÇÇ°İ »óÅÂ ÁøÇà
-        if (m_Monster.m_MonsterType == Define_S.MonsterType.Normal)
+        GameObject go;
+        if (Managers.Data.Monster.TryGetValue(Id, out go) == true)
         {
-            m_Monster.State = Define_S.AllState.Hit;
-        }
-
-        // ¸ó½ºÅÍ HP¹Ù¿Í HPBar È°¼ºÈ­
-        m_Monster.HPBar.fillAmount = (float)m_CurHp / m_MaxHp;
-        m_Monster.HPBack.SetActive(true);
-        m_Monster.HPBar.gameObject.SetActive(true);
-
-        CurHp -= a_Damage; // Ã¼·Â °¨¼Ò
-
-        if (m_Monster != null)
-        {
-            Vector3 a_DmgPos = m_Monster.m_SpawnTxtPos.position;
-            m_Monster.SpawnDmgTxt(-a_Damage, a_DmgPos, Color.red);
-        }
-
-        if (CurHp <= 0)
-        {
-            CurHp = 0;
-            OnDie();
+            MonsterStat stat = go.GetComponent<MonsterStat>();
+            _name = stat.Name;
+            _hp = stat.Hp;
+            _maxHp = stat.MaxHp;
+            _attack = stat.Attack;
+            _dropExp = stat.DropExp;
+            _dropGold = stat.DropGold;
+            _dropItemId = stat.DropItemId;
+            _movespeed = stat.MoveSpeed;
         }
     }
 
-
-    protected virtual void OnDie()
+    // ê³µê²©ì„ ë°›ì•˜ì„ ë•Œ
+    Monster_Ctrl _monster;
+    public virtual void OnAttacked(int skillAttack=0)
     {
-        m_Monster.State = Define_S.AllState.Die;
+        // ì¼ë°˜ ëª¬ìŠ¤í„°ë§Œ í”¼ê²© ìƒíƒœ ì§„í–‰
+        if (_monster.monsterType == Define.MonsterType.Normal)
+            _monster.State = Define.State.Hit;
 
-        // °æÇèÄ¡ ¹× °ñµå ¹İ¿µ
-        if (UI_Mgr.Inst != null)
-            UI_Mgr.Inst.m_ExpBar.fillAmount += (float)Exp / 800;
+        // Scene UIì— ëª¬ìŠ¤í„° ì •ë³´ í™œì„±í™”
+        Managers.Game._playScene.OnMonsterBar(this);
 
-        if (InvenPopup_UI.Inst != null)
-            InvenPopup_UI.Inst.AddGold(Gold);
+        int damage;
+        // ìŠ¤í‚¬ ë°ë¯¸ì§€ í™•ì¸
+        if (skillAttack != 0)
+            damage = Mathf.Max(0, skillAttack);
+        else 
+            damage = Mathf.Max(0, Managers.Game.Attack);
+            
+        // ì²´ë ¥ ì°¨ê°
+        Hp -= damage;
 
-        // Äù½ºÆ® ¸ñÇ¥ °³¼ö ¹İ¿µ
-        QuestPopup_UI.Inst.QuestTargetCnt(this.gameObject);
+        // í”¼ê²© ì´í™íŠ¸ ìƒì„±
+        HitEffect(damage);
 
-        // ¾ÆÀÌÅÛ µå¶ø
+        // ì²´ë ¥ì´ 0ë³´ë‹¤ ì‘ìœ¼ë©´ ì‚¬ë§
+        if (Hp <= 0)
+        {
+            Hp = 0;
+            OnDead();
+        }
+    }
+
+    // ì£½ì—ˆì„ ë•Œ
+    protected virtual void OnDead()
+    {
+        _monster.State = Define.State.Die;
+
+        // ë³´ìƒ ë°˜ì˜
+        Managers.Game.Exp += _dropExp;
+        Managers.Game.Gold += _dropGold;
+
+        // í€˜ìŠ¤íŠ¸ ì •ë³´ ë°˜ì˜
+        Managers.Game._playScene._quest.QuestTargetCount(gameObject);
+
+        // Scene UI ëª¬ìŠ¤í„° ì •ë³´ ë¹„í™œì„±í™”
+        Managers.Game._playScene.CloseMonsterBar();
+
+        // ì•„ì´í…œ ë“œë
         OnDropItem();
 
-        //ÀüÅõ Á¾·á
-        m_Monster.BattleEnd();
+        // ì „íˆ¬ ì¢…ë£Œ
+        _monster.BattleClose();
     }
 
-    //¾ÆÀÌÅÛ µå¶ø
-    void OnDropItem()
+    // ë“œë ì•„ì´í…œ
+    private void OnDropItem()
     {
-        List<int> ItemList = Data_Mgr.DropItem[Id];
+        // DataManagerì—ì„œ DropItem Listê°€ì ¸ì˜¤ê¸°
+        List<int> itemList = Managers.Data.DropItem[_dropItemId];
+        
+        // ì•„ì´íƒ¬ ê°œìˆ˜ 0~2 + Luk (ìµœëŒ€ 5ê°œê¹Œì§€)
+        int maxCount = Mathf.Clamp(2 + Managers.Game.LUK, 0, 5);
 
-        int a_MaxCnt = Mathf.Clamp(Data_Mgr.m_StartData.Luk, 0, 2);
-
-        for (int i = 0; i < a_MaxCnt; i++)
+        for(int i=0; i<Random.Range(0, maxCount); i++)
         {
-            //·£´ı id ¼³Á¤
-            int a_RandId = Random.Range(0, ItemList.Count);
+            // Randomìœ¼ë¡œ ì•„ì´í…œ id ë½‘ê¸°
+            int randomId = Random.Range(0, itemList.Count-1);
 
-            //¾ÆÀÌÅÛ ¼³Á¤
-            int Id = ItemList[a_RandId];
-            GameObject a_Obj;
+            // ì•„ì´í…œ ì†Œí™˜
+            ItemData item = Managers.Data.CallItem(itemList[randomId]);
+            GameObject go = Managers.Resource.Instantiate(item.itemObject);
 
-            //¿À·ù ¹æÁö(¿À·ù°¡ ÀÏ¾î³ª¸é µğ¹ö±× ·Î±× Ãâ·Â)
-            if (!Data_Mgr.ItemObjects.TryGetValue(Id, out a_Obj) || a_Obj == null)
-            {
-                Debug.Log($"Item object with Id {Id} is null or not found.");
-                continue;
-            }
+            // ItemPickUp ì»´í¬ë„ŒíŠ¸ ë¶™ì´ê¸°
+            ItemPickUp goData = go.GetOrAddComponent<ItemPickUp>();
+            goData.item = item;
 
-            //½ÇÁ¦ ¾ÆÀÌÅÛ »ı¼º
-            GameObject a_Item = Instantiate(a_Obj);
-
-            //ItemPickUp ÄÄÆ÷³ÍÆ® Ãß°¡
-            ItemPickUp a_Data = a_Item.AddComponent<ItemPickUp>();
-            a_Data.m_Item = Data_Mgr.CallItem(Id);
-
-            //¾ÆÀÌÅÛ À§Ä¡ ¼³Á¤
-            float a_RandPos = Random.Range(-0.5f, 0.5f);
-            a_Item.transform.position = new Vector3(transform.position.x + a_RandPos, 1.5f, transform.position.z + a_RandPos);
+            // ë“œë ìœ„ì¹˜ ì„¤ì •
+            float ranPos = Random.Range(-0.5f, 0.5f);
+            go.transform.position = new Vector3(transform.position.x + ranPos, 0f, transform.position.z + ranPos);
         }
+    }
+
+    // í”¼ê²© ë°ë¯¸ì§€ ì¶œë ¥
+    private void HitEffect(int damage)
+    {
+        // UI_HitEffect ìƒì„± í›„ ë°ë¯¸ì§€ text ë„£ê¸°
+        UI_HitEffect hitObject = Managers.UI.MakeWorldSpaceUI<UI_HitEffect>(gameObject.transform);
+        hitObject.hitText.text = damage.ToString();
+
+        // ìƒì„± ìœ„ì¹˜ ì„¤ì •
+        float randomX = Random.Range(-0.5f, 0.5f);
+        float valueY = GetComponent<Collider>().bounds.size.y * 0.8f;
+        hitObject.transform.position = transform.position + new Vector3(randomX, valueY, 0);
     }
 }

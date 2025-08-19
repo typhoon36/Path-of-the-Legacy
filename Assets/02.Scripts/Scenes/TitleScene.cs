@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   TitleScene.cs
- * Desc :   TitleScene이 Load되면 호출된다.
- */
+
 
 public class TitleScene : BaseScene
 {

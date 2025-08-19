@@ -3,17 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_SkillSlot.cs
- * Desc :   모든 Skill 관련 슬롯은 해당 클래스를 상속 받는다.
- *
- & Functions
- &  [Protected]
- &  : OnBeginDragSlot() - 슬롯 드래그 시작
- &  : OnDragSlot()      - 슬롯 드래그 진행
- &  : OnEndDragSlot()   - 슬롯 드래그 끝
- *
- */
+
 
 public class UI_SkillSlot : UI_Slot
 {

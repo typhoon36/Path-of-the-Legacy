@@ -48,13 +48,13 @@ public class UI_TitleScene : UI_Scene
     }
     
     // 시작 버튼
-    private void OnClickStartButton()
+     void OnClickStartButton()
     {
         Managers.Scene.LoadScene(Define.Scene.PlayerCustom);
     }
 
     // 세이브 로드 버튼
-    private void OnClickLoadButton()
+     void OnClickLoadButton()
     {
         if (Managers.Game.LoadGame() == false)
             return;
@@ -72,7 +72,7 @@ public class UI_TitleScene : UI_Scene
     }
 
     // 나가기 버튼
-    private void OnClickExitButton()
+     void OnClickExitButton()
     {
         Application.Quit();
     }

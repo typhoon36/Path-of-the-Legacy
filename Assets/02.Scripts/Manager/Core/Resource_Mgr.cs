@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   ResourceManager.cs
- * Desc :   Resource 폴더 사용 및 유니티에서 제공하는 명령어를 더 쉽게 사용하기 위한 매니저
- *          [ Rookiss의 MMORPG Game Part 3 참고. ]
- */
+
 
 public class Resource_Mgr
 {
@@ -24,11 +20,9 @@ public class Resource_Mgr
             GameObject go = Managers.Pool.GetOriginal(name);
             if (go.IsNull() == false)
                 return go as T;
-                // return go.GetComponent<T>();
         }
 
-        // Pool에서 찾지 못하면 Resources 경로에서 가져옴.
-        // [유니티에서 제공하는 Resources 폴더 안에 해당 경로의 프리팹을 읽어오는 클래스]
+
         return Resources.Load<T>(path);
     }
 

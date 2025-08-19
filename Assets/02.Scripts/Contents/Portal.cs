@@ -2,48 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   Portal.cs
- * Desc :   포탈 생성 및 Scene 이동
- *
- & Functions
- &  : OnTriggerEnter()  - 플레이어 Enter 확인 후 포탈 활성화
- &  : OnTriggerStay()   - 플레이어와 근접하면 Scene Load
- &  : OnTriggerExit()   - 플레이어 Exit 확인 후 포탈 비활성화
- *
- */
+
 
 public class Portal : MonoBehaviour
 {
-    private float           scanRange = 3.2f;   // 플레이어 스캔 거리
-    private bool            isPortal  = false;  // 포탈 접촉 여부
+    float m_ScanRange = 3.2f;   // 플레이어 스캔 거리
+    bool IsPortal = false;  // 포탈 접촉 여부
 
-    [SerializeField]
-    private Define.Scene    sceneType;          // Load할 Scene 타입
+    [SerializeField] Define.Scene m_SceneType;
 
-    [SerializeField]
-    private GameObject      portalObject;       // 포탈 객체
+    [SerializeField] GameObject m_PortalObj;       // 포탈 객체
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider Coll)
     {
         // 플레이어 체크
-        if (other.CompareTag("Player"))
+        if (Coll.CompareTag("Player"))
         {
-            isPortal = false;
-            portalObject.SetActive(true);
+            IsPortal = false;
+            m_PortalObj.SetActive(true);
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider Coll)
     {
         // 포탈 활성화 체크
-        if (portalObject.activeSelf == true && isPortal == false)
+        if (m_PortalObj.activeSelf == true && IsPortal == false)
         {
             // 플레이어와 포탈이 근접한지 체크
-            float distance = (Managers.Game.GetPlayer().transform.position - portalObject.transform.position).magnitude;
-            if (distance <= scanRange)
+            float a_Dist = (Managers.Game.GetPlayer().transform.position - m_PortalObj.transform.position).magnitude;
+            if (a_Dist <= m_ScanRange)
             {
-                isPortal = true;
+                IsPortal = true;
 
                 // 플레이어 정지
                 Managers.Game.StopPlayer();
@@ -55,31 +44,28 @@ public class Portal : MonoBehaviour
                     UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
                     if (confirmPopup.IsNull() == true)
                         return;
-                    
-                    // 확인 Popup 설정
-                    confirmPopup.SetInfo(()=>
-                    {
-                        // 게임 세이브
-                        Managers.Game.SaveGame();
 
-                        // 씬 이동 전 위치 저장
+                    // 확인 Popup 설정
+                    confirmPopup.SetInfo(() =>
+                    {
+                        //씬 로드하기전 게임 데이터 저장
+                        Managers.Game.SaveGame();
                         Managers.Game.CurrentPos += Vector3.forward * (-3f);
 
                         // 씬 로드
-                        Managers.Scene.LoadScene(sceneType);
+                        Managers.Scene.LoadScene(m_SceneType);
                     }, Define.DungeonMessage);
                 }
                 else
-                    Managers.Scene.LoadScene(sceneType);
+                    Managers.Scene.LoadScene(m_SceneType);
             }
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider Coll)
     {
-        if (other.CompareTag("Player"))
-        {
-            portalObject.SetActive(false);
-        }
+        if (Coll.CompareTag("Player"))
+            m_PortalObj.SetActive(false);
+
     }
 }

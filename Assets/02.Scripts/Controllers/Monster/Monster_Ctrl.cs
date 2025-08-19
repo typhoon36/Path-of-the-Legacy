@@ -23,7 +23,7 @@ using UnityEngine.AI;
  &  : ExitAttack()              - 공격 끝   (Animation Event)
  &  : TargetDistance()          - 타겟 거리값
  &
- &  [Private]
+ &  []
  &  : SpawnMoving()     - 스폰 지점 이동 코루틴
  &  : DelayDestroy()    - 딜레이 삭제 코루틴
  *
@@ -65,7 +65,7 @@ public class Monster_Ctrl : Base_Ctrl
     protected virtual void IdleTargetDetection()
     {
         hpBarUI.SetActive(true);                    // 체력바 활성화
-        _lockTarget = Managers.Game.GetPlayer();    // 타겟 설정
+        m_LockTarget = Managers.Game.GetPlayer();    // 타겟 설정
 
         State = Define.State.Moving;
     }
@@ -90,7 +90,7 @@ public class Monster_Ctrl : Base_Ctrl
 
         // 플레이어가 죽었거나, 타겟이 Null이면
         if (Managers.Game.GetPlayer().GetComponent<Player_Ctrl>().State == Define.State.Die ||
-            _lockTarget.IsNull() == true)
+			m_LockTarget.IsNull() == true)
         {
             StartCoroutine(SpawnMoving());  // 스폰 지점으로 이동
             return;
@@ -104,8 +104,8 @@ public class Monster_Ctrl : Base_Ctrl
             return;
         }
 
-        distance = TargetDistance(_lockTarget);         // 타겟 거리값
-        Managers.Game._playScene.OnMonsterBar(_stat);   // Scene UI 몬스터 정보 활성화
+        distance = TargetDistance(m_LockTarget);         // 타겟 거리값
+        Managers.Game.m_PlayScene.OnMonsterBar(_stat);   // Scene UI 몬스터 정보 활성화
 
         // 타겟과의 거리가 일정 범위 벗어나면
         if (distance > scanRange)
@@ -115,7 +115,7 @@ public class Monster_Ctrl : Base_Ctrl
         }
         
         // nav 도착좌표 설정
-        nav.SetDestination(_lockTarget.transform.position);
+        nav.SetDestination(m_LockTarget.transform.position);
 
         // 타겟이 공격사거리안에 들어오면
         if (distance <= attackRange)
@@ -174,7 +174,7 @@ public class Monster_Ctrl : Base_Ctrl
         if (distance <= attackRange)
         {
             // Scene UI 몬스터 정보 활성화
-            Managers.Game._playScene.OnMonsterBar(_stat);
+            Managers.Game.m_PlayScene.OnMonsterBar(_stat);
 
             // 플레이어 데미지 반영
             Managers.Game.OnAttacked(_stat);
@@ -195,7 +195,7 @@ public class Monster_Ctrl : Base_Ctrl
     }
 
     // 스폰 지점 이동 코루틴
-    private IEnumerator SpawnMoving()
+     IEnumerator SpawnMoving()
     {
         isOverSpawn = true;
 
@@ -219,13 +219,13 @@ public class Monster_Ctrl : Base_Ctrl
     }
 
     // 삭제 딜레이 코루틴
-    private IEnumerator DelayDestroy()
+     IEnumerator DelayDestroy()
     {
         // 콜라이더 비활성화 ( 플레이어 감지 때문 )
         GetComponent<CapsuleCollider>().enabled = false;
 
         // Scene UI 몬스터 정보 삭제
-        Managers.Game._playScene.CloseMonsterBar();
+        Managers.Game.m_PlayScene.CloseMonsterBar();
 
         yield return new WaitForSeconds(3f);
 
@@ -243,8 +243,8 @@ public class Monster_Ctrl : Base_Ctrl
     // 전투 종료 
     public void BattleClose()
     {
-        _lockTarget = null;
-        Managers.Game._playScene.CloseMonsterBar();
+		m_LockTarget = null;
+        Managers.Game.m_PlayScene.CloseMonsterBar();
 
         nav.SetDestination(transform.position);
         hpBarUI.SetActive(false);

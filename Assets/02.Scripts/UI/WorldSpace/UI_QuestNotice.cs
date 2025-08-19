@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 /*
  * File :   UI_QuestNotice.cs
@@ -15,7 +17,7 @@ using UnityEngine.UI;
 public class UI_QuestNotice : UI_Base
 {
     [SerializeField]
-    private Text     _noticeText;    // 알림 text
+      TextMeshPro    _noticeText;    // 알림 text
 
     public UI_QuestNotice SetInfo(string noticeText, Vector3 pos = new Vector3())
     {

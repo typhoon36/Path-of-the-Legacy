@@ -2,45 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-/*
- * File :   UI_InputPopup.cs
- * Desc :   입력이 필요할 때 Popup UI (닉네임 입력 등..)
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : SetInfo()             - 새 정보 설정 ( 확인 클릭 시 Invoke 호출할 Action 받기 )
- &
- &  [Private]
- &  : OnClickYesButton()    - 확인 버튼 클릭 시 호출
- &  : OnClickNoButton()     - 취소 버튼 클릭 시 호출
- *
- */
 
 public class UI_InputPopup : UI_Popup
 {
-    enum Buttons
-    {
-        NoButton,
-        YesButton,
-    }
+    enum Buttons { NoButton, YesButton, }
 
-    [SerializeField]
-    private TMP_InputField  _inputField;
+    [SerializeField] InputField m_InputField;
 
-    [SerializeField]
-    private TextMeshProUGUI _messageText;
+    [SerializeField] Text m_MessageText;
 
-    private string          _regex;         // 정규식
+    string m_Regex;         // 입력 확인을 위한 정규식
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         BindButton(typeof(Buttons));
 
@@ -51,44 +29,49 @@ public class UI_InputPopup : UI_Popup
         return true;
     }
 
-    // 기능 설정
-    Action<string> _onClickYesButton;
-    Action _onClickNoButton;
-    public void SetInfo(Action<string> onClickYesButton, string messageText, string placeholderText, string regex, Action onClickNoButton=null)
+    // 설정
+    Action<string> IsClickYesButton;
+    Action IsClickNoButton;
+    public void SetInfo(Action<string> a_ClickYesButton, string messageText, string placeholderText, string regex, Action onClickNoButton = null)
     {
-        _onClickYesButton = onClickYesButton;
-        _onClickNoButton = onClickNoButton;
-        _messageText.text = messageText;
-        _regex = regex;
+        IsClickYesButton = a_ClickYesButton;
+        IsClickNoButton = onClickNoButton;
+        m_MessageText.text = messageText;
+        m_Regex = regex;
 
-        _inputField.placeholder.GetComponent<TextMeshProUGUI>().text = placeholderText;
-        _inputField.Select();
+        m_InputField.placeholder.GetComponent<Text>().text = placeholderText;
+        m_InputField.Select();
     }
 
-    private void OnClickYesButton()
+    void OnClickYesButton()
     {
-        Regex regex = new Regex(_regex);
-        if (regex.IsMatch(_inputField.text))
+        Regex a_Regex = new Regex(m_Regex);
+
+        // 입력값이 정규식에 맞는지 확인
+        if (a_Regex.IsMatch(m_InputField.text))
         {
+            // 입력값이 정규식에 맞으면 팝업 닫기
             Managers.UI.ClosePopupUI(this);
 
             // 확인 기능 실행
-            if (_onClickYesButton.IsNull() == false)
-                _onClickYesButton.Invoke(_inputField.text);
+            if (IsClickYesButton.IsNull() == false)
+                IsClickYesButton.Invoke(m_InputField.text);
         }
+        // 입력값이 정규식에 맞지 않으면 경고문 생성
         else
         {
-            // 경고문 생성
+            
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo("한글|영어|숫자 2글자 이상 8글자 이하", Color.red);
         }
     }
 
-    private void OnClickNoButton()
+    void OnClickNoButton()
     {
+
+        //취소했으니 팝업 닫기
         Managers.UI.ClosePopupUI(this);
 
         // 취소 기능 실행
-        if (_onClickNoButton.IsNull() == false)
-            _onClickNoButton.Invoke();
+        if (IsClickNoButton.IsNull() == false) IsClickNoButton.Invoke();
     }
 }

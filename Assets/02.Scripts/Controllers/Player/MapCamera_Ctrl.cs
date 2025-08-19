@@ -6,7 +6,7 @@ using UnityEngine;
 public class MapCamera_Ctrl : MonoBehaviour
 {
     [SerializeField]
-    private float height;
+     float height;
     
     void FixedUpdate()
     {

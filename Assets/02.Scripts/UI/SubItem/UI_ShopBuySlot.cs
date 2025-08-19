@@ -32,9 +32,9 @@ public class UI_ShopBuySlot : UI_ItemSlot
         BuyItemPrice,
     }
 
-    private Sprite      buySprite;          // 구매 아이템 sprite
-    private string      itemNameText;       // 아이템 이름 text
-    private string      itemPriceText;      // 아이템 가격 text
+     Sprite      buySprite;          // 구매 아이템 sprite
+     string      itemNameText;       // 아이템 이름 text
+     string      itemPriceText;      // 아이템 가격 text
 
     public override bool Init()
     {
@@ -67,16 +67,16 @@ public class UI_ShopBuySlot : UI_ItemSlot
         itemPriceText = item.itemPrice.ToString();
     }
 
-    private void OnClickBuyButton(PointerEventData eventData)
+     void OnClickBuyButton(PointerEventData eventData)
     {
         // 인벤 크기 확인
-        if (Managers.Game._playScene._inventory.IsInvenMaxSize() == true)
+        if (Managers.Game.m_PlayScene.Inventory.IsInvenMaxSize() == true)
         {
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo("인벤토리가 가득 찼습니다.", Color.red);
             return;
         }
 
-        Managers.Game._playScene._slotTip.OnSlotTip(false);
+        Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
         
         // 금액 확인
         if (Managers.Game.Gold < item.itemPrice)
@@ -96,7 +96,7 @@ public class UI_ShopBuySlot : UI_ItemSlot
             numberCheckPopup.SetInfo(item, (int itemCount)=>
             {
                 Managers.Game.Gold -= item.itemPrice * itemCount;
-                Managers.Game._playScene._inventory.AcquireItem(item.ItemClone(), itemCount);
+                Managers.Game.m_PlayScene.Inventory.AcquireItem(item.ItemClone(), itemCount);
             });
         }
         else
@@ -108,7 +108,7 @@ public class UI_ShopBuySlot : UI_ItemSlot
             confirmPopup.SetInfo(()=>
             {
                 Managers.Game.Gold -= item.itemPrice;
-                Managers.Game._playScene._inventory.AcquireItem(item.ItemClone());
+                Managers.Game.m_PlayScene.Inventory.AcquireItem(item.ItemClone());
             }, Define.ShopSaleMessage);
         }
     }

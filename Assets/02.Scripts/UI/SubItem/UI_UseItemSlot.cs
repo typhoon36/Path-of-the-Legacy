@@ -27,7 +27,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
     public int                  key;
 
     [SerializeField]
-    private Text    keyText;
+     Text    keyText;
 
     public override void SetInfo()
     {
@@ -56,7 +56,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
     {
         if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (Managers.Game._playScene._inventory.AcquireItem(item, itemCount) == true)
+            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(item, itemCount) == true)
                 ClearSlot();
         }
         
@@ -93,7 +93,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
                 SetCount((itemSlot.item as UseItemData).ItemCount);
             else
             {
-                if (Managers.Game._playScene._inventory.AcquireItem(item, itemCount) == false)
+                if (Managers.Game.m_PlayScene.Inventory.AcquireItem(item, itemCount) == false)
                     return;
                 
                 AddItem(itemSlot.item, (itemSlot.item as UseItemData).ItemCount);

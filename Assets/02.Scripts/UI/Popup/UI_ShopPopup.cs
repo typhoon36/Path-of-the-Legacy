@@ -14,7 +14,7 @@ using UnityEngine.EventSystems;
  &  : RefreshUI()   - 새로고침 UI (SettingBuySlot() 호출)
  &  : ExitShop()    - 상점 나가기 (초기화)
  &
- &  [Private]
+ &  []
  &  : SettingBuySlot()          - 구매 슬롯 설정
  &  : OnClickBuyListButton()    - 구매 리스트 호출 버튼
  &  : OnClickSaleListButton()   - 판매 호출 버튼
@@ -49,9 +49,9 @@ public class UI_ShopPopup : UI_Popup
     public Define.ShopType          shopType = Define.ShopType.Unknown;
 
     public List<UI_ShopSaleSlot>    saleList;     // 판매 슬롯
-    private List<UI_ShopBuySlot>    buyList;       // 구매 슬롯
+     List<UI_ShopBuySlot>    buyList;       // 구매 슬롯
 
-    private int                     currentShopId = 0;
+     int                     currentShopId = 0;
 
     public override bool Init()
     {
@@ -82,7 +82,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 구매 슬롯 설정
-    private void SettingBuySlot(int shopBuyId)
+     void SettingBuySlot(int shopBuyId)
     {
         // 똑같은 상점에 들린다면
         if (currentShopId == shopBuyId)
@@ -112,7 +112,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 구매 리스트 호출 버튼
-    private void OnClickBuyListButton(PointerEventData eventData)
+     void OnClickBuyListButton(PointerEventData eventData)
     {
         GetObject((int)Gameobjects.BuyList).SetActive(true);
         GetObject((int)Gameobjects.SaleList).SetActive(false);
@@ -120,7 +120,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 판매 호출 버튼
-    private void OnClickSaleListButton(PointerEventData eventData)
+     void OnClickSaleListButton(PointerEventData eventData)
     {
         GetObject((int)Gameobjects.BuyList).SetActive(false);
         GetObject((int)Gameobjects.SaleList).SetActive(true);
@@ -128,7 +128,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 판매 진행 버튼
-    private void OnClickGoSaleButton(PointerEventData eventData)
+     void OnClickGoSaleButton(PointerEventData eventData)
     {
         // 판매 등록 확인
         if (saleList.Count == 0)
@@ -152,7 +152,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 판매 아이템 등록
-    private void SetSaleItemRegister(UI_InvenSlot invenSlot)
+     void SetSaleItemRegister(UI_InvenSlot invenSlot)
     {
         // 장비거나 개수가 한개라면 판매 등록
         if (invenSlot.item is EquipmentData || invenSlot.itemCount == 1)
@@ -174,7 +174,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 판매 등록
-    private void SaleItemRegister(UI_InvenSlot invenItem, int count = 1)
+     void SaleItemRegister(UI_InvenSlot invenItem, int count = 1)
     {
         // 판매 슬로 생성 후 아이템 등록
         UI_ShopSaleSlot saleItem = Managers.UI.MakeSubItem<UI_ShopSaleSlot>(GetObject((int)Gameobjects.SaleList).transform);
@@ -182,7 +182,7 @@ public class UI_ShopPopup : UI_Popup
         saleList.Add(saleItem);
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         buyList = new List<UI_ShopBuySlot>();
         saleList = new List<UI_ShopSaleSlot>();
@@ -198,7 +198,7 @@ public class UI_ShopPopup : UI_Popup
         SetEventHandler();
     }
 
-    private void SetEventHandler()
+     void SetEventHandler()
     {
         // Title 잡고 인벤토리 이동
         RectTransform shopPos = GetObject((int)Gameobjects.Background).GetComponent<RectTransform>();
@@ -244,7 +244,7 @@ public class UI_ShopPopup : UI_Popup
     }
 
     // 우클릭 아이템 받기
-    private void GetSlotInteract(UI_InvenSlot invenSlot)
+     void GetSlotInteract(UI_InvenSlot invenSlot)
     {
         // 판매 리스트가 현재 활성화 중이라면
         if (GetObject((int)Gameobjects.SaleList).activeSelf == true)

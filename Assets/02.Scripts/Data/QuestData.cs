@@ -3,14 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   QuestData.cs
- * Desc :   퀘스트 데이터
- *
- & Functions
- &  : QuestClear()  - 퀘스트 성공 보상 지급
- *
- */
+
 
 [Serializable]
 public class RewardItem
@@ -46,7 +39,7 @@ public class QuestData
 
         // 보상 지급
         foreach(RewardItem rewardItem in rewardItems)
-            Managers.Game._playScene._inventory.AcquireItem(Managers.Data.CallItem(rewardItem.ItemId), rewardItem.itemCount);
+            Managers.Game.m_PlayScene.Inventory.AcquireItem(Managers.Data.CallItem(rewardItem.ItemId), rewardItem.itemCount);
 
         Managers.Game.Gold += rewardGold;
         Managers.Game.Exp += rewardExp;

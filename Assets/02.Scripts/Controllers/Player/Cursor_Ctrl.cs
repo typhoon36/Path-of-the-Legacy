@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   CursorController.cs
- * Desc :   마우스 커서 icon을 상황마다 바꿔주는 기능
- *
- & Functions
- &  [Private]
- &  : CursorUpdate() - 상황마다 마우스 커서 Update
- *
- */
 
 public class Cursor_Ctrl : MonoBehaviour
 {
@@ -23,14 +14,14 @@ public class Cursor_Ctrl : MonoBehaviour
         Loot,
     }
 
-    private CursorType  _cursorType = CursorType.None;
+     CursorType  _cursorType = CursorType.None;
 
-    private RaycastHit  hit;
-    private Texture2D   _attackIcon;  // 공격 icon
-    private Texture2D   _handIcon;    // 기본 icon
-    private Texture2D   _lootIcon;    // npc icon
+     RaycastHit  hit;
+     Texture2D   _attackIcon;  // 공격 icon
+     Texture2D   _handIcon;    // 기본 icon
+     Texture2D   _lootIcon;    // npc icon
 
-    private int         _mask = (1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Npc);
+     int         _mask = (1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Npc);
 
     void Start()
     {
@@ -49,7 +40,7 @@ public class Cursor_Ctrl : MonoBehaviour
         CursorUpdate();
     }
 
-    private void CursorUpdate()
+     void CursorUpdate()
     {
         // 꾹 누르면 아이콘 유지
         if (Input.GetMouseButton(0))

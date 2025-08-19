@@ -10,7 +10,7 @@ using UnityEngine;
  &  [Public]
  &  : IsCollider()      - 콜라이더 여부 설정
  &
- &  [Private]
+ &  []
  &  : OnTriggerEnter()  - 플레이어와 접촉 시 데미지 반영
  *
  */
@@ -20,7 +20,7 @@ public class MonsterAttackCollistion : MonoBehaviour
     public int          damage;
 
     [SerializeField]
-    private BoxCollider boxCollider;
+     BoxCollider boxCollider;
 
     public void IsCollider(bool isActive) { boxCollider.enabled = isActive; }
 

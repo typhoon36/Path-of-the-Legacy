@@ -3,16 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
- * File :   UI_DragSlot.cs
- * Desc :   마우스로 슬롯이 옮겨지는 과정을 보여주기 위한 슬롯
- *
- & Functions
- &  [Public]
- &  : DragSetImage()    - 드래그할 경우 이미지 활성화
- &  : SetColor()        - 색깔 설정
- *
- */
+
 
 public class UI_DragSlot : MonoBehaviour
 {

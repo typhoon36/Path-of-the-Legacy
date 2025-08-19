@@ -11,7 +11,7 @@ using UnityEngine.UI;
  &  [Public]
  &  : SetInfo() - 기본 설정
  &
- &  [Private]
+ &  []
  &  : LoadAsynSceneCoroutine()  - 비동기식 로드
  &  : OnDataRequest()           - 구글스프레드시트 데이터 불러오기
  *
@@ -20,16 +20,16 @@ using UnityEngine.UI;
 public class UI_LoadPopup : UI_Popup
 {
     // 메시지 string Array
-    private string[]        loadMessges = new string[]{Define.LoadMessage1, Define.LoadMessage2, Define.LoadMessage3};
+     string[]        loadMessges = new string[]{Define.LoadMessage1, Define.LoadMessage2, Define.LoadMessage3};
 
     // 현재 메시지 Index
-    private int             currentMessageIndex = 0;
+     int             currentMessageIndex = 0;
 
     [SerializeField]
-    private Slider          loadSlider;
+     Slider          loadSlider;
 
     [SerializeField]
-    private Text tipText;
+     Text tipText;
 
     // 기본 설정
     public void SetInfo(Define.Scene type, int plusTime = 0)
@@ -66,8 +66,8 @@ public class UI_LoadPopup : UI_Popup
     }
     
     // 비동기 로드
-    private float loadTime = 0;
-    private IEnumerator LoadAsynSceneCoroutine(Define.Scene type, int plusTime = 0)
+     float loadTime = 0;
+     IEnumerator LoadAsynSceneCoroutine(Define.Scene type, int plusTime = 0)
     {
         yield return null;
 
@@ -92,7 +92,7 @@ public class UI_LoadPopup : UI_Popup
     }
 
     // 구글 스프레드시트 데이터 가져오기
-    private void OnDataRequest()
+     void OnDataRequest()
     {
         // 이미 데이터를 받았다면 종료
         if (Managers.Data.IsData == true)

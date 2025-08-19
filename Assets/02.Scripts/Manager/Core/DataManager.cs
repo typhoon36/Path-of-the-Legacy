@@ -14,17 +14,17 @@ public class DataManager
 
     public bool IsData = false;
 
-    public StartData Start { get; private set; }
-    public Dictionary<int, LevelData> Level { get; private set; }
-    public Dictionary<int, SkillData> Skill { get; private set; }
-    public Dictionary<int, ItemData> Item { get; private set; }
-    public Dictionary<int, List<int>> DropItem { get; private set; }
-    public Dictionary<int, GameObject> Monster { get; private set; }
-    public Dictionary<int, List<int>> Shop { get; private set; }
-    public Dictionary<int, QuestData> Quest { get; private set; }
-    public Dictionary<int, TalkData> Talk { get; private set; }
-    public Dictionary<int, List<SkinnedData>> Skinned { get; private set; }
-    // public Dictionary<int, TextData> Texts { get; private set; }
+    public StartData Start { get;  set; }
+    public Dictionary<int, LevelData> Level { get;  set; }
+    public Dictionary<int, SkillData> Skill { get;  set; }
+    public Dictionary<int, ItemData> Item { get;  set; }
+    public Dictionary<int, List<int>> DropItem { get;  set; }
+    public Dictionary<int, GameObject> Monster { get;  set; }
+    public Dictionary<int, List<int>> Shop { get;  set; }
+    public Dictionary<int, QuestData> Quest { get;  set; }
+    public Dictionary<int, TalkData> Talk { get;  set; }
+    public Dictionary<int, List<SkinnedData>> Skinned { get;  set; }
+    // public Dictionary<int, TextData> Texts { get;  set; }
 
     // Deep Copy 아이템
     public ItemData CallItem(int itemId)
@@ -196,7 +196,7 @@ public class DataManager
                 id = int.Parse(row[0]),
                 itemName = row[1],
                 UseType = (Define.UseType)int.Parse(row[2]),
-                itemGrade = (Define.itemGrade)int.Parse(row[3]),
+                itemGrade = (Define.ItemGrade)int.Parse(row[3]),
                 UseValue = int.Parse(row[4]),
                 itemPrice = int.Parse(row[5]),
                 itemDesc = row[6],
@@ -226,7 +226,7 @@ public class DataManager
                 id = int.Parse(row[0]),
                 itemName = row[1],
                 WeaponType = (Define.WeaponType)int.Parse(row[2]),
-                itemGrade = (Define.itemGrade)int.Parse(row[3]),
+                itemGrade = (Define.ItemGrade)int.Parse(row[3]),
                 MinLevel = int.Parse(row[4]),
                 Attack = int.Parse(row[5]),
                 UpgradeValue = int.Parse(row[6]),
@@ -265,7 +265,7 @@ public class DataManager
             armor.id = int.Parse(row[0]);
             armor.itemName = row[1];
             armor.armorType = (Define.ArmorType)int.Parse(row[2]);
-            armor.itemGrade = (Define.itemGrade)int.Parse(row[3]);
+            armor.itemGrade = (Define.ItemGrade)int.Parse(row[3]);
             armor.MinLevel = int.Parse(row[4]);
             armor.UpgradeValue = int.Parse(row[5]);
             armor.itemPrice = int.Parse(row[6]);

@@ -19,20 +19,20 @@ public class GameScene : BaseScene
         // 플레이어 캐릭터 생성
         if (Managers.Game.GetPlayer().IsFakeNull() == true)
         {
-            GameObject _player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
-            _player.transform.position = playerSpawn.position;
-            DontDestroyOnLoad(_player);
+            GameObject a_Player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
+            a_Player.transform.position = playerSpawn.position;
+            DontDestroyOnLoad(a_Player);
         }
 
         // UI 생성
-        if (Managers.Game._playScene.IsFakeNull() == true)
+        if (Managers.Game.m_PlayScene.IsFakeNull() == true)
         {
             Managers.Game.Init();
-            Managers.Game._playScene = Managers.UI.ShowSceneUI<UI_PlayScene>();
-            DontDestroyOnLoad(Managers.Game._playScene.gameObject);
+            Managers.Game.m_PlayScene = Managers.UI.ShowSceneUI<UI_PlayScene>();
+            DontDestroyOnLoad(Managers.Game.m_PlayScene.gameObject);
         }
         else
-            Managers.Game._playScene.IsMiniMap(true);
+            Managers.Game.m_PlayScene.IsMiniMap(true);
 
         // 플레이어 세이브 위치 이동
         if (Managers.Game.CurrentPos != Vector3.zero)
@@ -41,10 +41,10 @@ public class GameScene : BaseScene
         // 클릭 Effect 생성
         if (Managers.Game.GetPlayer().IsFakeNull() == false)
         {
-            GameObject clickMoveEffect = Managers.Resource.Instantiate("Effect/ClickMoveEffect");
-            clickMoveEffect.SetActive(false);
+            GameObject a_ClickMoveEff = Managers.Resource.Instantiate("Effect/ClickMoveEffect");
+            a_ClickMoveEff.SetActive(false);
 
-            Managers.Game.GetPlayer().GetComponent<Player_Ctrl>().clickMoveEffect = clickMoveEffect;
+            Managers.Game.GetPlayer().GetComponent<Player_Ctrl>().m_ClickMoveObj = a_ClickMoveEff;
         }
         
         // 카메라 조정

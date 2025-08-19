@@ -3,38 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_WeaponSlot.cs
- * Desc :   UI_EqStatPopup.cs의 하위객체에서 사용되며 무기 아이템을 장착/해제할 수 있다.
- *
- & Functions
- &  [Public]
- &  : SetInfo()             - 기능 설정
- &  : ChangeWeapon()        - 무기 교체
- &  : AddItem()             - 아이템 등록
- &  : UpgradeMeshEffect()   - 업그레이드 이펙트 적용
- &  : ClearSlot()           - 초기화
- &
- &  [Protected]
- &  : OnClickSlot()         - 슬롯 우클릭 시 "장비 해제"
- &  : OnEndDragSlot()       - 마우스 클릭을 해제하면 "초기화"
- &  : OnDropSlot()          - 현재 슬롯에 마우스 클릭을 때면 "장비 장착"
- &  : ChangeSlot()          - 슬롯 교체
- &
- &  [Private]
- &  : GetPart()             - 장비 파츠 장착
- *
- */
+
 
 public class UI_WeaponSlot : UI_ItemDragSlot
 {
     [SerializeField]
-    private Define.WeaponType   weaponType = Define.WeaponType.Unknown;
-    private WeaponItemData      weaponItem;
+     Define.WeaponType   weaponType = Define.WeaponType.Unknown;
+     WeaponItemData      weaponItem;
 
     public override void SetInfo()
     {
-        Managers.Game._playScene._equipment.weaponSlot = this;
+        Managers.Game.m_PlayScene.Equipment.weaponSlot = this;
 
         // 해당 부위 장비가 장착되어 있다면
         if (Managers.Game.CurrentWeapon.id != 0)
@@ -81,8 +60,10 @@ public class UI_WeaponSlot : UI_ItemDragSlot
         // 장비 벗기
         if (Input.GetMouseButtonUp(1))
         {
-            if (Managers.Game._playScene._inventory.AcquireItem(weaponItem) == true)
+            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(weaponItem) == true)
                 ClearSlot();
+
+            //Debug.Log("장비 벗는사운드 재생");
         }
     }
 
@@ -92,7 +73,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
         if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
             // 아이템 인벤으로 이동
-            if (Managers.Game._playScene._inventory.AcquireItem(weaponItem) == true)
+            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(weaponItem) == true)
                 ClearSlot();
         }
         
@@ -145,7 +126,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
             inven.ClearSlot();
     }
 
-    private void GetPart(WeaponItemData weapon)
+     void GetPart(WeaponItemData weapon)
     {
         if (weapon.charEquipment.IsNull() == true)
             weapon.charEquipment = (Managers.Data.Item[weapon.id] as WeaponItemData).charEquipment;

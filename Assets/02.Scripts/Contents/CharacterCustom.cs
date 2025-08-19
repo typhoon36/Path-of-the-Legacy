@@ -7,156 +7,146 @@ using UnityEngine.EventSystems;
 
 public class CharacterCustom : MonoBehaviour
 {
-    public bool stopRotation = false;    // 회전 제어
+    public bool IsStopRot = false;    // 회전 제어
 
-    [SerializeField]
-    private float rotationSpeed = 3.5f;     // 회전 속도
-    private float currentRotation_Y = 0.01f;    // 캐릭터 Y 회전값 
+    [SerializeField] float m_RotSpeed = 3.5f;     // 회전 속도
+    float m_CurRotY = 0.01f;    // 캐릭터 Y 회전값 
 
-    // 부위별 파츠 리스트
+    //파트별 리스트
     [SerializeField] List<GameObject> HairList = new List<GameObject>();
     [SerializeField] List<GameObject> EyeBrowList = new List<GameObject>();
-    [SerializeField] List<GameObject> Ears = new List<GameObject>();
+    [SerializeField] List<GameObject> EarsList = new List<GameObject>();
     [SerializeField] List<GameObject> FacialHairList = new List<GameObject>();
     [SerializeField] List<GameObject> NoseList = new List<GameObject>();
 
-    // 부위별 현재 List index
-    private int currentHairIndex = 0;
-    private int currentEyebrowsIndex = 0;
-    private int currentEarIndex = 0;
-    private int currentFacialHairIndex = 0;
-    private int currentNoseIndex = 0;
+    // 현재 선택된 파츠 인덱스
+    int m_CurHairIdx = 0;
+    int m_CurEyebrowsIdx = 0;
+    int m_CurEarIdx = 0;
+    int m_CurFacialHairIdx = 0;
+    int m_CurNoseIdx = 0;
 
 
-    private void Update()
-    {
-        CharaterRotation();
-    }
+    void Update() { CharaterRotate(); }
 
-    // ~ UI_CustomButton.cs 에서 파츠 변경 버튼을 누를 때 호출
-    public void NextPart(Define.DefaultPart partType, bool isNext)
+    
+    public void NextPart(Define.DefaultPart a_PartType, bool IsNext)
     {
         // 부위 타입에 맞게 변경
-        switch (partType)
+        switch (a_PartType)
         {
             case Define.DefaultPart.Hair:
-                ChangePart(HairList, ref currentHairIndex, isNext);
+                ChangePart(HairList, ref m_CurHairIdx, IsNext);
                 break;
             case Define.DefaultPart.Eyebrows:
-                ChangePart(EyeBrowList, ref currentEyebrowsIndex, isNext);
+                ChangePart(EyeBrowList, ref m_CurEyebrowsIdx, IsNext);
                 break;
             case Define.DefaultPart.Ears:
-                ChangePart(Ears, ref currentEarIndex, isNext);
+                ChangePart(EarsList, ref m_CurEarIdx, IsNext);
                 break;
 
             case Define.DefaultPart.FacialHair:
-                ChangePart(FacialHairList, ref currentFacialHairIndex, isNext);
+                ChangePart(FacialHairList, ref m_CurFacialHairIdx, IsNext);
                 break;
             case Define.DefaultPart.Nose:
-                ChangePart(NoseList, ref currentNoseIndex, isNext);
+                ChangePart(NoseList, ref m_CurNoseIdx, IsNext);
                 break;
 
         }
     }
 
-    // ~ UI_CustomButton.cs 에서 확인 버튼을 누를 때 호출
+    // 커스텀 저장
     public void SaveCustom()
     {
-        // 딕셔너리 생성
+
         Managers.Game.DefaultPart = new Dictionary<Define.DefaultPart, SkinnedData>();
 
-        // GameManager의 데이터에 저장
-        Managers.Game.DefaultPart.Add(Define.DefaultPart.Hair, SetSkinned(HairList[currentHairIndex]));
-        Managers.Game.DefaultPart.Add(Define.DefaultPart.Eyebrows, SetSkinned(EyeBrowList[currentEyebrowsIndex]));
-        Managers.Game.DefaultPart.Add(Define.DefaultPart.Ears, SetSkinned(Ears[currentEarIndex]));
-        Managers.Game.DefaultPart.Add(Define.DefaultPart.FacialHair, SetSkinned(FacialHairList[currentFacialHairIndex]));
-        Managers.Game.DefaultPart.Add(Define.DefaultPart.Nose, SetSkinned(NoseList[currentNoseIndex]));
-
+        Managers.Game.DefaultPart.Add(Define.DefaultPart.Hair, SetSkinned(HairList[m_CurHairIdx]));
+        Managers.Game.DefaultPart.Add(Define.DefaultPart.Eyebrows, SetSkinned(EyeBrowList[m_CurEyebrowsIdx]));
+        Managers.Game.DefaultPart.Add(Define.DefaultPart.Ears, SetSkinned(EarsList[m_CurEarIdx]));
+        Managers.Game.DefaultPart.Add(Define.DefaultPart.FacialHair, SetSkinned(FacialHairList[m_CurFacialHairIdx]));
+        Managers.Game.DefaultPart.Add(Define.DefaultPart.Nose, SetSkinned(NoseList[m_CurNoseIdx]));
     }
 
-    // 캐릭터 회전 (Update)
-    private void CharaterRotation()
+    //캐릭터 회전
+    void CharaterRotate()
     {
-        // 회전 제어
-        if (stopRotation == true)
-            return;
+        if (IsStopRot == true) return;
 
-        // UI를 클릭하면 회전 X
+
         if (Input.GetMouseButtonDown(0) == true || Input.GetMouseButtonDown(1) == true)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
+            if (EventSystem.current.IsPointerOverGameObject()) return;
         }
 
-        // A Key, ◀ Key : 왼쪽으로 회전
-        // D Key, ▶ Key : 오른쪽으로 회전
+        //키보드 입력에 따라 회전
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) ||
-            Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.RightArrow))
         {
-            SetRotation(-Input.GetAxis("Horizontal"));
+            SetRotate(-Input.GetAxis("Horizontal"));
         }
+        // 마우스 입력에 따라 회전
         else if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            SetRotation(-Input.GetAxis("Mouse X"));
+            SetRotate(-Input.GetAxis("Mouse X"));
         }
     }
 
     // 회전 설정
-    private void SetRotation(float horizontal)
+    void SetRotate(float a_Horizontal)
     {
-        currentRotation_Y += horizontal * rotationSpeed;
+        m_CurRotY += a_Horizontal * m_RotSpeed;
 
-        transform.localRotation = Quaternion.Euler(0f, currentRotation_Y, 0f);
+        transform.localRotation = Quaternion.Euler(0f, m_CurRotY, 0f);
     }
 
     // 파츠 부위 변경
-    private void ChangePart(List<GameObject> partList, ref int currentIndex, bool isNext)
+    void ChangePart(List<GameObject> a_PartList, ref int a_CurIdx, bool IsNext)
     {
         // 현재 부위 비활성화
-        partList[currentIndex].SetActive(false);
+        a_PartList[a_CurIdx].SetActive(false);
 
-        // ( ▶ ) Button
-        if (isNext == true)
+        if (IsNext == true)
         {
-            currentIndex++;
+            // 다음 인덱스 설정
+            a_CurIdx++;
 
-            // 다음버튼 눌렀을 때 현재 인덱스가 마지막이라면 처음으로 이동
-            if (currentIndex >= partList.Count)
-                currentIndex = 0;
+            // 인덱스가 리스트 크기 이상일 경우 처음 인덱스로 설정
+            if (a_CurIdx >= a_PartList.Count) a_CurIdx = 0;
         }
-        // ( ◀ ) Button
+
         else
         {
-            currentIndex--;
-
-            // 뒤로버튼 눌렀을 때 현재 인덱스가 처음이라면 마지막으로 이동
-            if (currentIndex < 0)
-                currentIndex = partList.Count - 1;
+            // 이전 인덱스 설정
+            a_CurIdx--;
+            // 인덱스가 음수일 경우 마지막 인덱스로 설정
+            if (a_CurIdx < 0) a_CurIdx = a_PartList.Count - 1;
         }
 
-        // 변경된 부위 활성화
-        partList[currentIndex].SetActive(true);
+        // 현재 부위 활성화
+        a_PartList[a_CurIdx].SetActive(true);
     }
 
-    // SkinnedMeshRenderer 필요 정보 저장
-    private SkinnedData SetSkinned(GameObject skinnedObject)
-    {
-        // SkinnedMeshRenderer 컴포넌트 받기
-        SkinnedMeshRenderer skinnedMesh = skinnedObject.GetComponent<SkinnedMeshRenderer>();
 
-        // 이름, localBounds, rootBone을 저장
-        SkinnedData skinned = new SkinnedData()
+    SkinnedData SetSkinned(GameObject a_SkinnedObj)
+    {
+
+        SkinnedMeshRenderer a_SkinnedMesh = a_SkinnedObj.GetComponent<SkinnedMeshRenderer>();
+
+
+        SkinnedData a_Skinned = new SkinnedData()
         {
-            SharedMeshName = skinnedMesh.name,
-            Bounds = skinnedMesh.localBounds,
-            RootBoneName = skinnedMesh.rootBone.name,
+            SharedMeshName = a_SkinnedMesh.name,
+            Bounds = a_SkinnedMesh.localBounds,
+            RootBoneName = a_SkinnedMesh.rootBone.name,
         };
 
-        // bones 저장
-        skinned.Bones = new List<string>();
-        foreach (Transform child in skinnedMesh.bones)
-            skinned.Bones.Add(child.name);
 
-        return skinned;
+        a_Skinned.Bones = new List<string>();
+        foreach (Transform child in a_SkinnedMesh.bones)
+            a_Skinned.Bones.Add(child.name);
+
+        return a_Skinned;
     }
 }

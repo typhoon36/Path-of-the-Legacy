@@ -17,7 +17,7 @@ using UnityEngine;
  &  : OnInteract()      - 상호작용 기능 구현
  &  : OpenPopup()       - Popup 활성화 (TalkCheck() 호출)
  &
- &  [Private]
+ &  []
  &  : TalkCheck()       - 대화 확인
  &  : OnTalk()          - 대화 시작
  &  : NextQuestCheck()  - 다음 퀘스트 확인
@@ -30,21 +30,21 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     public Define.QuestType questType;          // 퀘스트 타입
 
     [SerializeField]
-    private int[]           questId;            // 퀘스트 id Array
+     int[]           questId;            // 퀘스트 id Array
     [SerializeField]
-    private int[]           talkId;             // 대화 id Array
+     int[]           talkId;             // 대화 id Array
 
-    private int             nextQuestIndex;     // 다음 퀘스트 Index
+     int             nextQuestIndex;     // 다음 퀘스트 Index
 
-    private bool            isQuest;            // 퀘스트가 존재하는가?
+     bool            isQuest;            // 퀘스트가 존재하는가?
 
-    private QuestData       currentQuest;       // 현재 퀘스트
-    private TalkData        currentTalk;        // 현재 대화
+     QuestData       currentQuest;       // 현재 퀘스트
+     TalkData        currentTalk;        // 현재 대화
 
-    private List<QuestData> questDataList;      // 퀘스트 List
-    private List<TalkData>  talkDataList;       // 대화 List
+     List<QuestData> questDataList;      // 퀘스트 List
+     List<TalkData>  talkDataList;       // 대화 List
 
-    private UI_QuestNotice  noticeObject;       // 알람 Prefab
+     UI_QuestNotice  noticeObject;       // 알람 Prefab
 
     public override void Init()
     {
@@ -92,7 +92,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 대화 시작
-    private void TalkCheck()
+     void TalkCheck()
     {
         if (currentTalk.IsNull() == true)
             return;
@@ -111,7 +111,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
             if (currentQuest.currnetTargetCount >= currentQuest.targetCount)
             {
                 // 인벤토리가 꽉찼는지 확인
-                if (Managers.Game._playScene._inventory.IsInvenMaxSize() == true)
+                if (Managers.Game.m_PlayScene.Inventory.IsInvenMaxSize() == true)
                 {
                     // 경고 안내문 생성
                     Managers.UI.MakeSubItem<UI_Guide>().SetInfo("인벤토리가 가득 찼습니다.", Color.red);
@@ -119,7 +119,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
                 }
 
                 // Scene UI 알람이 등록된 퀘스트라면 삭제
-                Managers.Game._playScene._quest.CloseQuestNotice(currentQuest);
+                Managers.Game.m_PlayScene.Quest.CloseQuestNotice(currentQuest);
 
                 OnTalk(currentTalk.clearTalk);        // 클리어 대화 시작
                 currentQuest.QuestClear();          // 퀘스트 클리어 (보상 지급)
@@ -145,25 +145,25 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 기본 하나의 대화 시작
-    private void OnTalk(string text)
+     void OnTalk(string text)
     {
-        UI_TalkPopup talkPopup = Managers.Game._playScene._talk;
+        UI_TalkPopup talkPopup = Managers.Game.m_PlayScene.Talk;
 
         Managers.UI.OnPopupUI(talkPopup);       // Popup 활성화
         talkPopup.SetInfo(text, npcName);       // 대화 세팅
     }
 
     // TalkData를 그대로 보낼 시 퀘스트 시작으로 판정
-    private void OnTalk(TalkData texts)
+     void OnTalk(TalkData texts)
     {
-        UI_TalkPopup talkPopup = Managers.Game._playScene._talk;
+        UI_TalkPopup talkPopup = Managers.Game.m_PlayScene.Talk;
 
         Managers.UI.OnPopupUI(talkPopup);                   // Popup 활성화
         talkPopup.SetInfo(texts, currentQuest, npcName);    // 대화 세팅
     }
 
     // 다음 퀘스트
-    private void NextQuestCheck()
+     void NextQuestCheck()
     {
         nextQuestIndex++;
 
@@ -182,7 +182,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 알람 업데이트 ( 실시간 npc 위의 퀘스트 상태 표시 )
-    private void NoticeUpdate()
+     void NoticeUpdate()
     {
         // Null Check
         if (noticeObject.IsNull() == true)
@@ -213,7 +213,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
             noticeObject.SetInfo("!", transform.position);
     }
 
-    private void DelayInit()
+     void DelayInit()
     {
         // 현재 클리어한 퀘스트가 있는지
         for(int i=0; i<Managers.Game.ClearQuest.Count; i++)

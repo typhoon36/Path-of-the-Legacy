@@ -13,16 +13,16 @@ using UnityEngine;
 public class PlayerAnimEvent : MonoBehaviour
 {
     [SerializeField]
-    private CapsuleCollider capsuleCollider;
+     CapsuleCollider capsuleCollider;
 
-    private int             nextSkillIndex = 0;     // 스킬 콤보 체크용
+     int             nextSkillIndex = 0;     // 스킬 콤보 체크용
 
-    private const int X_Axis = 0, Y_Axis = 1, Z_Axis = 2;
+     const int X_Axis = 0, Y_Axis = 1, Z_Axis = 2;
 
 #region 공격 사거리
 
     // 공격 사이즈 클래스
-    private class AttackSize
+     class AttackSize
     {
         public float x;
         public float y;
@@ -33,13 +33,13 @@ public class PlayerAnimEvent : MonoBehaviour
     }
 
     // Id 101 공격 범위 (트리플 슬래쉬)
-    private AttackSize skill101 = new AttackSize()
+     AttackSize skill101 = new AttackSize()
     {
         x = 0, y = 0, z = -0.35f, redius = 2.35f, height = 4.5f, direction = Y_Axis,
     };
 
     // Id 102 공격 범위 (라이징 슬래쉬)
-    private AttackSize[] skill102 = new AttackSize[]
+     AttackSize[] skill102 = new AttackSize[]
     {
         new AttackSize()
         {
@@ -56,25 +56,25 @@ public class PlayerAnimEvent : MonoBehaviour
     };
 
     // Id 103 공격 범위 (회전의 칼날)
-    private AttackSize skill103 = new AttackSize()
+     AttackSize skill103 = new AttackSize()
     {
         x = -0.4f, y = 0, z = -0.6f, redius = 4.4f, height = 8.7f, direction = Y_Axis,
     };
 
     // Id 104 공격 범위 (어둠의 칼날)
-    private AttackSize skill104 = new AttackSize()
+     AttackSize skill104 = new AttackSize()
     {
         x = 0, y = 0, z = -0.4f, redius = 2.8f, height = 5.5f, direction = Y_Axis,
     };
 
     // Id 105 공격 범위 (궁극의 일격)
-    private AttackSize skill105 = new AttackSize()
+     AttackSize skill105 = new AttackSize()
     {
         x = 0, y = 0, z = 6.1f, redius = 1.2f, height = 11.7f, direction = Z_Axis,
     };
 
     // Id 106 공격 범위 (칼날 섬멸)
-    private AttackSize[] skill106 = new AttackSize[]
+     AttackSize[] skill106 = new AttackSize[]
     {
         new AttackSize()
         {
@@ -95,7 +95,7 @@ public class PlayerAnimEvent : MonoBehaviour
     };
 
     // Id 107 공격 범위 (궁극의 칼날)
-    private AttackSize skill107 = new AttackSize()
+     AttackSize skill107 = new AttackSize()
     {
         x = 0f, y = 0f, z = -0.4f, redius = 7f, height = 0f, direction = Y_Axis,
     };
@@ -103,19 +103,19 @@ public class PlayerAnimEvent : MonoBehaviour
 #endregion
 
     // 기본 검 공격
-    private void OnBasicAttack()
+     void OnBasicAttack()
     {
         capsuleCollider.gameObject.SetActive(true);
     }
 
     // skill 101 : 트리플 슬래쉬
-    private void OnTripleSlash()
+     void OnTripleSlash()
     {
         OnSize(skill101);
     }
 
     // skill 102 : 라이징 슬래쉬
-    private void OnRisingSlash()
+     void OnRisingSlash()
     {
         OnSize(skill102[nextSkillIndex]);
         
@@ -125,25 +125,25 @@ public class PlayerAnimEvent : MonoBehaviour
     }
 
     // skill 103 : 회전의 칼날
-    private void OnRotationBlade()
+     void OnRotationBlade()
     {
         OnSize(skill103);
     }
 
     // skill 104 : 어둠의 칼날
-    private void OnDarkBlade()
+     void OnDarkBlade()
     {
         OnSize(skill104);
     }
 
     // skill 105 : 궁극의 일격
-    private void OnBigSwordSlash()
+     void OnBigSwordSlash()
     {
         OnSize(skill105);
     }
 
     // skill 106 : 칼날 섬멸
-    private void OnBladeAnnihilation()
+     void OnBladeAnnihilation()
     {
         OnSize(skill106[nextSkillIndex]);
         
@@ -153,18 +153,18 @@ public class PlayerAnimEvent : MonoBehaviour
     }
 
     // skill 107 : 궁극의 칼날
-    private void OnEventualityBlade()
+     void OnEventualityBlade()
     {
         OnSize(skill107);
     }
 
-    private void OnSize(AttackSize size)
+     void OnSize(AttackSize size)
     {
         capsuleCollider.gameObject.SetActive(true);
         SetSize(size);
     }
 
-    private void SetSize(AttackSize size)
+     void SetSize(AttackSize size)
     {
         capsuleCollider.direction = size.direction;
         // capsuleCollider.center.Set(size.x, size.y, size.z);

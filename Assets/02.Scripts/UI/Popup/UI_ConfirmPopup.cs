@@ -55,7 +55,7 @@ public class UI_ConfirmPopup : UI_Popup
     }
 
     // 확인 버튼
-    private void OnClickYesButton()
+     void OnClickYesButton()
     {
         // Action Invoke 실행
         Managers.UI.ClosePopupUI(this);
@@ -64,7 +64,7 @@ public class UI_ConfirmPopup : UI_Popup
     }
 
     // 취소 버튼
-    private void OnClickNoButton()
+     void OnClickNoButton()
     {
         // Popup 비활성화
         Managers.UI.ClosePopupUI(this);

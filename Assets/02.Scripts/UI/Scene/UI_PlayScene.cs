@@ -20,13 +20,12 @@ public class UI_PlayScene : UI_Scene
 
     enum Images
     {
-        PlayerIcon,
+
     }
 
     enum Texts
     {
         LevelText,
-        //NameBarText,
         HpBarText,
         MpBarText,
         ExpBarText,
@@ -48,22 +47,22 @@ public class UI_PlayScene : UI_Scene
         AddGoldButton,
     }
 
-    public UI_InvenPopup        _inventory;     // 인벤토리 
-    public UI_EqStatPopup       _equipment;     // 장비/스탯 
-    public UI_SkillPopup        _skill;         // 스킬 
-    public UI_SlotTipPopup      _slotTip;       // 슬롯팁
-    public UI_ShopPopup         _shop;          // 상점
-    public UI_TalkPopup         _talk;          // 대화
-    public UI_QuestPopup        _quest;         // 퀘스트
-    public UI_UpgradePopup      _upgrade;       // 강화
-    public UI_MenuPopup         _menu;          // 일시정시 메뉴
+    public UI_InvenPopup Inventory;     // 인벤토리 
+    public UI_EqStatPopup Equipment;     // 장비/스탯 
+    public UI_SkillPopup Skill;         // 스킬 
+    public UI_SlotTipPopup SlotTip;       // 슬롯팁
+    public UI_ShopPopup Shop;          // 상점
+    public UI_TalkPopup Talk;          // 대화
+    public UI_QuestPopup Quest;         // 퀘스트
+    public UI_UpgradePopup Upgrade;       // 강화
+    public UI_MenuPopup Menu;          // 일시정시 메뉴
 
     public List<UI_UseItemSlot> UseItemBarList; // 아이템 퀵슬롯 바 List
 
     public override bool Init()
-	{
-		if (base.Init() == false)
-			return false;
+    {
+        if (base.Init() == false)
+            return false;
 
         UseItemBarList = new List<UI_UseItemSlot>();
 
@@ -80,15 +79,15 @@ public class UI_PlayScene : UI_Scene
         Managers.UI.CloseAllPopupUI();
 
         // 기능 팝업 생성
-        _inventory = Managers.UI.ShowPopupUI<UI_InvenPopup>();
-        _equipment = Managers.UI.ShowPopupUI<UI_EqStatPopup>();
-        _skill = Managers.UI.ShowPopupUI<UI_SkillPopup>();
-        _slotTip = Managers.UI.ShowPopupUI<UI_SlotTipPopup>();
-        _shop = Managers.UI.ShowPopupUI<UI_ShopPopup>();
-        _talk = Managers.UI.ShowPopupUI<UI_TalkPopup>();
-        _quest = Managers.UI.ShowPopupUI<UI_QuestPopup>();
-        _upgrade = Managers.UI.ShowPopupUI<UI_UpgradePopup>();
-        _menu = Managers.UI.ShowPopupUI<UI_MenuPopup>();
+        Inventory = Managers.UI.ShowPopupUI<UI_InvenPopup>();
+        Equipment = Managers.UI.ShowPopupUI<UI_EqStatPopup>();
+        Skill = Managers.UI.ShowPopupUI<UI_SkillPopup>();
+        SlotTip = Managers.UI.ShowPopupUI<UI_SlotTipPopup>();
+        Shop = Managers.UI.ShowPopupUI<UI_ShopPopup>();
+        Talk = Managers.UI.ShowPopupUI<UI_TalkPopup>();
+        Quest = Managers.UI.ShowPopupUI<UI_QuestPopup>();
+        Upgrade = Managers.UI.ShowPopupUI<UI_UpgradePopup>();
+        Menu = Managers.UI.ShowPopupUI<UI_MenuPopup>();
         DontDestroyOnLoad(Managers.Resource.Instantiate($"UI/SubItem/UI_DragSlot"));
 
         // 세이브를 불러온게 아니라면
@@ -100,13 +99,10 @@ public class UI_PlayScene : UI_Scene
             Managers.Game.CurrentArmor.Add(Define.ArmorType.Pants, Managers.Data.CallItem(3) as ArmorItemData);
         }
 
-		return true;
-	}
-
-    void Update()
-    {
-        RefreshStat();
+        return true;
     }
+
+    void Update() { RefreshStat(); }
 
     // 미니맵 활성화 여부 (던전에선 끄기)
     public void IsMiniMap(bool isActive) { GetObject((int)Gameobjects.MiniMap).SetActive(isActive); }
@@ -132,7 +128,7 @@ public class UI_PlayScene : UI_Scene
     public void UsingItem(int key)
     {
         // 소비아이템 퀵슬롯 List 확인
-        for(int i=0; i<UseItemBarList.Count; i++)
+        for (int i = 0; i < UseItemBarList.Count; i++)
         {
             // 키가 같으면 사용
             if (key == UseItemBarList[i].key)
@@ -158,13 +154,13 @@ public class UI_PlayScene : UI_Scene
         Managers.Game.currentMonster = monsterStat;
     }
 
-    public void CloseMonsterBar() 
-    { 
+    public void CloseMonsterBar()
+    {
         Managers.Game.currentMonster = null;
-        GetObject((int)Gameobjects.MonsterBar).SetActive(false); 
+        GetObject((int)Gameobjects.MonsterBar).SetActive(false);
     }
 
-    private void RefreshStat()
+    void RefreshStat()
     {
         // 스탯 text 설정
         GetText((int)Texts.HpBarText).text = Managers.Game.Hp + " / " + Managers.Game.MaxHp;
@@ -187,7 +183,7 @@ public class UI_PlayScene : UI_Scene
     }
 
     // Slider NaN 방지
-    private void SetRatio(Slider slider, float ratio)
+    void SetRatio(Slider slider, float ratio)
     {
         if (float.IsNaN(ratio) == true)
             slider.value = 0;
@@ -195,16 +191,15 @@ public class UI_PlayScene : UI_Scene
             slider.value = ratio;
     }
 
-    private void SetInfo()
+    void SetInfo()
     {
-        //GetText((int)Texts.NameBarText).text = Managers.Game.Name;
 
         // 소비 아이템 퀵슬롯 초기화
-        foreach(Transform child in GetObject((int)Gameobjects.ItemBar).transform)
+        foreach (Transform child in GetObject((int)Gameobjects.ItemBar).transform)
             Managers.Resource.Destroy(child.gameObject);
 
         // 소비 아이템 키 슬롯
-        for(int i=1; i<=2; i++)
+        for (int i = 1; i <= 2; i++)
         {
             UI_UseItemSlot slot = Managers.UI.MakeSubItem<UI_UseItemSlot>(GetObject((int)Gameobjects.ItemBar).transform);
             slot.key = i;
@@ -216,7 +211,7 @@ public class UI_PlayScene : UI_Scene
         CloseMonsterBar();
 
         // 퀘스트 알림 초기화
-        foreach(Transform child in GetObject((int)Gameobjects.QuestListBar).transform)
+        foreach (Transform child in GetObject((int)Gameobjects.QuestListBar).transform)
             Managers.Resource.Destroy(child.gameObject);
 
         RefreshUI();

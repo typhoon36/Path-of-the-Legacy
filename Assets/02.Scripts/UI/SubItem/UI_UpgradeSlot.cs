@@ -19,7 +19,7 @@ using UnityEngine.EventSystems;
  &  : OnDropSlot()          - 현재 슬롯에 마우스 클릭을 때면 "장비 등록"
  &  : ChangeSlot()          - 슬롯 교체
  &
- &  [Private]
+ &  []
  &  : GetSlotInteract()     - 현재 슬롯의 아이템 타입 체크
  *
  */
@@ -44,7 +44,7 @@ public class UI_UpgradeSlot : UI_ItemDragSlot
         if (Input.GetMouseButtonUp(1))
         {
             // 인벤토리로 이동
-            Managers.Game._playScene._inventory.AcquireItem(item);
+            Managers.Game.m_PlayScene.Inventory.AcquireItem(item);
             ClearSlot();
         }
     }
@@ -55,7 +55,7 @@ public class UI_UpgradeSlot : UI_ItemDragSlot
         if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
             // 인벤토리로 이동
-            Managers.Game._playScene._inventory.AcquireItem(item);
+            Managers.Game.m_PlayScene.Inventory.AcquireItem(item);
             ClearSlot();
         }
         
@@ -82,27 +82,27 @@ public class UI_UpgradeSlot : UI_ItemDragSlot
 
         // 강화 슬롯에 아이템이 있다면 인벤으로 돌려 보내기
         if (item.IsNull() == false)
-            Managers.Game._playScene._inventory.AcquireItem(item);
+            Managers.Game.m_PlayScene.Inventory.AcquireItem(item);
 
         EquipmentData equipment = itemSlot.item as EquipmentData;
 
-        Managers.Game._playScene._upgrade.RefreshUI(equipment);
+        Managers.Game.m_PlayScene.Upgrade.RefreshUI(equipment);
         AddItem(itemSlot.item);
 
         (itemSlot as UI_InvenSlot).ClearSlot();
     }
 
     // 인벤토리로 부터 우클릭으로 장비 받기
-    private void GetSlotInteract(UI_InvenSlot invenSlot)
+     void GetSlotInteract(UI_InvenSlot invenSlot)
     {
         // UI_UpgradePopup Prefab이 활성화 되어 있다면
-        if (Managers.Game._playScene._upgrade.gameObject.activeSelf == true)
+        if (Managers.Game.m_PlayScene.Upgrade.gameObject.activeSelf == true)
             ChangeSlot(invenSlot);
     }
 
     public override void ClearSlot()
     {
         base.ClearSlot();
-        Managers.Game._playScene._upgrade.Clear();
+        Managers.Game.m_PlayScene.Upgrade.Clear();
     }
 }

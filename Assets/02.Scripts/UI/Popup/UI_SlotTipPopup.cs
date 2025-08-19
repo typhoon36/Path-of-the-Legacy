@@ -2,20 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UI_SlotTipPopup.cs
- * Desc :   슬롯의 아이템 정보를 확인하는 Popup UI
- *
- & Functions
- &  [Public]
- &  : Init()        - 초기 설정
- &
- &  [Private]
- &  : OnSlotTip()   - 슬롯 정보 활성화
- &  : RefreshUI()   - 새로고침 UI (슬롯 정보 새로고침)
- &  : SetColor()    - 색 설정
- *
- */
+
 
 public class UI_SlotTipPopup : UI_Popup
 {
@@ -94,16 +81,16 @@ public class UI_SlotTipPopup : UI_Popup
         // 아이템 등급에 따른 색깔
         switch(item.itemGrade)
         {
-            case Define.itemGrade.Common:
+            case Define.ItemGrade.Common:
                 SetColor(Color.white);
                 break;
-            case Define.itemGrade.Rare:
+            case Define.ItemGrade.Rare:
                 SetColor(Color.green);
                 break;
-            case Define.itemGrade.Epic:
+            case Define.ItemGrade.Epic:
                 SetColor(Color.blue);
                 break;
-            case Define.itemGrade.Legendary:
+            case Define.ItemGrade.Legendary:
                 SetColor(Color.yellow);
                 break;
         }
@@ -159,7 +146,7 @@ public class UI_SlotTipPopup : UI_Popup
         }
     }
 
-    private void SetColor(Color color)
+     void SetColor(Color color)
     {
         GetText((int)Texts.ItemNameText).color = color;
         GetText((int)Texts.ItemGradeText).color = color;

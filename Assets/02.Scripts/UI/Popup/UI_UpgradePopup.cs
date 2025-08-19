@@ -14,7 +14,7 @@ using UnityEngine.EventSystems;
  &  : ExitUpgrade() - 강화창 나가기
  &  : Clear()       - 초기화
  &
- &  [Private]
+ &  []
  &  : OnClickUpgradeButton()    - 강화 진행 버튼
  &  : EquipmentUpgradeGold()    - 장비 강화 골드 지불
  &  : EquipmentUpgrade()        - 장비 강화 적용
@@ -44,7 +44,7 @@ public class UI_UpgradePopup : UI_Popup
 
     public EquipmentData    _equipment;
 
-    private int             maxUpgradeCount = 10;   // 최대 강화 수치
+     int             maxUpgradeCount = 10;   // 최대 강화 수치
 
     public override bool Init()
     {
@@ -83,7 +83,7 @@ public class UI_UpgradePopup : UI_Popup
     }
 
     // 강화 진행 버튼
-    private void OnClickUpgradeButton()
+     void OnClickUpgradeButton()
     {
         if (_equipment.IsNull() == true)
             return;
@@ -108,7 +108,7 @@ public class UI_UpgradePopup : UI_Popup
     }
 
     // 강화 비용 계산
-    private int EquipmentUpgradeGold(EquipmentData equipment)
+     int EquipmentUpgradeGold(EquipmentData equipment)
     {
         // 강화 금액 : 아이템 판매 가격 + ((판매 가격 / 2) * 강화 횟수)
         int gold = equipment.itemPrice + (int)((equipment.itemPrice / 4) * (equipment.UpgradeCount));
@@ -116,7 +116,7 @@ public class UI_UpgradePopup : UI_Popup
     }
 
     // 강화 적용
-    private void EquipmentUpgrade(EquipmentData equipment)
+     void EquipmentUpgrade(EquipmentData equipment)
     {
         equipment.UpgradeCount += 1;
 
@@ -140,7 +140,7 @@ public class UI_UpgradePopup : UI_Popup
     public void ExitUpgrade()
     {
         if (_equipment.IsNull() == false)
-            Managers.Game._playScene._inventory.AcquireItem(_equipment);
+            Managers.Game.m_PlayScene.Inventory.AcquireItem(_equipment);
 
         Clear();
 
@@ -156,14 +156,14 @@ public class UI_UpgradePopup : UI_Popup
     {
         _equipment = null;
 
-        Managers.Game._playScene._slotTip.OnSlotTip(false);
+        Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
 
         GetText((int)Texts.ItemNameText).text = "강화할 장비를 선택하세요";
         GetText((int)Texts.UpgradeResultText).text = "";
         GetText((int)Texts.UpgradeGoldText).text = "0";
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         GetText((int)Texts.ItemNameText).text = "강화할 장비를 선택하세요";
         GetText((int)Texts.UpgradeResultText).text = "";

@@ -21,7 +21,7 @@ using UnityEngine.UI;
  &  : OnDropSlot()          - 현재 슬롯에 마우스 클릭을 때면 "아이템 받기"
  &  : ChangeSlot()          - 슬롯 교체
  &
- &  [Private]
+ &  []
  &  : ItemTypeCheck()       - 현재 슬롯의 아이템 타입 체크
  &  : AddSlot()             - 슬롯 받기
  *
@@ -34,7 +34,7 @@ public class UI_InvenSlot : UI_ItemDragSlot
     public int  invenNumber;     // 인벤 자리 번호
 
     // 상점 판매 등록될 시 인벤 Lock
-    private bool isLock = false;
+     bool isLock = false;
     public bool IsLock
     {
         get { return isLock; }
@@ -90,7 +90,7 @@ public class UI_InvenSlot : UI_ItemDragSlot
             {
                 // 장착 레벨 확인
                 if (Managers.Game.Level >= (item as EquipmentData).MinLevel)
-                    Managers.Game._playScene._equipment.SetEquipment(this);
+                    Managers.Game.m_PlayScene.Equipment.SetEquipment(this);
                 else
                     Managers.UI.MakeSubItem<UI_Guide>().SetInfo("레벨이 부족합니다.", new Color(1f, 0.5f, 0f));
             }
@@ -207,7 +207,7 @@ public class UI_InvenSlot : UI_ItemDragSlot
     }
 
     // 현재 슬롯의 아이템 타입 체크
-    private bool ItemTypeCheck<T>() where T : EquipmentData
+     bool ItemTypeCheck<T>() where T : EquipmentData
     {
         if (item.IsNull() == false)
         {
@@ -219,11 +219,11 @@ public class UI_InvenSlot : UI_ItemDragSlot
     }
 
     // 슬롯 받기
-    private void AddSlot<T>(T slot, int count = 1) where T : UI_ItemDragSlot
+     void AddSlot<T>(T slot, int count = 1) where T : UI_ItemDragSlot
     {
         // 아이템이 있다면 다른 슬롯 || 없다면 지금 슬롯에 넣기
         if (item.IsNull() == false)
-            Managers.Game._playScene._inventory.AcquireItem(slot.item, count);
+            Managers.Game.m_PlayScene.Inventory.AcquireItem(slot.item, count);
         else
             AddItem(slot.item, count);
 

@@ -3,18 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_ItemDragSlot.cs
- * Desc :   Drag, Drop PointerEvent가 필요한 Slot이 상속 받는다.
- *
- & Functions
- &  [Protected]
- &  : OnBeginDragSlot()     - 드래그 시작 "DragSlot 생성"
- &  : OnDragSlot()          - 드래그 진행 "드래그 방향으로 DragSlot 이동"
- &  : OnEndDragSlot()       - 드래그 종료 "DragSlot 초기화"
- &  : ChangeSlot()          - 슬롯 교체
- *
- */
+
 
 public class UI_ItemDragSlot : UI_ItemSlot
 {

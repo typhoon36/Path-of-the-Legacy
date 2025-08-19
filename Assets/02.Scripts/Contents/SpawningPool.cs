@@ -12,7 +12,7 @@ using UnityEngine.AI;
  &  : AddMonsterCount()     - 몬스터 수 증가
  &  : SetKeepMonsterCount() - 최대 몬스터 지정
  &
- &  [Private]
+ &  []
  &  : ReserveSpawn()  - 몬스터 스폰 코루틴
  *
  */
@@ -22,20 +22,20 @@ public class SpawningPool : MonoBehaviour
     public GameObject[]  m_MonObjs;    // 몬스터 Prefab
 
     [SerializeField]
-    private Vector3     _spawnPos;              // 스폰 위치
+     Vector3     _spawnPos;              // 스폰 위치
 
     [SerializeField]
-    private float       _spawnRedius = 5f;      // 스폰 최대 거리
+     float       _spawnRedius = 5f;      // 스폰 최대 거리
 
     [SerializeField]
-    private float       _spawnTime = 5f;        // 스폰 최대 시간
+     float       _spawnTime = 5f;        // 스폰 최대 시간
 
     [SerializeField]
-    private int         _monsterCount = 0;      // 현재 몬스터 수
-    private int         _reserveCount = 0;      // 임시 변수 (에러 방지)
+     int         _monsterCount = 0;      // 현재 몬스터 수
+     int         _reserveCount = 0;      // 임시 변수 (에러 방지)
 
     [SerializeField]
-    private int         _keepMonsterCount = 0;  // 최대 몬스터 수
+     int         _keepMonsterCount = 0;  // 최대 몬스터 수
 
     // 몬스터 수 증가
     public void AddMonsterCount(Transform parent, int value)
@@ -61,7 +61,7 @@ public class SpawningPool : MonoBehaviour
     }
 
     // 몬스터 스폰 설정
-    private IEnumerator ReserveSpawn()
+     IEnumerator ReserveSpawn()
     {
         
         _reserveCount++;

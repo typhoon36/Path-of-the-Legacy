@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 public class UI_HpBar : UI_Base
 {
-    private MonsterStat     _stat;
+     MonsterStat     _stat;
 
     enum GameObjects
     {

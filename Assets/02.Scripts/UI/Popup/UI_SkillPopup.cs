@@ -3,20 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_SkillPopup.cs
- * Desc :   스킬 슬롯을 관리하는 Popup UI
- *
- & Functions
- &  [Public]
- &  : Init()            - 초기 설정
- &
- &  [Private]
- &  : OnSkillPopup()    - 스킬창 활성화or비활성화
- &  : SetInfo()         - 기본 설정
- &  : Exit()            - 나가기 (초기화)
- *
- */
+
 
 public class UI_SkillPopup : UI_Popup
 {
@@ -48,7 +35,7 @@ public class UI_SkillPopup : UI_Popup
     }
 
     // 스킬창 활성화
-    private void OnSkillPopup()
+     void OnSkillPopup()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -62,7 +49,7 @@ public class UI_SkillPopup : UI_Popup
         }
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         // Title 잡고 인벤토리 이동
         RectTransform skillPopupPos = GetObject((int)Gameobjects.Background).GetComponent<RectTransform>();
@@ -88,9 +75,9 @@ public class UI_SkillPopup : UI_Popup
         }, Define.UIEvent.Click);
     }
 
-    private void Exit()
+     void Exit()
     {
-        Managers.Game._playScene._slotTip.OnSlotTip(false);
+        Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
         Managers.UI.ClosePopupUI(this);
     }
 }

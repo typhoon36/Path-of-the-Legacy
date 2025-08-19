@@ -1,27 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
-/*
- * File :   UI_Guide.cs
- * Desc :   안내문, 경고문 등 상황에 띄울 수 있는 가이드 UI
- *
- & Functions
- &  [Public]
- &  : SetInfo()             - 기능 설정 (안내 메시지 설정)
- &
- &  [Private]
- &  : MessageCoroutine()    - 메시지가 붕뜨며 사라지는 코루틴
- *
- */
+
 
 public class UI_Guide : UI_Base
 {
     [SerializeField]
-    private TextMeshProUGUI     _messageText;
-    private Color               _color;
-    private Coroutine           co;
+     Text     _messageText;
+     Color               _color;
+     Coroutine           co;
 
     public void SetInfo(string messageText, Color color)
     {
@@ -35,7 +24,7 @@ public class UI_Guide : UI_Base
         co = StartCoroutine(MessageCoroutine());
     }
 
-    private IEnumerator MessageCoroutine()
+     IEnumerator MessageCoroutine()
     {
         yield return new WaitForSeconds(1f);
 

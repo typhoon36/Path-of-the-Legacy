@@ -2,75 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   BaseController.cs
- * Desc :   상태 패턴을 사용하며 상태에 따라 Animation CrossFade를 실행한다.
- *          모든 Controller는 BaseController를 상속받는다.
- *
- & Functions
- &  [Public]
- &  : Init()            - 초기 설정 (abstract)
- &
- &  [protected]
- &  : AnimAttack()      - 공격 Animation 설정
- &  : UpdateMoving()    - 움직일 시 Update
- &  : UpdateDiveRoll()  - 구르기 시 Update
- &  : UpdateIdle()      - 멈춤일 시 Update
- &  : UpdateAttack()    - 공격할 시 Update
- &  : UpdateSkill()     - 스킬사용 시 Update
- &  : UpdateHit()       - 공격 받을 시 Update
- &  : UpdateDie()       - 죽을 시 Update
- *
- */
+
 
 public abstract class Base_Ctrl : MonoBehaviour
 {
-    [SerializeField]
-    public Define.WorldObject WorldObjectType { get; protected set; } = Define.WorldObject.Unknown;
+    [SerializeField] public Define.WorldObject WorldObjectType { get; protected set; } = Define.WorldObject.Unknown;
 
-    [SerializeField]
-    protected GameObject    _lockTarget;                // 마우스로 타겟한 오브젝트 담는 변수
-    
-    [SerializeField]
-    protected Vector3       _destPos;                   // 도착 좌표
+    [SerializeField] protected GameObject m_LockTarget;                // 마우스로 타겟한 오브젝트 담는 변수
 
-    [SerializeField]
-    protected Define.State  _state = Define.State.Idle; // 상태 변수
+    [SerializeField] protected Vector3 m_DestPos;                   // 도착 좌표
 
-    protected int           attackNumber = 1;           // 일반 공격 콤보 체크
+    [SerializeField] protected Define.State m_State = Define.State.Idle; // 상태 변수
 
-    protected Animator      m_Anim;
-    protected RaycastHit    hit;
+    protected int m_AttNumber = 1;           // 일반 공격 콤보 체크
+
+    protected Animator m_Anim;
+    protected RaycastHit m_Hit;
 
     // 캐릭터 상태에 따라 애니메이션 작동
     public virtual Define.State State
     {
-        get { return _state; }
-        set {
-            _state = value;
+        get { return m_State; }
+        set
+        {
+            m_State = value;
 
-            switch (_state)
+            switch (m_State)
             {
                 case Define.State.Moving:
-                    m_Anim.CrossFade("RUN", 0.1f);
+                    m_Anim.CrossFade("Run", 0.1f);
                     break;
                 case Define.State.Idle:
-                    m_Anim.CrossFade("WAIT", 0.4f);
+                    m_Anim.CrossFade("Idle", 0.4f);
                     break;
                 case Define.State.DiveRoll:
-                    m_Anim.CrossFade("DIVEROLL", 0.1f, -1, 0);
+                    m_Anim.CrossFade("Roll", 0.1f, -1, 0);
                     break;
                 case Define.State.Attack:
                     AnimAttack();
                     break;
                 case Define.State.Hit:
-                    m_Anim.CrossFade("HIT", 0.1f, -1, 0);
+                    m_Anim.CrossFade("Hit", 0.1f, -1, 0);
                     break;
                 case Define.State.Down:
-                    m_Anim.CrossFade("DOWN", 0.1f, -1, 0);
+                    m_Anim.CrossFade("Down", 0.1f, -1, 0);
                     break;
                 case Define.State.Die:
-                    m_Anim.CrossFade("DIE", 0.1f, -1, 0);
+                    m_Anim.CrossFade("Die", 0.1f, -1, 0);
                     break;
             }
         }
@@ -79,7 +57,7 @@ public abstract class Base_Ctrl : MonoBehaviour
     void Start()
     {
         Init();
-        _lockTarget = null;
+        m_LockTarget = null;
     }
 
     // Playe, NPC 전용 ( 키 입력이 필요한 경우 )
@@ -94,7 +72,7 @@ public abstract class Base_Ctrl : MonoBehaviour
                 UpdateMoving();
                 break;
             case Define.State.DiveRoll:  // 구르기
-                UpdateDiveRoll();       
+                UpdateDiveRoll();
                 break;
             case Define.State.Idle:      // 가만히 있기
                 UpdateIdle();
@@ -148,19 +126,19 @@ public abstract class Base_Ctrl : MonoBehaviour
     // 기본 공격 애니메이션
     protected virtual void AnimAttack()
     {
-        m_Anim.CrossFade("ATTACK"+attackNumber, 0.1f, -1, 0);
+        m_Anim.CrossFade("Attack" + m_AttNumber, 0.1f, -1, 0);
 
-        if (attackNumber == 1)
-            attackNumber = 2;
-        else if (attackNumber == 2)
-            attackNumber = 1;
+        if (m_AttNumber == 1)
+            m_AttNumber = 2;
+        else if (m_AttNumber == 2)
+            m_AttNumber = 1;
     }
 
-    protected virtual void UpdateMoving() {}
-    protected virtual void UpdateDiveRoll() {}
-    protected virtual void UpdateIdle() {}
-    protected virtual void UpdateAttack() {}
-    protected virtual void UpdateSkill() {}
-    protected virtual void UpdateHit() {}
-    protected virtual void UpdateDie() {}
+    protected virtual void UpdateMoving() { }
+    protected virtual void UpdateDiveRoll() { }
+    protected virtual void UpdateIdle() { }
+    protected virtual void UpdateAttack() { }
+    protected virtual void UpdateSkill() { }
+    protected virtual void UpdateHit() { }
+    protected virtual void UpdateDie() { }
 }

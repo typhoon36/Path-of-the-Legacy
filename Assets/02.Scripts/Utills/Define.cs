@@ -80,7 +80,7 @@ public class Define : MonoBehaviour
         Boots,      // 신발
         Gloves,     // 장갑
         Necklace,   // 목걸이
-        Ring,       // 반지
+        Belts,       // 벨트
         MaxCount,
     }
 
@@ -91,7 +91,7 @@ public class Define : MonoBehaviour
         Mp,
     }
 
-    public enum itemGrade
+    public enum ItemGrade
     {
         Common,     // 기본
         Rare,       // 레어
@@ -152,7 +152,7 @@ public class Define : MonoBehaviour
     {
         Bgm,
         Effect,
-        MaxCount,   // MaxCount를 마지막 자리에 둠으로 써 해당 enum의 최대 개수(int)가 저장됨.
+        MaxCount,   
     }
 
     public enum UIEvent

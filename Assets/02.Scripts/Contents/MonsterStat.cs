@@ -2,22 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   MonsterStat.cs
- * Desc :   몬스터 기본 정보, 피격, 드랍 아이템을 관리
- *
- & Functions
- &  [Public]
- &  : OnAttacked()  - 공격 받을 때 호출
- &
- &  [Protected]
- &  : OnDead()      - 사망 시 호출
- &
- &  [Private]
- &  : OnDropItem()  - 드랍 아이템 관리
- &  : HitEffect()   - 피격 이펙트 생성
- *
- */
+
 
 public class MonsterStat : MonoBehaviour
 {
@@ -69,7 +54,7 @@ public class MonsterStat : MonoBehaviour
             _monster.State = Define.State.Hit;
 
         // Scene UI에 몬스터 정보 활성화
-        Managers.Game._playScene.OnMonsterBar(this);
+        Managers.Game.m_PlayScene.OnMonsterBar(this);
 
         int damage;
         // 스킬 데미지 확인
@@ -102,10 +87,10 @@ public class MonsterStat : MonoBehaviour
         Managers.Game.Gold += _dropGold;
 
         // 퀘스트 정보 반영
-        Managers.Game._playScene._quest.QuestTargetCount(gameObject);
+        Managers.Game.m_PlayScene.Quest.QuestTargetCount(gameObject);
 
         // Scene UI 몬스터 정보 비활성화
-        Managers.Game._playScene.CloseMonsterBar();
+        Managers.Game.m_PlayScene.CloseMonsterBar();
 
         // 아이템 드랍
         OnDropItem();
@@ -115,7 +100,7 @@ public class MonsterStat : MonoBehaviour
     }
 
     // 드랍 아이템
-    private void OnDropItem()
+     void OnDropItem()
     {
         // DataManager에서 DropItem List가져오기
         List<int> itemList = Managers.Data.DropItem[_dropItemId];
@@ -134,7 +119,7 @@ public class MonsterStat : MonoBehaviour
 
             // ItemPickUp 컴포넌트 붙이기
             ItemPickUp goData = go.GetOrAddComponent<ItemPickUp>();
-            goData.item = item;
+            goData.m_Item = item;
 
             // 드랍 위치 설정
             float ranPos = Random.Range(-0.5f, 0.5f);
@@ -143,7 +128,7 @@ public class MonsterStat : MonoBehaviour
     }
 
     // 피격 데미지 출력
-    private void HitEffect(int damage)
+     void HitEffect(int damage)
     {
         // UI_HitEffect 생성 후 데미지 text 넣기
         UI_HitEffect hitObject = Managers.UI.MakeWorldSpaceUI<UI_HitEffect>(gameObject.transform);

@@ -92,9 +92,9 @@ public class UI_ItemSlot : UI_Slot
     {
         if (item.IsNull() == false)
         {
-            Managers.Game._playScene._slotTip.OnSlotTip(true);
-            Managers.Game._playScene._slotTip.background.position = icon.transform.position;
-            Managers.Game._playScene._slotTip.RefreshUI(item);
+            Managers.Game.m_PlayScene.SlotTip.OnSlotTip(true);
+            Managers.Game.m_PlayScene.SlotTip.background.position = icon.transform.position;
+            Managers.Game.m_PlayScene.SlotTip.RefreshUI(item);
         }
     }
 
@@ -102,7 +102,7 @@ public class UI_ItemSlot : UI_Slot
     protected override void OnExitSlot(PointerEventData eventData)
     {
         if (item.IsNull() == false)
-            Managers.Game._playScene._slotTip.OnSlotTip(false);
+            Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
     }
 
     // 투명도 설정 (0 ~ 255)
@@ -123,6 +123,6 @@ public class UI_ItemSlot : UI_Slot
         if (GetText((int)Texts.ItemCountText).IsNull() == false)
             GetText((int)Texts.ItemCountText).text = "";
 
-        Managers.Game._playScene._slotTip.OnSlotTip(false);
+        Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
     }
 }

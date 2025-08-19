@@ -41,8 +41,8 @@ public class UI_SkillBarSlot : UI_SkillSlot
     }
 
     [SerializeField]
-    private Define.KeySkill     keySkill;       // 입력 key
-    private Image               coolDownImage;  // 쿨타임 이미지
+     Define.KeySkill     keySkill;       // 입력 key
+     Image               coolDownImage;  // 쿨타임 이미지
 
     public override void SetInfo()
     {
@@ -101,7 +101,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
         }
     }
 
-    private void ChangeSkill(UI_SkillSlot skillSlot)
+     void ChangeSkill(UI_SkillSlot skillSlot)
     {
         // 스킬 설정
         SetSkill(skillSlot.skillData);
@@ -114,7 +114,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
             (skillSlot as UI_SkillBarSlot).ClearSlot();
     }
 
-    private void SetSkill(SkillData skill)
+     void SetSkill(SkillData skill)
     {
         // 궁극기 경우 7렙 이상 스킬만 가능
         if (keySkill == Define.KeySkill.R)
@@ -149,7 +149,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
     }
 
     // 쿨타임 진행
-    private void UpdateCoolDown()
+     void UpdateCoolDown()
     {
         // 쿨타임
         if (skillData.IsNull() == true)
@@ -178,7 +178,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
     }
 
     // 쿨타임 여부
-    private void IsCoolDown(bool isTrue)
+     void IsCoolDown(bool isTrue)
     {
         coolDownImage.fillAmount = 1;
 

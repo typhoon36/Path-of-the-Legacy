@@ -30,7 +30,7 @@ public abstract class UI_Base : MonoBehaviour
 		return _init = true;
 	}
 
-	private void Start()
+	 void Start()
 	{
 		Init();
 	}
@@ -61,7 +61,7 @@ public abstract class UI_Base : MonoBehaviour
 
     protected void BindObject(Type type) { Bind<GameObject>(type);  }
 	protected void BindImage(Type type) { Bind<Image>(type);  }
-	protected void BindText(Type type) { Bind<TextMeshProUGUI>(type);  }
+	protected void BindText(Type type) { Bind<Text>(type);  }
 	protected void BindButton(Type type) { Bind<Button>(type);  }
 
     // 사용 메소드
@@ -79,7 +79,7 @@ public abstract class UI_Base : MonoBehaviour
 
     // 자주 사용하는 컴포넌트는 사용하기 좋게 메소드 생성
     protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-    protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
+    protected Text GetText(int idx) { return Get<Text>(idx); }
     protected Button GetButton(int idx) { return Get<Button>(idx); }
     protected Image GetImage(int idx) { return Get<Image>(idx); }
 

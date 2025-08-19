@@ -4,11 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/*
- * File :   SceneManagerEx.cs
- * Desc :   씬 로드 매니저
- *          [ Rookiss의 MMORPG Game Part 3 참고. ]
- */
+
 
 public class Scene_Mgr
 {

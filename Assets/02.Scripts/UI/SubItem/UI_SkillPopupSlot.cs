@@ -1,29 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_SkillPopupSlot.cs
- * Desc :   UI_SkillPopup.cs에서 사용되며 스킬을 저장한다.
- *          레벨이 충족 되면 우클릭을 통해 스킬을 활성화할 수 있다.
- *
- & Functions
- &  [Public]
- &  : SetInfo()         - 기능 설정
- &  : ClearSlot()       - 초기화
- &
- &  [Protected]
- &  : OnClickSlot()     - 우클릭하여 스킬 활성화
- &  : OnBeginDragSlot() - 슬롯 드래그 시작
- &  : OnDragSlot()      - 슬롯 드래그 진행
- &  : OnEndDragSlot()   - 슬롯 드래그 끝
- &
- &  [Prviate]
- &  : LevelCheck()      - 스킬 레벨 확인
- *
- */
+
 
 public class UI_SkillPopupSlot : UI_SkillSlot
 {
@@ -37,8 +17,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
         SkillLevelText,
     }
 
-    [SerializeField]
-    private int     skillId;
+    [SerializeField] int skillId;
 
     public override void SetInfo()
     {
@@ -46,17 +25,17 @@ public class UI_SkillPopupSlot : UI_SkillSlot
         BindObject(typeof(Gameobjects));
         BindText(typeof(Texts));
 
-        // 게임데이터에 스킬 아이디 존재 확인
+
         if (Managers.Data.Skill.TryGetValue(skillId, out skillData) == false)
             Debug.Log($"SkillData {skillId} : Failed");
 
         GetText((int)Texts.SkillLevelText).text = skillData.MinLevel.ToString();
         icon.sprite = skillData.SkillSprite;
 
-        // 시작 시 스킬이 흭득 상태인지 확인
-        foreach(SkillData skill in Managers.Game.CurrentSkill)
+
+        foreach (SkillData skill in Managers.Game.CurrentSkill)
         {
-            // 획득 상태면 Lock 해제
+
             if (skillId == skill.SkillId)
             {
                 skillData.IsLock = skill.IsLock;
@@ -66,7 +45,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
         if (skillData.IsLock == false)
             Managers.Resource.Destroy(GetObject((int)Gameobjects.LevelBlock));
-        
+
         base.SetInfo();
     }
 
@@ -78,8 +57,8 @@ public class UI_SkillPopupSlot : UI_SkillSlot
             {
                 UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
                 if (confirmPopup.IsNull() == true) return;
-                
-                confirmPopup.SetInfo(()=>
+
+                confirmPopup.SetInfo(() =>
                 {
                     skillData.IsLock = false;
                     Managers.Game.CurrentSkill.Add(this.skillData);
@@ -110,5 +89,5 @@ public class UI_SkillPopupSlot : UI_SkillSlot
     }
 
     // 스킬 레벨 체크
-    private bool LevelCheck() { return Managers.Game.Level >= skillData.MinLevel; }
+    bool LevelCheck() { return Managers.Game.Level >= skillData.MinLevel; }
 }

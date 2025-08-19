@@ -13,7 +13,7 @@ using UnityEngine;
  &  : SetInfo()     - 퀘스트 대화 기능 설정
  &  : Clear()       - 초기화
  &
- &  [Private]
+ &  []
  &  : Update()                  - 키 입력으로 대화 속도 증가 및 다음 대화 진행
  &  : NextTalk()                - 대화 진행
  &  : TypingText()              - 대화 출력 Coroutine
@@ -52,16 +52,16 @@ public class UI_TalkPopup : UI_Popup
         QuestRewardExpText,
     }
 
-    private TalkData    talkData;               // 대화 데이터
-    private QuestData   questData;              // 퀘스트 데이터
+     TalkData    talkData;               // 대화 데이터
+     QuestData   questData;              // 퀘스트 데이터
 
-    private int         nextTalkIndex = 0;
+     int         nextTalkIndex = 0;
 
-    private bool        isNext = false;         // 다음 대화로 넘어갈 수 있는지
-    private bool        isNextTalk = false;     // 다음 대화가 있는지
+     bool        isNext = false;         // 다음 대화로 넘어갈 수 있는지
+     bool        isNextTalk = false;     // 다음 대화가 있는지
 
     [SerializeField]
-    private float       talkDelayTime = 0.1f;   // 대화 속도 딜레이  
+     float       talkDelayTime = 0.1f;   // 대화 속도 딜레이  
 
     public override bool Init()
     {
@@ -154,7 +154,7 @@ public class UI_TalkPopup : UI_Popup
         NextTalk();         // 대화 시작
     }
 
-    private void NextTalk()
+     void NextTalk()
     {
         // 할 대화가 없으면 종료
         if (nextTalkIndex >= talkData.questStartTalk.Count)
@@ -179,7 +179,7 @@ public class UI_TalkPopup : UI_Popup
     }
 
     // 타이핑 모션 코루틴
-    private IEnumerator TypingText(string sentence)
+     IEnumerator TypingText(string sentence)
     {
         GetText((int)Texts.TalkText).text = "";
 
@@ -205,23 +205,23 @@ public class UI_TalkPopup : UI_Popup
     }
 
     // 다음 버튼
-    private void OnClickNextButton()
+     void OnClickNextButton()
     {
         GetButton((int)Buttons.NextButton).gameObject.SetActive(false);
         NextTalk();
     }
 
     // 거절 버튼
-    private void OnClickRefusalButton()
+     void OnClickRefusalButton()
     {
         IsQuestActive(false);
         SetInfo(talkData.refusalTalk);
     }
 
     // 수락 버튼
-    private void OnClickAcceptButton()
+     void OnClickAcceptButton()
     {
-        Managers.Game._playScene._quest.SetQeust(questData);
+        Managers.Game.m_PlayScene.Quest.SetQeust(questData);
 
         IsQuestActive(false);
         SetInfo(talkData.acceptTalk);
@@ -230,7 +230,7 @@ public class UI_TalkPopup : UI_Popup
     }
 
     // 퀘스트 활성화/비활성화
-    private void IsQuestActive(bool isTrue)
+     void IsQuestActive(bool isTrue)
     {
         GetButton((int)Buttons.AcceptButton).gameObject.SetActive(isTrue);
         GetButton((int)Buttons.RefusalButton).gameObject.SetActive(isTrue);
@@ -238,7 +238,7 @@ public class UI_TalkPopup : UI_Popup
     }
 
     // 퀘스트 정보 설정
-    private void SetQuestUI()
+     void SetQuestUI()
     {
         GetText((int)Texts.QuestTitleText).text = questData.titleName;
         GetText((int)Texts.QuestDescText).text = questData.description;

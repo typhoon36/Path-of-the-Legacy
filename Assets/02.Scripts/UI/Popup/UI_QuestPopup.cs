@@ -2,25 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UI_QuestPopup.cs
- * Desc :   현재 수락한 퀘스트 확인 Popup UI
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : SetQeust()            - 새 퀘스트 받기
- &  : QuestTargetCount()    - 퀘스트 목표 개수 반영
- &  : OnQuest()             - 수락한 퀘스트 버튼 누를 시 퀘스트 정보 활성화
- &  : SetQuestNotice()      - Scene UI 알람 활성화
- &  : CloseQuestNotice()    - Scene UI 알람 비활성화
- &
- &  [Private]
- &  : OnQuestPopup()        - 퀘스트창 활성화or비활성화
- &  : SetInfo()             - 기본 설정
- &  : RefreshUI()           - 새로고침 UI
- *
- */
+
 
 public class UI_QuestPopup : UI_Popup
 {
@@ -48,8 +30,8 @@ public class UI_QuestPopup : UI_Popup
 
     public List<UI_QuestNoticeSlot> questNoticeList;    // Scene UI에 등록된 퀘스트 List
 
-    private QuestData   currentClickQuest;              // 현재 클릭한 퀘스트 
-    private int         maxquestNoticeCount = 5;        // 퀘스트 알림 최대 개수
+     QuestData   currentClickQuest;              // 현재 클릭한 퀘스트 
+     int         maxquestNoticeCount = 5;        // 퀘스트 알림 최대 개수
 
     public override bool Init()
     {
@@ -173,7 +155,7 @@ public class UI_QuestPopup : UI_Popup
             return false;
 
         // Scene UI 알람 추가
-        questNoticeList.Add(Managers.Game._playScene.SetQuestNoticeBar(quest));
+        questNoticeList.Add(Managers.Game.m_PlayScene.SetQuestNoticeBar(quest));
         GetText((int)Texts.QuestNoticeCountText).text = questNoticeList.Count + " / " + maxquestNoticeCount;
 
         return true;
@@ -186,7 +168,7 @@ public class UI_QuestPopup : UI_Popup
         foreach(UI_QuestNoticeSlot questNoticeSlot in questNoticeList)
         {
             // 요청한 퀘스트가 같으면 삭제
-            if (questNoticeSlot._quest == quest)
+            if (questNoticeSlot.m_Quest == quest)
             {
                 questNoticeList.Remove(questNoticeSlot);
                 Managers.Resource.Destroy(questNoticeSlot.gameObject);
@@ -198,7 +180,7 @@ public class UI_QuestPopup : UI_Popup
     }
 
     // 퀘스트창 활성화
-    private void OnQuestPopup()
+     void OnQuestPopup()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -215,7 +197,7 @@ public class UI_QuestPopup : UI_Popup
         }
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         // 버튼 기능 등록
         GetButton((int)Buttons.ExitButton).onClick.AddListener(()=>{Managers.UI.ClosePopupUI(this);});
@@ -231,7 +213,7 @@ public class UI_QuestPopup : UI_Popup
         GetObject((int)Gameobejcts.QuestJournal).SetActive(false);
     }
 
-    private void RefreshUI()
+     void RefreshUI()
     {
         // 현재 퀘스트 확인
         Managers.Game.RefreshQuest();

@@ -2,15 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UI_DiePopup.cs
- * Desc :   플레이어 사망 시 부활 Popup UI
- *
- & Functions
- &  [Public]
- &  : Init() - 초기 설정 ( 버튼 Event 설정 )
- *
- */
+
 
 public class UI_DiePopup : UI_Popup
 {
@@ -24,8 +16,7 @@ public class UI_DiePopup : UI_Popup
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         // 자식 객체 불러오기
         BindButton(typeof(Buttons));
@@ -54,11 +45,14 @@ public class UI_DiePopup : UI_Popup
             // 마을 부활 + 체력/마나 20% 회복
             Managers.Game.OnResurrection(0.2f);
 
-            if (Managers.Scene.CurrentScene.SceneType != Define.Scene.Game)
+            // 현재 씬이 게임 씬이 아니라면 게임 씬으로 로드
+            if (Managers.Scene.m_CurScene.SceneType != Define.Scene.Game)
                 Managers.Scene.LoadScene(Define.Scene.Game);
-                
+
+            // 플레이어 위치를 기본 스폰 위치로 설정
             Managers.Game.GetPlayer().transform.position = Managers.Game.defualtSpawn;
-            
+
+            // UI 팝업 닫기            
             Managers.UI.ClosePopupUI(this);
         });
 

@@ -5,19 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_ShopBuySlot.cs
- * Desc :   UI_ShopPopup.cs에서 생성되며 아이템 구매 버튼을 담당
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : SetInfo()             - 기능 설정
- &
- &  [Prviate]
- &  : OnClickBuyButton()    - 구매 버튼 클릭 기능
- *
- */
+
 
 public class UI_ShopBuySlot : UI_ItemSlot
 {
@@ -32,9 +20,9 @@ public class UI_ShopBuySlot : UI_ItemSlot
         BuyItemPrice,
     }
 
-     Sprite      buySprite;          // 구매 아이템 sprite
-     string      itemNameText;       // 아이템 이름 text
-     string      itemPriceText;      // 아이템 가격 text
+    Sprite buySprite;          // 구매 아이템 sprite
+    string itemNameText;       // 아이템 이름 text
+    string itemPriceText;      // 아이템 가격 text
 
     public override bool Init()
     {
@@ -44,8 +32,8 @@ public class UI_ShopBuySlot : UI_ItemSlot
         BindImage(typeof(Images));
         BindText(typeof(Texts));
 
-        icon = GetImage((int)Images.BuyItemImage);
-        icon.sprite = buySprite;
+        Icon = GetImage((int)Images.BuyItemImage);
+        Icon.sprite = buySprite;
 
         GetText((int)Texts.BuyItemName).text = itemNameText;
         GetText((int)Texts.BuyItemPrice).text = itemPriceText;
@@ -60,14 +48,14 @@ public class UI_ShopBuySlot : UI_ItemSlot
 
     public void SetInfo(ItemData itemData)
     {
-        item = itemData;
+        Item = itemData;
 
-        buySprite = item.itemIcon;
-        itemNameText = item.itemName;
-        itemPriceText = item.itemPrice.ToString();
+        buySprite = Item.ItemIcon;
+        itemNameText = Item.ItemName;
+        itemPriceText = Item.ItemPrice.ToString();
     }
 
-     void OnClickBuyButton(PointerEventData eventData)
+    void OnClickBuyButton(PointerEventData eventData)
     {
         // 인벤 크기 확인
         if (Managers.Game.m_PlayScene.Inventory.IsInvenMaxSize() == true)
@@ -77,41 +65,46 @@ public class UI_ShopBuySlot : UI_ItemSlot
         }
 
         Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
-        
+
         // 금액 확인
-        if (Managers.Game.Gold < item.itemPrice)
+        if (Managers.Game.Gold < Item.ItemPrice)
         {
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo("금액이 부족합니다.", Color.yellow);
             return;
         }
 
-        // < 구매 시작 >
-        // 소비 아이템이면 개수 선택
-        if (item.itemType == Define.ItemType.Use)
-        {
-            UI_NumberCheckPopup numberCheckPopup = Managers.UI.ShowPopupUI<UI_NumberCheckPopup>();
-            if (numberCheckPopup.IsNull() == true)
-                return;
 
-            numberCheckPopup.SetInfo(item, (int itemCount)=>
+        //실제 구매 진행(UseItem)
+        if (Item.ItemType == Define.ItemType.Use)
+        {
+            //UseItem인경우 갯수확인팝업 생성
+            UI_NumberCheckPopup a_NumberCheck = Managers.UI.ShowPopupUI<UI_NumberCheckPopup>();
+            if (a_NumberCheck.IsNull() == true) return;
+
+            // 아이템 이름과 가격 설정
+            a_NumberCheck.SetInfo(Item, (int a_ItemCount) =>
             {
-                Managers.Game.Gold -= item.itemPrice * itemCount;
-                Managers.Game.m_PlayScene.Inventory.AcquireItem(item.ItemClone(), itemCount);
+                Managers.Game.Gold -= Item.ItemPrice * a_ItemCount;
+                Managers.Game.m_PlayScene.Inventory.AcquireItem(Item.ItemClone(), a_ItemCount);
             });
         }
+        // 실제 구매진행(장비)
         else
         {
-            UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
-            if (confirmPopup.IsNull() == true)
-                return;
-            
-            confirmPopup.SetInfo(()=>
+            // 장비 아이템인 경우 바로 구매
+            UI_ConfirmPopup a_Confirm = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
+
+            // 확인 팝업이 생성되지 않았다면
+            if (a_Confirm.IsNull() == true) return;
+
+            // 아이템 이름과 가격 설정
+            a_Confirm.SetInfo(() =>
             {
-                Managers.Game.Gold -= item.itemPrice;
-                Managers.Game.m_PlayScene.Inventory.AcquireItem(item.ItemClone());
+                Managers.Game.Gold -= Item.ItemPrice;
+                Managers.Game.m_PlayScene.Inventory.AcquireItem(Item.ItemClone());
             }, Define.ShopSaleMessage);
         }
     }
 
-    public override void SetInfo() {}
+    public override void SetInfo() { }
 }

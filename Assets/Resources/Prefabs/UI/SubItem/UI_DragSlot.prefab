@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c99969a84b68fc4ab4215cc19ca607a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragSlotItem: {fileID: 0}
-  icon: {fileID: 5115748668523227128}
+  m_DragSlot: {fileID: 7393961116321230263, guid: ff69da90ab6c9f3438d7e0108f6b4f17, type: 3}
+  Icon: {fileID: 5115748668523227128}
 --- !u!223 &8359575617745581579
 Canvas:
   m_ObjectHideFlags: 0

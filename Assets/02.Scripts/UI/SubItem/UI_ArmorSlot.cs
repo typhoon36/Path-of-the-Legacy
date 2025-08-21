@@ -56,8 +56,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     protected override void OnClickSlot(PointerEventData eventData)
     {
-        if (item.IsNull() == true || UI_DragSlot.instance.dragSlotItem.IsNull() == false)
-            return;
+        if (Item.IsNull() == true || UI_DragSlot.Inst.m_DragSlot.IsNull() == false) return;
 
         // 우클릭하여 장비 벗기
         if (Input.GetMouseButtonUp(1))
@@ -71,7 +70,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
         // 아이템을 버린 위치가 UI가 아니라면
-        if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
+        if (Item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
             // 인벤으로 보내고 초기화
             if (Managers.Game.m_PlayScene.Inventory.AcquireItem(armorItem) == true)
@@ -83,7 +82,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     protected override void OnDropSlot(PointerEventData eventData)
     {
-        UI_Slot dragSlot = UI_DragSlot.instance.dragSlotItem;
+        UI_Slot dragSlot = UI_DragSlot.Inst.m_DragSlot;
 
         if (dragSlot.IsNull() == false)
         {
@@ -99,12 +98,12 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     protected override void ChangeSlot(UI_ItemSlot itemSlot)
     {
         // 장비 확인
-        if ((itemSlot.item is ArmorItemData) == false)
+        if ((itemSlot.Item is ArmorItemData) == false)
             return;
 
         // 같은 부위 확인
-        ArmorItemData armor = itemSlot.item as ArmorItemData;
-        if (armorType != armor.armorType)
+        ArmorItemData armor = itemSlot.Item as ArmorItemData;
+        if (armorType != armor.ArmorType)
             return;
 
         // 레벨 확인
@@ -114,10 +113,10 @@ public class UI_ArmorSlot : UI_ItemDragSlot
             return;
         }
 
-        ItemData _tempItem = item;
+        ItemData _tempItem = Item;
 
         // 장비 장착
-        AddItem(itemSlot.item);
+        AddItem(itemSlot.Item);
 
         // 기존 장비 인벤 이동
         UI_InvenSlot inven = itemSlot as UI_InvenSlot;
@@ -159,9 +158,9 @@ public class UI_ArmorSlot : UI_ItemDragSlot
         Player_Ctrl player = Managers.Game.GetPlayer().GetComponent<Player_Ctrl>();
 
         List<GameObject> objList = new List<GameObject>();
-        if (player.m_CharEquipment.TryGetValue(armor.id, out objList) == false)
+        if (player.m_CharEquipment.TryGetValue(armor.Id, out objList) == false)
         {
-            Debug.Log($"{armor.id} : 활성화 실패");
+            Debug.Log($"{armor.Id} : 활성화 실패");
             return;
         }
 

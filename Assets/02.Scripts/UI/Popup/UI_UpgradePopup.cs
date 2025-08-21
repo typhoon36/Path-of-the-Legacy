@@ -3,24 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_UpgradePopup.cs
- * Desc :   장비를 강화할 수 있는 Popup UI
- *
- & Functions
- &  [Public]
- &  : Init()        - 초기 설정
- &  : RefreshUI()   - 장비 강화수치 새로고침
- &  : ExitUpgrade() - 강화창 나가기
- &  : Clear()       - 초기화
- &
- &  []
- &  : OnClickUpgradeButton()    - 강화 진행 버튼
- &  : EquipmentUpgradeGold()    - 장비 강화 골드 지불
- &  : EquipmentUpgrade()        - 장비 강화 적용
- &  : SetInfo()                 - 기능 설정
- *
- */
+
 
 public class UI_UpgradePopup : UI_Popup
 {
@@ -42,9 +25,9 @@ public class UI_UpgradePopup : UI_Popup
         UpgradeGoldText,
     }
 
-    public EquipmentData    _equipment;
+    public EquipmentData _equipment;
 
-     int             maxUpgradeCount = 10;   // 최대 강화 수치
+    int maxUpgradeCount = 10;   // 최대 강화 수치
 
     public override bool Init()
     {
@@ -67,23 +50,23 @@ public class UI_UpgradePopup : UI_Popup
     {
         _equipment = equipment;
 
-        // 풀강 확인
+
         if (equipment.UpgradeCount >= maxUpgradeCount)
         {
-            GetText((int)Texts.ItemNameText).text = _equipment.itemName;
+            GetText((int)Texts.ItemNameText).text = _equipment.ItemName;
             GetText((int)Texts.UpgradeResultText).text = $"Max";
             GetText((int)Texts.UpgradeGoldText).text = "";
         }
         else
         {
-            GetText((int)Texts.ItemNameText).text = _equipment.itemName;
-            GetText((int)Texts.UpgradeResultText).text = $"{_equipment.UpgradeCount}   →   {_equipment.UpgradeCount +1}";
+            GetText((int)Texts.ItemNameText).text = _equipment.ItemName;
+            GetText((int)Texts.UpgradeResultText).text = $"{_equipment.UpgradeCount}   →   {_equipment.UpgradeCount + 1}";
             GetText((int)Texts.UpgradeGoldText).text = EquipmentUpgradeGold(_equipment).ToString();
         }
     }
 
     // 강화 진행 버튼
-     void OnClickUpgradeButton()
+    void OnClickUpgradeButton()
     {
         if (_equipment.IsNull() == true)
             return;
@@ -108,15 +91,15 @@ public class UI_UpgradePopup : UI_Popup
     }
 
     // 강화 비용 계산
-     int EquipmentUpgradeGold(EquipmentData equipment)
+    int EquipmentUpgradeGold(EquipmentData equipment)
     {
         // 강화 금액 : 아이템 판매 가격 + ((판매 가격 / 2) * 강화 횟수)
-        int gold = equipment.itemPrice + (int)((equipment.itemPrice / 4) * (equipment.UpgradeCount));
+        int gold = equipment.ItemPrice + (int)((equipment.ItemPrice / 4) * (equipment.UpgradeCount));
         return gold;
     }
 
     // 강화 적용
-     void EquipmentUpgrade(EquipmentData equipment)
+    void EquipmentUpgrade(EquipmentData equipment)
     {
         equipment.UpgradeCount += 1;
 
@@ -148,7 +131,7 @@ public class UI_UpgradePopup : UI_Popup
         GetObject((int)Gameobjects.ItemSlot).GetComponent<UI_UpgradeSlot>().ClearSlot();
 
         Managers.Game.IsInteract = false;
-        
+
         Managers.UI.CloseAllPopupUI();
     }
 
@@ -163,7 +146,7 @@ public class UI_UpgradePopup : UI_Popup
         GetText((int)Texts.UpgradeGoldText).text = "0";
     }
 
-     void SetInfo()
+    void SetInfo()
     {
         GetText((int)Texts.ItemNameText).text = "강화할 장비를 선택하세요";
         GetText((int)Texts.UpgradeResultText).text = "";

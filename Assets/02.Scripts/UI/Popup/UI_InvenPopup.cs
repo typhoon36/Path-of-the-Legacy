@@ -61,7 +61,7 @@ public class UI_InvenPopup : UI_Popup
     {
         foreach(UI_InvenSlot slot in invenSlots)
         {
-            if (slot.item.IsNull() == true)
+            if (slot.Item.IsNull() == true)
                 return false;
         }
 
@@ -75,7 +75,7 @@ public class UI_InvenPopup : UI_Popup
         foreach(UI_InvenSlot slot in invenSlots)
         {
             // 슬롯에 아이템이 없으면
-            if (slot.item.IsNull() == true)
+            if (slot.Item.IsNull() == true)
             {
                 // 아이템 저장
                 slot.AddItem(item, count);
@@ -86,7 +86,7 @@ public class UI_InvenPopup : UI_Popup
             if (item is UseItemData)
             {
                 // 아이템의 id가 같다면 똑같은 아이템이므로
-                if (item.id == slot.item.id)
+                if (item.Id == slot.Item.Id)
                 {
                     // 개수 추가
                     slot.SetCount(count);

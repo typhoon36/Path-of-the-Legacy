@@ -15,7 +15,7 @@ public abstract class Npc_Ctrl : Base_Ctrl
     {
         // 이름바 생성 및 이름 설정
         nameBarUI = Managers.UI.MakeWorldSpaceUI<UI_NameBar>(transform);
-        nameBarUI.nameText = npcName + " [G]";
+        nameBarUI.m_NameText = npcName + " [F]";
     }
 
     // 상호작용 외부 접근

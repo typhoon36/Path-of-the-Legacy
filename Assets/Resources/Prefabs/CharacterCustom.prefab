@@ -21379,8 +21379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c11ef7c46ccc43a9ac84e1016838c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRotation: 0
-  rotationSpeed: 3.5
+  IsStopRot: 0
+  m_RotSpeed: 3.5
   HairList:
   - {fileID: 3442597554284206547}
   - {fileID: 8202211770378345447}
@@ -21393,7 +21393,7 @@ MonoBehaviour:
   - {fileID: 8308127397752642465}
   - {fileID: 4950793691378248640}
   - {fileID: 1801974572980112541}
-  Ears:
+  EarsList:
   - {fileID: 5142796438547410704}
   - {fileID: 3426125095408737365}
   FacialHairList:

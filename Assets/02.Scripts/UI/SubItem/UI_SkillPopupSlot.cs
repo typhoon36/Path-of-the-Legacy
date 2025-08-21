@@ -26,11 +26,11 @@ public class UI_SkillPopupSlot : UI_SkillSlot
         BindText(typeof(Texts));
 
 
-        if (Managers.Data.Skill.TryGetValue(skillId, out skillData) == false)
+        if (Managers.Data.Skill.TryGetValue(skillId, out m_SkillData) == false)
             Debug.Log($"SkillData {skillId} : Failed");
 
-        GetText((int)Texts.SkillLevelText).text = skillData.MinLevel.ToString();
-        icon.sprite = skillData.SkillSprite;
+        GetText((int)Texts.SkillLevelText).text = m_SkillData.MinLevel.ToString();
+        Icon.sprite = m_SkillData.SkillSprite;
 
 
         foreach (SkillData skill in Managers.Game.CurrentSkill)
@@ -38,12 +38,12 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
             if (skillId == skill.SkillId)
             {
-                skillData.IsLock = skill.IsLock;
+                m_SkillData.IsLock = skill.IsLock;
                 break;
             }
         }
 
-        if (skillData.IsLock == false)
+        if (m_SkillData.IsLock == false)
             Managers.Resource.Destroy(GetObject((int)Gameobjects.LevelBlock));
 
         base.SetInfo();
@@ -51,7 +51,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
     protected override void OnClickSlot(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonUp(1) && skillData.IsLock == true)
+        if (Input.GetMouseButtonUp(1) && m_SkillData.IsLock == true)
         {
             if (LevelCheck() == true)
             {
@@ -60,8 +60,8 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
                 confirmPopup.SetInfo(() =>
                 {
-                    skillData.IsLock = false;
-                    Managers.Game.CurrentSkill.Add(this.skillData);
+                    m_SkillData.IsLock = false;
+                    Managers.Game.CurrentSkill.Add(this.m_SkillData);
                     Managers.Resource.Destroy(GetObject((int)Gameobjects.LevelBlock));
                 }, Define.SkillOpenMessage);
             }
@@ -72,22 +72,19 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
     protected override void OnBeginDragSlot(PointerEventData eventData)
     {
-        if (skillData.IsLock == false)
-            base.OnBeginDragSlot(eventData);
+        if (m_SkillData.IsLock == false) base.OnBeginDragSlot(eventData);
     }
 
     protected override void OnDragSlot(PointerEventData eventData)
     {
-        if (skillData.IsLock == false)
-            base.OnDragSlot(eventData);
+        if (m_SkillData.IsLock == false) base.OnDragSlot(eventData);
     }
 
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
-        if (skillData.IsLock == false && skillData.IsNull() == false)
-            base.OnEndDragSlot(eventData);
+        if (m_SkillData.IsLock == false && m_SkillData.IsNull() == false) base.OnEndDragSlot(eventData);
     }
 
     // 스킬 레벨 체크
-    bool LevelCheck() { return Managers.Game.Level >= skillData.MinLevel; }
+    bool LevelCheck() { return Managers.Game.Level >= m_SkillData.MinLevel; }
 }

@@ -4,30 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_UseItemSlot.cs
- * Desc :   Scene UI의 하단 퀵슬롯에서 소비아이템바로 사용되며
- *          아이템 적용될 시 key를 눌러 아이템을 사용할 수 있다.
- *
- & Functions
- &  [Public]
- &  : SetInfo()         - 기능 설정
- &  : AddItem()         - 아이템 등록
- &  : ClearSlot()       - 초기화
- &
- &  [Protected]
- &  : OnEndDragSlot()   - 마우스 클릭을 해제하면 "초기화"
- &  : OnDropSlot()      - 현재 슬롯에 마우스 클릭을 때면 "아이템 등록"
- &  : ChangeSlot()      - 슬롯 교체
- *
- */
+
 
 public class UI_UseItemSlot : UI_ItemDragSlot
 {
     public int                  key;
 
-    [SerializeField]
-     Text    keyText;
+    [SerializeField] Text    keyText;
 
     public override void SetInfo()
     {
@@ -42,21 +25,21 @@ public class UI_UseItemSlot : UI_ItemDragSlot
         }
     }
 
-    public override void AddItem(ItemData _item, int count = 1)
+    public override void AddItem(ItemData a_Item, int count = 1)
     {
-        base.AddItem(_item, count);
+        base.AddItem(a_Item, count);
 
         if (Managers.Game.UseItemBarList.ContainsKey(key) == false)
-            Managers.Game.UseItemBarList.Add(key, _item as UseItemData);
+            Managers.Game.UseItemBarList.Add(key, a_Item as UseItemData);
         else
-            Managers.Game.UseItemBarList[key] = _item as UseItemData;
+            Managers.Game.UseItemBarList[key] = a_Item as UseItemData;
     }
 
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
-        if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
+        if (Item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(item, itemCount) == true)
+            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(Item, ItemCount) == true)
                 ClearSlot();
         }
         
@@ -65,7 +48,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
 
     protected override void OnDropSlot(PointerEventData eventData)
     {
-        UI_Slot dragSlot = UI_DragSlot.instance.dragSlotItem;
+        UI_Slot dragSlot = UI_DragSlot.Inst.m_DragSlot;
 
         if (dragSlot.IsNull() == false)
         {
@@ -79,31 +62,30 @@ public class UI_UseItemSlot : UI_ItemDragSlot
         }
     }
 
-    protected override void ChangeSlot(UI_ItemSlot itemSlot)
+    protected override void ChangeSlot(UI_ItemSlot a_ItemSlot)
     {
         // 소비 아이템 확인
-        if ((itemSlot.item is UseItemData) == false)
-            return;
+        if ((a_ItemSlot.Item is UseItemData) == false) return;
 
         // 지금 슬롯에 아이템이 존재할 때
-        if (item.IsNull() == false)
+        if (Item.IsNull() == false)
         {
             // 아이디 확인 후 개수 증가 or 체인지
-            if (item.id == itemSlot.item.id)
-                SetCount((itemSlot.item as UseItemData).ItemCount);
+            if (Item.Id == a_ItemSlot.Item.Id)
+                SetCount((a_ItemSlot.Item as UseItemData).ItemCount);
             else
             {
-                if (Managers.Game.m_PlayScene.Inventory.AcquireItem(item, itemCount) == false)
+                if (Managers.Game.m_PlayScene.Inventory.AcquireItem(Item, ItemCount) == false)
                     return;
                 
-                AddItem(itemSlot.item, (itemSlot.item as UseItemData).ItemCount);
+                AddItem(a_ItemSlot.Item, (a_ItemSlot.Item as UseItemData).ItemCount);
             }
         }
-        else AddItem(itemSlot.item, (itemSlot.item as UseItemData).ItemCount);
+        else AddItem(a_ItemSlot.Item, (a_ItemSlot.Item as UseItemData).ItemCount);
 
-        // 기존에 온 슬롯 삭제시키기 
-        if (itemSlot is UI_UseItemSlot) (itemSlot as UI_UseItemSlot).ClearSlot();
-        if (itemSlot is UI_InvenSlot) (itemSlot as UI_InvenSlot).ClearSlot();
+        // 기존에 온 슬롯 삭제
+        if (a_ItemSlot is UI_UseItemSlot) (a_ItemSlot as UI_UseItemSlot).ClearSlot();
+        if (a_ItemSlot is UI_InvenSlot) (a_ItemSlot as UI_InvenSlot).ClearSlot();
     }
 
     public override void ClearSlot()

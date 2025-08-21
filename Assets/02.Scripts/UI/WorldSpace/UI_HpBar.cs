@@ -3,19 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
- * File :   UI_HpBar.cs
- * Desc :   Monster 위에 생성되는 Hp바 UI
- *
- & Functions
- &  Init()          - 초기 설정 
- &  FixedUpdate()   - 객체 상단 위치 고정 및 카메라 바라보도록 회전
- *
- */
 
 public class UI_HpBar : UI_Base
 {
-     MonsterStat     _stat;
+     MonsterStat     m_Stat;
 
     enum GameObjects
     {
@@ -29,7 +20,7 @@ public class UI_HpBar : UI_Base
 
         Bind<GameObject>(typeof(GameObjects));
 
-        _stat = transform.parent.GetComponent<MonsterStat>();
+        m_Stat = transform.parent.GetComponent<MonsterStat>();
         gameObject.SetActive(false);
 
         return true;
@@ -42,7 +33,8 @@ public class UI_HpBar : UI_Base
         transform.position = parent.position + Vector3.up * (parent.GetComponent<Collider>().bounds.size.y);
         GetObject((int)GameObjects.HpBar).transform.rotation = Camera.main.transform.rotation;
 
-        float ratio = (float)_stat.Hp / _stat.MaxHp;
+        //몬스터의 스텟상 HP 적용
+        float ratio = (float)m_Stat.Hp / m_Stat.MaxHp;
         
         GetObject((int)GameObjects.HpBar).GetComponent<Slider>().value = ratio;
     }

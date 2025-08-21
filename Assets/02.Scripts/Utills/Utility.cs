@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   Utility.cs
- * Desc :   기능 활용
- */
+
 
 public class Utility
 {

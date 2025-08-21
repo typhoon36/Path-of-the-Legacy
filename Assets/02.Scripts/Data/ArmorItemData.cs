@@ -3,19 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   ArmorItemData.cs
- * Desc :   방어 아이템 스탯 데이터 (방어도, 체력, 마나, 속도)
- *
- & Functions
- &  : ArmorClone()  - 방어구 깊은 복사
- *
- */
+
 
 [Serializable]
 public class ArmorItemData : EquipmentData
 {
-    public Define.ArmorType armorType = Define.ArmorType.Unknown;
+    public Define.ArmorType ArmorType = Define.ArmorType.Unknown;
 
     // 기본 스탯
     public int Defnece=0;
@@ -35,18 +28,18 @@ public class ArmorItemData : EquipmentData
     // 깊은 복사용
     public ArmorItemData ArmorClone()
     {
-        ArmorItemData armor = new ArmorItemData();
+        ArmorItemData a_Armor = new ArmorItemData();
 
-        (this as EquipmentData).EquipmentClone(armor);
+        (this as EquipmentData).EquipmentClone(a_Armor);
 
-        armor.armorType = this.armorType;
-        armor.Defnece = this.Defnece;
-        armor.Hp = this.Hp;
-        armor.Mp = this.Mp;
-        armor.MoveSpeed = this.MoveSpeed;
+        a_Armor.ArmorType = this.ArmorType;
+        a_Armor.Defnece = this.Defnece;
+        a_Armor.Hp = this.Hp;
+        a_Armor.Mp = this.Mp;
+        a_Armor.MoveSpeed = this.MoveSpeed;
 
-        armor.CharEquipment = this.CharEquipment;
+        a_Armor.CharEquipment = this.CharEquipment;
 
-        return armor;
+        return a_Armor;
     }
 }

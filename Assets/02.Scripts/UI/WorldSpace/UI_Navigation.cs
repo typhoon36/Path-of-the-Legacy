@@ -2,15 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UI_Navigation.cs
- * Desc :   퀘스트 장소를 알려주는 네비게이션 UI
- *
- & Functions
- &  SetInfo()   - 기능 설정
- &  Update()    - 플레이어 위치에서 퀘스트 방향 가르키기
- *
- */
+
 
 public class UI_Navigation : UI_Base
 {

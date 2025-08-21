@@ -10,7 +10,7 @@ public abstract class UI_Slot : UI_Base
 {
     enum Images { ItemImage, }
 
-    public Image    icon;
+    public Image    Icon;
 
     public override bool Init()
     {
@@ -26,7 +26,7 @@ public abstract class UI_Slot : UI_Base
     public virtual void SetInfo()
     {
         BindImage(typeof(Images));
-        icon = GetImage((int)Images.ItemImage);
+        Icon = GetImage((int)Images.ItemImage);
     }
 
     public virtual void RefreshUI() {}
@@ -53,15 +53,15 @@ public abstract class UI_Slot : UI_Base
     // 투명도 설정 (0 ~ 255)
     protected virtual void SetColor(float _alpha)
     {
-        Color color = icon.color;
+        Color color = Icon.color;
         color.a = _alpha;
-        icon.color = color;
+        Icon.color = color;
     }
 
     // 슬롯 초기화
     public virtual void ClearSlot()
     {
-        icon.sprite = null;
+        Icon.sprite = null;
         
         SetColor(0);
     }

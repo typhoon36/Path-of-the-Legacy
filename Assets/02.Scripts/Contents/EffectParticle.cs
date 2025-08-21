@@ -10,9 +10,9 @@ public class EffectParticle : Effect
     Action OnParticleColl;
 
     // 설정
-    public void SetInfo(Action IsParticleColl)
+    public void SetInfo(Action IsColl)
     {
-        OnParticleColl = IsParticleColl;
+        OnParticleColl = IsColl;
     }
 
     // 파티클 접촉 시 호출

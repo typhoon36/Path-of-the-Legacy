@@ -50203,11 +50203,11 @@ GameObject:
   m_Component:
   - component: {fileID: 465622}
   - component: {fileID: 9598066}
-  - component: {fileID: 13565622}
   - component: {fileID: 5465622}
   - component: {fileID: 2240792826744585448}
   - component: {fileID: 3566790254009846003}
   - component: {fileID: 5990749594907940970}
+  - component: {fileID: 4733902716825809403}
   m_Layer: 0
   m_Name: Goblin1
   m_TagString: Untagged
@@ -50261,27 +50261,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &13565622
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165622}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 10, z: -1.2071486}
 --- !u!54 &5465622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50364,15 +50343,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5d6f957ec9a5944ba2a815117d938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockTarget: {fileID: 0}
-  _destPos: {x: 0, y: 0, z: 0}
-  _state: 2
-  monsterType: 0
-  spawnPos: {x: 0, y: 0, z: 0}
-  hpBarUI: {fileID: 0}
-  scanRange: 0
-  attackRange: 0
-  spawnRange: 16
+  m_LockTarget: {fileID: 0}
+  m_DestPos: {x: 0, y: 0, z: 0}
+  m_State: 2
+  m_MonsterType: 0
+  m_SpawnPos: {x: 0, y: 0, z: 0}
+  m_HpBarUI: {fileID: 1317226967115965316}
+  m_ScanRange: 0
+  m_AttRange: 0
+  m_SpawnRange: 16
+--- !u!136 &4733902716825809403
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165622}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 12.74
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 10, z: -1.207149}
 --- !u!1 &1317226967115965316
 GameObject:
   m_ObjectHideFlags: 0
@@ -50384,6 +50386,7 @@ GameObject:
   - component: {fileID: 8683356862577799217}
   - component: {fileID: 5501646766321718169}
   - component: {fileID: 3594455090826938409}
+  - component: {fileID: 9126049166755976110}
   m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
@@ -50448,6 +50451,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9126049166755976110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317226967115965316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb4e86f195c4244ea94d2078db1d01c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2651598853832159111
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,19 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 
-/*
- * File :   UI_QuestButton.cs
- * Desc :   UI_QuestPopup.cs에서 생성되며 퀘스트 정보를 활성화하는 버튼으로 사용
- *
- & Functions
- &  [Public]
- &  : Init()         - 아이템 추가
- &  : SetInfo()      - 기능 설정
- &
- &  []
- &  : OnClickSceneNoticeButton()    - 클릭 시 Scene UI에 퀘스트 알람 추가
- *
- */
+
 
 public class UI_QuestButton : UI_Base
 {
@@ -56,7 +44,7 @@ public class UI_QuestButton : UI_Base
     public void SetInfo(QuestData quest)
     {
         _quest = quest;
-        slotText = _quest.titleName;
+        slotText = _quest.TitleName;
     }
 
     // 씬에 퀘스트 알림 추가

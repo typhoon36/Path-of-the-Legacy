@@ -19,12 +19,12 @@ public class ItemPickUp : MonoBehaviour
         m_NameBarUI = Managers.UI.MakeWorldSpaceUI<UI_NameBar>(transform);
 
         if (m_ItemCount > 1)
-            m_NameBarUI.nameText = m_Item.itemName + $" ({m_ItemCount})";
+            m_NameBarUI.m_NameText = m_Item.ItemName + $" ({m_ItemCount})";
 
         else
-            m_NameBarUI.nameText = m_Item.itemName;
+            m_NameBarUI.m_NameText = m_Item.ItemName;
 
-        m_NameBarUI.nameText += "[줍기]";
+        m_NameBarUI.m_NameText += "[줍기]";
     }
 
     void FixedUpdate()

@@ -2,49 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   QuestNpcController.cs
- * Desc :   퀘스트 NPC 기능 구현
- *          대화의 종류는 일반, 퀘스트 시작, 퀘스트 거절, 퀘스트 수락, 퀘스트 진행, 퀘스트 성공으로 총 6가지 존재.
- *          퀘스트를 가져오는 방법은 questId, talkId를 미리 유니티상의 컴포넌트에서 id를 입력시켜준다.
- *          입력된 Id를 가지고 DataManager에 보내어 퀘스트를 받아온다.
- *
- & Functions
- &  [Public]
- &  : Init()            - 초기 설정
- &
- &  [Protected]
- &  : OnInteract()      - 상호작용 기능 구현
- &  : OpenPopup()       - Popup 활성화 (TalkCheck() 호출)
- &
- &  []
- &  : TalkCheck()       - 대화 확인
- &  : OnTalk()          - 대화 시작
- &  : NextQuestCheck()  - 다음 퀘스트 확인
- &  : NoticeUpdate()    - 알람 업데이트
- *
- */
+
 
 public class QuestNpc_Ctrl : Npc_Ctrl
 {
     public Define.QuestType questType;          // 퀘스트 타입
 
     [SerializeField]
-     int[]           questId;            // 퀘스트 id Array
+    int[] questId;            // 퀘스트 id Array
     [SerializeField]
-     int[]           talkId;             // 대화 id Array
+    int[] talkId;             // 대화 id Array
 
-     int             nextQuestIndex;     // 다음 퀘스트 Index
+    int nextQuestIndex;     // 다음 퀘스트 Index
 
-     bool            isQuest;            // 퀘스트가 존재하는가?
+    bool isQuest;            // 퀘스트가 존재하는가?
 
-     QuestData       currentQuest;       // 현재 퀘스트
-     TalkData        currentTalk;        // 현재 대화
+    QuestData currentQuest;       // 현재 퀘스트
+    TalkData currentTalk;        // 현재 대화
 
-     List<QuestData> questDataList;      // 퀘스트 List
-     List<TalkData>  talkDataList;       // 대화 List
+    List<QuestData> questDataList;      // 퀘스트 List
+    List<TalkData> talkDataList;       // 대화 List
 
-     UI_QuestNotice  noticeObject;       // 알람 Prefab
+    UI_QuestNotice noticeObject;       // 알람 Prefab
 
     public override void Init()
     {
@@ -54,7 +33,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         talkDataList = new List<TalkData>();
 
         // id에 맞게 퀘스트, 대화 데이터 가져오기
-        for(int i=0; i<questId.Length; i++)
+        for (int i = 0; i < questId.Length; i++)
         {
             questDataList.Add(Managers.Data.Quest[questId[i]]);
             talkDataList.Add(Managers.Data.Talk[talkId[i]]);
@@ -92,23 +71,23 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 대화 시작
-     void TalkCheck()
+    void TalkCheck()
     {
         if (currentTalk.IsNull() == true)
             return;
 
         // 이미 퀘스트를 클리어 했는가? or 퀘스트가 없거나
-        if (currentQuest.isClear == true || isQuest == false)
+        if (currentQuest.IsClear == true || isQuest == false)
         {
             OnTalk(currentTalk.basicsTalk);
             return;
         }
 
         // 퀘스트가 수락 중이라면
-        if (currentQuest.isAccept == true)
+        if (currentQuest.IsAccept == true)
         {
             // 퀘스트 목표 개수 충족 되면
-            if (currentQuest.currnetTargetCount >= currentQuest.targetCount)
+            if (currentQuest.CurrnetTargetCount >= currentQuest.TargetCount)
             {
                 // 인벤토리가 꽉찼는지 확인
                 if (Managers.Game.m_PlayScene.Inventory.IsInvenMaxSize() == true)
@@ -129,12 +108,12 @@ public class QuestNpc_Ctrl : Npc_Ctrl
             }
             else
                 OnTalk(currentTalk.procTalk);         // 퀘스트 진행 대화 시작
-                
+
             return;
         }
-        
+
         // 레벨이 되면 퀘스트 대화 시작
-        if (currentQuest.minLevel <= Managers.Game.Level)
+        if (currentQuest.MinLevel <= Managers.Game.Level)
         {
             OnTalk(currentTalk);
             return;
@@ -145,7 +124,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 기본 하나의 대화 시작
-     void OnTalk(string text)
+    void OnTalk(string text)
     {
         UI_TalkPopup talkPopup = Managers.Game.m_PlayScene.Talk;
 
@@ -154,7 +133,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // TalkData를 그대로 보낼 시 퀘스트 시작으로 판정
-     void OnTalk(TalkData texts)
+    void OnTalk(TalkData texts)
     {
         UI_TalkPopup talkPopup = Managers.Game.m_PlayScene.Talk;
 
@@ -163,7 +142,7 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 다음 퀘스트
-     void NextQuestCheck()
+    void NextQuestCheck()
     {
         nextQuestIndex++;
 
@@ -182,43 +161,43 @@ public class QuestNpc_Ctrl : Npc_Ctrl
     }
 
     // 알람 업데이트 ( 실시간 npc 위의 퀘스트 상태 표시 )
-     void NoticeUpdate()
+    void NoticeUpdate()
     {
         // Null Check
         if (noticeObject.IsNull() == true)
             return;
 
         // 레벨 확인
-        if (currentQuest.minLevel > Managers.Game.Level)
+        if (currentQuest.MinLevel > Managers.Game.Level)
             return;
 
         // 이미 퀘스트를 클리어 했는가? or 퀘스트가 없거나
-        if (currentQuest.isClear == true || isQuest == false)
+        if (currentQuest.IsClear == true || isQuest == false)
         {
             noticeObject.SetInfo("", transform.position);
             return;
         }
 
         // 퀘스트 목표 달성 확인
-        if (currentQuest.currnetTargetCount >= currentQuest.targetCount)
+        if (currentQuest.CurrnetTargetCount >= currentQuest.TargetCount)
         {
             noticeObject.SetInfo("?");
             return;
         }
-        
+
         // 퀘스트 수락 확인
-        if (currentQuest.isAccept == true)
+        if (currentQuest.IsAccept == true)
             noticeObject.SetInfo("", transform.position);
         else
             noticeObject.SetInfo("!", transform.position);
     }
 
-     void DelayInit()
+    void DelayInit()
     {
         // 현재 클리어한 퀘스트가 있는지
-        for(int i=0; i<Managers.Game.ClearQuest.Count; i++)
+        for (int i = 0; i < Managers.Game.ClearQuest.Count; i++)
         {
-            if (questDataList[nextQuestIndex].id == Managers.Game.ClearQuest[i].id)
+            if (questDataList[nextQuestIndex].Id == Managers.Game.ClearQuest[i].Id)
             {
                 NextQuestCheck();
                 continue;
@@ -226,12 +205,12 @@ public class QuestNpc_Ctrl : Npc_Ctrl
         }
 
         // 수락 확인
-        for(int i=0; i<Managers.Game.CurrentQuest.Count; i++)
+        for (int i = 0; i < Managers.Game.CurrentQuest.Count; i++)
         {
-            if (currentQuest.id == Managers.Game.CurrentQuest[i].id)
+            if (currentQuest.Id == Managers.Game.CurrentQuest[i].Id)
                 currentQuest = Managers.Game.CurrentQuest[i];
         }
-        
+
         noticeObject = Managers.UI.MakeWorldSpaceUI<UI_QuestNotice>();
     }
 }

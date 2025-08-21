@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-/*
- * File :   StartData.cs
- * Desc :   시작 기본 데이터
- */
+
 
 public class StartData
 {

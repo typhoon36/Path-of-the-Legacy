@@ -2,27 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UpgradeNpcController.cs
- * Desc :   장비 강화 NPC 기능 구현
- *
- & Functions
- &  [Protected]
- &  : OpenPopup()   - Popup 활성화   (OpenUpgrade() 호출)
- &  : ExitPopup()   - Popup 비활성화 (ExitUpgrade() 호출)
- &
- &  []
- &  : OpenUpgrade() - 업그레이드 Popup 열기
- &  : ExitUpgrade() - 업그레이드 Popup 나가기
- *
- */
 
-public class UpgradeNpcController : Npc_Ctrl
+
+public class UpgradeNpc_Ctrl : Npc_Ctrl
 {
     protected override void OpenPopup() { OpenUpgrade(); }
     protected override void ExitPopup() { ExitUpgrade(); }
 
-     void OpenUpgrade()
+    void OpenUpgrade()
     {
         // 업그레이드 Popup 활성화
         Managers.UI.OnPopupUI(Managers.Game.m_PlayScene.Upgrade);
@@ -32,7 +19,7 @@ public class UpgradeNpcController : Npc_Ctrl
         Managers.Game.m_PlayScene.Inventory.ResetPos();
     }
 
-     void ExitUpgrade()
+    void ExitUpgrade()
     {
         Managers.Game.m_PlayScene.Upgrade.ExitUpgrade();
     }

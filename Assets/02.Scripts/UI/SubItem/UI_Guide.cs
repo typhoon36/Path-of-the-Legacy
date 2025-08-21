@@ -7,38 +7,39 @@ using UnityEngine.UI;
 
 public class UI_Guide : UI_Base
 {
-    [SerializeField]
-     Text     _messageText;
-     Color               _color;
-     Coroutine           co;
+    [SerializeField] Text m_MessageText;
+    Color m_Color;
+    Coroutine Co;
 
     public void SetInfo(string messageText, Color color)
     {
         // 초기화
-        _messageText.text = messageText;
-        _messageText.transform.localPosition = Vector3.zero;
-        _color = color;
-        _messageText.color = _color;
+        m_MessageText.text = messageText;
+        m_MessageText.transform.localPosition = Vector3.zero;
+        m_Color = color;
+        m_MessageText.color = m_Color;
 
-        if (co.IsNull() == false) StopCoroutine(co);
-        co = StartCoroutine(MessageCoroutine());
+        if (Co.IsNull() == false) StopCoroutine(Co);
+        Co = StartCoroutine(MessageCoroutine());
     }
 
-     IEnumerator MessageCoroutine()
+    //연출
+    IEnumerator MessageCoroutine()
     {
         yield return new WaitForSeconds(1f);
 
         // 점점 사라지며 올라가기
-        for(float i=1.0f; i>=0.0f; i-=0.01f)
+        for (float i = 1.0f; i >= 0.0f; i -= 0.01f)
         {
-            _color.a = i;
-            _messageText.color = _color;
+            m_Color.a = i;
+            m_MessageText.color = m_Color;
 
-            _messageText.transform.localPosition += Vector3.up * 0.7f;
+            m_MessageText.transform.localPosition += Vector3.up * 0.7f;
 
             yield return null;
         }
-        
+
+        //연출이 끝나면 오브젝트 제거
         Managers.Resource.Destroy(gameObject);
     }
 }

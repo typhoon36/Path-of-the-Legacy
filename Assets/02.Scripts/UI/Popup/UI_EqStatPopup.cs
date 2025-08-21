@@ -78,15 +78,15 @@ public class UI_EqStatPopup : UI_Popup
     public void SetEquipment(UI_ItemSlot itemSlot)
     {
         // 무기, 장비 확인
-        if (itemSlot.item.itemType == Define.ItemType.Armor)
+        if (itemSlot.Item.ItemType == Define.ItemType.Armor)
         {
-            ArmorItemData armor = itemSlot.item as ArmorItemData;
+            ArmorItemData armor = itemSlot.Item as ArmorItemData;
 
             // 장비 부위 체크
             foreach (UI_ArmorSlot armorSlot in armorSlots)
             {
                 // 같은 부위면 장착
-                if (armorSlot.armorType == armor.armorType)
+                if (armorSlot.armorType == armor.ArmorType)
                 {
                     armorSlot.ChangeArmor(itemSlot);
                     break;
@@ -94,7 +94,7 @@ public class UI_EqStatPopup : UI_Popup
             }
         }
         // 무기면 장착
-        else if (itemSlot.item.itemType == Define.ItemType.Weapon)
+        else if (itemSlot.Item.ItemType == Define.ItemType.Weapon)
         {
             weaponSlot.ChangeWeapon(itemSlot);
         }

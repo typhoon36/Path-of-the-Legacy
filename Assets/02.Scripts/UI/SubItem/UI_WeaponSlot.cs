@@ -7,8 +7,7 @@ using UnityEngine.EventSystems;
 
 public class UI_WeaponSlot : UI_ItemDragSlot
 {
-    [SerializeField]
-     Define.WeaponType   weaponType = Define.WeaponType.Unknown;
+    [SerializeField] Define.WeaponType   weaponType = Define.WeaponType.Unknown;
      WeaponItemData      weaponItem;
 
     public override void SetInfo()
@@ -16,7 +15,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
         Managers.Game.m_PlayScene.Equipment.weaponSlot = this;
 
         // 해당 부위 장비가 장착되어 있다면
-        if (Managers.Game.CurrentWeapon.id != 0)
+        if (Managers.Game.CurrentWeapon.Id != 0)
             AddItem(Managers.Game.CurrentWeapon);
         else
             Managers.Game.CurrentWeapon = null;
@@ -54,8 +53,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
 
     protected override void OnClickSlot(PointerEventData eventData)
     {
-        if (item.IsNull() == true || UI_DragSlot.instance.dragSlotItem.IsNull() == false)
-            return;
+        if (Item.IsNull() == true || UI_DragSlot.Inst.m_DragSlot.IsNull() == false) return;
 
         // 장비 벗기
         if (Input.GetMouseButtonUp(1))
@@ -70,7 +68,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
         // 아이템을 버린 위치가 UI가 아니라면
-        if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
+        if (Item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
             // 아이템 인벤으로 이동
             if (Managers.Game.m_PlayScene.Inventory.AcquireItem(weaponItem) == true)
@@ -82,7 +80,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
 
     protected override void OnDropSlot(PointerEventData eventData)
     {
-        UI_Slot dragSlot = UI_DragSlot.instance.dragSlotItem;
+        UI_Slot dragSlot = UI_DragSlot.Inst.m_DragSlot;
 
         if (dragSlot.IsNull() == false)
         {
@@ -98,11 +96,11 @@ public class UI_WeaponSlot : UI_ItemDragSlot
     protected override void ChangeSlot(UI_ItemSlot itemSlot)
     {
         // 장비 확인
-        if ((itemSlot.item is WeaponItemData) == false)
+        if ((itemSlot.Item is WeaponItemData) == false)
             return;
 
         // 같은 부위 확인
-        WeaponItemData weapon = itemSlot.item as WeaponItemData;
+        WeaponItemData weapon = itemSlot.Item as WeaponItemData;
         if (weaponType != weapon.WeaponType)
             return;
 
@@ -113,10 +111,10 @@ public class UI_WeaponSlot : UI_ItemDragSlot
             return;
         }
 
-        ItemData _tempItem = item;
+        ItemData _tempItem = Item;
 
         // 장비 장착
-        AddItem(itemSlot.item);
+        AddItem(itemSlot.Item);
 
         // 기존 장비 인벤 이동
         UI_InvenSlot inven = itemSlot as UI_InvenSlot;
@@ -129,7 +127,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
      void GetPart(WeaponItemData weapon)
     {
         if (weapon.charEquipment.IsNull() == true)
-            weapon.charEquipment = (Managers.Data.Item[weapon.id] as WeaponItemData).charEquipment;
+            weapon.charEquipment = (Managers.Data.Item[weapon.Id] as WeaponItemData).charEquipment;
     }
 
     public override void ClearSlot()

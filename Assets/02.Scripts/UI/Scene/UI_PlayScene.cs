@@ -133,7 +133,7 @@ public class UI_PlayScene : UI_Scene
             // 키가 같으면 사용
             if (key == UseItemBarList[i].key)
             {
-                UseItemData useItem = UseItemBarList[i].item as UseItemData;
+                UseItemData useItem = UseItemBarList[i].Item as UseItemData;
                 if (useItem.UseItem(useItem) == true)
                 {
                     UseItemBarList[i].SetCount(-1);

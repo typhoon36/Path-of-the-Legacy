@@ -335,7 +335,7 @@ public class Game_Mgr
         
         // 레벨 업
         RefreshStat(++Level);
-       // _player.GetComponent<Player_Ctrl>().LevelUpEffect();
+       _player.GetComponent<Player_Ctrl>().LevelUpEffect();
         Managers.UI.MakeSubItem<UI_Guide>().SetInfo($"Level Up!! \n({Level}) \n\n\n\n\n\n\n\n\n", Color.yellow);
         Debug.Log("Level UP!!");
 	}
@@ -363,7 +363,7 @@ public class Game_Mgr
     {
         for(int i=0; i<CurrentQuest.Count; i++)
         {
-            if (CurrentQuest[i].isClear == true)
+            if (CurrentQuest[i].IsClear == true)
             {
                 ClearQuest.Add(CurrentQuest[i]);
                 CurrentQuest.RemoveAt(i);
@@ -612,7 +612,7 @@ public class Game_Mgr
 
 	public void SaveGame()
 	{
-        if (Managers.Scene.CurrentScene.SceneType == Define.Scene.Game)
+        if (Managers.Scene.m_CurScene.SceneType == Define.Scene.Game)
             CurrentPos = _player.transform.position;
 
         _gameData.DefaultPartData = ToDictionary<Define.DefaultPart, SkinnedData>(DefaultPart);

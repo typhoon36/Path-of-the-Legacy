@@ -72,14 +72,14 @@ public class UI_SlotTipPopup : UI_Popup
         slotTipPos.y = slotTipPos.y - (tipRect.rect.height * 0.65f); 
         background.anchoredPosition = slotTipPos;
 
-        GetImage((int)Images.ItemImage).sprite = item.itemIcon;
+        GetImage((int)Images.ItemImage).sprite = item.ItemIcon;
 
-        GetText((int)Texts.ItemNameText).text = item.itemName;
-        GetText((int)Texts.ItemTypeText).text = item.itemType.ToString();
-        GetText((int)Texts.ItemGradeText).text = item.itemGrade.ToString();
+        GetText((int)Texts.ItemNameText).text = item.ItemName;
+        GetText((int)Texts.ItemTypeText).text = item.ItemType.ToString();
+        GetText((int)Texts.ItemGradeText).text = item.ItemGrade.ToString();
 
         // 아이템 등급에 따른 색깔
-        switch(item.itemGrade)
+        switch(item.ItemGrade)
         {
             case Define.ItemGrade.Common:
                 SetColor(Color.white);
@@ -100,16 +100,16 @@ public class UI_SlotTipPopup : UI_Popup
         {
             // 강화가 됐다면
             if ((item as EquipmentData).UpgradeCount > 0)
-                GetText((int)Texts.ItemNameText).text = item.itemName +  $" [+{(item as EquipmentData).UpgradeCount}]";
+                GetText((int)Texts.ItemNameText).text = item.ItemName +  $" [+{(item as EquipmentData).UpgradeCount}]";
         }    
         
         // 아이템 종류 별로 세팅
-        if (item.itemType == Define.ItemType.Use)
+        if (item.ItemType == Define.ItemType.Use)
         {
             GetText((int)Texts.ItemLevelText).text = "";
-            GetText((int)Texts.ItemStatText).text = item.itemDesc;
+            GetText((int)Texts.ItemStatText).text = item.ItemDesc;
         }
-        else if (item.itemType == Define.ItemType.Armor)
+        else if (item.ItemType == Define.ItemType.Armor)
         {
             ArmorItemData armor = item as ArmorItemData;
             GetText((int)Texts.ItemLevelText).text = "최소레벨 " + armor.MinLevel;
@@ -133,7 +133,7 @@ public class UI_SlotTipPopup : UI_Popup
 
             GetText((int)Texts.ItemStatText).text = statStr;
         }
-        else if (item.itemType == Define.ItemType.Weapon)
+        else if (item.ItemType == Define.ItemType.Weapon)
         {
             WeaponItemData weapon = item as WeaponItemData;
             GetText((int)Texts.ItemLevelText).text = "최소레벨 " + weapon.MinLevel;

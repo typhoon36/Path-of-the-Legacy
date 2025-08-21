@@ -39,16 +39,16 @@ public class UI_QuestNoticeSlot : UI_Base
             return;
 
         // 퀘스트 목표 달성 시
-        if (m_Quest.currnetTargetCount == m_Quest.targetCount)
+        if (m_Quest.CurrnetTargetCount == m_Quest.TargetCount)
         {
             // text 완료 표시
-            GetText((int)Texts.QuestNameText).text = m_Quest.titleName + $@"<color=yellow> [완료]</color>";
+            GetText((int)Texts.QuestNameText).text = m_Quest.TitleName + $@"<color=yellow> [완료]</color>";
             IsSuccess = true;
         }
 
         // 퀘스트 진행 상황 표시
         if (GetText((int)Texts.QuestDescText).IsNull() == false)
-            GetText((int)Texts.QuestDescText).text = $"{m_TargetName} : {m_Quest.currnetTargetCount} / {m_Quest.targetCount}";
+            GetText((int)Texts.QuestDescText).text = $"{m_TargetName} : {m_Quest.CurrnetTargetCount} / {m_Quest.TargetCount}";
     }
 
     public void SetInfo(QuestData a_Quest)
@@ -56,10 +56,10 @@ public class UI_QuestNoticeSlot : UI_Base
         m_Quest = a_Quest;
 
         // 퀘스트 타겟 이름
-        m_TargetName = Managers.Data.Monster[m_Quest.targetId].GetComponent<MonsterStat>().Name;
+        m_TargetName = Managers.Data.Monster[m_Quest.TargetId].GetComponent<MonsterStat>().Name;
 
         // 퀘스트 제목
-        m_QuestNameSt = a_Quest.titleName;
-        m_QuestDescSt = $"{m_TargetName} : {m_Quest.currnetTargetCount} / {m_Quest.targetCount}";
+        m_QuestNameSt = a_Quest.TitleName;
+        m_QuestDescSt = $"{m_TargetName} : {m_Quest.CurrnetTargetCount} / {m_Quest.TargetCount}";
     }
 }

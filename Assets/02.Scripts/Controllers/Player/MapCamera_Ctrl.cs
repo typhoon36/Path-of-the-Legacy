@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class MapCamera_Ctrl : MonoBehaviour
 {
-    [SerializeField]
-     float height;
-    
+    [SerializeField] float m_Height;
+
     void FixedUpdate()
     {
         if (Managers.Game.GetPlayer().isValid() == false)
             return;
 
         // 플레이어 따라다니기
-        transform.position = Managers.Game.GetPlayer().transform.position + (Vector3.up * height);
+        transform.position = Managers.Game.GetPlayer().transform.position + (Vector3.up * m_Height);
     }
 }

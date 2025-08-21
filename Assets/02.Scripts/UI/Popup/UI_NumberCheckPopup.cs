@@ -3,29 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
 using UnityEngine.UI;
 
-/*
- * File :   UI_NumberCheckPopup.cs
- * Desc :   개수 확인 Popup UI ( 현재 상점에서 사용 중 )
- *
- & Functions
- &  [Public]
- &  : Init()    - 초기 설정
- &  : SetInfo() - 기능 설정
- &
- &  []
- &  : OnClickMinusButton()  - 마이너스 버튼
- &  : OnClickPlusButton()   - 플러스 버튼
- &  : OnClickYesButton()    - 확인 버튼
- &  : OnClickNoButton()     - 취소 버튼
- &  : RefreshUI()           - 새로고침 UI
- *
- */
+
 
 public class UI_NumberCheckPopup : UI_Popup
-{   
+{
     enum Gameobjects
     {
         Background,
@@ -39,22 +22,19 @@ public class UI_NumberCheckPopup : UI_Popup
         YesButton,
     }
 
-     int             itemCount = 0;      // 현재 개수
-     int             itemMaxCount = 0;   // 최대 개수
+    int itemCount = 0;      // 현재 개수
+    int itemMaxCount = 0;   // 최대 개수
 
-     Action<int>     _onClickYesButton;  // 확인 버튼 누를 시 호출
-     UI_InvenSlot    _invenItem;         // 인벤토리 슬롯
+    Action<int> _onClickYesButton;
+    UI_InvenSlot _invenItem;
 
-    [SerializeField]
-     Slider          numberSlider;
+    [SerializeField] Slider NumberSlider;
 
-    [SerializeField]
-     TextMeshProUGUI _itemCountText;
+    [SerializeField] Text _itemCountText;
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         // 자식 객체 불러오기
         BindObject(typeof(Gameobjects));
@@ -67,13 +47,13 @@ public class UI_NumberCheckPopup : UI_Popup
         GetButton((int)Buttons.YesButton).onClick.AddListener(OnClickYesButton);
 
         // Order 설정
-        GetObject((int)Gameobjects.Background).BindEvent((PointerEventData eventData)=>
+        GetObject((int)Gameobjects.Background).BindEvent((PointerEventData eventData) =>
         {
             Managers.UI.SetOrder(GetComponent<Canvas>());
         }, Define.UIEvent.Click);
-        
+
         // 슬라이더 사용 시 기능 등록
-        numberSlider.onValueChanged.AddListener((float value)=>
+        NumberSlider.onValueChanged.AddListener((float value) =>
         {
             itemCount = (int)value;
             _itemCountText.text = itemCount.ToString();
@@ -88,39 +68,39 @@ public class UI_NumberCheckPopup : UI_Popup
         _onClickYesButton = onClickYesButton;
         _invenItem = invenItem;
 
-        itemMaxCount = invenItem.itemCount;
+        itemMaxCount = invenItem.ItemCount;
 
         RefreshUI();
     }
-    
+
     // 아이템 받으며 세팅 (구매할 때 사용 중)
     public void SetInfo(ItemData item, Action<int> onClickYesButton)
     {
         _onClickYesButton = onClickYesButton;
 
-        itemMaxCount = (int)(Managers.Game.Gold / item.itemPrice);
+        itemMaxCount = (int)(Managers.Game.Gold / item.ItemPrice);
 
         RefreshUI();
     }
 
     // 마이너스 버튼
-     void OnClickMinusButton()
+    void OnClickMinusButton()
     {
         itemCount = Mathf.Clamp(--itemCount, 1, itemMaxCount);
-        numberSlider.value = itemCount;
+        NumberSlider.value = itemCount;
         _itemCountText.text = itemCount.ToString();
     }
 
     // 플러스 버튼
-     void OnClickPlusButton()
+    void OnClickPlusButton()
     {
         itemCount = Mathf.Clamp(++itemCount, 1, itemMaxCount);
-        numberSlider.value = itemCount;
+        NumberSlider.value = itemCount;
         _itemCountText.text = itemCount.ToString();
     }
 
     // 확인 버튼
-     void OnClickYesButton()
+    void OnClickYesButton()
     {
         Managers.UI.ClosePopupUI(this);
 
@@ -129,20 +109,20 @@ public class UI_NumberCheckPopup : UI_Popup
     }
 
     // 취소 버튼
-     void OnClickNoButton()
+    void OnClickNoButton()
     {
         Managers.UI.ClosePopupUI(this);
     }
 
-     void RefreshUI()
+    void RefreshUI()
     {
         Managers.UI.SetOrder(GetComponent<Canvas>());
 
         itemCount = 1;
 
-        numberSlider.minValue = itemCount;
-        numberSlider.maxValue = itemMaxCount;
-        numberSlider.value = itemCount;
+        NumberSlider.minValue = itemCount;
+        NumberSlider.maxValue = itemMaxCount;
+        NumberSlider.value = itemCount;
 
         _itemCountText.text = itemCount.ToString();
     }

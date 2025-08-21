@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+//포탈 이동을 위한 스크립트
 public class Portal : MonoBehaviour
 {
     float m_ScanRange = 3.2f;   // 플레이어 스캔 거리
@@ -38,7 +38,7 @@ public class Portal : MonoBehaviour
                 Managers.Game.StopPlayer();
 
                 // 현재 Scene이 Game Scene라면
-                if (Managers.Scene.CurrentScene.SceneType == Define.Scene.Game)
+                if (Managers.Scene.m_CurScene.SceneType == Define.Scene.Game)
                 {
                     // 확인 Popup 활성화
                     UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();

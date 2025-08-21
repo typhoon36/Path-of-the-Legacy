@@ -7,28 +7,28 @@ using UnityEngine.UI;
 
 public class UI_DragSlot : MonoBehaviour
 {
-    public static UI_DragSlot   instance;
+    public static UI_DragSlot   Inst;
 
-    public UI_Slot              dragSlotItem;   // 슬롯 담는 변수
-    public Image                icon;           // 아이템 이미지
+    public UI_Slot              m_DragSlot;   // 슬롯 담는 변수
+    public Image                Icon;           // 아이템 이미지
 
     void Start()
     {
-        instance = this;
+        Inst = this;
     }
 
     // 드래그 할 경우 활성화
     public void DragSetImage(Image _icon)
     {
         Managers.UI.SetOrder(GetComponent<Canvas>());
-        icon.sprite = _icon.sprite;
+        Icon.sprite = _icon.sprite;
         SetColor(1);
     }
 
     public void SetColor(float _alpha)
     {
-        Color color = icon.color;
+        Color color = Icon.color;
         color.a = _alpha;
-        icon.color = color;
+        Icon.color = color;
     }
 }

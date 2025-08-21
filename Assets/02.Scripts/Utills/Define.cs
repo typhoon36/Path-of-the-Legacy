@@ -180,27 +180,28 @@ public class Define : MonoBehaviour
 
     public enum CameraMode
     {
-        QuarterView,    // 디아블로 게임 같은 시점
+        QuarterView,    
     }
 
+    //Gid 번호
     public const string StartNumber = "0";
-    public const string LevelNumber = "2089499917";
-    public const string SkillNumber = "160891494";
-    public const string UseItemNumber = "1334508722";
-    public const string WeaponItemNumber = "271156662";
-    public const string ArmorItemNumber = "1624069194";
-    public const string DropItemNumber = "563258933";
-    public const string MonsterNumber = "1085946242";
-    public const string ShopNumber = "1630670634";
-    public const string TalkNumber = "575190900";
-    public const string QuestNumber = "1248160009";
+    public const string LevelNumber = "286381888";
+    public const string SkillNumber = "1312613729";
+    public const string UseItemNumber = "184335821";
+    public const string WeaponItemNumber = "1545559787";
+    public const string ArmorItemNumber = "1117444053";
+    public const string DropItemNumber = "1910751509";
+    public const string MonsterNumber = "215645758";
+    public const string ShopNumber = "1781348496";
+    public const string TalkNumber = "490479389";
+    public const string QuestNumber = "2111092513";
 
     public const string SkillOpenMessage = "스킬 활성화";
     public const string ShopSaleMessage = "구매 하시겠습니까?";
     public const string DungeonMessage = "던전에 입장하시겠습니까?";
 
     public const string LoadMessage1 = "장비는 최대 10강까지 강화할 수 있습니다.";
-    public const string LoadMessage2 = "7레벨이 되면 강력한 스킬을 사용할 수 있습니다.";
+    public const string LoadMessage2 = "5레벨이 되면 강력한 스킬을 사용할 수 있습니다.";
     public const string LoadMessage3 = "무기는 6강부터 특별한 이펙트가 부여됩니다.";
 
     public const string NameRegex = @"^[0-9a-zA-Z가-힣]{2,9}$";

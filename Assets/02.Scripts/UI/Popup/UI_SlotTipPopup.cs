@@ -2,7 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ * File :   UI_SlotTipPopup.cs
+ * Desc :   슬롯의 아이템 정보를 확인하는 Popup UI
+ *
+ & Functions
+ &  [Public]
+ &  : Init()        - 초기 설정
+ &
+ &  [Private]
+ &  : OnSlotTip()   - 슬롯 정보 활성화
+ &  : RefreshUI()   - 새로고침 UI (슬롯 정보 새로고침)
+ &  : SetColor()    - 색 설정
+ *
+ */
 
 public class UI_SlotTipPopup : UI_Popup
 {
@@ -72,25 +85,25 @@ public class UI_SlotTipPopup : UI_Popup
         slotTipPos.y = slotTipPos.y - (tipRect.rect.height * 0.65f); 
         background.anchoredPosition = slotTipPos;
 
-        GetImage((int)Images.ItemImage).sprite = item.ItemIcon;
+        GetImage((int)Images.ItemImage).sprite = item.itemIcon;
 
-        GetText((int)Texts.ItemNameText).text = item.ItemName;
-        GetText((int)Texts.ItemTypeText).text = item.ItemType.ToString();
-        GetText((int)Texts.ItemGradeText).text = item.ItemGrade.ToString();
+        GetText((int)Texts.ItemNameText).text = item.itemName;
+        GetText((int)Texts.ItemTypeText).text = item.itemType.ToString();
+        GetText((int)Texts.ItemGradeText).text = item.itemGrade.ToString();
 
         // 아이템 등급에 따른 색깔
-        switch(item.ItemGrade)
+        switch(item.itemGrade)
         {
-            case Define.ItemGrade.Common:
+            case Define.itemGrade.Common:
                 SetColor(Color.white);
                 break;
-            case Define.ItemGrade.Rare:
+            case Define.itemGrade.Rare:
                 SetColor(Color.green);
                 break;
-            case Define.ItemGrade.Epic:
+            case Define.itemGrade.Epic:
                 SetColor(Color.blue);
                 break;
-            case Define.ItemGrade.Legendary:
+            case Define.itemGrade.Legendary:
                 SetColor(Color.yellow);
                 break;
         }
@@ -99,54 +112,54 @@ public class UI_SlotTipPopup : UI_Popup
         if (item is EquipmentData)
         {
             // 강화가 됐다면
-            if ((item as EquipmentData).UpgradeCount > 0)
-                GetText((int)Texts.ItemNameText).text = item.ItemName +  $" [+{(item as EquipmentData).UpgradeCount}]";
+            if ((item as EquipmentData).upgradeCount > 0)
+                GetText((int)Texts.ItemNameText).text = item.itemName +  $" [+{(item as EquipmentData).upgradeCount}]";
         }    
         
         // 아이템 종류 별로 세팅
-        if (item.ItemType == Define.ItemType.Use)
+        if (item.itemType == Define.ItemType.Use)
         {
             GetText((int)Texts.ItemLevelText).text = "";
-            GetText((int)Texts.ItemStatText).text = item.ItemDesc;
+            GetText((int)Texts.ItemStatText).text = item.itemDesc;
         }
-        else if (item.ItemType == Define.ItemType.Armor)
+        else if (item.itemType == Define.ItemType.Armor)
         {
             ArmorItemData armor = item as ArmorItemData;
-            GetText((int)Texts.ItemLevelText).text = "최소레벨 " + armor.MinLevel;
+            GetText((int)Texts.ItemLevelText).text = "최소레벨 " + armor.minLevel;
 
             string statStr = "";
             // 강화 확인
-            if (armor.UpgradeCount > 0)
+            if (armor.upgradeCount > 0)
             {
-                statStr += armor.Defnece    > 0 ? $"방어력 {armor.Defnece} (+{armor.AddDefnece})\n" : "";
-                statStr += armor.Hp         > 0 ? $"체력 {armor.Hp} (+{armor.AddHp})\n" : "";
-                statStr += armor.Mp         > 0 ? $"마나 {armor.Mp} (+{armor.AddMp})\n" : "";
+                statStr += armor.defnece    > 0 ? $"방어력 {armor.defnece} (+{armor.addDefnece})\n" : "";
+                statStr += armor.hp         > 0 ? $"체력 {armor.hp} (+{armor.addHp})\n" : "";
+                statStr += armor.mp         > 0 ? $"마나 {armor.mp} (+{armor.addMp})\n" : "";
             }
             else
             {
-                statStr += armor.Defnece    > 0 ? $"방어력 {armor.Defnece}\n" : "";
-                statStr += armor.Hp         > 0 ? $"체력 {armor.Hp}\n" : "";
-                statStr += armor.Mp         > 0 ? $"마나 {armor.Mp}\n" : "";
+                statStr += armor.defnece    > 0 ? $"방어력 {armor.defnece}\n" : "";
+                statStr += armor.hp         > 0 ? $"체력 {armor.hp}\n" : "";
+                statStr += armor.mp         > 0 ? $"마나 {armor.mp}\n" : "";
             }
             
-            statStr += armor.MoveSpeed > 0 ? $"이동속도 {armor.MoveSpeed}\n" : "";
+            statStr += armor.moveSpeed > 0 ? $"이동속도 {armor.moveSpeed}\n" : "";
 
             GetText((int)Texts.ItemStatText).text = statStr;
         }
-        else if (item.ItemType == Define.ItemType.Weapon)
+        else if (item.itemType == Define.ItemType.Weapon)
         {
             WeaponItemData weapon = item as WeaponItemData;
-            GetText((int)Texts.ItemLevelText).text = "최소레벨 " + weapon.MinLevel;
+            GetText((int)Texts.ItemLevelText).text = "최소레벨 " + weapon.minLevel;
 
             // 강화 확인
-            if (weapon.UpgradeCount > 0)
-                GetText((int)Texts.ItemStatText).text = $"공격력 {weapon.Attack} (+{weapon.AddAttack})";
+            if (weapon.upgradeCount > 0)
+                GetText((int)Texts.ItemStatText).text = $"공격력 {weapon.attack} (+{weapon.addAttack})";
             else
-                GetText((int)Texts.ItemStatText).text = $"공격력 {weapon.Attack}";
+                GetText((int)Texts.ItemStatText).text = $"공격력 {weapon.attack}";
         }
     }
 
-     void SetColor(Color color)
+    private void SetColor(Color color)
     {
         GetText((int)Texts.ItemNameText).color = color;
         GetText((int)Texts.ItemGradeText).color = color;

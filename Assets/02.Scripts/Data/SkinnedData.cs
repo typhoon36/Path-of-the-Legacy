@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ * File :   SkinnedData.cs
+ * Desc :   커스텀이나 세이브를 불러올 때 사용될 데이터
+ *          [SkinnedMeshRenderer 교체 방법]: https://lhuhyeon.github.io/posts/Unity-SkinnedMeshRenderer-Change/
+ */
 
 [Serializable]
 public class SkinnedData
 {
-    public string SharedMeshName;
-    public Bounds Bounds;
-    public List<string> Bones;
-    public string RootBoneName;
+    public string sharedMeshName;
+    public Bounds bounds;
+    public List<string> bones;
+    public string rootBoneName;
 }

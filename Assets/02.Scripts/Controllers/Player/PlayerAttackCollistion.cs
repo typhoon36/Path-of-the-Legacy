@@ -11,7 +11,7 @@ using UnityEngine;
  &  : OnDisable()           - 비활성화  시 스킬 콤보 체크 및 콜라이더 사이즈 초기화
  &  : OnTriggerEnter()      - 몬스터 접촉 시 데미지 반영 
  &
- &  []
+ &  [Private]
  &  : DelayActiveFalse()    - 비활성화 딜레이
  &  : BasicColliderSize()   - 콜라이더 기본 사이즈 초기화
  *
@@ -19,12 +19,12 @@ using UnityEngine;
 
 public class PlayerAttackCollistion : MonoBehaviour
 {
-     int                 skillIndex = 0;     // 스킬 콤보 공격력 List index
+    private int                 skillIndex = 0;     // 스킬 콤보 공격력 List index
 
-     CapsuleCollider     capsuleCollider;
+    private CapsuleCollider     capsuleCollider;
     
     [SerializeField]
-     Player_Ctrl player;
+    private PlayerController    player;
 
     void Start()
     {
@@ -45,9 +45,9 @@ public class PlayerAttackCollistion : MonoBehaviour
         BasicColliderSize();
 
         // 마지막 스킬 공격이라면 index 초기화 
-        if (player.m_CurSkill.IsNull() == false)
+        if (player.currentSkill.IsNull() == false)
         {
-            if (skillIndex == player.m_CurSkill.PowerList.Count - 1)
+            if (skillIndex == player.currentSkill.powerList.Count - 1)
                 skillIndex = 0;
             else
                 skillIndex++;
@@ -60,11 +60,11 @@ public class PlayerAttackCollistion : MonoBehaviour
         {
             if (player.State == Define.State.Skill)
             {
-                if (player.m_CurSkill.PowerList.Contains(skillIndex) == false)
+                if (player.currentSkill.powerList.Contains(skillIndex) == false)
                     skillIndex = 0;
 
                 // 스킬 공격
-                int skillDamage = player.m_CurSkill.PowerList[skillIndex] * (Managers.Game.Attack / 2);
+                int skillDamage = player.currentSkill.powerList[skillIndex] * (Managers.Game.Attack / 2);
                 other.GetComponent<MonsterStat>().OnAttacked(skillDamage);
             }
             else
@@ -73,13 +73,13 @@ public class PlayerAttackCollistion : MonoBehaviour
     }
 
     // Invoke 호출
-     void DelayActiveFalse()
+    private void DelayActiveFalse()
     {
         gameObject.SetActive(false);
     }
 
     // 기본 콜라이더 사이즈
-     void BasicColliderSize()
+    private void BasicColliderSize()
     {
         capsuleCollider.center = new Vector3(0, 0, 0.4f);
         capsuleCollider.radius = 1.2f;

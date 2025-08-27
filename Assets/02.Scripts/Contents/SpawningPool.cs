@@ -12,36 +12,36 @@ using UnityEngine.AI;
  &  : AddMonsterCount()     - 몬스터 수 증가
  &  : SetKeepMonsterCount() - 최대 몬스터 지정
  &
- &  []
+ &  [Private]
  &  : ReserveSpawn()  - 몬스터 스폰 코루틴
  *
  */
 
 public class SpawningPool : MonoBehaviour
 {
-    public GameObject _spawnMonsterNumber;    // 몬스터 Prefab
+    public GameObject   _spawnMonsterNumber;    // 몬스터 Prefab
 
     [SerializeField]
-     Vector3 _spawnPos;              // 스폰 위치
+    private Vector3     _spawnPos;              // 스폰 위치
 
     [SerializeField]
-     float _spawnRedius = 5f;      // 스폰 최대 거리
+    private float       _spawnRedius = 5f;      // 스폰 최대 거리
 
     [SerializeField]
-     float _spawnTime = 5f;        // 스폰 최대 시간
+    private float       _spawnTime = 5f;        // 스폰 최대 시간
 
     [SerializeField]
-     int _monsterCount = 0;      // 현재 몬스터 수
-     int _reserveCount = 0;      // 임시 변수 (에러 방지)
+    private int         _monsterCount = 0;      // 현재 몬스터 수
+    private int         _reserveCount = 0;      // 임시 변수 (에러 방지)
 
     [SerializeField]
-     int _keepMonsterCount = 0;  // 최대 몬스터 수
+    private int         _keepMonsterCount = 0;  // 최대 몬스터 수
 
     // 몬스터 수 증가
     public void AddMonsterCount(Transform parent, int value)
     {
         // 스포너 부모 체크
-        if (transform == parent)
+        if (transform == parent) 
             this._monsterCount += value;
     }
     // 최대 몬스터 지정
@@ -56,12 +56,12 @@ public class SpawningPool : MonoBehaviour
     void Update()
     {
         // 최대 몬스터 수 만큼 생성
-        while ((_reserveCount + _monsterCount) < _keepMonsterCount)
+        while((_reserveCount + _monsterCount) < _keepMonsterCount)
             StartCoroutine("ReserveSpawn");
     }
 
     // 몬스터 스폰 설정
-     IEnumerator ReserveSpawn()
+    private IEnumerator ReserveSpawn()
     {
         // 코루틴이 시작하자마자 시간을 기다리므로 _monsterCount가 증가하지 못해 Update의 while에서 Error가 발생할 수 있다.
         // 그러므로 _reserveCount를 사용해 while을 끝내도록 한다.
@@ -76,7 +76,7 @@ public class SpawningPool : MonoBehaviour
         Vector3 randPos;
 
         // 소환 가능한 위치를 찾을 때까지 루프
-        while (true)
+        while(true)
         {
             Vector3 randDir = Random.insideUnitSphere * _spawnRedius;   // 원 형태 랜덤 벡터 지정
             randDir.y = 0;
@@ -92,7 +92,7 @@ public class SpawningPool : MonoBehaviour
 
         // 위치 설정
         nav.nextPosition = randPos;
-        obj.GetComponent<Monster_Ctrl>().m_SpawnPos = randPos;
+        obj.GetComponent<MonsterController>().spawnPos = randPos;
 
         // while의 에러 예방 목적인 변수이므로 코루틴이 끝날땐 --를 해준다.
         _reserveCount--;

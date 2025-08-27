@@ -1,45 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
-
+/*
+ * File :   UI_Guide.cs
+ * Desc :   안내문, 경고문 등 상황에 띄울 수 있는 가이드 UI
+ *
+ & Functions
+ &  [Public]
+ &  : SetInfo()             - 기능 설정 (안내 메시지 설정)
+ &
+ &  [Private]
+ &  : MessageCoroutine()    - 메시지가 붕뜨며 사라지는 코루틴
+ *
+ */
 
 public class UI_Guide : UI_Base
 {
-    [SerializeField] Text m_MessageText;
-    Color m_Color;
-    Coroutine Co;
+    [SerializeField]
+    private Text     _messageText;
+    private Color               _color;
+    private Coroutine           co;
 
     public void SetInfo(string messageText, Color color)
     {
         // 초기화
-        m_MessageText.text = messageText;
-        m_MessageText.transform.localPosition = Vector3.zero;
-        m_Color = color;
-        m_MessageText.color = m_Color;
+        _messageText.text = messageText;
+        _messageText.transform.localPosition = Vector3.zero;
+        _color = color;
+        _messageText.color = _color;
 
-        if (Co.IsNull() == false) StopCoroutine(Co);
-        Co = StartCoroutine(MessageCoroutine());
+        if (co.IsNull() == false) StopCoroutine(co);
+        co = StartCoroutine(MessageCoroutine());
     }
 
-    //연출
-    IEnumerator MessageCoroutine()
+    private IEnumerator MessageCoroutine()
     {
         yield return new WaitForSeconds(1f);
 
         // 점점 사라지며 올라가기
-        for (float i = 1.0f; i >= 0.0f; i -= 0.01f)
+        for(float i=1.0f; i>=0.0f; i-=0.01f)
         {
-            m_Color.a = i;
-            m_MessageText.color = m_Color;
+            _color.a = i;
+            _messageText.color = _color;
 
-            m_MessageText.transform.localPosition += Vector3.up * 0.7f;
+            _messageText.transform.localPosition += Vector3.up * 0.7f;
 
             yield return null;
         }
-
-        //연출이 끝나면 오브젝트 제거
+        
         Managers.Resource.Destroy(gameObject);
     }
 }

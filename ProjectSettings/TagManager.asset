@@ -4,18 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Npc
-  - Monster
-  - MonsterWeapon
-  - PlayerWeapon
-  - PlayerSkill
-  - Fire
   - Equipment
-  - Item
-  - EquipSlot
-  - ScrollView
-  - Boss
-  - MonsterSkill
+  - Custom
   layers:
   - Default
   - TransparentFX

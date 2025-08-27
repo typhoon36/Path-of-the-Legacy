@@ -4,20 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+/*
+ * File :   UI_LoadPopup.cs
+ * Desc :   Scene을 Load할 때 호출되는 Popup UI
+ *
+ & Functions
+ &  [Public]
+ &  : SetInfo() - 기본 설정
+ &
+ &  [Private]
+ &  : LoadAsynSceneCoroutine()  - 비동기식 로드
+ &  : OnDataRequest()           - 구글스프레드시트 데이터 불러오기
+ *
+ */
 
 public class UI_LoadPopup : UI_Popup
 {
     // 메시지 string Array
-    string[] loadMessges = new string[] { Define.LoadMessage1, Define.LoadMessage2, Define.LoadMessage3 };
+    private string[]        loadMessges = new string[]{Define.LoadMessage1, Define.LoadMessage2, Define.LoadMessage3};
 
     // 현재 메시지 Index
-    int currentMessageIndex = 0;
+    private int             currentMessageIndex = 0;
 
     [SerializeField]
-    Slider loadSlider;
+    private Slider          loadSlider;
 
     [SerializeField]
-    Text tipText;
+    private Text tipText;
 
     // 기본 설정
     public void SetInfo(Define.Scene type, int plusTime = 0)
@@ -31,7 +44,7 @@ public class UI_LoadPopup : UI_Popup
         loadSlider.maxValue = plusTime;
 
         // 출력할 메시지 선정
-        currentMessageIndex = Random.Range(0, 3);
+        currentMessageIndex = Random.Range(0,3);
         tipText.text = $"Tip : {loadMessges[currentMessageIndex]}";
 
         // 플레이어 정지
@@ -52,10 +65,10 @@ public class UI_LoadPopup : UI_Popup
             tipText.text = $"Tip : {loadMessges[currentMessageIndex]}";
         }
     }
-
+    
     // 비동기 로드
-    float loadTime = 0;
-    IEnumerator LoadAsynSceneCoroutine(Define.Scene type, int plusTime = 0)
+    private float loadTime = 0;
+    private IEnumerator LoadAsynSceneCoroutine(Define.Scene type, int plusTime = 0)
     {
         yield return null;
 
@@ -80,10 +93,10 @@ public class UI_LoadPopup : UI_Popup
     }
 
     // 구글 스프레드시트 데이터 가져오기
-    void OnDataRequest()
+    private void OnDataRequest()
     {
         // 이미 데이터를 받았다면 종료
-        if (Managers.Data.IsData == true)
+        if (Managers.Data.isData == true)
             return;
 
         StartCoroutine(Managers.Data.DataRequest(Define.StartNumber));
@@ -98,6 +111,6 @@ public class UI_LoadPopup : UI_Popup
         StartCoroutine(Managers.Data.DataRequest(Define.TalkNumber));
         StartCoroutine(Managers.Data.DataRequest(Define.QuestNumber));
 
-        Managers.Data.IsData = true;
+        Managers.Data.isData = true;
     }
 }

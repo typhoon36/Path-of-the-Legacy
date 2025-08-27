@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 9013195071023318771}
   - component: {fileID: 7946600845470031359}
   m_Layer: 0
-  m_Name: Eyes Type 1 Color 1
+  m_Name: BaseEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 3739248516226670330}
   m_Layer: 0
   m_Name: Eyebrow Type 2 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 5030749004600174944}
   m_Layer: 0
   m_Name: Eyebrow Type 1 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1203,7 +1203,7 @@ GameObject:
   - component: {fileID: 8266088062289322028}
   m_Layer: 0
   m_Name: Eyebrow Type 5 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1340,7 +1340,7 @@ GameObject:
   - component: {fileID: 7866892414622237759}
   m_Layer: 0
   m_Name: Face Hair Type 4 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1477,7 +1477,7 @@ GameObject:
   - component: {fileID: 4443822409051648897}
   m_Layer: 0
   m_Name: Hair Type 3 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1614,7 +1614,7 @@ GameObject:
   - component: {fileID: 2028060480269051871}
   m_Layer: 0
   m_Name: Hair Type 4 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2466,7 +2466,7 @@ GameObject:
   - component: {fileID: 3810920944774861454}
   - component: {fileID: 3687840001157050715}
   m_Layer: 0
-  m_Name: Nose Type 4
+  m_Name: DefaultNose3
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2772,7 +2772,7 @@ GameObject:
   - component: {fileID: 949309122719431681}
   - component: {fileID: 7677085761463613901}
   m_Layer: 0
-  m_Name: Hair Type 4 Color 1
+  m_Name: DefaultHair3
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3047,7 +3047,7 @@ GameObject:
   - component: {fileID: 3213713999494820985}
   m_Layer: 0
   m_Name: Eyebrow Type 5 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3321,7 +3321,7 @@ GameObject:
   - component: {fileID: 2756773613901575072}
   m_Layer: 0
   m_Name: Hair Type 1 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4449,7 +4449,7 @@ GameObject:
   - component: {fileID: 7540581543075536501}
   m_Layer: 0
   m_Name: Eyebrow Type 3 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5060,7 +5060,7 @@ GameObject:
   - component: {fileID: 5364865207095742355}
   m_Layer: 0
   m_Name: Face Hair Type 1 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5534,7 +5534,7 @@ GameObject:
   - component: {fileID: 3269034218405797307}
   - component: {fileID: 3855271568459246555}
   m_Layer: 0
-  m_Name: Eyebrow Type 5 Color 1
+  m_Name: DefaultEyebrows4
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5704,7 +5704,7 @@ GameObject:
   - component: {fileID: 6330481937039401754}
   m_Layer: 0
   m_Name: Hair Type 3 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7411,7 +7411,7 @@ GameObject:
   - component: {fileID: 552509867367593257}
   m_Layer: 0
   m_Name: Hair Type 3 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7580,7 +7580,7 @@ GameObject:
   - component: {fileID: 297844338896979398}
   m_Layer: 0
   m_Name: Hair Type 1 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7919,7 +7919,7 @@ GameObject:
   - component: {fileID: 532443436068680207}
   - component: {fileID: 8298672376645262681}
   m_Layer: 0
-  m_Name: Hair Type 3 Color 1
+  m_Name: DefaultHair2
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8605,7 +8605,7 @@ GameObject:
   - component: {fileID: 4869824139678243299}
   m_Layer: 0
   m_Name: Eyebrow Type 2 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8742,7 +8742,7 @@ GameObject:
   - component: {fileID: 2229692773948371227}
   m_Layer: 0
   m_Name: Hair Type 4 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9732,8 +9732,8 @@ GameObject:
   - component: {fileID: 4128567383545846160}
   - component: {fileID: 7293524284486711719}
   m_Layer: 0
-  m_Name: Eyebrow Type 1 Color 1
-  m_TagString: Equipment
+  m_Name: BaseEyebrows
+  m_TagString: Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10007,7 +10007,7 @@ GameObject:
   - component: {fileID: 4012405930155980401}
   m_Layer: 0
   m_Name: Eyebrow Type 2 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10144,7 +10144,7 @@ GameObject:
   - component: {fileID: 8549477432979570483}
   m_Layer: 0
   m_Name: Eyebrow Type 5 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10859,8 +10859,8 @@ GameObject:
   - component: {fileID: 6698415406051860201}
   - component: {fileID: 1147934800838814418}
   m_Layer: 0
-  m_Name: Nose Type 1
-  m_TagString: Equipment
+  m_Name: BaseNose
+  m_TagString: Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10997,7 +10997,7 @@ GameObject:
   - component: {fileID: 1586781389680885257}
   m_Layer: 0
   m_Name: Face Hair Type 5 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11306,7 +11306,7 @@ GameObject:
   - component: {fileID: 4832422541886127301}
   - component: {fileID: 4184357727634092453}
   m_Layer: 0
-  m_Name: Ears Type 2
+  m_Name: DefaultEars1
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11475,8 +11475,8 @@ GameObject:
   - component: {fileID: 1171583779338846761}
   - component: {fileID: 8485809234282114782}
   m_Layer: 0
-  m_Name: Hair Type 1 Color 1
-  m_TagString: Equipment
+  m_Name: BaseHair
+  m_TagString: Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11750,7 +11750,7 @@ GameObject:
   - component: {fileID: 8026429954070837675}
   m_Layer: 0
   m_Name: Hair Type 5 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12330,7 +12330,7 @@ GameObject:
   - component: {fileID: 9028817403815657620}
   m_Layer: 0
   m_Name: Hair Type 2 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12604,7 +12604,7 @@ GameObject:
   - component: {fileID: 8939608084737737679}
   m_Layer: 0
   m_Name: Hair Type 3 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12909,7 +12909,7 @@ GameObject:
   - component: {fileID: 1288360407693047878}
   m_Layer: 0
   m_Name: Face Hair Type 1 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13046,7 +13046,7 @@ GameObject:
   - component: {fileID: 5496802120723196144}
   m_Layer: 0
   m_Name: Eyebrow Type 5 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13826,7 +13826,7 @@ GameObject:
   - component: {fileID: 2049311717964957920}
   m_Layer: 0
   m_Name: Hair Type 5 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14100,7 +14100,7 @@ GameObject:
   - component: {fileID: 6882028950281402243}
   m_Layer: 0
   m_Name: Face Hair Type 4 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14237,7 +14237,7 @@ GameObject:
   - component: {fileID: 2227653792739835972}
   m_Layer: 0
   m_Name: Face Hair Type 3 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15322,7 +15322,7 @@ GameObject:
   - component: {fileID: 1972959003292172668}
   - component: {fileID: 3377755992189194055}
   m_Layer: 0
-  m_Name: Face Hair Type 2 Color 1
+  m_Name: DefaultFacialHair1
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15491,7 +15491,7 @@ GameObject:
   - component: {fileID: 5877494499534350515}
   - component: {fileID: 5185698846342594826}
   m_Layer: 0
-  m_Name: Eyebrow Type 4 Color 1
+  m_Name: DefaultEyebrows3
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15934,8 +15934,8 @@ GameObject:
   - component: {fileID: 7188103048439157237}
   - component: {fileID: 5772215881037826706}
   m_Layer: 0
-  m_Name: Ears Type 1
-  m_TagString: Equipment
+  m_Name: BaseEars
+  m_TagString: Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16241,7 +16241,7 @@ GameObject:
   - component: {fileID: 960451047797719087}
   m_Layer: 0
   m_Name: Face Hair Type 3 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16441,7 +16441,7 @@ GameObject:
   - component: {fileID: 7502059439480179099}
   m_Layer: 0
   m_Name: Eyebrow Type 4 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16577,7 +16577,7 @@ GameObject:
   - component: {fileID: 1232918779197742679}
   - component: {fileID: 1241526806596099072}
   m_Layer: 0
-  m_Name: Eyebrow Type 2 Color 1
+  m_Name: DefaultEyebrows1
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16852,7 +16852,7 @@ GameObject:
   - component: {fileID: 359621402264635281}
   m_Layer: 0
   m_Name: Face Hair Type 1 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17126,7 +17126,7 @@ GameObject:
   - component: {fileID: 1114736690225750138}
   m_Layer: 0
   m_Name: Eyebrow Type 3 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17463,7 +17463,7 @@ GameObject:
   - component: {fileID: 2702926234977796388}
   m_Layer: 0
   m_Name: Eyebrow Type 4 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17874,7 +17874,7 @@ GameObject:
   - component: {fileID: 7839859905794668902}
   m_Layer: 0
   m_Name: Hair Type 2 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18011,7 +18011,7 @@ GameObject:
   - component: {fileID: 3383431812053031026}
   m_Layer: 0
   m_Name: Face Hair Type 2 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18148,7 +18148,7 @@ GameObject:
   - component: {fileID: 1222654479230258845}
   m_Layer: 0
   m_Name: Hair Type 5 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18551,26 +18551,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9128906122351904626}
+  - {fileID: 1972959003292172668}
+  - {fileID: 2431180771147077648}
+  - {fileID: 5073317495167966124}
+  - {fileID: 7491937765601465673}
   - {fileID: 2452619362603367185}
   - {fileID: 6757269790969858946}
   - {fileID: 4528826759816200815}
   - {fileID: 7788295553365211764}
-  - {fileID: 1972959003292172668}
   - {fileID: 5775968616649234999}
   - {fileID: 4003700341465857708}
   - {fileID: 913386996213205599}
   - {fileID: 5197813654094060487}
-  - {fileID: 2431180771147077648}
   - {fileID: 397592815047344143}
   - {fileID: 3668892453872475103}
   - {fileID: 2255150876230964049}
   - {fileID: 8601669917526973690}
-  - {fileID: 5073317495167966124}
   - {fileID: 3579516214473601950}
   - {fileID: 6039094006202220601}
   - {fileID: 4181944684675369459}
   - {fileID: 6835033336765232055}
-  - {fileID: 7491937765601465673}
   - {fileID: 4212435891123329445}
   - {fileID: 7600338074062345482}
   - {fileID: 3108276482794279744}
@@ -18801,26 +18801,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1171583779338846761}
+  - {fileID: 5344273273735364509}
+  - {fileID: 532443436068680207}
+  - {fileID: 949309122719431681}
+  - {fileID: 4315216544430231942}
   - {fileID: 1065346984478196210}
   - {fileID: 1015832107264613894}
   - {fileID: 5980066890017063645}
   - {fileID: 8395238715956401098}
-  - {fileID: 5344273273735364509}
   - {fileID: 669632259350084103}
   - {fileID: 9078382552944351319}
   - {fileID: 1674178827444027547}
   - {fileID: 6608430864559724094}
-  - {fileID: 532443436068680207}
   - {fileID: 382493277174164273}
   - {fileID: 614525849978238637}
   - {fileID: 754036302354970839}
   - {fileID: 2735774485618802334}
-  - {fileID: 949309122719431681}
   - {fileID: 8376856483693612519}
   - {fileID: 2198407819597686999}
   - {fileID: 5487590494092562976}
   - {fileID: 1696572655174127124}
-  - {fileID: 4315216544430231942}
   - {fileID: 1489813018229263385}
   - {fileID: 8463220851728936824}
   - {fileID: 5588097861144684147}
@@ -18857,26 +18857,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4128567383545846160}
+  - {fileID: 1232918779197742679}
+  - {fileID: 1581348208780843332}
+  - {fileID: 5877494499534350515}
+  - {fileID: 3269034218405797307}
   - {fileID: 8544470332093750011}
   - {fileID: 6911282393235139436}
   - {fileID: 6815905828109280915}
   - {fileID: 1105161220123769737}
-  - {fileID: 1232918779197742679}
   - {fileID: 4583670291308492493}
   - {fileID: 4542321230414154134}
   - {fileID: 2214504571437444964}
   - {fileID: 3015057715292887546}
-  - {fileID: 1581348208780843332}
   - {fileID: 5199335164745826164}
   - {fileID: 1132191438443722446}
   - {fileID: 7848480887897831644}
   - {fileID: 5519418707001224022}
-  - {fileID: 5877494499534350515}
   - {fileID: 2772525153267418924}
   - {fileID: 3306194178036743238}
   - {fileID: 6079594349951024792}
   - {fileID: 6221073343070571878}
-  - {fileID: 3269034218405797307}
   - {fileID: 3699381329450975725}
   - {fileID: 5975850584482664042}
   - {fileID: 7415076971210569615}
@@ -19234,7 +19234,7 @@ GameObject:
   - component: {fileID: 3988601458374895373}
   m_Layer: 0
   m_Name: Face Hair Type 5 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19814,7 +19814,7 @@ GameObject:
   - component: {fileID: 1799749140648624030}
   m_Layer: 0
   m_Name: Hair Type 2 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19951,7 +19951,7 @@ GameObject:
   - component: {fileID: 9110197254782326061}
   m_Layer: 0
   m_Name: Hair Type 1 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20088,7 +20088,7 @@ GameObject:
   - component: {fileID: 426301048853737970}
   m_Layer: 0
   m_Name: Eyebrow Type 3 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20225,7 +20225,7 @@ GameObject:
   - component: {fileID: 777126468187741376}
   m_Layer: 0
   m_Name: Eyebrow Type 1 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20499,7 +20499,7 @@ GameObject:
   - component: {fileID: 1554298932699741}
   m_Layer: 0
   m_Name: Eyebrow Type 2 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20636,7 +20636,7 @@ GameObject:
   - component: {fileID: 8244683902148701240}
   m_Layer: 0
   m_Name: Face Hair Type 3 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20772,7 +20772,7 @@ GameObject:
   - component: {fileID: 5834409491973758568}
   - component: {fileID: 8860766689934643871}
   m_Layer: 0
-  m_Name: Nose Type 5
+  m_Name: DefaultNose4
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21047,7 +21047,7 @@ GameObject:
   - component: {fileID: 5177112646099085282}
   m_Layer: 0
   m_Name: Hair Type 2 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21356,7 +21356,7 @@ Animator:
   m_GameObject: {fileID: 6775566527582106909}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 831f7229e82863e4d80ada075e09eba6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ea800e63655b3a4485e9ce3b65b6619, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -21379,29 +21379,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c11ef7c46ccc43a9ac84e1016838c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsStopRot: 0
-  m_RotSpeed: 3.5
-  HairList:
+  stopRotation: 0
+  rotationSpeed: 3.5
+  hairList:
   - {fileID: 3442597554284206547}
   - {fileID: 8202211770378345447}
   - {fileID: 2490811851444744295}
   - {fileID: 1058453544913611657}
   - {fileID: 7491643015379732556}
-  EyeBrowList:
+  eyebrowsList:
   - {fileID: 3001089383425484858}
   - {fileID: 5452009481675157093}
   - {fileID: 8308127397752642465}
   - {fileID: 4950793691378248640}
   - {fileID: 1801974572980112541}
-  EarsList:
-  - {fileID: 5142796438547410704}
-  - {fileID: 3426125095408737365}
-  FacialHairList:
+  facialHairList:
   - {fileID: 7437592724212852442}
   - {fileID: 4921865303676252572}
   - {fileID: 7532183586594798225}
   - {fileID: 8956734639047220944}
   - {fileID: 8184316586399032457}
+  EarsList:
+  - {fileID: 5142796438547410704}
+  - {fileID: 3426125095408737365}
   NoseList:
   - {fileID: 3386661425476076602}
   - {fileID: 9041474845382370546}
@@ -22065,7 +22065,7 @@ GameObject:
   - component: {fileID: 5189736195989516933}
   m_Layer: 0
   m_Name: Eyebrow Type 1 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22371,7 +22371,7 @@ GameObject:
   - component: {fileID: 2643525623748067413}
   m_Layer: 0
   m_Name: Face Hair Type 4 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22782,7 +22782,7 @@ GameObject:
   - component: {fileID: 1941784543172339142}
   m_Layer: 0
   m_Name: Hair Type 1 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22918,7 +22918,7 @@ GameObject:
   - component: {fileID: 666545497853762216}
   - component: {fileID: 1188306587262535251}
   m_Layer: 0
-  m_Name: Nose Type 3
+  m_Name: DefaultNose2
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23361,7 +23361,7 @@ GameObject:
   - component: {fileID: 2927665402693522102}
   m_Layer: 0
   m_Name: Face Hair Type 2 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23497,8 +23497,8 @@ GameObject:
   - component: {fileID: 9128906122351904626}
   - component: {fileID: 4659783315654959321}
   m_Layer: 0
-  m_Name: Face Hair Type 1 Color 1
-  m_TagString: Equipment
+  m_Name: BaseFacialHair
+  m_TagString: Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23635,7 +23635,7 @@ GameObject:
   - component: {fileID: 1316168710872986298}
   m_Layer: 0
   m_Name: Eyebrow Type 1 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23909,7 +23909,7 @@ GameObject:
   - component: {fileID: 8659249588963061685}
   m_Layer: 0
   m_Name: Hair Type 4 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24045,7 +24045,7 @@ GameObject:
   - component: {fileID: 4315216544430231942}
   - component: {fileID: 3482451847556228960}
   m_Layer: 0
-  m_Name: Hair Type 5 Color 1
+  m_Name: DefaultHair4
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24182,7 +24182,7 @@ GameObject:
   - component: {fileID: 2431180771147077648}
   - component: {fileID: 8658622274721706054}
   m_Layer: 0
-  m_Name: Face Hair Type 3 Color 1
+  m_Name: DefaultFacialHair2
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24352,7 +24352,7 @@ GameObject:
   - component: {fileID: 6584013197588035043}
   m_Layer: 0
   m_Name: Face Hair Type 2 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24626,7 +24626,7 @@ GameObject:
   - component: {fileID: 7317189666269368388}
   m_Layer: 0
   m_Name: Face Hair Type 5 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25238,7 +25238,7 @@ GameObject:
   - component: {fileID: 8185600801756834211}
   m_Layer: 0
   m_Name: Face Hair Type 5 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25375,7 +25375,7 @@ GameObject:
   - component: {fileID: 8306197563269329105}
   m_Layer: 0
   m_Name: Face Hair Type 2 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26124,7 +26124,7 @@ GameObject:
   - component: {fileID: 2577912900854744259}
   m_Layer: 0
   m_Name: Hair Type 5 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26429,7 +26429,7 @@ GameObject:
   - component: {fileID: 7491937765601465673}
   - component: {fileID: 3512489900326263603}
   m_Layer: 0
-  m_Name: Face Hair Type 5 Color 1
+  m_Name: DefaultFacialHair4
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26566,7 +26566,7 @@ GameObject:
   - component: {fileID: 5344273273735364509}
   - component: {fileID: 8196386537281482775}
   m_Layer: 0
-  m_Name: Hair Type 2 Color 1
+  m_Name: DefaultHair1
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26841,7 +26841,7 @@ GameObject:
   - component: {fileID: 4066059913803013722}
   m_Layer: 0
   m_Name: Face Hair Type 3 Color 4
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26978,7 +26978,7 @@ GameObject:
   - component: {fileID: 3287190445103865093}
   m_Layer: 0
   m_Name: Eyebrow Type 3 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27114,7 +27114,7 @@ GameObject:
   - component: {fileID: 1581348208780843332}
   - component: {fileID: 6443108302634951373}
   m_Layer: 0
-  m_Name: Eyebrow Type 3 Color 1
+  m_Name: DefaultEyebrows2
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27284,7 +27284,7 @@ GameObject:
   - component: {fileID: 64226864713009133}
   m_Layer: 0
   m_Name: Hair Type 4 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27695,7 +27695,7 @@ GameObject:
   - component: {fileID: 1634601109472250853}
   m_Layer: 0
   m_Name: Face Hair Type 4 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28721,7 +28721,7 @@ GameObject:
   - component: {fileID: 2204370164185343836}
   m_Layer: 0
   m_Name: Face Hair Type 1 Color 2
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28857,7 +28857,7 @@ GameObject:
   - component: {fileID: 5073317495167966124}
   - component: {fileID: 2695685077584753095}
   m_Layer: 0
-  m_Name: Face Hair Type 4 Color 1
+  m_Name: DefaultFacialHair3
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29027,7 +29027,7 @@ GameObject:
   - component: {fileID: 4066285997699376609}
   m_Layer: 0
   m_Name: Eyebrow Type 4 Color 5
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29163,7 +29163,7 @@ GameObject:
   - component: {fileID: 4226204103310055516}
   - component: {fileID: 6083771002887283575}
   m_Layer: 0
-  m_Name: Nose Type 2
+  m_Name: DefaultNose1
   m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29438,7 +29438,7 @@ GameObject:
   - component: {fileID: 6866438298688200274}
   m_Layer: 0
   m_Name: Eyebrow Type 4 Color 3
-  m_TagString: Equipment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

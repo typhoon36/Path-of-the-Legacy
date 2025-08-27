@@ -4,7 +4,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
+/*
+ * File :   UI_ArmorSlot.cs
+ * Desc :   UI_EqStatPopup.cs의 하위객체에서 사용되며 방어구 아이템을 장착/해제할 수 있다.
+ *
+ & Functions
+ &  [Public]
+ &  : SetInfo()         - 기능 설정
+ &  : ChangeArmor()     - 방어구 장착 및 교체
+ &  : AddItem()         - 아이템 추가
+ &  : ClearSlot()       - 초기화
+ &
+ &  [Protected]
+ &  : OnClickSlot()     - 슬롯 우클릭 시 "장비 해제"
+ &  : OnEndDragSlot()   - 마우스 클릭을 해제한 위치가 UI라면 "인벤으로 보내기"
+ &  : OnDropSlot()      - 현재 슬롯에 마우스 클릭을 때면 "장비 장착"
+ &  : ChangeSlot()      - 슬롯 교체
+ &
+ &  [Private]
+ &  : AddArmor()        - 장비 장착 진행
+ &  : EquipmentActive() - 장비 파츠 확인
+ *
+ */
 
 public class UI_ArmorSlot : UI_ItemDragSlot
 {
@@ -13,7 +34,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     public override void SetInfo()
     {
-        Managers.Game.m_PlayScene.Equipment.armorSlots.Add(this);
+        Managers.Game._playScene._equipment.armorSlots.Add(this);
 
         // 해당 부위 장비가 이미 장착되어 있다면 장착 (Save Load 했을때)
         if (Managers.Game.CurrentArmor.TryGetValue(armorType, out armorItem) == true)
@@ -56,13 +77,14 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     protected override void OnClickSlot(PointerEventData eventData)
     {
-        if (Item.IsNull() == true || UI_DragSlot.Inst.m_DragSlot.IsNull() == false) return;
+        if (item.IsNull() == true || UI_DragSlot.instance.dragSlotItem.IsNull() == false)
+            return;
 
         // 우클릭하여 장비 벗기
         if (Input.GetMouseButtonUp(1))
         {
             // 인벤으로 보내고 초기화
-            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(armorItem) == true)
+            if (Managers.Game._playScene._inventory.AcquireItem(armorItem) == true)
                 ClearSlot();
         }
     }
@@ -70,10 +92,10 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
         // 아이템을 버린 위치가 UI가 아니라면
-        if (Item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
+        if (item.IsNull() == false && !EventSystem.current.IsPointerOverGameObject())
         {
             // 인벤으로 보내고 초기화
-            if (Managers.Game.m_PlayScene.Inventory.AcquireItem(armorItem) == true)
+            if (Managers.Game._playScene._inventory.AcquireItem(armorItem) == true)
                 ClearSlot();
         }
         
@@ -82,7 +104,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     protected override void OnDropSlot(PointerEventData eventData)
     {
-        UI_Slot dragSlot = UI_DragSlot.Inst.m_DragSlot;
+        UI_Slot dragSlot = UI_DragSlot.instance.dragSlotItem;
 
         if (dragSlot.IsNull() == false)
         {
@@ -98,25 +120,25 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     protected override void ChangeSlot(UI_ItemSlot itemSlot)
     {
         // 장비 확인
-        if ((itemSlot.Item is ArmorItemData) == false)
+        if ((itemSlot.item is ArmorItemData) == false)
             return;
 
         // 같은 부위 확인
-        ArmorItemData armor = itemSlot.Item as ArmorItemData;
-        if (armorType != armor.ArmorType)
+        ArmorItemData armor = itemSlot.item as ArmorItemData;
+        if (armorType != armor.armorType)
             return;
 
         // 레벨 확인
-        if (Managers.Game.Level < armor.MinLevel)
+        if (Managers.Game.Level < armor.minLevel)
         {
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo("레벨이 부족합니다.", new Color(1f, 0.5f, 0f));
             return;
         }
 
-        ItemData _tempItem = Item;
+        ItemData _tempItem = item;
 
         // 장비 장착
-        AddItem(itemSlot.Item);
+        AddItem(itemSlot.item);
 
         // 기존 장비 인벤 이동
         UI_InvenSlot inven = itemSlot as UI_InvenSlot;
@@ -127,7 +149,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     }
 
     // 장비 장착
-     void AddArmor(ArmorItemData armorItem)
+    private void AddArmor(ArmorItemData armorItem)
     {
         // 장비 장착 진행
         if (Managers.Game.CurrentArmor.ContainsKey(armorType) == false)
@@ -143,29 +165,29 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     }
 
     // 캐릭터 장비 파츠 활성화 여부
-     void EquipmentActive(ArmorItemData armor, bool isActive)
+    private void EquipmentActive(ArmorItemData armor, bool isActive)
     {
         // 아이템이 현재 입고 있는 장비를 알고 있다면
-        if (armor.CharEquipment.IsNull() == false)
+        if (armor.charEquipment.IsNull() == false)
         {
-            foreach(GameObject obj in armor.CharEquipment)
+            foreach(GameObject obj in armor.charEquipment)
                 obj.SetActive(isActive);
 
             return;
         }
 
         // 모른다면 id로 찾기
-        Player_Ctrl player = Managers.Game.GetPlayer().GetComponent<Player_Ctrl>();
+        PlayerController player = Managers.Game.GetPlayer().GetComponent<PlayerController>();
 
         List<GameObject> objList = new List<GameObject>();
-        if (player.m_CharEquipment.TryGetValue(armor.Id, out objList) == false)
+        if (player.charEquipment.TryGetValue(armor.id, out objList) == false)
         {
-            Debug.Log($"{armor.Id} : 활성화 실패");
+            Debug.Log($"{armor.id} : 활성화 실패");
             return;
         }
 
         // 아이템 안에 넣어주기
-        armor.CharEquipment = objList;
+        armor.charEquipment = objList;
 
         foreach(GameObject obj in objList)
             obj.SetActive(isActive);

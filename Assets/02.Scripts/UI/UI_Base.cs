@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,7 +29,7 @@ public abstract class UI_Base : MonoBehaviour
 		return _init = true;
 	}
 
-	 void Start()
+	private void Start()
 	{
 		Init();
 	}
@@ -50,9 +49,9 @@ public abstract class UI_Base : MonoBehaviour
         for(int i = 0; i < names.Length; i++)
         {
             if (typeof(T) == typeof(GameObject))
-                objects[i] = Utility.FindChild(gameObject, names[i], true);
+                objects[i] = Util.FindChild(gameObject, names[i], true);
             else
-                objects[i] = Utility.FindChild<T>(gameObject, names[i], true);
+                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
 
             if (objects[i].IsNull() == true)
                 Debug.Log($"Failed to bind({names[i]})");
@@ -88,7 +87,7 @@ public abstract class UI_Base : MonoBehaviour
     {
         // 객체에 컴포넌트 추가 및 읽어오기
         // EventSystem 관련 클래스이기 때문에 스크립트를 추가하면 클릭 드래그에 관한 메소드를 바로 사용 가능하다.
-        UI_EventHandler evt = Utility.GetOrAddComponent<UI_EventHandler>(go);
+        UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
 
         // UI_EventHandler 안에 action을 받을 Action이 있음!
         switch (type)

@@ -25,7 +25,7 @@ public abstract class BaseScene : MonoBehaviour
         if (obj.IsNull() == true)
             Managers.Resource.Instantiate("UI/EventSystem").name = "@EventSystem";
         
-        Camera.main.gameObject.GetOrAddComponent<Cursor_Ctrl>();
+        Camera.main.gameObject.GetOrAddComponent<CursorController>();
     }
 
     public abstract void Clear();

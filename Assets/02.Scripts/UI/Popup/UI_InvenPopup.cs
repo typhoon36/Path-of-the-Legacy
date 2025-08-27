@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
+
+// 인벤토리 Popup
 public class UI_InvenPopup : UI_Popup
 {
     enum Gameobjects
@@ -20,10 +22,10 @@ public class UI_InvenPopup : UI_Popup
         GoldText,
     }
 
-     List<UI_InvenSlot>  invenSlots;         // 슬롯 List
+    private List<UI_InvenSlot>  invenSlots;         // 슬롯 List
 
     [SerializeField]
-     int                 invenCount = 42;    // 인벤 슬롯 개수
+    private int                 invenCount = 42;    // 인벤 슬롯 개수
 
     public override bool Init()
     {
@@ -61,7 +63,7 @@ public class UI_InvenPopup : UI_Popup
     {
         foreach(UI_InvenSlot slot in invenSlots)
         {
-            if (slot.Item.IsNull() == true)
+            if (slot.item.IsNull() == true)
                 return false;
         }
 
@@ -75,7 +77,7 @@ public class UI_InvenPopup : UI_Popup
         foreach(UI_InvenSlot slot in invenSlots)
         {
             // 슬롯에 아이템이 없으면
-            if (slot.Item.IsNull() == true)
+            if (slot.item.IsNull() == true)
             {
                 // 아이템 저장
                 slot.AddItem(item, count);
@@ -86,7 +88,7 @@ public class UI_InvenPopup : UI_Popup
             if (item is UseItemData)
             {
                 // 아이템의 id가 같다면 똑같은 아이템이므로
-                if (item.Id == slot.Item.Id)
+                if (item.id == slot.item.id)
                 {
                     // 개수 추가
                     slot.SetCount(count);
@@ -109,7 +111,7 @@ public class UI_InvenPopup : UI_Popup
     }
 
     // 인벤토리 활성화
-     void OnInventoryUI()
+    private void OnInventoryUI()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -124,13 +126,13 @@ public class UI_InvenPopup : UI_Popup
     }
 
     // 기능 설정
-     void SetInfo()
+    private void SetInfo()
     {
         ResetSlot();        // 슬롯 초기화
         SetEventHandler();  // EventHandler 설정
     }
 
-     void ResetSlot()
+    private void ResetSlot()
     {
         // 슬롯들을 담고 있는 부모 가져오기
         GameObject grid = GetObject((int)Gameobjects.Content);
@@ -159,7 +161,7 @@ public class UI_InvenPopup : UI_Popup
                 {
                     // 아이템 개수와 함께 저장
                     UseItemData useItem = item as UseItemData;
-                    invenItem.AddItem(useItem, useItem.ItemCount);
+                    invenItem.AddItem(useItem, useItem.itemCount);
                 }
                 else
                     invenItem.AddItem(item);    // 그냥 item 저장
@@ -170,7 +172,7 @@ public class UI_InvenPopup : UI_Popup
         }
     }
 
-     void SetEventHandler()
+    private void SetEventHandler()
     {
         // Title 잡고 인벤토리 이동
         RectTransform invenPos = GetObject((int)Gameobjects.Background).GetComponent<RectTransform>();
@@ -203,15 +205,15 @@ public class UI_InvenPopup : UI_Popup
         }, Define.UIEvent.Click);
     }
 
-     void RefreshUI()
+    private void RefreshUI()
     {   
         // 골드 개수 불러오기
         GetText((int)Texts.GoldText).text = Managers.Game.Gold.ToString();
     }
 
-     void Exit()
+    private void Exit()
     {
-        Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
+        Managers.Game._playScene._slotTip.OnSlotTip(false);
         Managers.UI.ClosePopupUI(this);
     }
 }

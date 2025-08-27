@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 6081483099643902048}
   - component: {fileID: 1815579080191163734}
   - component: {fileID: 2474273309881507237}
+  - component: {fileID: 8547482232830463739}
   m_Layer: 5
   m_Name: UI_ConfirmPopup
   m_TagString: Untagged
@@ -553,6 +554,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupType: 0
   _Messagetext: {fileID: 5331229524144399329}
+--- !u!114 &8547482232830463739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599711981153297127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &8585130013171938413
 GameObject:
   m_ObjectHideFlags: 0

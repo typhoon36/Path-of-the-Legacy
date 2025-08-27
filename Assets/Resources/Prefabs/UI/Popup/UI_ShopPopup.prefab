@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7216979, g: 0.6691583, b: 0.24510485, a: 1}
+  m_Color: {r: 0.62352943, g: 0.59607846, b: 0.34117648, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -210,7 +210,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8232688376893198019}
   - component: {fileID: 2418549302724369328}
+  - component: {fileID: 1164605842040200988}
   - component: {fileID: 8882961914749952130}
+  - component: {fileID: 2481378096782380486}
   m_Layer: 5
   m_Name: UI_ShopPopup
   m_TagString: Untagged
@@ -262,6 +264,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1164605842040200988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129894842399845608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &8882961914749952130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,9 +293,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0528601167cbbf40820def785dbc875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupType: 0
+  popupType: 7
   shopType: 0
   saleList: []
+--- !u!114 &2481378096782380486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129894842399845608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 1
 --- !u!1 &3389171454517092169
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7783017, g: 0.7527152, b: 0.20558903, a: 1}
+  m_Color: {r: 0.62352943, g: 0.59607846, b: 0.34117648, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -730,7 +762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7783017, g: 0.7527152, b: 0.20558903, a: 1}
+  m_Color: {r: 0.62352943, g: 0.59607846, b: 0.34117648, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

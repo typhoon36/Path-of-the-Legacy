@@ -2,7 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ * File :   UI_MenuPopup.cs
+ * Desc :   Esc Menu Popup UI
+ *          현재 띄어진 Popup이 없다면 Menu Popup을 활성화한다.
+ *
+ & Functions
+ &  [Public]
+ &  : Init() - 초기 설정
+ &
+ &  [Private]
+ &  : OnMenuPopup()             - 메뉴 활성화or비활성화
+ &  : OnMenu()                  - 메뉴 활성화 진행
+ &  : OnClickContinueButton()   - 진행 버튼
+ &  : OnClickSaveButton()       - 세이브 버튼
+ &  : OnClickAppExitButton()    - 나가기 버튼
+ &  : Exit()                    - 초기화
+ *
+ */
 
 public class UI_MenuPopup : UI_Popup
 {
@@ -38,7 +55,7 @@ public class UI_MenuPopup : UI_Popup
     }
 
     // 메뉴 활성화
-    void OnMenuPopup()
+    private void OnMenuPopup()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -52,7 +69,7 @@ public class UI_MenuPopup : UI_Popup
         }
     }
 
-    void OnMenu()
+    private void OnMenu()
     {
         // 현재 활성화 중인 Popup이 없다면
         if (Managers.UI.ClosePopupUI() == false)
@@ -65,32 +82,32 @@ public class UI_MenuPopup : UI_Popup
         {
             // 메뉴 끄기
             Managers.Game.isPopups[Define.Popup.Menu] = false;
-            Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
+            Managers.Game._playScene._slotTip.OnSlotTip(false);
         }
     }
-
+    
     // 게임 진행 버튼
-    void OnClickContinueButton()
+    private void OnClickContinueButton()
     {
         Exit();
     }
 
     // 게임 세이브 버튼
-    void OnClickSaveButton()
+    private void OnClickSaveButton()
     {
         Managers.Game.SaveGame();
         Exit();
     }
 
     // 게임 나가기 버튼
-    void OnClickAppExitButton()
+    private void OnClickAppExitButton()
     {
         Exit();
         Application.Quit();
     }
 
     // 초기화
-    void Exit()
+    private void Exit()
     {
         Time.timeScale = 1;
         Managers.UI.ClosePopupUI(this);

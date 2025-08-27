@@ -9690,7 +9690,6 @@ GameObject:
   - component: {fileID: 6810471105834413002}
   - component: {fileID: 3528235069938405983}
   - component: {fileID: 33098523976857691}
-  - component: {fileID: 8688672398867165530}
   m_Layer: 0
   m_Name: LevelUpEffect
   m_TagString: Untagged
@@ -9906,7 +9905,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.8460841, b: 0.6273585, a: 1}
+      maxColor: {r: 0.8490565, g: 0.22800426, b: 0.1882341, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14525,20 +14524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872948d4a4386874bad855ba8026f8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 1
-  DisableDelayTime: 2
---- !u!114 &8688672398867165530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155335147208632822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c669968b6825a7478e9d1fd90fa48b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  id: 6
+  disableDelayTime: 5
 --- !u!1 &8365031647153227681
 GameObject:
   m_ObjectHideFlags: 0
@@ -14762,7 +14749,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.84096, b: 0.15566039, a: 1}
+      maxColor: {r: 1, g: 0.33104303, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

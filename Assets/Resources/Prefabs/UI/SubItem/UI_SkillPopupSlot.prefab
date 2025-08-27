@@ -324,16 +324,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 6185092498962194777}
   skillData:
-    SkillId: 0
-    SkillName: 
-    MinLevel: 0
-    SkillCoolDown: 0
-    SkillConsumMp: 0
-    IsCoolDown: 0
-    IsLock: 1
-    Discription: 
-    SkillSprite: {fileID: 0}
-    PowerList: 
+    skillId: 0
+    skillName: 
+    minLevel: 0
+    skillCoolDown: 0
+    skillConsumMp: 0
+    isCoolDown: 0
+    isLock: 1
+    discription: 
+    skillSprite: {fileID: 0}
+    powerList: 
   skillId: 0
 --- !u!1 &6979472593384294821
 GameObject:
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 1408692275336261148}
   - component: {fileID: 6185092498962194777}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

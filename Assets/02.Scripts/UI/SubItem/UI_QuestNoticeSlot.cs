@@ -1,8 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-
+/*
+ * File :   UI_QuestNoticeSlot.cs
+ * Desc :   Scene UI에 생성된 퀘스트 알람 기능
+ *
+ & Functions
+ & : FixedUpdate()  - 실시간 퀘스트 내용 업데이트
+ & : SetInfo()      - 기능 설정 (퀘스트 정보 받기)
+ *
+ */
 
 public class UI_QuestNoticeSlot : UI_Base
 {
@@ -12,13 +21,13 @@ public class UI_QuestNoticeSlot : UI_Base
         QuestDescText
     }
 
-    public QuestData m_Quest;
+    public QuestData    _quest;
 
-    string m_TargetName;        // 목표 이름
-    string m_QuestNameSt;     // 퀘스트 제목
-    string m_QuestDescSt;     // 퀘스트 내용
+    private string      _targetName;        // 목표 이름
+    private string      _questNameText;     // 퀘스트 제목
+    private string      _qeustDescText;     // 퀘스트 내용
 
-    bool IsSuccess = false;
+    private bool        isSuccess = false;
 
     public override bool Init()
     {
@@ -27,39 +36,39 @@ public class UI_QuestNoticeSlot : UI_Base
 
         BindText(typeof(Texts));
 
-        GetText((int)Texts.QuestNameText).text = m_QuestNameSt;
-        GetText((int)Texts.QuestDescText).text = m_QuestDescSt;
+        GetText((int)Texts.QuestNameText).text = _questNameText;
+        GetText((int)Texts.QuestDescText).text = _qeustDescText;
 
         return true;
     }
 
     void FixedUpdate()
     {
-        if (m_Quest.IsNull() == true || IsSuccess == true)
+        if (_quest.IsNull() == true || isSuccess == true)
             return;
 
         // 퀘스트 목표 달성 시
-        if (m_Quest.CurrnetTargetCount == m_Quest.TargetCount)
+        if (_quest.currnetTargetCount == _quest.targetCount)
         {
             // text 완료 표시
-            GetText((int)Texts.QuestNameText).text = m_Quest.TitleName + $@"<color=yellow> [완료]</color>";
-            IsSuccess = true;
+            GetText((int)Texts.QuestNameText).text = _quest.titleName + $@"<color=yellow> [완료]</color>";
+            isSuccess = true;
         }
 
         // 퀘스트 진행 상황 표시
         if (GetText((int)Texts.QuestDescText).IsNull() == false)
-            GetText((int)Texts.QuestDescText).text = $"{m_TargetName} : {m_Quest.CurrnetTargetCount} / {m_Quest.TargetCount}";
+            GetText((int)Texts.QuestDescText).text = $"{_targetName} : {_quest.currnetTargetCount} / {_quest.targetCount}";
     }
 
-    public void SetInfo(QuestData a_Quest)
+    public void SetInfo(QuestData quest)
     {
-        m_Quest = a_Quest;
+        _quest = quest;
 
         // 퀘스트 타겟 이름
-        m_TargetName = Managers.Data.Monster[m_Quest.TargetId].GetComponent<MonsterStat>().Name;
+        _targetName = Managers.Data.Monster[_quest.targetId].GetComponent<MonsterStat>().Name;
 
         // 퀘스트 제목
-        m_QuestNameSt = a_Quest.TitleName;
-        m_QuestDescSt = $"{m_TargetName} : {m_Quest.CurrnetTargetCount} / {m_Quest.TargetCount}";
+        _questNameText = quest.titleName;
+        _qeustDescText = $"{_targetName} : {_quest.currnetTargetCount} / {_quest.targetCount}";
     }
 }

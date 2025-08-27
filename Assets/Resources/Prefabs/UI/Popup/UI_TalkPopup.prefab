@@ -131,7 +131,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1937179005875444880}
   - component: {fileID: 6791601103477221903}
+  - component: {fileID: 493126122867551460}
   - component: {fileID: 6336667991118275524}
+  - component: {fileID: 2411299331991729928}
   m_Layer: 5
   m_Name: UI_TalkPopup
   m_TagString: Untagged
@@ -183,6 +185,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &493126122867551460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789086355288246136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &6336667991118275524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +216,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupType: 4
   talkDelayTime: 0.1
+--- !u!114 &2411299331991729928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789086355288246136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 1
 --- !u!1 &960152918196789281
 GameObject:
   m_ObjectHideFlags: 0

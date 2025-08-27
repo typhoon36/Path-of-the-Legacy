@@ -1,10 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
+/*
+ * File :   UI_InvenSlot.cs
+ * Desc :   UI_InvenPopup.cs에서 생성되며  인벤토리 안에서 아이템을 관리하는 Slot
+ *
+ & Functions
+ &  [Public]
+ &  : SetInfo()             - 기능 설정
+ &  : AddItem()             - 아이템 추가
+ &  : ClearSlot()           - 초기화
+ &
+ &  [Protected]
+ &  : OnClickSlot()         - 슬롯 우클릭 시 "장비 장착 또는 아이템 사용"
+ &  : OnBeginDragSlot()     - 마우스 클릭을 해제하면 "임시 슬롯 초기화"
+ &  : OnDropSlot()          - 현재 슬롯에 마우스 클릭을 때면 "아이템 받기"
+ &  : ChangeSlot()          - 슬롯 교체
+ &
+ &  [Private]
+ &  : ItemTypeCheck()       - 현재 슬롯의 아이템 타입 체크
+ &  : AddSlot()             - 슬롯 받기
+ *
+ */
 
 public class UI_InvenSlot : UI_ItemDragSlot
 {
@@ -13,7 +34,7 @@ public class UI_InvenSlot : UI_ItemDragSlot
     public int  invenNumber;     // 인벤 자리 번호
 
     // 상점 판매 등록될 시 인벤 Lock
-     bool isLock = false;
+    private bool isLock = false;
     public bool IsLock
     {
         get { return isLock; }
@@ -51,7 +72,8 @@ public class UI_InvenSlot : UI_ItemDragSlot
         if (isLock == true)
             return;
 
-        if (Item.IsNull() == true || UI_DragSlot.Inst.m_DragSlot.IsNull() == false) return;
+        if (item.IsNull() == true || UI_DragSlot.instance.dragSlotItem.IsNull() == false)
+            return;
 
         // 슬롯 우클릭
         if (Input.GetMouseButtonUp(1))
@@ -64,18 +86,18 @@ public class UI_InvenSlot : UI_ItemDragSlot
             }
 
             // 장비 or 소비 아이템이라면
-            if ((Item is EquipmentData) == true)
+            if ((item is EquipmentData) == true)
             {
                 // 장착 레벨 확인
-                if (Managers.Game.Level >= (Item as EquipmentData).MinLevel)
-                    Managers.Game.m_PlayScene.Equipment.SetEquipment(this);
+                if (Managers.Game.Level >= (item as EquipmentData).minLevel)
+                    Managers.Game._playScene._equipment.SetEquipment(this);
                 else
                     Managers.UI.MakeSubItem<UI_Guide>().SetInfo("레벨이 부족합니다.", new Color(1f, 0.5f, 0f));
             }
-            else if ((Item is UseItemData) == true)
+            else if ((item is UseItemData) == true)
             {
                 // 아이템 사용이 성공적으로 됐다면 -1 차감
-                if ((Item as UseItemData).UseItem(this.Item) == true)
+                if ((item as UseItemData).UseItem(this.item) == true)
                     SetCount(-1);
             }
         }
@@ -93,10 +115,10 @@ public class UI_InvenSlot : UI_ItemDragSlot
     // 슬롯 받기
     protected override void OnDropSlot(PointerEventData eventData)
     {
-        if (UI_DragSlot.Inst.m_DragSlot.IsNull() == true)
+        if (UI_DragSlot.instance.dragSlotItem.IsNull() == true)
             return;
             
-        UI_Slot dragSlot = UI_DragSlot.Inst.m_DragSlot;
+        UI_Slot dragSlot = UI_DragSlot.instance.dragSlotItem;
 
         if (dragSlot == this)
             return;
@@ -114,7 +136,7 @@ public class UI_InvenSlot : UI_ItemDragSlot
                 // 현재 아이템이 같은 종류의 방어구라면 교체
                 if (ItemTypeCheck<ArmorItemData>() == true)
                 {
-                    if ((armorSlot.armorType == (Item as ArmorItemData).ArmorType))
+                    if ((armorSlot.armorType == (item as ArmorItemData).armorType))
                     {
                         armorSlot.ChangeArmor(this);
                         return;
@@ -138,23 +160,23 @@ public class UI_InvenSlot : UI_ItemDragSlot
             break;
             case UI_UseItemSlot useSlot:                // 소비 Slot
             {
-                AddSlot<UI_UseItemSlot>(useSlot, useSlot.ItemCount);
+                AddSlot<UI_UseItemSlot>(useSlot, useSlot.itemCount);
             }
             break;
             case UI_InvenSlot invenSlot:                // 인벤 Slot
             {
                 // 두 슬롯의 아이템이 같은 아이템일 경우 개수 체크
-                if (Item == invenSlot.Item && (invenSlot.Item is UseItemData))
+                if (item == invenSlot.item && (invenSlot.item is UseItemData))
                 {
-                    int addValue = ItemCount + invenSlot.ItemCount;
-                    if (addValue > Item.ItemMaxCount)
+                    int addValue = itemCount + invenSlot.itemCount;
+                    if (addValue > item.itemMaxCount)
                     {
-                        invenSlot.SetCount(-(Item.ItemMaxCount-ItemCount));
-                        SetCount(Item.ItemMaxCount - ItemCount);
+                        invenSlot.SetCount(-(item.itemMaxCount-itemCount));
+                        SetCount(item.itemMaxCount - itemCount);
                     }
                     else
                     {
-                        SetCount(invenSlot.ItemCount);
+                        SetCount(invenSlot.itemCount);
                         invenSlot.ClearSlot();  // 들고 있었던 슬롯은 초기화
                     }
                 }
@@ -168,14 +190,14 @@ public class UI_InvenSlot : UI_ItemDragSlot
     protected override void ChangeSlot(UI_ItemSlot itemSlot)
     {
         // 임시 변수
-        ItemData _tempItem = Item;
-        int _tempItemCount = ItemCount;
+        ItemData _tempItem = item;
+        int _tempItemCount = itemCount;
 
         // 인벤 가져오기
         UI_InvenSlot invenSlot = itemSlot as UI_InvenSlot;
 
         // 새로 받은 슬롯 Add
-        AddItem(invenSlot.Item, invenSlot.ItemCount);
+        AddItem(invenSlot.item, invenSlot.itemCount);
 
         // 자신의 아이템을 상대 슬롯에 전달
         if (_tempItem.IsNull() == false)
@@ -185,11 +207,11 @@ public class UI_InvenSlot : UI_ItemDragSlot
     }
 
     // 현재 슬롯의 아이템 타입 체크
-     bool ItemTypeCheck<T>() where T : EquipmentData
+    private bool ItemTypeCheck<T>() where T : EquipmentData
     {
-        if (Item.IsNull() == false)
+        if (item.IsNull() == false)
         {
-            if ((Item is T) == true)
+            if ((item is T) == true)
                 return true;
         }
 
@@ -197,13 +219,13 @@ public class UI_InvenSlot : UI_ItemDragSlot
     }
 
     // 슬롯 받기
-     void AddSlot<T>(T slot, int count = 1) where T : UI_ItemDragSlot
+    private void AddSlot<T>(T slot, int count = 1) where T : UI_ItemDragSlot
     {
         // 아이템이 있다면 다른 슬롯 || 없다면 지금 슬롯에 넣기
-        if (Item.IsNull() == false)
-            Managers.Game.m_PlayScene.Inventory.AcquireItem(slot.Item, count);
+        if (item.IsNull() == false)
+            Managers.Game._playScene._inventory.AcquireItem(slot.item, count);
         else
-            AddItem(slot.Item, count);
+            AddItem(slot.item, count);
 
         slot.ClearSlot();
     }

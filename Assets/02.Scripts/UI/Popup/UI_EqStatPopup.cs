@@ -4,7 +4,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
+/*
+ * File :   UI_EqStatPopup.cs
+ * Desc :   장비, 스탯을 관리하는 Popup UI
+ *
+ & Functions
+ &  [Public]
+ &  : Init()                - 초기 설정
+ &  : SetEquipment()        - 장비 장착
+ &
+ &  [Private]
+ &  : OnEquipmentUI()       - 장비/스탯창 활성화or비활성화
+ &  : SetInfo()             - 기능 설정
+ &  : AddStat()             - 스탯 포인트 사용
+ &  : OnClickStatButton()   - 스탯 버튼 클릭 시 호출
+ &  : SetEventHandler()     - EventHandler 설정
+ &  : RefreshUI()           - 새로고침 UI
+ &  : Exit()                - 나가기
+ *
+ */
 
 public class UI_EqStatPopup : UI_Popup
 {
@@ -37,10 +55,10 @@ public class UI_EqStatPopup : UI_Popup
         StatText,
     }
 
-    public List<UI_ArmorSlot> armorSlots; // 방어구 슬롯 List
-    public UI_WeaponSlot weaponSlot; // 무기 슬롯
+    public List<UI_ArmorSlot>   armorSlots; // 방어구 슬롯 List
+    public UI_WeaponSlot        weaponSlot; // 무기 슬롯
 
-    bool IsClickStat = false;  // 스탯 버튼을 눌렀는가?
+    private bool                isClickStatButton = false;  // 스탯 버튼을 눌렀는가?
 
     public override bool Init()
     {
@@ -78,15 +96,15 @@ public class UI_EqStatPopup : UI_Popup
     public void SetEquipment(UI_ItemSlot itemSlot)
     {
         // 무기, 장비 확인
-        if (itemSlot.Item.ItemType == Define.ItemType.Armor)
+        if (itemSlot.item.itemType == Define.ItemType.Armor)
         {
-            ArmorItemData armor = itemSlot.Item as ArmorItemData;
+            ArmorItemData armor = itemSlot.item as ArmorItemData;
 
             // 장비 부위 체크
-            foreach (UI_ArmorSlot armorSlot in armorSlots)
+            foreach(UI_ArmorSlot armorSlot in armorSlots)
             {
                 // 같은 부위면 장착
-                if (armorSlot.armorType == armor.ArmorType)
+                if (armorSlot.armorType == armor.armorType)
                 {
                     armorSlot.ChangeArmor(itemSlot);
                     break;
@@ -94,14 +112,14 @@ public class UI_EqStatPopup : UI_Popup
             }
         }
         // 무기면 장착
-        else if (itemSlot.Item.ItemType == Define.ItemType.Weapon)
+        else if (itemSlot.item.itemType == Define.ItemType.Weapon)
         {
             weaponSlot.ChangeWeapon(itemSlot);
         }
     }
 
     // 장비/스탯 Popup 활성화
-     void OnEquipmentUI()
+    private void OnEquipmentUI()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -115,24 +133,24 @@ public class UI_EqStatPopup : UI_Popup
         }
     }
 
-     void SetInfo()
+    private void SetInfo()
     {
         // 버튼 기능 등록
-        GetButton((int)Buttons.HpAddPointButton).onClick.AddListener(() => { AddStat(Buttons.HpAddPointButton); });
-        GetButton((int)Buttons.MpAddPointButton).onClick.AddListener(() => { AddStat(Buttons.MpAddPointButton); });
-        GetButton((int)Buttons.STRAddPointButton).onClick.AddListener(() => { AddStat(Buttons.STRAddPointButton); });
-        GetButton((int)Buttons.LUKAddPointButton).onClick.AddListener(() => { AddStat(Buttons.LUKAddPointButton); });
+        GetButton((int)Buttons.HpAddPointButton).onClick.AddListener(()=>{ AddStat(Buttons.HpAddPointButton); });
+        GetButton((int)Buttons.MpAddPointButton).onClick.AddListener(()=>{ AddStat(Buttons.MpAddPointButton); });
+        GetButton((int)Buttons.STRAddPointButton).onClick.AddListener(()=>{ AddStat(Buttons.STRAddPointButton); });
+        GetButton((int)Buttons.LUKAddPointButton).onClick.AddListener(()=>{ AddStat(Buttons.LUKAddPointButton); });
 
         GetButton((int)Buttons.StatButton).onClick.AddListener(OnClickStatButton);
         GetObject((int)Gameobjects.StatBackground).SetActive(false);
 
         // 스탯 정보 string
-        string statNameText =
+        string statNameText = 
 $@"<color=white>이름</color>
 <color=yellow>Lv.</color>
-<color=white>생명력</color>
-<color=white>지성</color>
-<color=white>근력</color>
+<color=white>체력</color>
+<color=white>마나</color>
+<color=white>이동속도</color>
 <color=red>공격력</color>
 <color=blue>방어력</color>";
 
@@ -142,12 +160,12 @@ $@"<color=white>이름</color>
     }
 
     // 스탯 포인트 적용
-     void AddStat(Buttons stat)
+    private void AddStat(Buttons stat)
     {
         if (Managers.Game.StatPoint == 0)
             return;
 
-        switch (stat)
+        switch(stat)
         {
             case Buttons.HpAddPointButton:  // Hp
                 Managers.Game.HpPoint++;
@@ -168,19 +186,19 @@ $@"<color=white>이름</color>
     }
 
     // 스탯 버튼 클릭
-     void OnClickStatButton()
+    private void OnClickStatButton()
     {
-        IsClickStat = !IsClickStat;
+        isClickStatButton = !isClickStatButton;
 
         // 스탯 정보 활성화
-        GetObject((int)Gameobjects.StatBackground).SetActive(IsClickStat);
+        GetObject((int)Gameobjects.StatBackground).SetActive(isClickStatButton);
     }
 
-     void SetEventHandler()
+    private void SetEventHandler()
     {
         // Title 잡고 인벤토리 이동
         RectTransform eqStatPos = GetObject((int)Gameobjects.Background).GetComponent<RectTransform>();
-        GetObject((int)Gameobjects.Title).BindEvent((PointerEventData eventData) =>
+        GetObject((int)Gameobjects.Title).BindEvent((PointerEventData eventData)=>
         {
             eqStatPos.anchoredPosition = new Vector2
             (
@@ -190,19 +208,19 @@ $@"<color=white>이름</color>
         }, Define.UIEvent.Drag);
 
         // Order 설정
-        GetObject((int)Gameobjects.Background).BindEvent((PointerEventData eventData) =>
+        GetObject((int)Gameobjects.Background).BindEvent((PointerEventData eventData)=>
         {
             Managers.UI.SetOrder(GetComponent<Canvas>());
         }, Define.UIEvent.Click);
 
         // Exit 버튼
-        GetObject((int)Gameobjects.ExitButton).BindEvent((PointerEventData eventData) =>
+        GetObject((int)Gameobjects.ExitButton).BindEvent((PointerEventData eventData)=>
         {
             Managers.UI.ClosePopupUI(this);
         }, Define.UIEvent.Click);
     }
 
-     void RefreshUI()
+    private void RefreshUI()
     {
         // 현재 스탯 불러오기
         GetText((int)Texts.StatPointText).text = Managers.Game.StatPoint.ToString();
@@ -212,24 +230,24 @@ $@"<color=white>이름</color>
         GetText((int)Texts.LUKStatPointText).text = Managers.Game.LUK.ToString();
 
         // 스탯 정보
-        string a_StatText =
+        string statText = 
 $@"<color=white>{Managers.Game.Name}</color>
 <color=white>{Managers.Game.Level}</color>
-<color=white>{Managers.Game.MaxHp} {(Managers.Game.addHp != 0 ? $"(+{Managers.Game.addHp})" : "")}</color>
-<color=white>{Managers.Game.MaxMp} {(Managers.Game.addMp != 0 ? $"(+{Managers.Game.addMp})" : "")}</color>
-<color=white>{Managers.Game.MoveSpeed} {(Managers.Game.addMoveSpeed != 0 ? $"(+{Managers.Game.addMoveSpeed})" : "")}</color>
+<color=white>{Managers.Game.MaxHp} {(Managers.Game.addHp != 0 ? $"(+{Managers.Game.addHp})":"")}</color>
+<color=white>{Managers.Game.MaxMp} {(Managers.Game.addMp != 0 ? $"(+{Managers.Game.addMp})":"")}</color>
+<color=white>{Managers.Game.MoveSpeed} {(Managers.Game.addMoveSpeed != 0 ? $"(+{Managers.Game.addMoveSpeed})":"")}</color>
 <color=white>{Managers.Game.Attack}</color>
 <color=white>{Managers.Game.Defense}</color>";
 
-        GetText((int)Texts.StatText).text = a_StatText;
+        GetText((int)Texts.StatText).text = statText;
     }
 
-     void Exit()
+    private void Exit()
     {
-        IsClickStat = false;
-        GetObject((int)Gameobjects.StatBackground).SetActive(IsClickStat);
+        isClickStatButton = false;
+        GetObject((int)Gameobjects.StatBackground).SetActive(isClickStatButton);
 
-        Managers.Game.m_PlayScene.SlotTip.OnSlotTip(false);
+        Managers.Game._playScene._slotTip.OnSlotTip(false);
         Managers.UI.ClosePopupUI(this);
     }
 }

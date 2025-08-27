@@ -2,39 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * File :   Managers.cs
+ * Desc :   싱글톤 패턴을 사용하여 모든 매니저에 접근 가능
+ *          [ Rookiss의 MMORPG Game Part 3 참고. ]
+ */
 
-//매니저 통합 관리 
 public class Managers : MonoBehaviour
 {
-    static Managers g_Inst;
-    static Managers Inst { get { Init(); return g_Inst; } }
+    private static Managers s_instance;
+    private static Managers Instance { get { Init(); return s_instance; } }
 
-    //Content Manager
-    Game_Mgr g_Game = new Game_Mgr();
+#region Contents
 
-    public static Game_Mgr Game { get { return Inst.g_Game; } }
+    private GameManager _game = new GameManager();
 
+    public static GameManager Game { get { return Instance._game; } }
 
-    //Core Manager
-    Data_Mgr g_Data = new Data_Mgr();
-    Input_Mgr g_Input = new Input_Mgr();
-    Pool_Mgr g_Pool = new Pool_Mgr();
-    Resource_Mgr g_Resource = new Resource_Mgr();
-    Scene_Mgr g_Scene = new Scene_Mgr();
-    UI_Mgr g_Ui = new UI_Mgr();
+#endregion
 
-    public static Data_Mgr Data { get { return Inst.g_Data; } }
-    public static Input_Mgr Input { get { return Inst.g_Input; } }
-    public static Pool_Mgr Pool { get { return Inst.g_Pool; } }
-    public static Resource_Mgr Resource { get { return Inst.g_Resource; } }
-    public static Scene_Mgr Scene { get { return Inst.g_Scene; } }
-    public static UI_Mgr UI { get { return Inst.g_Ui; } }
+#region Core
 
+    private DataManager _data = new DataManager();
+    private InputManager _input = new InputManager();
+    private PoolManager _pool = new PoolManager();
+    private ResourceManager _resource = new ResourceManager();
+    private SceneManagerEx _scene = new SceneManagerEx();
+    private UIManager _ui = new UIManager();
 
+    public static DataManager Data { get { return Instance._data; } }
+    public static InputManager Input { get { return Instance._input; } }
+    public static PoolManager Pool { get { return Instance._pool; } }
+    public static ResourceManager Resource { get { return Instance._resource; } }
+    public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static UIManager UI { get { return Instance._ui; } }
+
+#endregion
 
     void Start()
     {
-       
+        Application.targetFrameRate = 50;
+
         Init();
     }
 
@@ -47,23 +55,24 @@ public class Managers : MonoBehaviour
     // 싱글톤 메소드
     static void Init()
     {
-        if (g_Inst.IsNull() == true)
+        if (s_instance.IsNull() == true)
         {
-            GameObject a_Obj = GameObject.Find("@Manager");
+            GameObject go = GameObject.Find("@Manager");
 
-            if (a_Obj.IsNull() == true)
+            if (go.IsNull() == true)
             {
-                a_Obj = new GameObject { name = "@Manager" };
-                a_Obj.AddComponent<Managers>();
+                go = new GameObject{name = "@Manager"};
+                go.AddComponent<Managers>();
                 Debug.Log("@Manager 생성.");
             }
 
-            DontDestroyOnLoad(a_Obj);
-            g_Inst = a_Obj.GetComponent<Managers>();
-
-            g_Inst.g_Data.Init();
-            g_Inst.g_Game.Init();
-            g_Inst.g_Pool.Init();
+            DontDestroyOnLoad(go);
+            s_instance = go.GetComponent<Managers>();
+            
+            s_instance._data.Init();
+            s_instance._game.Init();
+            s_instance._pool.Init();
+            // s_instance._data.Init();
         }
     }
 

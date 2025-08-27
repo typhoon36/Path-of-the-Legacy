@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 110086167123160472}
   - component: {fileID: 6631397476841995123}
   m_Layer: 5
-  m_Name: PlusButton (1)
+  m_Name: MinusButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,8 +1073,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808591551307321902}
-  - component: {fileID: 562161249754031543}
   - component: {fileID: 5832138049615039990}
+  - component: {fileID: 4322342064269509001}
+  - component: {fileID: 562161249754031543}
+  - component: {fileID: 8148990350215360226}
   m_Layer: 5
   m_Name: UI_NumberCheckPopup
   m_TagString: Untagged
@@ -1104,6 +1106,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &5832138049615039990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603316977651283892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bac91f7b66aa3e40b6ef0ce26a09af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupType: 0
+  numberSlider: {fileID: 3290659938757118610}
+  _itemCountText: {fileID: 6159115634993554947}
+--- !u!114 &4322342064269509001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603316977651283892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 1
 --- !u!223 &562161249754031543
 Canvas:
   m_ObjectHideFlags: 0
@@ -1127,7 +1157,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &5832138049615039990
+--- !u!114 &8148990350215360226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1136,12 +1166,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8603316977651283892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bac91f7b66aa3e40b6ef0ce26a09af3, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupType: 0
-  NumberSlider: {fileID: 3290659938757118610}
-  _itemCountText: {fileID: 6159115634993554947}
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &9180164807595431822
 GameObject:
   m_ObjectHideFlags: 0

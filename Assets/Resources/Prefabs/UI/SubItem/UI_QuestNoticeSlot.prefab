@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7971697, g: 0.7971697, b: 0.7971697, a: 0.30980393}
+  m_Color: {r: 0.028301597, g: 0.028301597, b: 0.028301597, a: 0.30980393}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -190,9 +190,9 @@ RectTransform:
   - {fileID: 8183656535353059005}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 551, y: 120}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 900, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1268954293863675284
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5141508, g: 0.4898984, b: 0.4898984, a: 0.6901961}
+  m_Color: {r: 0.212264, g: 0.20825902, b: 0.20825902, a: 0.6901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -246,21 +246,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Quest:
-    id: 0
-    titleName: 
-    questType: 0
-    minLevel: 0
-    targetId: 0
-    targetCount: 0
-    currnetTargetCount: 0
-    rewardGold: 0
-    rewardExp: 0
-    rewardItems: []
-    description: 
-    targetDescription: 
-    targetPos: {x: 0, y: 0, z: 0}
-    isAccept: 0
-    isClear: 0
+    Id: 0
+    TitleName: 
+    QuestType: 0
+    MinLevel: 0
+    TargetId: 0
+    TargetCount: 0
+    CurrnetTargetCount: 0
+    RewardGold: 0
+    RewardExp: 0
+    RewardItems: []
+    Description: 
+    TargetDescription: 
+    TargetPos: {x: 0, y: 0, z: 0}
+    IsAccept: 0
+    IsClear: 0
 --- !u!1 &9076890158736914622
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,33 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ * File :   MonsterStat.cs
+ * Desc :   몬스터 기본 정보, 피격, 드랍 아이템을 관리
+ *
+ & Functions
+ &  [Public]
+ &  : OnAttacked()  - 공격 받을 때 호출
+ &
+ &  [Protected]
+ &  : OnDead()      - 사망 시 호출
+ &
+ &  [Private]
+ &  : OnDropItem()  - 드랍 아이템 관리
+ &  : HitEffect()   - 피격 이펙트 생성
+ *
+ */
 
 public class MonsterStat : MonoBehaviour
 {
-    [SerializeField] protected int _id;
-    [SerializeField] protected string _name = "Monster";
-    [SerializeField] protected int _hp;
-    [SerializeField] protected int _maxHp;
-    [SerializeField] protected int _attack;
-    [SerializeField] protected int _dropExp;
-    [SerializeField] protected int _dropGold;
-    [SerializeField] protected int _dropItemId = 0;
-    [SerializeField] protected float _movespeed;
+    [SerializeField] protected int      _id;
+    [SerializeField] protected string   _name = "Monster";
+    [SerializeField] protected int      _hp;
+    [SerializeField] protected int      _maxHp;
+    [SerializeField] protected int      _attack;
+    [SerializeField] protected int      _dropExp;
+    [SerializeField] protected int      _dropGold;
+    [SerializeField] protected int      _dropItemId = 0;
+    [SerializeField] protected float    _movespeed;
 
-    public int Id { get { return _id; } set { _id = value; } }
-    public string Name { get { return _name; } set { _name = value; } }
-    public int Hp { get { return _hp; } set { _hp = Mathf.Clamp(value, 0, MaxHp); } }
-    public int MaxHp { get { return _maxHp; } set { _maxHp = value; Hp = MaxHp; } }
-    public int Attack { get { return _attack; } set { _attack = value; } }
-    public int DropExp { get { return _dropExp; } set { _dropExp = value; } }
-    public int DropGold { get { return _dropGold; } set { _dropGold = value; } }
-    public int DropItemId { get { return _dropItemId; } set { _dropItemId = value; } }
-    public float MoveSpeed { get { return _movespeed; } set { _movespeed = value; } }
-
+    public int      Id          { get { return _id; } set { _id = value; } }
+    public string   Name        { get { return _name; } set { _name = value; } }
+    public int      Hp          { get { return _hp; } set { _hp = Mathf.Clamp(value, 0, MaxHp); } }
+    public int      MaxHp       { get { return _maxHp; } set { _maxHp = value; Hp = MaxHp; } }
+    public int      Attack      { get { return _attack; } set { _attack = value; } }
+    public int      DropExp     { get { return _dropExp; } set { _dropExp = value; } }
+    public int      DropGold    { get { return _dropGold; } set { _dropGold = value; } }
+    public int      DropItemId  { get { return _dropItemId; } set { _dropItemId = value; } }
+    public float    MoveSpeed   { get { return _movespeed; } set { _movespeed = value; } }
+    
     void Start()
     {
-        _monster = GetComponent<Monster_Ctrl>();
+        _monster = GetComponent<MonsterController>();
 
         GameObject go;
         if (Managers.Data.Monster.TryGetValue(Id, out go) == true)
@@ -46,23 +61,23 @@ public class MonsterStat : MonoBehaviour
     }
 
     // 공격을 받았을 때
-    Monster_Ctrl _monster;
-    public virtual void OnAttacked(int skillAttack = 0)
+    MonsterController _monster;
+    public virtual void OnAttacked(int skillAttack=0)
     {
         // 일반 몬스터만 피격 상태 진행
-        if (_monster.m_MonsterType == Define.MonsterType.Normal)
+        if (_monster.monsterType == Define.MonsterType.Normal)
             _monster.State = Define.State.Hit;
 
         // Scene UI에 몬스터 정보 활성화
-        Managers.Game.m_PlayScene.OnMonsterBar(this);
+        Managers.Game._playScene.OnMonsterBar(this);
 
         int damage;
         // 스킬 데미지 확인
         if (skillAttack != 0)
             damage = Mathf.Max(0, skillAttack);
-        else
+        else 
             damage = Mathf.Max(0, Managers.Game.Attack);
-
+            
         // 체력 차감
         Hp -= damage;
 
@@ -87,10 +102,10 @@ public class MonsterStat : MonoBehaviour
         Managers.Game.Gold += _dropGold;
 
         // 퀘스트 정보 반영
-        Managers.Game.m_PlayScene.Quest.QuestTargetCount(gameObject);
+        Managers.Game._playScene._quest.QuestTargetCount(gameObject);
 
         // Scene UI 몬스터 정보 비활성화
-        Managers.Game.m_PlayScene.CloseMonsterBar();
+        Managers.Game._playScene.CloseMonsterBar();
 
         // 아이템 드랍
         OnDropItem();
@@ -100,35 +115,35 @@ public class MonsterStat : MonoBehaviour
     }
 
     // 드랍 아이템
-    void OnDropItem()
+    private void OnDropItem()
     {
         // DataManager에서 DropItem List가져오기
         List<int> itemList = Managers.Data.DropItem[_dropItemId];
-
+        
         // 아이탬 개수 0~2 + Luk (최대 5개까지)
         int maxCount = Mathf.Clamp(2 + Managers.Game.LUK, 0, 5);
 
-        for (int i = 0; i < Random.Range(0, maxCount); i++)
+        for(int i=0; i<Random.Range(0, maxCount); i++)
         {
             // Random으로 아이템 id 뽑기
-            int randomId = Random.Range(0, itemList.Count - 1);
+            int randomId = Random.Range(0, itemList.Count-1);
 
             // 아이템 소환
-            ItemData a_Item = Managers.Data.CallItem(itemList[randomId]);
-            GameObject a_Obj = Managers.Resource.Instantiate(a_Item.ItemObject);
+            ItemData item = Managers.Data.CallItem(itemList[randomId]);
+            GameObject go = Managers.Resource.Instantiate(item.itemObject);
 
             // ItemPickUp 컴포넌트 붙이기
-            ItemPickUp goData = a_Obj.GetOrAddComponent<ItemPickUp>();
-            goData.m_Item = a_Item;
+            ItemPickUp goData = go.GetOrAddComponent<ItemPickUp>();
+            goData.item = item;
 
             // 드랍 위치 설정
             float ranPos = Random.Range(-0.5f, 0.5f);
-            a_Obj.transform.position = new Vector3(transform.position.x + ranPos, 0f, transform.position.z + ranPos);
+            go.transform.position = new Vector3(transform.position.x + ranPos, 0f, transform.position.z + ranPos);
         }
     }
 
     // 피격 데미지 출력
-    void HitEffect(int damage)
+    private void HitEffect(int damage)
     {
         // UI_HitEffect 생성 후 데미지 text 넣기
         UI_HitEffect hitObject = Managers.UI.MakeWorldSpaceUI<UI_HitEffect>(gameObject.transform);

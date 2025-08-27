@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ * File :   GameScene.cs
+ * Desc :   GameScene이 Load되면 호출된다. ( 플레이어, PlayScene 등 생성 )
+ */
 
 public class GameScene : BaseScene
 {
@@ -19,20 +22,20 @@ public class GameScene : BaseScene
         // 플레이어 캐릭터 생성
         if (Managers.Game.GetPlayer().IsFakeNull() == true)
         {
-            GameObject a_Player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
-            a_Player.transform.position = playerSpawn.position;
-            DontDestroyOnLoad(a_Player);
+            GameObject _player = Managers.Game.Spawn(Define.WorldObject.Player, "Player");
+            _player.transform.position = playerSpawn.position;
+            DontDestroyOnLoad(_player);
         }
 
         // UI 생성
-        if (Managers.Game.m_PlayScene.IsFakeNull() == true)
+        if (Managers.Game._playScene.IsFakeNull() == true)
         {
             Managers.Game.Init();
-            Managers.Game.m_PlayScene = Managers.UI.ShowSceneUI<UI_PlayScene>();
-            DontDestroyOnLoad(Managers.Game.m_PlayScene.gameObject);
+            Managers.Game._playScene = Managers.UI.ShowSceneUI<UI_PlayScene>();
+            DontDestroyOnLoad(Managers.Game._playScene.gameObject);
         }
         else
-            Managers.Game.m_PlayScene.IsMiniMap(true);
+            Managers.Game._playScene.IsMiniMap(true);
 
         // 플레이어 세이브 위치 이동
         if (Managers.Game.CurrentPos != Vector3.zero)
@@ -41,14 +44,14 @@ public class GameScene : BaseScene
         // 클릭 Effect 생성
         if (Managers.Game.GetPlayer().IsFakeNull() == false)
         {
-            GameObject a_ClickMoveEff = Managers.Resource.Instantiate("Effect/ClickMoveEffect");
-            a_ClickMoveEff.SetActive(false);
+            GameObject clickMoveEffect = Managers.Resource.Instantiate("Effect/ClickMoveEffect");
+            clickMoveEffect.SetActive(false);
 
-            Managers.Game.GetPlayer().GetComponent<Player_Ctrl>().m_ClickMoveObj = a_ClickMoveEff;
+            Managers.Game.GetPlayer().GetComponent<PlayerController>().clickMoveEffect = clickMoveEffect;
         }
         
         // 카메라 조정
-        Camera.main.gameObject.GetOrAddComponent<Camera_Ctrl>().SetPlayer(Managers.Game.GetPlayer());
+        Camera.main.gameObject.GetOrAddComponent<CameraController>().SetPlayer(Managers.Game.GetPlayer());
     }
 
     public override void Clear()

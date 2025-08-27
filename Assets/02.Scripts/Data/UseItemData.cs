@@ -16,9 +16,9 @@ using UnityEngine;
 [Serializable]
 public class UseItemData : ItemData
 {
-    public Define.UseType UseType = Define.UseType.Unknown;
-    public int UseValue = 0;
-    public int ItemCount = 0;
+    public Define.UseType useType = Define.UseType.Unknown;
+    public int useValue = 0;
+    public int itemCount = 0;
 
     public bool UseItem(ItemData item)
     {
@@ -27,10 +27,10 @@ public class UseItemData : ItemData
 
         UseItemData useItem = item as UseItemData;
 
-        if (useItem.UseType == Define.UseType.Hp)
-            Managers.Game.Hp += useItem.UseValue;
-        else if (useItem.UseType == Define.UseType.Mp)
-            Managers.Game.Mp += useItem.UseValue;
+        if (useItem.useType == Define.UseType.Hp)
+            Managers.Game.Hp += useItem.useValue;
+        else if (useItem.useType == Define.UseType.Mp)
+            Managers.Game.Mp += useItem.useValue;
 
         return true;
     }
@@ -38,9 +38,9 @@ public class UseItemData : ItemData
     public UseItemData UseClone()
     {
         UseItemData useItem = new UseItemData();
-        useItem.UseType = this.UseType;
-        useItem.UseValue = this.UseValue;
-        useItem.ItemCount = this.ItemCount;
+        useItem.useType = this.useType;
+        useItem.useValue = this.useValue;
+        useItem.itemCount = this.itemCount;
 
         return useItem;
     }

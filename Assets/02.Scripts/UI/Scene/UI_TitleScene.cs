@@ -3,7 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/*
+ * File :   UI_TitleScene.cs
+ * Desc :   게임 플레이 Scene UI
+ *
+ & Functions
+ &  [Public]
+ &  : Init()                - 초기 설정
+ &
+ &  [Private]
+ &  : OnClickStartButton()  - 게임 시작 버튼
+ &  : OnClickLoadButton()   - 세이브 로드 버튼
+ &  : OnClickExitButton()   - 게임 나가기 버튼
+ *
+ */
 
 public class UI_TitleScene : UI_Scene
 {
@@ -48,13 +61,13 @@ public class UI_TitleScene : UI_Scene
     }
     
     // 시작 버튼
-     void OnClickStartButton()
+    private void OnClickStartButton()
     {
         Managers.Scene.LoadScene(Define.Scene.PlayerCustom);
     }
 
     // 세이브 로드 버튼
-     void OnClickLoadButton()
+    private void OnClickLoadButton()
     {
         if (Managers.Game.LoadGame() == false)
             return;
@@ -64,6 +77,11 @@ public class UI_TitleScene : UI_Scene
             // 인터넷 연결이 안되었을 때 행동
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo("네트워크 연결이 필요합니다.", Color.red);
         }
+        else if(Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
+        {
+            // 데이터로 연결이 되었을 때 행동
+            Managers.UI.ShowPopupUI<UI_LoadPopup>().SetInfo(Define.Scene.Game, 6);
+        }
         else
         {
             // 와이파이로 연결이 되었을 때 행동
@@ -72,7 +90,7 @@ public class UI_TitleScene : UI_Scene
     }
 
     // 나가기 버튼
-     void OnClickExitButton()
+    private void OnClickExitButton()
     {
         Application.Quit();
     }

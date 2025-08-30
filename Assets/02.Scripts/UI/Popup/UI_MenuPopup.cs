@@ -2,25 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UI_MenuPopup.cs
- * Desc :   Esc Menu Popup UI
- *          현재 띄어진 Popup이 없다면 Menu Popup을 활성화한다.
- *
- & Functions
- &  [Public]
- &  : Init() - 초기 설정
- &
- &  [Private]
- &  : OnMenuPopup()             - 메뉴 활성화or비활성화
- &  : OnMenu()                  - 메뉴 활성화 진행
- &  : OnClickContinueButton()   - 진행 버튼
- &  : OnClickSaveButton()       - 세이브 버튼
- &  : OnClickAppExitButton()    - 나가기 버튼
- &  : Exit()                    - 초기화
- *
- */
 
+//메뉴(일시정지 및 설정) 팝업
 public class UI_MenuPopup : UI_Popup
 {
     enum Buttons
@@ -32,8 +15,7 @@ public class UI_MenuPopup : UI_Popup
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         popupType = Define.Popup.Menu;
 
@@ -55,7 +37,7 @@ public class UI_MenuPopup : UI_Popup
     }
 
     // 메뉴 활성화
-    private void OnMenuPopup()
+    void OnMenuPopup()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -69,7 +51,7 @@ public class UI_MenuPopup : UI_Popup
         }
     }
 
-    private void OnMenu()
+    void OnMenu()
     {
         // 현재 활성화 중인 Popup이 없다면
         if (Managers.UI.ClosePopupUI() == false)
@@ -85,29 +67,32 @@ public class UI_MenuPopup : UI_Popup
             Managers.Game._playScene._slotTip.OnSlotTip(false);
         }
     }
-    
+
     // 게임 진행 버튼
-    private void OnClickContinueButton()
+    void OnClickContinueButton()
     {
         Exit();
     }
 
     // 게임 세이브 버튼
-    private void OnClickSaveButton()
+    void OnClickSaveButton()
     {
         Managers.Game.SaveGame();
         Exit();
     }
 
     // 게임 나가기 버튼
-    private void OnClickAppExitButton()
+    void OnClickAppExitButton()
     {
         Exit();
         Application.Quit();
+
+        //에디터상에서의 종료
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     // 초기화
-    private void Exit()
+    void Exit()
     {
         Time.timeScale = 1;
         Managers.UI.ClosePopupUI(this);

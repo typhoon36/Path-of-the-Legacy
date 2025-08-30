@@ -41,8 +41,8 @@ public class UI_SkillBarSlot : UI_SkillSlot
     }
 
     [SerializeField]
-    private Define.KeySkill     keySkill;       // 입력 key
-    private Image               coolDownImage;  // 쿨타임 이미지
+    private Define.KeySkill keySkill;       // 입력 key
+    private Image coolDownImage;  // 쿨타임 이미지
 
     public override void SetInfo()
     {
@@ -64,10 +64,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
         }
     }
 
-    void Update()
-    {
-        UpdateCoolDown();
-    }
+    void Update() { UpdateCoolDown(); }
 
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
@@ -122,7 +119,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
             if (skill.minLevel < 5)
                 return;
         }
-        
+
         // 기존 스킬 쿨타임 여부
         IsCoolDown(skillData.isCoolDown);
 
@@ -144,7 +141,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
         {
             icon.sprite = skillData.skillSprite = Managers.Data.Skill[skillData.skillId].skillSprite;
         }
-        
+
         SetColor(255);
     }
 
@@ -154,7 +151,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
         // 쿨타임
         if (skillData.IsNull() == true)
             return;
-        
+
         if (skillData.isCoolDown == true)
         {
             // 쿨타임 객체 활성화
@@ -163,7 +160,7 @@ public class UI_SkillBarSlot : UI_SkillSlot
 
             // 시계 방향으로 밝아지는 fillAmount
             coolDownImage.fillAmount -= 1 * Time.smoothDeltaTime / skillData.skillCoolDown;
-            
+
             // fillAmount가 0이 되면 쿨타임 끝
             if (coolDownImage.fillAmount <= 0)
             {

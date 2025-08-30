@@ -57,7 +57,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
         base.AddItem(_item, count);
 
         armorItem = _item as ArmorItemData;
-        
+
         // 장착 중인 장비가 있다면 비활성화
         if (Managers.Game.CurrentArmor.ContainsKey(armorType) == true)
         {
@@ -77,8 +77,8 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     protected override void OnClickSlot(PointerEventData eventData)
     {
-        if (item.IsNull() == true || UI_DragSlot.instance.dragSlotItem.IsNull() == false)
-            return;
+        // 드래그 중이거나 아이템이 없다면 취소
+        if (item.IsNull() == true || UI_DragSlot.instance.dragSlotItem.IsNull() == false) return;
 
         // 우클릭하여 장비 벗기
         if (Input.GetMouseButtonUp(1))
@@ -110,7 +110,10 @@ public class UI_ArmorSlot : UI_ItemDragSlot
         {
             // 자기 자신이라면 취소
             if (dragSlot == this)
+            {
+                Debug.Log("dragSlot == this");
                 return;
+            }
 
             // 장비 장착 (or 교체)
             ChangeSlot(dragSlot as UI_ItemSlot);

@@ -85,8 +85,7 @@ public class UI_ShopPopup : UI_Popup
     private void SettingBuySlot(int shopBuyId)
     {
         // 똑같은 상점에 들린다면
-        if (currentShopId == shopBuyId)
-            return;
+        if (currentShopId == shopBuyId) return;
 
         currentShopId = shopBuyId;
 
@@ -262,6 +261,12 @@ public class UI_ShopPopup : UI_Popup
             saleList[i].Clear();
 
         saleList.Clear();
+      
+
+        for(int i=0; i< buyList.Count; i++)
+            buyList.Clear();
+
+        buyList.Clear();
 
         Managers.Game.IsInteract = false;
 

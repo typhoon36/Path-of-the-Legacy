@@ -38,6 +38,7 @@ public class UI_ItemDragSlot : UI_ItemSlot
         // 마우스 드래그 방향으로 아이템 이동
         if (item.IsNull() == false && UI_DragSlot.instance.dragSlotItem.IsNull() == false)
             UI_DragSlot.instance.icon.transform.position = eventData.position;
+
     }
 
     // 드래그가 끝나면
@@ -49,5 +50,5 @@ public class UI_ItemDragSlot : UI_ItemSlot
     }
 
     // 슬롯 바꾸기
-    protected virtual void ChangeSlot(UI_ItemSlot itemSlot) {}
+    protected virtual void ChangeSlot(UI_ItemSlot itemSlot) { Debug.Log("Changeed"); }
 }

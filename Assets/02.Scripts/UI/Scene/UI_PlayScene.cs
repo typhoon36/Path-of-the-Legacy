@@ -115,8 +115,11 @@ public class UI_PlayScene : UI_Scene
         {
             // 기본 장비 장착
             Managers.Game.CurrentWeapon = Managers.Data.CallItem(1) as WeaponItemData;
+            Managers.Game.CurrentArmor.Add(Define.ArmorType.Helm, Managers.Data.CallItem(3001) as ArmorItemData);
             Managers.Game.CurrentArmor.Add(Define.ArmorType.Chest, Managers.Data.CallItem(3005) as ArmorItemData);
             Managers.Game.CurrentArmor.Add(Define.ArmorType.Pants, Managers.Data.CallItem(3009) as ArmorItemData);
+            Managers.Game.CurrentArmor.Add(Define.ArmorType.Boots, Managers.Data.CallItem(3013) as ArmorItemData);
+            Managers.Game.CurrentArmor.Add(Define.ArmorType.Gloves, Managers.Data.CallItem(3017) as ArmorItemData);
         }
 
         return true;
@@ -163,6 +166,8 @@ public class UI_PlayScene : UI_Scene
                     return;
                 }
             }
+            else
+                return;
         }
 
         Debug.Log("장착된 소비 아이템이 없습니다.");

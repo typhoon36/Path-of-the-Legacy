@@ -58,19 +58,19 @@ public abstract class BaseController : MonoBehaviour
                     anim.CrossFade("Idle", 0.4f);
                     break;
                 case Define.State.DiveRoll:
-                    anim.CrossFade("Roll", 0.1f, -1, 0);
+                    anim.CrossFade("Roll", 0.1f, 0);
                     break;
                 case Define.State.Attack:
                     AnimAttack();
                     break;
                 case Define.State.Hit:
-                    anim.CrossFade("Hit", 0.1f, -1, 0);
+                    anim.CrossFade("Hit", 0.1f, 0);
                     break;
                 case Define.State.Down:
-                    anim.CrossFade("Down", 0.1f, -1, 0);
+                    anim.CrossFade("Down", 0.1f, 0);
                     break;
                 case Define.State.Die:
-                    anim.CrossFade("Die", 0.1f, -1, 0);
+                    anim.CrossFade("Die", 0.1f, 0);
                     break;
             }
         }
@@ -148,7 +148,7 @@ public abstract class BaseController : MonoBehaviour
     // 기본 공격 애니메이션
     protected virtual void AnimAttack()
     {
-        anim.CrossFade("ATTACK"+attackNumber, 0.1f, -1, 0);
+        anim.CrossFade("Attack"+ attackNumber, 0.1f, 0);
 
         if (attackNumber == 1)
             attackNumber = 2;

@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 6725658268724071599}
   - component: {fileID: 5055012106505632507}
   - component: {fileID: 7639047070922753219}
+  - component: {fileID: 4957858803063638193}
   m_Layer: 5
   m_Name: UI_SkillPopupSlot
   m_TagString: Untagged
@@ -294,7 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -335,6 +336,19 @@ MonoBehaviour:
     skillSprite: {fileID: 0}
     powerList: 
   skillId: 0
+--- !u!114 &4957858803063638193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233556861324982975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 1
 --- !u!1 &6979472593384294821
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5660376, g: 0.55268764, b: 0.55268764, a: 1}
+  m_Color: {r: 0.5660376, g: 0.55268764, b: 0.55268764, a: 0.6313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

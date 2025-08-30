@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7614658076002767409}
   - component: {fileID: 6774373405257588116}
   - component: {fileID: 8784165458433255774}
-  - component: {fileID: 3663103330213957653}
-  m_Layer: 0
+  - component: {fileID: -2414908487710527316}
+  m_Layer: 12
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3663103330213957653
+--- !u!114 &-2414908487710527316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

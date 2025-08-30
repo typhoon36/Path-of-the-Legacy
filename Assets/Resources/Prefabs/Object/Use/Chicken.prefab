@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4408066951452179583}
   - component: {fileID: 7596948330892755016}
   - component: {fileID: 8531265664968978332}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7102648696223833186}
   - component: {fileID: 1204967906804962818}
   - component: {fileID: 4417910800000920240}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4118741366028873394}
   - component: {fileID: 9088802190296529244}
   - component: {fileID: 9085193453107517441}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Broccoli 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7439028758853089846}
   - component: {fileID: 1689416861524204604}
   - component: {fileID: 5071911733647263209}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Broccoli 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 9014604062773578316}
   - component: {fileID: 2446574904968079290}
   - component: {fileID: 8088972520797897224}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Carrot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7345582757731593920}
-  m_Layer: 0
+  - component: {fileID: 577184480546190182}
+  m_Layer: 12
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,6 +459,19 @@ Transform:
   - {fileID: 4408066951452179583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &577184480546190182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793785633993128280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCount: 1
 --- !u!1 &1816804552310090814
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +483,7 @@ GameObject:
   - component: {fileID: 1745327125911690064}
   - component: {fileID: 3601226766353369652}
   - component: {fileID: 3014201059268477653}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Broccoli 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +566,7 @@ GameObject:
   - component: {fileID: 1489077504726538950}
   - component: {fileID: 9109832103834056488}
   - component: {fileID: 1636631523169977736}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Carrot 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +649,7 @@ GameObject:
   - component: {fileID: 4690885789353614408}
   - component: {fileID: 916361540768541163}
   - component: {fileID: 5780988269410471840}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Broccoli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +732,7 @@ GameObject:
   - component: {fileID: 6518532993529168329}
   - component: {fileID: 5075622620089428675}
   - component: {fileID: 9014003905388076200}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Broccoli 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +815,7 @@ GameObject:
   - component: {fileID: 5420420346847511548}
   - component: {fileID: 7816236536519517471}
   - component: {fileID: 4398843655626971649}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -884,7 +898,7 @@ GameObject:
   - component: {fileID: 3378960368600397157}
   - component: {fileID: 3303930378217949475}
   - component: {fileID: 139816329073000691}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Broccoli 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -967,7 +981,7 @@ GameObject:
   - component: {fileID: 4018949997742993112}
   - component: {fileID: 6965361117567857812}
   - component: {fileID: 5683098309055442208}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Carrot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

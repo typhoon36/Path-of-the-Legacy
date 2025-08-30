@@ -3,15 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   WeaponItemData.cs
- * Desc :   무기 아이템 데이터 (공격력)
- *
- & Functions
- &  : WeaponClone() - 무기 아이템 깊은 복사
- *
- */
 
+// 무기 아이템 데이터 (공격력)
 [Serializable]
 public class WeaponItemData : EquipmentData
 {

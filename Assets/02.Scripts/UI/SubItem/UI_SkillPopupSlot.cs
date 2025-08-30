@@ -60,6 +60,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
             if (skillId == skill.skillId)
             {
                 skillData.isLock = skill.isLock;
+                Debug.Log($"Skill {skillId} : UnLock");
                 break;
             }
         }
@@ -95,18 +96,21 @@ public class UI_SkillPopupSlot : UI_SkillSlot
     {
         if (skillData.isLock == false)
             base.OnBeginDragSlot(eventData);
+        Debug.Log($"Skill {skillId} : OnBeginDragSlot");
     }
 
     protected override void OnDragSlot(PointerEventData eventData)
     {
         if (skillData.isLock == false)
             base.OnDragSlot(eventData);
+        Debug.Log($"Skill {skillId} : OnDragSlot");
     }
 
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
         if (skillData.isLock == false && skillData.IsNull() == false)
             base.OnEndDragSlot(eventData);
+        Debug.Log($"Skill {skillId} : OnEndDragSlot");
     }
 
     // 스킬 레벨 체크

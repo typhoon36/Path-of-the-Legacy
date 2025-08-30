@@ -37,29 +37,29 @@ using UnityEngine;
 public class DarkKnightController : MonsterController
 {
     // 스킬, 공격 애니메이션 이름
-    private string[]        skills          = new string[]{"SKILL1", "SKILL2"};
-    private string[]        meleeAttacks    = new string[]{"ATTACK1", "ATTACK2"};
-    private string[]        rangedAttacks   = new string[]{"ATTACK3", "ATTACK4", "ATTACK5"};
+    private string[] skills = new string[] { "Skill1", "SKill2" };
+    private string[] meleeAttacks = new string[] { "Attack1", "Attack2" };
+    private string[] rangedAttacks = new string[] { "Attack3", "Attack4", "Attack5" };
 
-    private int             attackCount     = 0;        // 공격 횟수 ( 스킬을 사용하기 위함. )
-    private int             onSkillCount    = 3;        // 스킬 시작 횟수 
-    
-    private bool            isRangedAttack  = false;    // 원거리 공격 체크
-    private bool            isSkill         = false;    // 다음 스킬 공격 확인
+    private int attackCount = 0;        // 공격 횟수 ( 스킬을 사용하기 위함. )
+    private int onSkillCount = 3;        // 스킬 시작 횟수 
 
-    [SerializeField]
-    private float           rangedAttackRange = 5f;     // 원거리 수치
-
-    private Portal          exitPortal;                 // 포탈 Prefab
+    private bool isRangedAttack = false;    // 원거리 공격 체크
+    private bool isSkill = false;    // 다음 스킬 공격 확인
 
     [SerializeField]
-    private EffectParticle  particleCollider;           // 파티클 접촉 확인
+    private float rangedAttackRange = 5f;     // 원거리 수치
+
+    private Portal exitPortal;                 // 포탈 Prefab
 
     [SerializeField]
-    private GameObject      swingTrail;                 // 검기 Trail
+    private EffectParticle particleCollider;           // 파티클 접촉 확인
 
     [SerializeField]
-    private Transform       attackRangeObj;             // 공격 예상 범위 오브젝트
+    private GameObject swingTrail;                 // 검기 Trail
+
+    [SerializeField]
+    private Transform attackRangeObj;             // 공격 예상 범위 오브젝트
 
     [SerializeField]
     private MonsterAttackCollistion skillCollider;      // 스킬 사용 접촉 확인
@@ -72,7 +72,7 @@ public class DarkKnightController : MonsterController
         base.Init();
 
         // 파티클 피격 설정
-        particleCollider.SetInfo(()=>{ _lockTarget.GetComponent<PlayerController>().OnHitDown(_stat, (int)(_stat.Attack * 0.8f)); });
+        particleCollider.SetInfo(() => { _lockTarget.GetComponent<PlayerController>().OnHitDown(_stat, (int)(_stat.Attack * 0.8f)); });
 
         // 데미지 스탯 적용
         skillCollider.damage = (int)(_stat.Attack * 1.5f);
@@ -128,7 +128,7 @@ public class DarkKnightController : MonsterController
             // 클리어 안내문 생성
             string message = $"<size=170%>Clear!!</size> \n<color=yellow>Gold: 100</color> <color=green>Exp: 200</color>";
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo(message, new Color(1f, 0.5f, 0f));
-            
+
             // 포탈 활성화
             exitPortal.gameObject.SetActive(true);
         }
@@ -150,7 +150,7 @@ public class DarkKnightController : MonsterController
     protected override void ExitAttack()
     {
         // 2~3번 일반 공격 시 다음 공격 스킬 진행
-        if (++attackCount >= Random.Range(2, onSkillCount+1))
+        if (++attackCount >= Random.Range(2, onSkillCount + 1))
         {
             isSkill = true;
             attackCount = 0;
@@ -167,7 +167,7 @@ public class DarkKnightController : MonsterController
         // 스킬 공격이 가능하다면
         if (isSkill == true)
         {
-            if (distance <= rangedAttackRange+1)
+            if (distance <= rangedAttackRange + 1)
                 OnSkill(skills[Random.Range(0, 2)]);
 
             return;
@@ -243,7 +243,7 @@ public class DarkKnightController : MonsterController
         // 공격 예상 범위 사이즈 설정
         attackRangeObj.localPosition = new Vector3(0, 0, 4.5f);
         attackRangeObj.localScale = new Vector3(1, 0.00055f, 9f);
-        
+
         // 0.9초 동안 플레이어를 바라본 후 공격
         float currentTime = 0f;
         while (true)
@@ -290,11 +290,11 @@ public class DarkKnightController : MonsterController
     {
         Vector2 forward = new Vector2(transform.position.z, transform.position.x);
         Vector2 steeringTarget = new Vector2(nav.steeringTarget.z, nav.steeringTarget.x);
-        
+
         //방향을 구한 뒤, 역함수로 각을 구한다.
         Vector2 dir = steeringTarget - forward;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        
+
         //방향 적용
         transform.eulerAngles = Vector3.up * angle;
     }
@@ -311,9 +311,9 @@ public class DarkKnightController : MonsterController
     }
 
     // 검기 Animation Event
-    private void OnTrail()  { swingTrail.SetActive(true);   }
-    private void OffTrail() { swingTrail.SetActive(false);  }
+    private void OnTrail() { swingTrail.SetActive(true); }
+    private void OffTrail() { swingTrail.SetActive(false); }
 
     // 보스는 변칙적인 공격이 있기 때문에 사용 x (이대로만 두기)
-    protected override void AnimAttack() {}
+    protected override void AnimAttack() { }
 }

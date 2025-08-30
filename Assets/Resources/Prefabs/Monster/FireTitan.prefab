@@ -20134,7 +20134,7 @@ GameObject:
   - component: {fileID: 4086228268487846771}
   m_Layer: 0
   m_Name: FireTitan
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20193,7 +20193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 4
-  _name: "\uD0C0\uB77D\uD55C \uBD88\uC758 \uC815\uB839"
+  _name: "\uD0C0\uB77D\uD55C \uBD88\uC758 \uAE30\uC0AC"
   _hp: 15000
   _maxHp: 15000
   _attack: 120

@@ -27,7 +27,6 @@ public class DataManager
     public Dictionary<int, QuestData> Quest { get; private set; }
     public Dictionary<int, TalkData> Talk { get; private set; }
     public Dictionary<int, List<SkinnedData>> Skinned { get; private set; }
-    // public Dictionary<int, TextData> Texts { get; private set; }
 
     // Deep Copy 아이템
     public ItemData CallItem(int itemId)

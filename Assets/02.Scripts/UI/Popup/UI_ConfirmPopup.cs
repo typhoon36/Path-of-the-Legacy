@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /*
  * File :   UI_ConfirmPopup.cs
@@ -34,7 +35,7 @@ public class UI_ConfirmPopup : UI_Popup
     }
 
     [SerializeField]
-    TextMeshProUGUI _Messagetext;
+    Text _Messagetext;
 
     public override bool Init()
     {

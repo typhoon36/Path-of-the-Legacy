@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8114228413944719951}
   - component: {fileID: 4799307886449832230}
   - component: {fileID: 8879408756994727170}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BluePotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,4 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemCount: 1
+  itemCount: 1

@@ -155,7 +155,7 @@ public class Define : MonoBehaviour
     {
         Bgm,
         Effect,
-        MaxCount,   // MaxCount를 마지막 자리에 둠으로 써 해당 enum의 최대 개수(int)가 저장됨.
+        MaxCount,
     }
 
     public enum UIEvent
@@ -204,7 +204,7 @@ public class Define : MonoBehaviour
 
     public const string LoadMessage1 = "장비는 최대 10강까지 강화할 수 있습니다.";
     public const string LoadMessage2 = "7레벨이 되면 강력한 스킬을 사용할 수 있습니다.";
-    public const string LoadMessage3 = "무기는 6강부터 특별한 이펙트가 부여됩니다.";
+    public const string LoadMessage3 = "미니맵은 던전과 보스전에서 사용불가능합니다.";
 
     public const string NameRegex = @"^[0-9a-zA-Z가-힣]{2,9}$";
 }

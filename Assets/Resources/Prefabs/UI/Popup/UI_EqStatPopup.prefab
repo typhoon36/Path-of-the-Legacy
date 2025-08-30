@@ -2285,6 +2285,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 233a77205485c7041b356d6db13d4ee4, type: 3}
+    - target: {fileID: 1789242023464475543, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
+      propertyPath: armorType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2496870567083035471, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: m_Name
       value: UI_ArmorSlot (2)
@@ -2404,7 +2408,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 06eb647fe5f664c4ab94269f973adbbc, type: 3}
     - target: {fileID: 1789242023464475543, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: armorType
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2496870567083035471, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: m_Name
@@ -2523,6 +2527,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f8a54a8c47e8af744bdb702d2bba08cd, type: 3}
+    - target: {fileID: 1789242023464475543, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
+      propertyPath: armorType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2496870567083035471, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: m_Name
       value: UI_ArmorSlot (1)
@@ -2642,7 +2650,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 336b28736cc39b44fb560595c8bec797, type: 3}
     - target: {fileID: 1789242023464475543, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: armorType
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2496870567083035471, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: m_Name
@@ -2880,7 +2888,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ffeb3220ce3bf8a4ba5a4054f5af50fb, type: 3}
     - target: {fileID: 1789242023464475543, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: armorType
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2496870567083035471, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: m_Name
@@ -2999,6 +3007,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ee71e85eb53f88b428deb24d87246a10, type: 3}
+    - target: {fileID: 1789242023464475543, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
+      propertyPath: armorType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2496870567083035471, guid: 70f9e6348f75d7c4f8640e792d253757, type: 3}
       propertyPath: m_Name
       value: UI_ArmorSlot (3)

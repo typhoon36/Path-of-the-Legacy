@@ -5,20 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_ShopBuySlot.cs
- * Desc :   UI_ShopPopup.cs에서 생성되며 아이템 구매 버튼을 담당
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : SetInfo()             - 기능 설정
- &
- &  [Prviate]
- &  : OnClickBuyButton()    - 구매 버튼 클릭 기능
- *
- */
 
+//구매 슬롯
 public class UI_ShopBuySlot : UI_ItemSlot
 {
     enum Images
@@ -102,8 +90,8 @@ public class UI_ShopBuySlot : UI_ItemSlot
         else
         {
             UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
-            if (confirmPopup.IsNull() == true)
-                return;
+           
+            if (confirmPopup.IsNull() == true) return;
             
             confirmPopup.SetInfo(()=>
             {

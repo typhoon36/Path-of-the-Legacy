@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 /*
@@ -24,10 +25,10 @@ using UnityEngine.EventSystems;
 
 public class UI_UseItemSlot : UI_ItemDragSlot
 {
-    public int                  key;
+    public int key;
 
     [SerializeField]
-    private Text     keyText;
+    private Text keyText;
 
     public override void SetInfo()
     {
@@ -59,7 +60,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
             if (Managers.Game._playScene._inventory.AcquireItem(item, itemCount) == true)
                 ClearSlot();
         }
-        
+
         base.OnEndDragSlot(eventData);
     }
 
@@ -95,7 +96,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
             {
                 if (Managers.Game._playScene._inventory.AcquireItem(item, itemCount) == false)
                     return;
-                
+
                 AddItem(itemSlot.item, (itemSlot.item as UseItemData).itemCount);
             }
         }

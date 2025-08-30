@@ -50247,7 +50247,7 @@ GameObject:
   - component: {fileID: 1143804426986342594}
   m_Layer: 0
   m_Name: Goblin3
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50403,7 +50403,7 @@ MonoBehaviour:
   _lockTarget: {fileID: 0}
   _destPos: {x: 0, y: 0, z: 0}
   _state: 2
-  monsterType: 1
+  monsterType: 0
   spawnPos: {x: 0, y: 0, z: 0}
   hpBarUI: {fileID: 0}
   scanRange: 8

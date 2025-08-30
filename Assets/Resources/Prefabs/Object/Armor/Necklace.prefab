@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 134898699000652698}
   - component: {fileID: 3922804822169332799}
   - component: {fileID: 1266757767134664949}
-  m_Layer: 0
+  - component: {fileID: 2838684625639873534}
+  m_Layer: 12
   m_Name: Necklace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,3 +86,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2838684625639873534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762393710949890336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCount: 1

@@ -2,20 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   PlayerAttackCollistion.cs
- * Desc :   플레이어 전방에 Collider를 활성화하여 접촉된 몬스터에게 데미지 반영
- *
- & Functions
- &  : OnEnable()            - 활성화    시 0.1f 후 비활성화 (DelayActiveFalse() Invoke 호출)
- &  : OnDisable()           - 비활성화  시 스킬 콤보 체크 및 콜라이더 사이즈 초기화
- &  : OnTriggerEnter()      - 몬스터 접촉 시 데미지 반영 
- &
- &  [Private]
- &  : DelayActiveFalse()    - 비활성화 딜레이
- &  : BasicColliderSize()   - 콜라이더 기본 사이즈 초기화
- *
- */
+//데미지 반영(기본 공격, 스킬 공격)
 
 public class PlayerAttackCollistion : MonoBehaviour
 {

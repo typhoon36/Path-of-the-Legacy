@@ -4,8 +4,6 @@ using UnityEngine;
 
 
 // 현재 수락한 퀘스트 확인 Popup UI
-
-
 public class UI_QuestPopup : UI_Popup
 {
     enum Gameobejcts

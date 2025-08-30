@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4309081522849282577}
   - component: {fileID: 4192812244009018549}
   - component: {fileID: 4096140833982851511}
-  m_Layer: 0
+  - component: {fileID: 49847739035192544}
+  m_Layer: 12
   m_Name: WhitePotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7786587297481989793}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4192812244009018549
 MeshFilter:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &49847739035192544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7786587297481989793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCount: 1

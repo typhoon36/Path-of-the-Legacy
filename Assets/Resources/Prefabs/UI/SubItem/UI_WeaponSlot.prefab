@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -80, y: -15}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -36.7, y: -35.1}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5003811463716514310
 CanvasRenderer:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 2830443135570465878}
   - component: {fileID: 2937382773103329417}
   - component: {fileID: 1848830728053381110}
+  - component: {fileID: 6894845948944642720}
   m_Layer: 5
   m_Name: UI_WeaponSlot
   m_TagString: Untagged
@@ -172,6 +173,19 @@ MonoBehaviour:
   icon: {fileID: 8612343883641378776}
   itemCount: 0
   weaponType: 1
+--- !u!114 &6894845948944642720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238177911927438904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 1
 --- !u!1 &7397095743591972679
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

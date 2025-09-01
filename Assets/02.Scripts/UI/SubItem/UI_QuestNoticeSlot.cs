@@ -23,11 +23,11 @@ public class UI_QuestNoticeSlot : UI_Base
 
     public QuestData    _quest;
 
-    private string      _targetName;        // 목표 이름
-    private string      _questNameText;     // 퀘스트 제목
-    private string      _qeustDescText;     // 퀘스트 내용
+     string      _targetName;        // 목표 이름
+     string      _questNameText;     // 퀘스트 제목
+     string      _qeustDescText;     // 퀘스트 내용
 
-    private bool        isSuccess = false;
+     bool        isSuccess = false;
 
     public override bool Init()
     {

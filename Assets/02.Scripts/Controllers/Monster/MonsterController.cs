@@ -23,7 +23,7 @@ using UnityEngine.AI;
  &  : ExitAttack()              - 공격 끝   (Animation Event)
  &  : TargetDistance()          - 타겟 거리값
  &
- &  [Private]
+ &  []
  &  : SpawnMoving()     - 스폰 지점 이동 코루틴
  &  : DelayDestroy()    - 딜레이 삭제 코루틴
  *
@@ -31,15 +31,15 @@ using UnityEngine.AI;
 
 public class MonsterController : BaseController
 {
-    public Define.MonsterType   monsterType;            // 몬스터 타입
-    public Vector3              spawnPos;               // 스폰 위치
-    public GameObject           hpBarUI;                // 체력바 UI
+    public Define.MonsterType monsterType;            // 몬스터 타입
+    public Vector3 spawnPos;               // 스폰 위치
+    public GameObject hpBarUI;                // 체력바 UI
 
-    protected MonsterStat       _stat;                  // 몬스터 스탯
-    protected NavMeshAgent      nav;
+    protected MonsterStat _stat;                  // 몬스터 스탯
+    protected NavMeshAgent nav;
 
-    protected float             distance;               // 타겟과의 사이 거리
-    protected bool              isOverSpawn = false;    // 스폰거리에서 벗어났는지 체크
+    protected float distance;               // 타겟과의 사이 거리
+    protected bool isOverSpawn = false;    // 스폰거리에서 벗어났는지 체크
 
     [SerializeField] protected float scanRange;         // 플레이어 감지 거리
     [SerializeField] protected float attackRange;       // 공격 사거리
@@ -113,7 +113,7 @@ public class MonsterController : BaseController
             StartCoroutine(SpawnMoving());  // 스폰 지점으로 이동
             return;
         }
-        
+
         // nav 도착좌표 설정
         nav.SetDestination(_lockTarget.transform.position);
 
@@ -134,7 +134,7 @@ public class MonsterController : BaseController
             State = Define.State.Moving;
             return;
         }
-        
+
         // 회전값 설정
         Vector3 dir = Managers.Game.GetPlayer().transform.position - transform.position;
         dir.y = 0;
@@ -147,7 +147,7 @@ public class MonsterController : BaseController
         nav.SetDestination(transform.position);
 
         // 피격 애니메이션 시간 체크
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("HIT") &&
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") &&
             anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             State = Define.State.Moving;
@@ -165,7 +165,7 @@ public class MonsterController : BaseController
     }
 
     // 공격할 때 (Animation Event)
-    protected virtual void OnAttackEvent()
+    public virtual void OnAttackEvent()
     {
         // 타겟 거리값
         distance = TargetDistance(Managers.Game.GetPlayer());
@@ -182,7 +182,7 @@ public class MonsterController : BaseController
     }
 
     // 공격이 끝날때 (Animation Event)
-    protected virtual void ExitAttack()
+    public virtual void ExitAttack()
     {
         State = Define.State.Moving;
     }
@@ -195,7 +195,7 @@ public class MonsterController : BaseController
     }
 
     // 스폰 지점 이동 코루틴
-    private IEnumerator SpawnMoving()
+    IEnumerator SpawnMoving()
     {
         isOverSpawn = true;
 
@@ -219,7 +219,7 @@ public class MonsterController : BaseController
     }
 
     // 삭제 딜레이 코루틴
-    private IEnumerator DelayDestroy()
+    IEnumerator DelayDestroy()
     {
         // 콜라이더 비활성화 ( 플레이어 감지 때문 )
         GetComponent<CapsuleCollider>().enabled = false;

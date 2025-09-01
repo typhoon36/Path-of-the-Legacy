@@ -19,7 +19,7 @@ using UnityEngine.EventSystems;
  &  : OnDropSlot()          - 현재 슬롯에 마우스 클릭을 때면 "장비 등록"
  &  : ChangeSlot()          - 슬롯 교체
  &
- &  [Private]
+ &  []
  &  : GetSlotInteract()     - 현재 슬롯의 아이템 타입 체크
  *
  */
@@ -93,7 +93,7 @@ public class UI_UpgradeSlot : UI_ItemDragSlot
     }
 
     // 인벤토리로 부터 우클릭으로 장비 받기
-    private void GetSlotInteract(UI_InvenSlot invenSlot)
+     void GetSlotInteract(UI_InvenSlot invenSlot)
     {
         // UI_UpgradePopup Prefab이 활성화 되어 있다면
         if (Managers.Game._playScene._upgrade.gameObject.activeSelf == true)

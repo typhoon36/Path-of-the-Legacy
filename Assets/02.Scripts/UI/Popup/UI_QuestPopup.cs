@@ -30,8 +30,8 @@ public class UI_QuestPopup : UI_Popup
 
     public List<UI_QuestNoticeSlot> questNoticeList;    // Scene UI에 등록된 퀘스트 List
 
-    private QuestData currentClickQuest;              // 현재 클릭한 퀘스트 
-    private int maxquestNoticeCount = 5;        // 퀘스트 알림 최대 개수
+     QuestData currentClickQuest;              // 현재 클릭한 퀘스트 
+     int maxquestNoticeCount = 5;        // 퀘스트 알림 최대 개수
 
     public override bool Init()
     {
@@ -180,7 +180,7 @@ public class UI_QuestPopup : UI_Popup
     }
 
     // 퀘스트창 활성화
-    private void OnQuestPopup()
+     void OnQuestPopup()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -197,7 +197,7 @@ public class UI_QuestPopup : UI_Popup
         }
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         // 버튼 기능 등록
         GetButton((int)Buttons.ExitButton).onClick.AddListener(() => { Managers.UI.ClosePopupUI(this); });
@@ -213,7 +213,7 @@ public class UI_QuestPopup : UI_Popup
         GetObject((int)Gameobejcts.QuestJournal).SetActive(false);
     }
 
-    private void RefreshUI()
+     void RefreshUI()
     {
         // 현재 퀘스트 확인
         Managers.Game.RefreshQuest();

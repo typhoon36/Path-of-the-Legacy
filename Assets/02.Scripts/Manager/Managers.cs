@@ -10,12 +10,12 @@ using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
-    private static Managers s_instance;
-    private static Managers Instance { get { Init(); return s_instance; } }
+     static Managers s_instance;
+     static Managers Instance { get { Init(); return s_instance; } }
 
 #region Contents
 
-    private GameManager _game = new GameManager();
+     GameManager _game = new GameManager();
 
     public static GameManager Game { get { return Instance._game; } }
 
@@ -23,12 +23,12 @@ public class Managers : MonoBehaviour
 
 #region Core
 
-    private DataManager _data = new DataManager();
-    private InputManager _input = new InputManager();
-    private PoolManager _pool = new PoolManager();
-    private ResourceManager _resource = new ResourceManager();
-    private SceneManagerEx _scene = new SceneManagerEx();
-    private UIManager _ui = new UIManager();
+     DataManager _data = new DataManager();
+     InputManager _input = new InputManager();
+     PoolManager _pool = new PoolManager();
+     ResourceManager _resource = new ResourceManager();
+     SceneManagerEx _scene = new SceneManagerEx();
+     UIManager _ui = new UIManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }

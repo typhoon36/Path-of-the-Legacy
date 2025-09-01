@@ -21,7 +21,7 @@ using UnityEngine.EventSystems;
  &  : OnDropSlot()          - 현재 슬롯에 마우스 클릭을 때면 "장비 장착"
  &  : ChangeSlot()          - 슬롯 교체
  &
- &  [Private]
+ &  []
  &  : GetPart()             - 장비 파츠 장착
  *
  */
@@ -29,12 +29,12 @@ using UnityEngine.EventSystems;
 public class UI_WeaponSlot : UI_ItemDragSlot
 {
     [SerializeField]
-    private Define.WeaponType   weaponType = Define.WeaponType.Unknown;
-    private WeaponItemData      weaponItem;
+     Define.WeaponType   weaponType = Define.WeaponType.Unknown;
+     WeaponItemData      weaponItem;
 
     public override void SetInfo()
     {
-        Managers.Game._playScene._equipment.weaponSlot = this;
+        Managers.Game._playScene.m_Equipment.weaponSlot = this;
 
         // 해당 부위 장비가 장착되어 있다면
         if (Managers.Game.CurrentWeapon.id != 0)
@@ -168,7 +168,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
             inven.ClearSlot();
     }
 
-    private void GetPart(WeaponItemData weapon)
+     void GetPart(WeaponItemData weapon)
     {
         if (weapon.charEquipment.IsNull() == true)
             weapon.charEquipment = (Managers.Data.Item[weapon.id] as WeaponItemData).charEquipment;

@@ -15,7 +15,7 @@ using UnityEngine.UI;
  &  : Init()    - 초기 설정
  &  : SetInfo() - 새 정보 설정 ( 확인 클릭 시 Invoke 호출할 Action 받기 )
  &
- &  [Private]
+ &  []
  &  : OnClickYesButton()    - 확인 클릭 시 호출
  &  : OnClickNoButton()     - 취소 클릭 시 호출
  *
@@ -71,7 +71,7 @@ public class UI_ConfirmPopup : UI_Popup
     }
 
     // 확인 버튼
-    private void OnClickYesButton()
+     void OnClickYesButton()
     {
         // Action Invoke 실행
         Managers.UI.ClosePopupUI(this);
@@ -80,7 +80,7 @@ public class UI_ConfirmPopup : UI_Popup
     }
 
     // 취소 버튼
-    private void OnClickNoButton()
+     void OnClickNoButton()
     {
         // Popup 비활성화
         Managers.UI.ClosePopupUI(this);

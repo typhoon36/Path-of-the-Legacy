@@ -3,20 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   UI_CustomScene.cs
- * Desc :   캐릭터 커스텀 Scene UI
- *
- & Functions
- &  [Public]
- &  : Init()        - 초기 설정
- &
- &  [Private]
- &  : OnClickCheckButton()  - 커스텀이 끝날 때 확인 버튼 
- &  : LoadPopup()           - Scene을 로드할 Popup 생성
- &  : OnClickExitButton()   - 커스텀 나가기 버튼
- *
- */
+// 커스텀 씬 UI
 
 public class UI_CustomScene : UI_Scene
 {
@@ -58,7 +45,7 @@ public class UI_CustomScene : UI_Scene
     }
 
     // 커스텀이 끝날 때 확인 버튼
-    private void OnClickCheckButton()
+     void OnClickCheckButton()
     {
         // 캐릭터 회전 중지
         custom.stopRotation = true;
@@ -77,7 +64,7 @@ public class UI_CustomScene : UI_Scene
     }
 
     // Scene을 로드할 Popup 생성
-    private void LoadPopup()
+     void LoadPopup()
     {
         if(Application.internetReachability == NetworkReachability.NotReachable)
         {
@@ -97,7 +84,7 @@ public class UI_CustomScene : UI_Scene
     }
 
     // 커스텀 나가기 버튼
-    private void OnClickExitButton()
+     void OnClickExitButton()
     {
         Managers.Scene.LoadScene(Define.Scene.Title);
     }

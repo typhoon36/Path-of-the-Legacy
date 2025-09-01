@@ -10,7 +10,7 @@ using UnityEngine;
  &  [Public]
  &  : SetPlayer()           - 플레이어 Prefab 받기
  &
- &  [Private]
+ &  []
  &  : QuarterViewUpdate()   - 쿼터뷰 모드로 플레이어 따라가기
  *
  */
@@ -18,13 +18,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Define.CameraMode   _mode = Define.CameraMode.QuarterView;
+     Define.CameraMode   _mode = Define.CameraMode.QuarterView;
     [SerializeField]
-    private Vector3             _delta;
+     Vector3             _delta;
     [SerializeField]
-    private GameObject          _player = null;
+     GameObject          _player = null;
 
-    private RaycastHit          hit;
+     RaycastHit          hit;
 
     public void SetPlayer(GameObject go) { _player = go; }
     
@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour
     }
 
     // 카메라 위치 이동을 마지막 업데이트에 실행함으로 써 떨림현상 완화
-    private void QuarterViewUpdate()
+     void QuarterViewUpdate()
     {
         if (_mode == Define.CameraMode.QuarterView)
         {

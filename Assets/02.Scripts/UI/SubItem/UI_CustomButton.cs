@@ -24,7 +24,7 @@ public class UI_CustomButton : UI_Base
 
     public Define.DefaultPart   partType;   // 기본 파츠 타입
 
-    private CharacterCustom     _custom;    // 커스텀 캐릭터 Object
+     CharacterCustom     _custom;    // 커스텀 캐릭터 Object
 
     public override bool Init()
     {

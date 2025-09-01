@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
  &  : Init()                - 초기 설정
  &  : SetInfo()             - 새 정보 설정 ( 확인 클릭 시 Invoke 호출할 Action 받기 )
  &
- &  [Private]
+ &  []
  &  : OnClickYesButton()    - 확인 버튼 클릭 시 호출
  &  : OnClickNoButton()     - 취소 버튼 클릭 시 호출
  *
@@ -29,12 +29,12 @@ public class UI_InputPopup : UI_Popup
     }
 
     [SerializeField]
-    private InputField  _inputField;
+     InputField  _inputField;
 
     [SerializeField]
-    private Text _messageText;
+     Text _messageText;
 
-    private string          _regex;         // 정규식
+     string          _regex;         // 정규식
 
     public override bool Init()
     {
@@ -64,7 +64,7 @@ public class UI_InputPopup : UI_Popup
         _inputField.Select();
     }
 
-    private void OnClickYesButton()
+     void OnClickYesButton()
     {
         Regex regex = new Regex(_regex);
         if (regex.IsMatch(_inputField.text))
@@ -82,7 +82,7 @@ public class UI_InputPopup : UI_Popup
         }
     }
 
-    private void OnClickNoButton()
+     void OnClickNoButton()
     {
         Managers.UI.ClosePopupUI(this);
 

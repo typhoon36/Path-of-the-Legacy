@@ -14,7 +14,7 @@ using UnityEngine;
 public class MapCameraController : MonoBehaviour
 {
     [SerializeField]
-    private float height;
+     float height;
     
     void FixedUpdate()
     {

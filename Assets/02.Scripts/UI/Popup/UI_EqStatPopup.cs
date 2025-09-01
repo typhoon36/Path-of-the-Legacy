@@ -13,7 +13,7 @@ using UnityEngine.UI;
  &  : Init()                - 초기 설정
  &  : SetEquipment()        - 장비 장착
  &
- &  [Private]
+ &  []
  &  : OnEquipmentUI()       - 장비/스탯창 활성화or비활성화
  &  : SetInfo()             - 기능 설정
  &  : AddStat()             - 스탯 포인트 사용
@@ -58,7 +58,7 @@ public class UI_EqStatPopup : UI_Popup
     public List<UI_ArmorSlot>   armorSlots; // 방어구 슬롯 List
     public UI_WeaponSlot        weaponSlot; // 무기 슬롯
 
-    private bool                isClickStatButton = false;  // 스탯 버튼을 눌렀는가?
+     bool                isClickStatButton = false;  // 스탯 버튼을 눌렀는가?
 
     public override bool Init()
     {
@@ -119,7 +119,7 @@ public class UI_EqStatPopup : UI_Popup
     }
 
     // 장비/스탯 Popup 활성화
-    private void OnEquipmentUI()
+     void OnEquipmentUI()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -133,7 +133,7 @@ public class UI_EqStatPopup : UI_Popup
         }
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         // 버튼 기능 등록
         GetButton((int)Buttons.HpAddPointButton).onClick.AddListener(()=>{ AddStat(Buttons.HpAddPointButton); });
@@ -160,7 +160,7 @@ $@"<color=white>이름</color>
     }
 
     // 스탯 포인트 적용
-    private void AddStat(Buttons stat)
+     void AddStat(Buttons stat)
     {
         if (Managers.Game.StatPoint == 0)
             return;
@@ -186,7 +186,7 @@ $@"<color=white>이름</color>
     }
 
     // 스탯 버튼 클릭
-    private void OnClickStatButton()
+     void OnClickStatButton()
     {
         isClickStatButton = !isClickStatButton;
 
@@ -194,7 +194,7 @@ $@"<color=white>이름</color>
         GetObject((int)Gameobjects.StatBackground).SetActive(isClickStatButton);
     }
 
-    private void SetEventHandler()
+     void SetEventHandler()
     {
         // Title 잡고 인벤토리 이동
         RectTransform eqStatPos = GetObject((int)Gameobjects.Background).GetComponent<RectTransform>();
@@ -220,7 +220,7 @@ $@"<color=white>이름</color>
         }, Define.UIEvent.Click);
     }
 
-    private void RefreshUI()
+     void RefreshUI()
     {
         // 현재 스탯 불러오기
         GetText((int)Texts.StatPointText).text = Managers.Game.StatPoint.ToString();
@@ -242,7 +242,7 @@ $@"<color=white>{Managers.Game.Name}</color>
         GetText((int)Texts.StatText).text = statText;
     }
 
-    private void Exit()
+     void Exit()
     {
         isClickStatButton = false;
         GetObject((int)Gameobjects.StatBackground).SetActive(isClickStatButton);

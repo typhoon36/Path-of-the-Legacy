@@ -13,7 +13,7 @@ using UnityEngine;
  &  [Protected]
  &  : OnDead()      - 사망 시 호출
  &
- &  [Private]
+ &  []
  &  : OnDropItem()  - 드랍 아이템 관리
  &  : HitEffect()   - 피격 이펙트 생성
  *
@@ -115,7 +115,7 @@ public class MonsterStat : MonoBehaviour
     }
 
     // 드랍 아이템
-    private void OnDropItem()
+     void OnDropItem()
     {
         // DataManager에서 DropItem List가져오기
         List<int> itemList = Managers.Data.DropItem[_dropItemId];
@@ -134,7 +134,7 @@ public class MonsterStat : MonoBehaviour
 
             // ItemPickUp 컴포넌트 붙이기
             ItemPickUp goData = go.GetOrAddComponent<ItemPickUp>();
-            goData.item = item;
+            goData.Item = item;
 
             // 드랍 위치 설정
             float ranPos = Random.Range(-0.5f, 0.5f);
@@ -143,7 +143,7 @@ public class MonsterStat : MonoBehaviour
     }
 
     // 피격 데미지 출력
-    private void HitEffect(int damage)
+     void HitEffect(int damage)
     {
         // UI_HitEffect 생성 후 데미지 text 넣기
         UI_HitEffect hitObject = Managers.UI.MakeWorldSpaceUI<UI_HitEffect>(gameObject.transform);

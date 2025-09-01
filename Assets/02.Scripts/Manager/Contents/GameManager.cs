@@ -117,11 +117,11 @@ public class GameData
 // 컨텐츠에서 사용될 매니저 (플레이어, 몬스터 등..)
 public class GameManager
 {
-    private GameData            _gameData = new GameData();
+     GameData            _gameData = new GameData();
     public GameData             SaveData { get { return _gameData; } set { _gameData = value; } }
 
-    private GameObject          _player;
-    private HashSet<GameObject> _monsters = new HashSet<GameObject>();
+     GameObject          _player;
+     HashSet<GameObject> _monsters = new HashSet<GameObject>();
 
     public bool                 isSaveLoad = false;     // 세이브 불러왔는지 여부
 
@@ -133,7 +133,7 @@ public class GameManager
     public Dictionary<Define.Popup, bool> isPopups;     // 팝업 bool 관리
 
     // NPC와 상호작용 여부
-    private bool isInteract = false;
+     bool isInteract = false;
     public bool IsInteract
     {
         get { return isInteract; }
@@ -221,7 +221,7 @@ public class GameManager
             
             return (int)(STR * 0.5);
         }
-		private set {}
+		 set {}
 	}
 
     public int Defense
@@ -230,7 +230,7 @@ public class GameManager
         {
             return addDefense;
         }
-		private set {}
+		 set {}
     }
 
     public int STR

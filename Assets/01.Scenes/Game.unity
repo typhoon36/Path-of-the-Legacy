@@ -11331,7 +11331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377abea43bbce114f89755c531f9976c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnMonsterNumber: {fileID: 165622, guid: 4a3567825697d4649a66888db4d89ee1, type: 3}
+  _spawnMonsterNumber: {fileID: 8210207690257594047, guid: 35881a42c87dca04c876b755f516f8a4, type: 3}
   _spawnPos: {x: 121, y: 0.1, z: 189}
   _spawnRedius: 5
   _spawnTime: 1
@@ -15214,9 +15214,9 @@ Transform:
   - {fileID: 883499883}
   - {fileID: 2113473132}
   - {fileID: 898462178}
-  - {fileID: 6101461731805785873}
   - {fileID: 1780850102}
   - {fileID: 1785747983}
+  - {fileID: 6101461731805785873}
   - {fileID: 1733891458}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19927,7 +19927,7 @@ MonoBehaviour:
   npcName: "\uBB3C\uC57D \uC0C1\uC778"
   scanRange: 2
   shopType: 1
-  shopBuyId: 1
+  m_ShopBuyId: 1
 --- !u!1 &884593305
 GameObject:
   m_ObjectHideFlags: 0
@@ -20485,8 +20485,8 @@ MonoBehaviour:
   _state: 2
   npcName: "\uACE0\uAE09 \uAC11\uC637 \uC0C1\uC778"
   scanRange: 2
-  shopType: 0
-  shopBuyId: 102
+  shopType: 2
+  m_ShopBuyId: 102
 --- !u!65 &898462180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23749,7 +23749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 0
-  _delta: {x: 7, y: 7, z: -7}
+  _delta: {x: 8, y: 8, z: -8}
   _player: {fileID: 0}
 --- !u!1 &981276817
 GameObject:
@@ -24146,6 +24146,56 @@ Transform:
   - {fileID: 1720319514}
   m_Father: {fileID: 1266925276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1004341929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004341931}
+  - component: {fileID: 1004341930}
+  m_Layer: 0
+  m_Name: SpawnPool (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1004341930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004341929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377abea43bbce114f89755c531f9976c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnMonsterNumber: {fileID: 8210207690257594047, guid: 2121f266f5d975c42a21d667318c537a, type: 3}
+  _spawnPos: {x: 189, y: 0.1, z: 189}
+  _spawnRedius: 5
+  _spawnTime: 1
+  _monsterCount: 1
+  _keepMonsterCount: 10
+--- !u!4 &1004341931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004341929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 66.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1006441563
 GameObject:
   m_ObjectHideFlags: 0
@@ -43443,7 +43493,7 @@ MonoBehaviour:
   npcName: "\uC561\uC138\uC11C\uB9AC \uC0C1\uC778"
   scanRange: 2
   shopType: 4
-  shopBuyId: 201
+  m_ShopBuyId: 201
 --- !u!1 &1781979809
 GameObject:
   m_ObjectHideFlags: 0
@@ -43751,7 +43801,7 @@ MonoBehaviour:
   npcName: "\uACE0\uAE09 \uC561\uC138\uC11C\uB9AC \uC0C1\uC778"
   scanRange: 2
   shopType: 4
-  shopBuyId: 202
+  m_ShopBuyId: 202
 --- !u!65 &1785747985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51423,7 +51473,7 @@ MonoBehaviour:
   npcName: "\uAC11\uC637\uC0C1\uC778"
   scanRange: 2
   shopType: 2
-  shopBuyId: 101
+  m_ShopBuyId: 101
 --- !u!1 &2116523670
 GameObject:
   m_ObjectHideFlags: 0
@@ -68235,7 +68285,6 @@ GameObject:
   - component: {fileID: 8445763113853127037}
   - component: {fileID: 3339390748122512225}
   - component: {fileID: 8445763113853127038}
-  - component: {fileID: 8445763113853127039}
   m_Layer: 0
   m_Name: Portal blue
   m_TagString: Untagged
@@ -75856,8 +75905,8 @@ MonoBehaviour:
   _state: 2
   npcName: "\uBB34\uAE30 \uC0C1\uC778"
   scanRange: 2
-  shopType: 0
-  shopBuyId: 301
+  shopType: 3
+  m_ShopBuyId: 301
 --- !u!4 &6921446355721030581
 Transform:
   m_ObjectHideFlags: 0
@@ -93817,27 +93866,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneType: 4
   portalObject: {fileID: 5607819271368878940}
---- !u!65 &8445763113853127039
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5607819271368878940}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.8402, y: 2.841, z: 2.8402}
-  m_Center: {x: 0, y: 0.00050002337, z: 0}
 --- !u!33 &8478673208275238514
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -95981,4 +96009,5 @@ SceneRoots:
   - {fileID: 1774130946}
   - {fileID: 2095277219}
   - {fileID: 503798255}
+  - {fileID: 1004341931}
   - {fileID: 1609803570}

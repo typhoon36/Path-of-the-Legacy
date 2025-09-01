@@ -4,27 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
- * File :   UI_PlayScene.cs
- * Desc :   게임 플레이 Scene UI
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : IsMiniMap()           - 미니맵 활성화 여부
- &  : RefreshUI()           - 새로고침 UI
- &  : SetQuestNoticeBar()   - Scene UI 퀘스트 알림 추가
- &  : UsingItem()           - 퀵슬롯 아이템 사용
- &  : OnMonsterBar()        - 몬스터바 활성화
- &  : CloseMonsterBar()     - 몬스터바 비활성화
- &
- &  [Private]
- &  : RefreshStat()         - 스탯 새로고침
- &  : SetRatio()            - Slider NaN 방지용
- &  : SetInfo()             - 기능 설정
- *
- */
-
+// 플레이 씬 UI
 public class UI_PlayScene : UI_Scene
 {
     enum Gameobjects
@@ -68,7 +48,7 @@ public class UI_PlayScene : UI_Scene
     }
 
     public UI_InvenPopup _inventory;     // 인벤토리 
-    public UI_EqStatPopup _equipment;     // 장비/스탯 
+    public UI_EqStatPopup m_Equipment;     // 장비/스탯 
     public UI_SkillPopup _skill;         // 스킬 
     public UI_SlotTipPopup _slotTip;       // 슬롯팁
     public UI_ShopPopup _shop;          // 상점
@@ -88,7 +68,7 @@ public class UI_PlayScene : UI_Scene
 
         // 자식 객체 불러오기
         BindObject(typeof(Gameobjects));
-        BindImage(typeof(Images));
+        //BindImage(typeof(Images));
         //BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         Bind<Slider>(typeof(Sliders));
@@ -100,7 +80,7 @@ public class UI_PlayScene : UI_Scene
 
         // 기능 팝업 생성
         _inventory = Managers.UI.ShowPopupUI<UI_InvenPopup>();
-        _equipment = Managers.UI.ShowPopupUI<UI_EqStatPopup>();
+        m_Equipment = Managers.UI.ShowPopupUI<UI_EqStatPopup>();
         _skill = Managers.UI.ShowPopupUI<UI_SkillPopup>();
         _slotTip = Managers.UI.ShowPopupUI<UI_SlotTipPopup>();
         _shop = Managers.UI.ShowPopupUI<UI_ShopPopup>();
@@ -147,6 +127,7 @@ public class UI_PlayScene : UI_Scene
     {
         UI_QuestNoticeSlot sceneQuestSlot = Managers.UI.MakeSubItem<UI_QuestNoticeSlot>(parent: GetObject((int)Gameobjects.QuestListBar).transform);
         sceneQuestSlot.SetInfo(quest);
+        sceneQuestSlot.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
         return sceneQuestSlot;
     }
 
@@ -166,6 +147,7 @@ public class UI_PlayScene : UI_Scene
                     return;
                 }
             }
+
             else
                 return;
         }
@@ -188,7 +170,7 @@ public class UI_PlayScene : UI_Scene
         GetObject((int)Gameobjects.MonsterBar).SetActive(false);
     }
 
-    private void RefreshStat()
+     void RefreshStat()
     {
         // 스탯 text 설정
         GetText((int)Texts.HpBarText).text = Managers.Game.Hp + " / " + Managers.Game.MaxHp;
@@ -211,7 +193,7 @@ public class UI_PlayScene : UI_Scene
     }
 
     // Slider NaN 방지
-    private void SetRatio(Slider slider, float ratio)
+     void SetRatio(Slider slider, float ratio)
     {
         if (float.IsNaN(ratio) == true)
             slider.value = 0;
@@ -219,7 +201,7 @@ public class UI_PlayScene : UI_Scene
             slider.value = ratio;
     }
 
-    private void SetInfo()
+     void SetInfo()
     {
         GetText((int)Texts.NameBarText).text = Managers.Game.Name;
 

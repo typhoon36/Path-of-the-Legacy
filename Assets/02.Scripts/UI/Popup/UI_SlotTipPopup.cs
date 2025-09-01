@@ -10,7 +10,7 @@ using UnityEngine;
  &  [Public]
  &  : Init()        - 초기 설정
  &
- &  [Private]
+ &  []
  &  : OnSlotTip()   - 슬롯 정보 활성화
  &  : RefreshUI()   - 새로고침 UI (슬롯 정보 새로고침)
  &  : SetColor()    - 색 설정
@@ -159,7 +159,7 @@ public class UI_SlotTipPopup : UI_Popup
         }
     }
 
-    private void SetColor(Color color)
+     void SetColor(Color color)
     {
         GetText((int)Texts.ItemNameText).color = color;
         GetText((int)Texts.ItemGradeText).color = color;

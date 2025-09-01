@@ -12,7 +12,7 @@ public class PoolManager
 {
     class Pool
     {
-        public GameObject Original { get; private set; }    // Pool을 진행할 대표 변수
+        public GameObject Original { get;  set; }    // Pool을 진행할 대표 변수
         public Transform Root { get; set; }
 
         Stack<Poolable> _poolStack = new Stack<Poolable>();

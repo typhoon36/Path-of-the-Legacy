@@ -22,10 +22,10 @@ public class UI_InvenPopup : UI_Popup
         GoldText,
     }
 
-    private List<UI_InvenSlot>  invenSlots;         // 슬롯 List
+     List<UI_InvenSlot>  invenSlots;         // 슬롯 List
 
     [SerializeField]
-    private int                 invenCount = 42;    // 인벤 슬롯 개수
+     int                 invenCount = 42;    // 인벤 슬롯 개수
 
     public override bool Init()
     {
@@ -111,7 +111,7 @@ public class UI_InvenPopup : UI_Popup
     }
 
     // 인벤토리 활성화
-    private void OnInventoryUI()
+     void OnInventoryUI()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -126,13 +126,13 @@ public class UI_InvenPopup : UI_Popup
     }
 
     // 기능 설정
-    private void SetInfo()
+     void SetInfo()
     {
         ResetSlot();        // 슬롯 초기화
         SetEventHandler();  // EventHandler 설정
     }
 
-    private void ResetSlot()
+     void ResetSlot()
     {
         // 슬롯들을 담고 있는 부모 가져오기
         GameObject grid = GetObject((int)Gameobjects.Content);
@@ -172,7 +172,7 @@ public class UI_InvenPopup : UI_Popup
         }
     }
 
-    private void SetEventHandler()
+     void SetEventHandler()
     {
         // Title 잡고 인벤토리 이동
         RectTransform invenPos = GetObject((int)Gameobjects.Background).GetComponent<RectTransform>();
@@ -205,13 +205,13 @@ public class UI_InvenPopup : UI_Popup
         }, Define.UIEvent.Click);
     }
 
-    private void RefreshUI()
+     void RefreshUI()
     {   
         // 골드 개수 불러오기
         GetText((int)Texts.GoldText).text = Managers.Game.Gold.ToString();
     }
 
-    private void Exit()
+     void Exit()
     {
         Managers.Game._playScene._slotTip.OnSlotTip(false);
         Managers.UI.ClosePopupUI(this);

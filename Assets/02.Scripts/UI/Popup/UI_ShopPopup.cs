@@ -85,13 +85,19 @@ public class UI_ShopPopup : UI_Popup
     private void SettingBuySlot(int shopBuyId)
     {
         // 똑같은 상점에 들린다면
-        if (currentShopId == shopBuyId) return;
+        if (currentShopId == shopBuyId)
+            return;
 
         currentShopId = shopBuyId;
 
         // 구매 슬롯 초기화
-        foreach(Transform child in GetObject((int)Gameobjects.BuyList).transform)
-            Managers.Resource.Destroy(child.gameObject);
+        Transform buyListParent = GetObject((int)Gameobjects.BuyList).transform;
+        for (int i = buyListParent.childCount - 1; i >= 0; i--)
+        {
+            Managers.Resource.Destroy(buyListParent.GetChild(i).gameObject);
+            //buyList.RemoveAt(i);
+            buyList.Clear();
+        }
 
         // 구매 Id List 가져오기
         List<int> itemIdList = new List<int>();
@@ -106,6 +112,7 @@ public class UI_ShopPopup : UI_Popup
         {
             UI_ShopBuySlot buyShop = Managers.UI.MakeSubItem<UI_ShopBuySlot>(parent: GetObject((int)Gameobjects.BuyList).transform);
             buyShop.SetInfo(Managers.Data.Item[itemIdList[i]]);
+            //제대로 가져왔는지 출력
             buyList.Add(buyShop);
         }
     }
@@ -261,12 +268,6 @@ public class UI_ShopPopup : UI_Popup
             saleList[i].Clear();
 
         saleList.Clear();
-      
-
-        for(int i=0; i< buyList.Count; i++)
-            buyList.Clear();
-
-        buyList.Clear();
 
         Managers.Game.IsInteract = false;
 

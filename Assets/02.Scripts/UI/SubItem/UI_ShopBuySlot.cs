@@ -20,9 +20,9 @@ public class UI_ShopBuySlot : UI_ItemSlot
         BuyItemPrice,
     }
 
-    private Sprite      buySprite;          // 구매 아이템 sprite
-    private string      itemNameText;       // 아이템 이름 text
-    private string      itemPriceText;      // 아이템 가격 text
+    Sprite buySprite;          // 구매 아이템 sprite
+    string itemNameText;       // 아이템 이름 text
+    string itemPriceText;      // 아이템 가격 text
 
     public override bool Init()
     {
@@ -38,7 +38,6 @@ public class UI_ShopBuySlot : UI_ItemSlot
         GetText((int)Texts.BuyItemName).text = itemNameText;
         GetText((int)Texts.BuyItemPrice).text = itemPriceText;
 
-        // 버튼 기능 등록 (onClick.AddListener이랑 같음.)
         gameObject.BindEvent(OnClickBuyButton, Define.UIEvent.Click);
 
         SetEventHandler();
@@ -53,9 +52,23 @@ public class UI_ShopBuySlot : UI_ItemSlot
         buySprite = item.itemIcon;
         itemNameText = item.itemName;
         itemPriceText = item.itemPrice.ToString();
+
+        // UI에 즉시 반영
+        if (icon == null)
+            icon = GetImage((int)Images.BuyItemImage);
+        if (icon != null)
+            icon.sprite = buySprite;
+
+        var nameText = GetText((int)Texts.BuyItemName);
+        if (nameText != null)
+            nameText.text = itemNameText;
+
+        var priceText = GetText((int)Texts.BuyItemPrice);
+        if (priceText != null)
+            priceText.text = itemPriceText;
     }
 
-    private void OnClickBuyButton(PointerEventData eventData)
+    void OnClickBuyButton(PointerEventData eventData)
     {
         // 인벤 크기 확인
         if (Managers.Game._playScene._inventory.IsInvenMaxSize() == true)
@@ -65,7 +78,7 @@ public class UI_ShopBuySlot : UI_ItemSlot
         }
 
         Managers.Game._playScene._slotTip.OnSlotTip(false);
-        
+
         // 금액 확인
         if (Managers.Game.Gold < item.itemPrice)
         {
@@ -81,7 +94,7 @@ public class UI_ShopBuySlot : UI_ItemSlot
             if (numberCheckPopup.IsNull() == true)
                 return;
 
-            numberCheckPopup.SetInfo(item, (int itemCount)=>
+            numberCheckPopup.SetInfo(item, (int itemCount) =>
             {
                 Managers.Game.Gold -= item.itemPrice * itemCount;
                 Managers.Game._playScene._inventory.AcquireItem(item.ItemClone(), itemCount);
@@ -90,10 +103,10 @@ public class UI_ShopBuySlot : UI_ItemSlot
         else
         {
             UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
-           
+
             if (confirmPopup.IsNull() == true) return;
-            
-            confirmPopup.SetInfo(()=>
+
+            confirmPopup.SetInfo(() =>
             {
                 Managers.Game.Gold -= item.itemPrice;
                 Managers.Game._playScene._inventory.AcquireItem(item.ItemClone());
@@ -101,5 +114,5 @@ public class UI_ShopBuySlot : UI_ItemSlot
         }
     }
 
-    public override void SetInfo() {}
+    public override void SetInfo() { }
 }

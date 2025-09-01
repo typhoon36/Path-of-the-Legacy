@@ -13,10 +13,10 @@ public class UI_QuestButton : UI_Base
     enum Images     { QuestSceneOkIcon }
     enum Texts      { QuestSlotText }
 
-    private QuestData           _quest;
+     QuestData           _quest;
 
-    private string              slotText;           // 퀘스트 제목
-    private bool                isNotice = true;    // 퀘스트 알람
+     string              slotText;           // 퀘스트 제목
+     bool                isNotice = true;    // 퀘스트 알람
 
     public override bool Init()
     {
@@ -48,7 +48,7 @@ public class UI_QuestButton : UI_Base
     }
 
     // 씬에 퀘스트 알림 추가
-    private void OnClickSceneNoticeButton()
+     void OnClickSceneNoticeButton()
     {
         isNotice = !isNotice;
 

@@ -21,7 +21,7 @@ using UnityEngine.UI;
  &  : OnDropSlot()      - 현재 슬롯에 마우스 클릭을 때면 "장비 장착"
  &  : ChangeSlot()      - 슬롯 교체
  &
- &  [Private]
+ &  []
  &  : AddArmor()        - 장비 장착 진행
  &  : EquipmentActive() - 장비 파츠 확인
  *
@@ -34,7 +34,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
     public override void SetInfo()
     {
-        Managers.Game._playScene._equipment.armorSlots.Add(this);
+        Managers.Game._playScene.m_Equipment.armorSlots.Add(this);
 
         // 해당 부위 장비가 이미 장착되어 있다면 장착 (Save Load 했을때)
         if (Managers.Game.CurrentArmor.TryGetValue(armorType, out armorItem) == true)
@@ -152,7 +152,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     }
 
     // 장비 장착
-    private void AddArmor(ArmorItemData armorItem)
+     void AddArmor(ArmorItemData armorItem)
     {
         // 장비 장착 진행
         if (Managers.Game.CurrentArmor.ContainsKey(armorType) == false)
@@ -168,7 +168,7 @@ public class UI_ArmorSlot : UI_ItemDragSlot
     }
 
     // 캐릭터 장비 파츠 활성화 여부
-    private void EquipmentActive(ArmorItemData armor, bool isActive)
+     void EquipmentActive(ArmorItemData armor, bool isActive)
     {
         // 아이템이 현재 입고 있는 장비를 알고 있다면
         if (armor.charEquipment.IsNull() == false)

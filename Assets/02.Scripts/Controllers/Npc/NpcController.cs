@@ -18,7 +18,7 @@ using UnityEngine;
  &  : OpenPopup()       - Popup 활성화
  &  : ExitPopup()       - Popup 비활성화
  &
- &  [Private]
+ &  []
  &  : InteractCheck()   - 상호작용 확인
  *
  */
@@ -94,7 +94,7 @@ public abstract class NpcController : BaseController
     protected virtual void ExitPopup() {}
 
     // 플레이어가 가까이 있다면 상호작용 가능
-    private void InteractCheck()
+     void InteractCheck()
     {
         if (Input.GetKeyDown(KeyCode.G))
             OnInteract();

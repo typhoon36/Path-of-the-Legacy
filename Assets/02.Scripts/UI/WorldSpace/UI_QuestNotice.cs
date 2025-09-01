@@ -15,7 +15,7 @@ using TMPro;
 public class UI_QuestNotice : UI_Base
 {
     [SerializeField]
-    private TextMeshProUGUI     _noticeText;    // 알림 text
+     TextMeshProUGUI     _noticeText;    // 알림 text
 
     public UI_QuestNotice SetInfo(string noticeText, Vector3 pos = new Vector3())
     {

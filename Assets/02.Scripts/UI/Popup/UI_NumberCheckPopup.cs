@@ -15,7 +15,7 @@ using UnityEngine.UI;
  &  : Init()    - 초기 설정
  &  : SetInfo() - 기능 설정
  &
- &  [Private]
+ &  []
  &  : OnClickMinusButton()  - 마이너스 버튼
  &  : OnClickPlusButton()   - 플러스 버튼
  &  : OnClickYesButton()    - 확인 버튼
@@ -39,17 +39,17 @@ public class UI_NumberCheckPopup : UI_Popup
         YesButton,
     }
 
-    private int             itemCount = 0;      // 현재 개수
-    private int             itemMaxCount = 0;   // 최대 개수
+     int             itemCount = 0;      // 현재 개수
+     int             itemMaxCount = 0;   // 최대 개수
 
-    private Action<int>     _onClickYesButton;  // 확인 버튼 누를 시 호출
-    private UI_InvenSlot    _invenItem;         // 인벤토리 슬롯
-
-    [SerializeField]
-    private Slider          numberSlider;
+     Action<int>     _onClickYesButton;  // 확인 버튼 누를 시 호출
+     UI_InvenSlot    _invenItem;         // 인벤토리 슬롯
 
     [SerializeField]
-    private Text _itemCountText;
+     Slider          numberSlider;
+
+    [SerializeField]
+     Text _itemCountText;
 
     public override bool Init()
     {
@@ -104,7 +104,7 @@ public class UI_NumberCheckPopup : UI_Popup
     }
 
     // 마이너스 버튼
-    private void OnClickMinusButton()
+     void OnClickMinusButton()
     {
         itemCount = Mathf.Clamp(--itemCount, 1, itemMaxCount);
         numberSlider.value = itemCount;
@@ -112,7 +112,7 @@ public class UI_NumberCheckPopup : UI_Popup
     }
 
     // 플러스 버튼
-    private void OnClickPlusButton()
+     void OnClickPlusButton()
     {
         itemCount = Mathf.Clamp(++itemCount, 1, itemMaxCount);
         numberSlider.value = itemCount;
@@ -120,7 +120,7 @@ public class UI_NumberCheckPopup : UI_Popup
     }
 
     // 확인 버튼
-    private void OnClickYesButton()
+     void OnClickYesButton()
     {
         Managers.UI.ClosePopupUI(this);
 
@@ -129,12 +129,12 @@ public class UI_NumberCheckPopup : UI_Popup
     }
 
     // 취소 버튼
-    private void OnClickNoButton()
+     void OnClickNoButton()
     {
         Managers.UI.ClosePopupUI(this);
     }
 
-    private void RefreshUI()
+     void RefreshUI()
     {
         Managers.UI.SetOrder(GetComponent<Canvas>());
 

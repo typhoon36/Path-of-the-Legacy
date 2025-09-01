@@ -36,11 +36,11 @@ public class UI_ShopSaleSlot : UI_Base
         SaleItemCountText,
     }
 
-    private UI_InvenSlot    _invenItem;             // 인벤토리 슬롯
-    private Image           _icon;
+     UI_InvenSlot    _invenItem;             // 인벤토리 슬롯
+     Image           _icon;
 
-    private int             _saleItemCount = 0;     // 판매될 개수
-    private string          _itemCountText;
+     int             _saleItemCount = 0;     // 판매될 개수
+     string          _itemCountText;
 
     public override bool Init()
     {
@@ -94,7 +94,7 @@ public class UI_ShopSaleSlot : UI_Base
     }
 
     // 판매 등록 취소
-    private void OnClickCloseButton()
+     void OnClickCloseButton()
     {
         Managers.Game._playScene._shop.saleList.Remove(this);
 

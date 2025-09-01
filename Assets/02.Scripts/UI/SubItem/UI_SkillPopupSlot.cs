@@ -38,7 +38,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
     }
 
     [SerializeField]
-    private int     skillId;
+     int     skillId;
 
     public override void SetInfo()
     {
@@ -114,5 +114,5 @@ public class UI_SkillPopupSlot : UI_SkillSlot
     }
 
     // 스킬 레벨 체크
-    private bool LevelCheck() { return Managers.Game.Level >= skillData.minLevel; }
+     bool LevelCheck() { return Managers.Game.Level >= skillData.minLevel; }
 }

@@ -1,32 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
 
-/*
- * File :   DataManager.cs
- * Desc :   구글 스프레드시트를 통해 데이터 불러오기
- */
-
+// 구글  스프레드시트에서 데이터 불러오기
 public class DataManager
 {
     const string URL = "https://docs.google.com/spreadsheets/d/1JrR2gxJniIMkQcb9BAhsMUXlrcaJXhBNavmh5Zs4IpY/export?format=csv&gid=";
 
-    public bool isData = false;
+    public bool IsData = false;
 
-    public StartData Start { get; private set; }
-    public Dictionary<int, LevelData> Level { get; private set; }
-    public Dictionary<int, SkillData> Skill { get; private set; }
-    public Dictionary<int, ItemData> Item { get; private set; }
-    public Dictionary<int, List<int>> DropItem { get; private set; }
-    public Dictionary<int, GameObject> Monster { get; private set; }
-    public Dictionary<int, List<int>> Shop { get; private set; }
-    public Dictionary<int, QuestData> Quest { get; private set; }
-    public Dictionary<int, TalkData> Talk { get; private set; }
-    public Dictionary<int, List<SkinnedData>> Skinned { get; private set; }
+    public StartData Start { get; set; }
+    public Dictionary<int, LevelData> Level { get; set; }
+    public Dictionary<int, SkillData> Skill { get; set; }
+    public Dictionary<int, ItemData> Item { get; set; }
+    public Dictionary<int, List<int>> DropItem { get; set; }
+    public Dictionary<int, GameObject> Monster { get; set; }
+    public Dictionary<int, List<int>> Shop { get; set; }
+    public Dictionary<int, QuestData> Quest { get; set; }
+    public Dictionary<int, TalkData> Talk { get; set; }
+    public Dictionary<int, List<SkinnedData>> Skinned { get; set; }
 
     // Deep Copy 아이템
     public ItemData CallItem(int itemId)
@@ -36,7 +30,7 @@ public class DataManager
             Debug.Log("CallItem Failed : " + itemId);
             return null;
         }
-        
+
         return Item[itemId].ItemClone();
     }
 
@@ -48,13 +42,13 @@ public class DataManager
     // 게임 시작 시 호출 (GameScene)
     public IEnumerator DataRequest(string dataNumber)
     {
-        UnityWebRequest www = UnityWebRequest.Get(URL+dataNumber);
+        UnityWebRequest www = UnityWebRequest.Get(URL + dataNumber);
 
         yield return www.SendWebRequest();
 
         string data = www.downloadHandler.text;
 
-        switch(dataNumber)
+        switch (dataNumber)
         {
             case Define.StartNumber:
                 StartRequest(data);
@@ -92,7 +86,7 @@ public class DataManager
         }
     }
 
-#region 데이터 파싱
+    #region 데이터 파싱
 
     void StartRequest(string data)
     {
@@ -121,13 +115,13 @@ public class DataManager
         Level = new Dictionary<int, LevelData>();
 
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             LevelData levelData = new LevelData()
             {
@@ -148,14 +142,14 @@ public class DataManager
 
         string[] lines = data.Split("\n");
 
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
-            
+
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             // 스킬 정보 1~6
             SkillData skillData = new SkillData()
@@ -169,11 +163,11 @@ public class DataManager
             };
 
             // Sprite 6
-            skillData.skillSprite = Managers.Resource.Load<Sprite>("Art/UI/Skill/"+row[6]);
+            skillData.skillSprite = Managers.Resource.Load<Sprite>("Art/UI/Skill/" + row[6]);
 
             // 공격력 7
             List<int> powerList = new List<int>();
-            foreach(string attackNumber in row[7].Split("|"))
+            foreach (string attackNumber in row[7].Split("|"))
                 powerList.Add(int.Parse(attackNumber));
 
             skillData.powerList = powerList;
@@ -185,13 +179,13 @@ public class DataManager
     void UseItemRequest(string data)
     {
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             UseItemData useItem = new UseItemData()
             {
@@ -203,8 +197,8 @@ public class DataManager
                 itemPrice = int.Parse(row[5]),
                 itemDesc = row[6],
                 itemMaxCount = 99,
-                itemIcon = Managers.Resource.Load<Sprite>("Art/UI/Item/Use/"+row[7]),
-                itemObject = Managers.Resource.Load<GameObject>("Prefabs/Object/Use/"+row[8]),
+                itemIcon = Managers.Resource.Load<Sprite>("Art/UI/Item/Use/" + row[7]),
+                itemObject = Managers.Resource.Load<GameObject>("Prefabs/Object/Use/" + row[8]),
                 itemType = Define.ItemType.Use,
             };
 
@@ -215,13 +209,13 @@ public class DataManager
     void WeaponItemRequest(string data)
     {
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             WeaponItemData weaponItem = new WeaponItemData()
             {
@@ -235,8 +229,8 @@ public class DataManager
                 itemPrice = int.Parse(row[7]),
                 itemDesc = row[8],
                 itemMaxCount = 1,
-                itemIcon = Managers.Resource.Load<Sprite>("Art/UI/Item/Weapon/"+row[9]),
-                itemObject = Managers.Resource.Load<GameObject>("Prefabs/Object/Weapon/"+row[10]),
+                itemIcon = Managers.Resource.Load<Sprite>("Art/UI/Item/Weapon/" + row[9]),
+                itemObject = Managers.Resource.Load<GameObject>("Prefabs/Object/Weapon/" + row[10]),
                 itemType = Define.ItemType.Weapon,
             };
 
@@ -247,13 +241,13 @@ public class DataManager
     void ArmorItemRequest(string data)
     {
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             ArmorItemData armor;
             int id = int.Parse(row[0]);
@@ -277,8 +271,8 @@ public class DataManager
             armor.moveSpeed = int.Parse(row[10]);
             armor.itemDesc = row[11];
             armor.itemMaxCount = 1;
-            armor.itemIcon = Managers.Resource.Load<Sprite>("Art/UI/Item/Armor/"+row[12]);
-            armor.itemObject = Managers.Resource.Load<GameObject>("Prefabs/Object/Armor/"+row[13]);
+            armor.itemIcon = Managers.Resource.Load<Sprite>("Art/UI/Item/Armor/" + row[12]);
+            armor.itemObject = Managers.Resource.Load<GameObject>("Prefabs/Object/Armor/" + row[13]);
             armor.itemType = Define.ItemType.Armor;
 
             if (Item.ContainsKey(id) == false)
@@ -292,17 +286,17 @@ public class DataManager
 
         string[] lines = data.Split("\n");
 
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
-            
+
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             List<int> itemDatas = new List<int>();
-            foreach(string itemdata in row[1].Split("|"))
+            foreach (string itemdata in row[1].Split("|"))
                 itemDatas.Add(int.Parse(itemdata));
 
             DropItem.Add(int.Parse(row[0]), itemDatas);
@@ -314,15 +308,15 @@ public class DataManager
         Monster = new Dictionary<int, GameObject>();
 
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
-            GameObject monsterObject = Managers.Resource.Load<GameObject>("Prefabs/Monster/"+row[9]);
+            GameObject monsterObject = Managers.Resource.Load<GameObject>("Prefabs/Monster/" + row[9]);
             MonsterStat monsterStat = monsterObject.GetOrAddComponent<MonsterStat>();
 
             monsterStat.Id = int.Parse(row[0]);
@@ -344,16 +338,16 @@ public class DataManager
         Shop = new Dictionary<int, List<int>>();
 
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             List<int> shopDatas = new List<int>();
-            foreach(string itemdata in row[1].Split("|"))
+            foreach (string itemdata in row[1].Split("|"))
                 shopDatas.Add(int.Parse(itemdata));
 
             Shop.Add(int.Parse(row[0]), shopDatas);
@@ -365,13 +359,13 @@ public class DataManager
         Quest = new Dictionary<int, QuestData>();
 
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             QuestData questData = new QuestData()
             {
@@ -389,11 +383,11 @@ public class DataManager
 
             // 아이템 보상
             questData.rewardItems = new List<RewardItem>();
-            foreach(string itemId in row[8].Split("|"))
-                questData.rewardItems.Add(new RewardItem(){ ItemId = int.Parse(itemId) });
+            foreach (string itemId in row[8].Split("|"))
+                questData.rewardItems.Add(new RewardItem() { ItemId = int.Parse(itemId) });
 
-            int i=0;
-            foreach(string itemCount in row[9].Split("|"))
+            int i = 0;
+            foreach (string itemCount in row[9].Split("|"))
             {
                 questData.rewardItems[i].itemCount = int.Parse(itemCount);
                 i++;
@@ -411,13 +405,13 @@ public class DataManager
         Talk = new Dictionary<int, TalkData>();
 
         string[] lines = data.Split("\n");
-        for(int y = 1; y < lines.Length; y++)
+        for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
             if (row.Length == 0)
-				continue;
-			if (string.IsNullOrEmpty(row[0]))
-				continue;
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
 
             TalkData talkData = new TalkData()
             {
@@ -430,12 +424,12 @@ public class DataManager
             };
 
             talkData.questStartTalk = new List<string>();
-            foreach(string startTalk in row[2].Split("|"))
+            foreach (string startTalk in row[2].Split("|"))
                 talkData.questStartTalk.Add(startTalk);
 
             Talk.Add(talkData.id, talkData);
         }
     }
 
-#endregion
+    #endregion
 }

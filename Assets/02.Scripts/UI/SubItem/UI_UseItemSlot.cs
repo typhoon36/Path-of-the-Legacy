@@ -28,7 +28,7 @@ public class UI_UseItemSlot : UI_ItemDragSlot
     public int key;
 
     [SerializeField]
-    private Text keyText;
+     Text keyText;
 
     public override void SetInfo()
     {

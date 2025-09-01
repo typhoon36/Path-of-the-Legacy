@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //데미지 반영(기본 공격, 스킬 공격)
-
 public class PlayerAttackCollistion : MonoBehaviour
 {
-    private int                 skillIndex = 0;     // 스킬 콤보 공격력 List index
+    int skillIndex = 0;     // 스킬 콤보 공격력 List index
 
-    private CapsuleCollider     capsuleCollider;
-    
-    [SerializeField]
-    private PlayerController    player;
+    CapsuleCollider capsuleCollider;
+
+    [SerializeField] PlayerController m_player;
 
     void Start()
     {
@@ -32,42 +30,43 @@ public class PlayerAttackCollistion : MonoBehaviour
         BasicColliderSize();
 
         // 마지막 스킬 공격이라면 index 초기화 
-        if (player.currentSkill.IsNull() == false)
+        if (m_player.currentSkill.IsNull() == false)
         {
-            if (skillIndex == player.currentSkill.powerList.Count - 1)
+            if (skillIndex == m_player.currentSkill.powerList.Count - 1)
                 skillIndex = 0;
             else
                 skillIndex++;
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider coll)
     {
-        if (other.CompareTag("Monster"))
+        if (coll.CompareTag("Monster"))
         {
-            if (player.State == Define.State.Skill)
+            if (m_player.State == Define.State.Skill)
             {
-                if (player.currentSkill.powerList.Contains(skillIndex) == false)
+                if (m_player.currentSkill.powerList.Contains(skillIndex) == false)
                     skillIndex = 0;
 
                 // 스킬 공격
-                int skillDamage = player.currentSkill.powerList[skillIndex] * (Managers.Game.Attack / 2);
-                other.GetComponent<MonsterStat>().OnAttacked(skillDamage);
+                int a_SkillDamage = m_player.currentSkill.powerList[skillIndex] * (Managers.Game.Attack / 2);
+                coll.GetComponent<MonsterStat>().OnAttacked(a_SkillDamage);
             }
+            //일반 공격
             else
-                other.GetComponent<MonsterStat>().OnAttacked(); // 기본 공격
-        }   
+                coll.GetComponent<MonsterStat>().OnAttacked(); // 기본 공격
+        }
     }
 
     // Invoke 호출
-    private void DelayActiveFalse()
-    {
-        gameObject.SetActive(false);
-    }
+    void DelayActiveFalse() { gameObject.SetActive(false); }
 
     // 기본 콜라이더 사이즈
-    private void BasicColliderSize()
+    void BasicColliderSize()
     {
+   
+        if(capsuleCollider.IsNull() == true) return;
+
         capsuleCollider.center = new Vector3(0, 0, 0.4f);
         capsuleCollider.radius = 1.2f;
         capsuleCollider.height = 2.4f;

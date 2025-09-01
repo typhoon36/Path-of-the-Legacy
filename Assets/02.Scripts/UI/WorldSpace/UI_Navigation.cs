@@ -14,8 +14,8 @@ using UnityEngine;
 
 public class UI_Navigation : UI_Base
 {
-    private Vector3     targetPos;      // 목표 위치
-    private float       endScan = 7f;   // 목표 위치 스캔 거리
+     Vector3     targetPos;      // 목표 위치
+     float       endScan = 7f;   // 목표 위치 스캔 거리
 
     public void SetInfo(Vector3 pos)
     {

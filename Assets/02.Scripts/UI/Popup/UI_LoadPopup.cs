@@ -8,69 +8,67 @@ using UnityEngine.UI;
 public class UI_LoadPopup : UI_Popup
 {
     // 메시지 string Array
-     string[]        loadMessges = new string[]{Define.LoadMessage1, Define.LoadMessage2, Define.LoadMessage3};
+    string[] LoadMessges = new string[] { Define.LoadMessage1, Define.LoadMessage2, Define.LoadMessage3 };
 
     // 현재 메시지 Index
-     int             currentMessageIndex = 0;
+    int m_CurMessageIdx = 0;
 
-    [SerializeField]
-     Slider          loadSlider;
+    [SerializeField] Slider m_LoadSlider;
 
-    [SerializeField]
-     Text tipText;
+    [SerializeField] Text m_TipText;
 
     // 기본 설정
-    public void SetInfo(Define.Scene type, int plusTime = 0)
+    public void SetInfo(Define.Scene a_Type, int a_Time = 0)
     {
         // 구글 시트 데이터 가져오기
         OnDataRequest();
 
         // slider 초기화
-        loadSlider.value = 0;
-        loadSlider.minValue = 0;
-        loadSlider.maxValue = plusTime;
+        m_LoadSlider.value = 0;
+        m_LoadSlider.minValue = 0;
+        m_LoadSlider.maxValue = a_Time;
 
         // 출력할 메시지 선정
-        currentMessageIndex = Random.Range(0,3);
-        tipText.text = $"Tip : {loadMessges[currentMessageIndex]}";
+        m_CurMessageIdx = Random.Range(0, 3);
+        m_TipText.text = $"Tip : {LoadMessges[m_CurMessageIdx]}";
 
         // 플레이어 정지
         Managers.Game.StopPlayer();
 
         // 비동기 로드 시작
-        StartCoroutine(LoadAsynSceneCoroutine(type, plusTime));
+        StartCoroutine(LoadAsynSceneCoroutine(a_Type, a_Time));
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            currentMessageIndex++;
-            if (currentMessageIndex >= loadMessges.Length)
-                currentMessageIndex = 0;
+            m_CurMessageIdx++;
+            if (m_CurMessageIdx >= LoadMessges.Length)
+                m_CurMessageIdx = 0;
 
-            tipText.text = $"Tip : {loadMessges[currentMessageIndex]}";
+            m_TipText.text = $"Tip : {LoadMessges[m_CurMessageIdx]}";
         }
     }
-    
+
     // 비동기 로드
-     float loadTime = 0;
-     IEnumerator LoadAsynSceneCoroutine(Define.Scene type, int plusTime = 0)
+    float a_LoadTime = 0;
+    IEnumerator LoadAsynSceneCoroutine(Define.Scene a_Type, int a_Time = 0)
     {
         yield return null;
 
         // Scene Load
-        AsyncOperation operation = Managers.Scene.LoadAsynScene(type);
+        AsyncOperation operation = Managers.Scene.LoadAsynScene(a_Type);
 
         // Load 시간 확인
         while (operation.isDone == false)
         {
-            loadTime += Time.deltaTime;
+            a_LoadTime += Time.deltaTime;
 
-            loadSlider.value = loadTime;
+            m_LoadSlider.value = a_LoadTime;
 
             // 시간이 다 되면 탈출 
-            if (loadTime > plusTime)
+            if (a_LoadTime > a_Time)
             {
                 operation.allowSceneActivation = true;
             }
@@ -80,7 +78,7 @@ public class UI_LoadPopup : UI_Popup
     }
 
     // 구글 스프레드시트 데이터 가져오기
-     void OnDataRequest()
+    void OnDataRequest()
     {
         // 이미 데이터를 받았다면 종료
         if (Managers.Data.IsData == true) return;

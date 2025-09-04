@@ -20,23 +20,22 @@ public class UI_ShopBuySlot : UI_ItemSlot
         BuyItemPrice,
     }
 
-    Sprite buySprite;          // 구매 아이템 sprite
-    string itemNameText;       // 아이템 이름 text
-    string itemPriceText;      // 아이템 가격 text
+    Sprite BuySprite;          // 구매 아이템 sprite
+    string ItemNameText;       // 아이템 이름 text
+    string ItemPriceText;      // 아이템 가격 text
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         BindImage(typeof(Images));
         BindText(typeof(Texts));
 
         icon = GetImage((int)Images.BuyItemImage);
-        icon.sprite = buySprite;
+        icon.sprite = BuySprite;
 
-        GetText((int)Texts.BuyItemName).text = itemNameText;
-        GetText((int)Texts.BuyItemPrice).text = itemPriceText;
+        GetText((int)Texts.BuyItemName).text = ItemNameText;
+        GetText((int)Texts.BuyItemPrice).text = ItemPriceText;
 
         gameObject.BindEvent(OnClickBuyButton, Define.UIEvent.Click);
 
@@ -45,27 +44,27 @@ public class UI_ShopBuySlot : UI_ItemSlot
         return true;
     }
 
-    public void SetInfo(ItemData itemData)
+    public void SetInfo(ItemData a_ItemData)
     {
-        item = itemData;
+        Item = a_ItemData;
 
-        buySprite = item.itemIcon;
-        itemNameText = item.itemName;
-        itemPriceText = item.itemPrice.ToString();
+        BuySprite = Item.itemIcon;
+        ItemNameText = Item.itemName;
+        ItemPriceText = Item.itemPrice.ToString();
 
         // UI에 즉시 반영
         if (icon == null)
             icon = GetImage((int)Images.BuyItemImage);
         if (icon != null)
-            icon.sprite = buySprite;
+            icon.sprite = BuySprite;
 
         var nameText = GetText((int)Texts.BuyItemName);
         if (nameText != null)
-            nameText.text = itemNameText;
+            nameText.text = ItemNameText;
 
         var priceText = GetText((int)Texts.BuyItemPrice);
         if (priceText != null)
-            priceText.text = itemPriceText;
+            priceText.text = ItemPriceText;
     }
 
     void OnClickBuyButton(PointerEventData eventData)
@@ -80,7 +79,7 @@ public class UI_ShopBuySlot : UI_ItemSlot
         Managers.Game._playScene._slotTip.OnSlotTip(false);
 
         // 금액 확인
-        if (Managers.Game.Gold < item.itemPrice)
+        if (Managers.Game.Gold < Item.itemPrice)
         {
             Managers.UI.MakeSubItem<UI_Guide>().SetInfo("금액이 부족합니다.", Color.yellow);
             return;
@@ -88,16 +87,16 @@ public class UI_ShopBuySlot : UI_ItemSlot
 
         // < 구매 시작 >
         // 소비 아이템이면 개수 선택
-        if (item.itemType == Define.ItemType.Use)
+        if (Item.itemType == Define.ItemType.Use)
         {
             UI_NumberCheckPopup numberCheckPopup = Managers.UI.ShowPopupUI<UI_NumberCheckPopup>();
             if (numberCheckPopup.IsNull() == true)
                 return;
 
-            numberCheckPopup.SetInfo(item, (int itemCount) =>
+            numberCheckPopup.SetInfo(Item, (int itemCount) =>
             {
-                Managers.Game.Gold -= item.itemPrice * itemCount;
-                Managers.Game._playScene._inventory.AcquireItem(item.ItemClone(), itemCount);
+                Managers.Game.Gold -= Item.itemPrice * itemCount;
+                Managers.Game._playScene._inventory.AcquireItem(Item.ItemClone(), itemCount);
             });
         }
         else
@@ -108,8 +107,8 @@ public class UI_ShopBuySlot : UI_ItemSlot
 
             confirmPopup.SetInfo(() =>
             {
-                Managers.Game.Gold -= item.itemPrice;
-                Managers.Game._playScene._inventory.AcquireItem(item.ItemClone());
+                Managers.Game.Gold -= Item.itemPrice;
+                Managers.Game._playScene._inventory.AcquireItem(Item.ItemClone());
             }, Define.ShopSaleMessage);
         }
     }

@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 4931892821390296015}
   - component: {fileID: 7698043150917888053}
   - component: {fileID: 7877381080077491981}
+  - component: {fileID: 4576692465081133188}
   m_Layer: 0
   m_Name: UI_HpBar
   m_TagString: Untagged
@@ -202,6 +203,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb4e86f195c4244ea94d2078db1d01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4576692465081133188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269343609400723788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 1
 --- !u!1 &7146617970227242023
 GameObject:
   m_ObjectHideFlags: 0

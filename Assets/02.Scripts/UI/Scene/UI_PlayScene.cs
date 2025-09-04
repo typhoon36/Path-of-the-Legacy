@@ -17,10 +17,6 @@ public class UI_PlayScene : UI_Scene
         MiniMap,
     }
 
-    enum Images
-    {
-        //PlayerIcon,
-    }
 
     enum Texts
     {
@@ -48,7 +44,7 @@ public class UI_PlayScene : UI_Scene
     }
 
     public UI_InvenPopup _inventory;     // 인벤토리 
-    public UI_EqStatPopup m_Equipment;     // 장비/스탯 
+    public UI_EqStatPopup _equipment;     // 장비/스탯 
     public UI_SkillPopup _skill;         // 스킬 
     public UI_SlotTipPopup _slotTip;       // 슬롯팁
     public UI_ShopPopup _shop;          // 상점
@@ -68,8 +64,6 @@ public class UI_PlayScene : UI_Scene
 
         // 자식 객체 불러오기
         BindObject(typeof(Gameobjects));
-        //BindImage(typeof(Images));
-        //BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         Bind<Slider>(typeof(Sliders));
 
@@ -80,7 +74,7 @@ public class UI_PlayScene : UI_Scene
 
         // 기능 팝업 생성
         _inventory = Managers.UI.ShowPopupUI<UI_InvenPopup>();
-        m_Equipment = Managers.UI.ShowPopupUI<UI_EqStatPopup>();
+        _equipment = Managers.UI.ShowPopupUI<UI_EqStatPopup>();
         _skill = Managers.UI.ShowPopupUI<UI_SkillPopup>();
         _slotTip = Managers.UI.ShowPopupUI<UI_SlotTipPopup>();
         _shop = Managers.UI.ShowPopupUI<UI_ShopPopup>();
@@ -95,11 +89,8 @@ public class UI_PlayScene : UI_Scene
         {
             // 기본 장비 장착
             Managers.Game.CurrentWeapon = Managers.Data.CallItem(1) as WeaponItemData;
-            Managers.Game.CurrentArmor.Add(Define.ArmorType.Helm, Managers.Data.CallItem(3001) as ArmorItemData);
-            Managers.Game.CurrentArmor.Add(Define.ArmorType.Chest, Managers.Data.CallItem(3005) as ArmorItemData);
-            Managers.Game.CurrentArmor.Add(Define.ArmorType.Pants, Managers.Data.CallItem(3009) as ArmorItemData);
-            Managers.Game.CurrentArmor.Add(Define.ArmorType.Boots, Managers.Data.CallItem(3013) as ArmorItemData);
-            Managers.Game.CurrentArmor.Add(Define.ArmorType.Gloves, Managers.Data.CallItem(3017) as ArmorItemData);
+            Managers.Game.CurrentArmor.Add(Define.ArmorType.Chest, Managers.Data.CallItem(2) as ArmorItemData);
+            Managers.Game.CurrentArmor.Add(Define.ArmorType.Pants, Managers.Data.CallItem(3) as ArmorItemData);
         }
 
         return true;
@@ -115,7 +106,7 @@ public class UI_PlayScene : UI_Scene
 
     public void RefreshUI()
     {
-        // 레벨 7 이상이면 궁극기 슬롯 오픈
+        // 레벨 5 이상이면 궁극기 슬롯 오픈
         if (Managers.Game.Level >= 5)
             GetObject((int)Gameobjects.ultSkillSlot).SetActive(true);
 
@@ -127,7 +118,7 @@ public class UI_PlayScene : UI_Scene
     {
         UI_QuestNoticeSlot sceneQuestSlot = Managers.UI.MakeSubItem<UI_QuestNoticeSlot>(parent: GetObject((int)Gameobjects.QuestListBar).transform);
         sceneQuestSlot.SetInfo(quest);
-        sceneQuestSlot.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
+        sceneQuestSlot.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
         return sceneQuestSlot;
     }
 
@@ -138,9 +129,9 @@ public class UI_PlayScene : UI_Scene
         for (int i = 0; i < UseItemBarList.Count; i++)
         {
             // 키가 같으면 사용
-            if (key == UseItemBarList[i].key)
+            if (key == UseItemBarList[i].m_Key)
             {
-                UseItemData useItem = UseItemBarList[i].item as UseItemData;
+                UseItemData useItem = UseItemBarList[i].Item as UseItemData;
                 if (useItem.UseItem(useItem) == true)
                 {
                     UseItemBarList[i].SetCount(-1);
@@ -170,7 +161,7 @@ public class UI_PlayScene : UI_Scene
         GetObject((int)Gameobjects.MonsterBar).SetActive(false);
     }
 
-     void RefreshStat()
+    void RefreshStat()
     {
         // 스탯 text 설정
         GetText((int)Texts.HpBarText).text = Managers.Game.Hp + " / " + Managers.Game.MaxHp;
@@ -193,7 +184,7 @@ public class UI_PlayScene : UI_Scene
     }
 
     // Slider NaN 방지
-     void SetRatio(Slider slider, float ratio)
+    void SetRatio(Slider slider, float ratio)
     {
         if (float.IsNaN(ratio) == true)
             slider.value = 0;
@@ -201,7 +192,7 @@ public class UI_PlayScene : UI_Scene
             slider.value = ratio;
     }
 
-     void SetInfo()
+    void SetInfo()
     {
         GetText((int)Texts.NameBarText).text = Managers.Game.Name;
 
@@ -213,7 +204,7 @@ public class UI_PlayScene : UI_Scene
         for (int i = 1; i <= 2; i++)
         {
             UI_UseItemSlot slot = Managers.UI.MakeSubItem<UI_UseItemSlot>(GetObject((int)Gameobjects.ItemBar).transform);
-            slot.key = i;
+            slot.m_Key = i;
 
             UseItemBarList.Add(slot);
         }

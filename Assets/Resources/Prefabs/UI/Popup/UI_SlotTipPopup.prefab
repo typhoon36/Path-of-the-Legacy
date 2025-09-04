@@ -612,7 +612,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 29
   m_TargetDisplay: 0
 --- !u!114 &8004262506395923586
 MonoBehaviour:
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupType: 0
-  background: {fileID: 4341170311899011515}
+  m_Background: {fileID: 4341170311899011515}
 --- !u!114 &7530771687637750587
 MonoBehaviour:
   m_ObjectHideFlags: 0

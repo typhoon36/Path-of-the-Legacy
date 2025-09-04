@@ -3,57 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// 상태 패턴을 사용하며 상태에 따라 Animation CrossFade를 실행한다.
-
+//캐릭터들의 상태, 애니메이션 제어
 public abstract class BaseController : MonoBehaviour
 {
-    [SerializeField]
-    public Define.WorldObject WorldObjectType { get; protected set; } = Define.WorldObject.Unknown;
+    [SerializeField] public Define.WorldObject WorldObjectType { get; protected set; } =
+        Define.WorldObject.Unknown;
 
-    [SerializeField]
-    protected GameObject _lockTarget;                // 마우스로 타겟한 오브젝트 담는 변수
+    [SerializeField] protected GameObject m_LockTarget;                // 마우스로 타겟한 오브젝트 담는 변수
 
-    [SerializeField]
-    protected Vector3 _destPos;                   // 도착 좌표
+    [SerializeField] protected Vector3 m_DestPos;                   // 도착 좌표
 
-    [SerializeField]
-    protected Define.State _state = Define.State.Idle; // 상태 변수
+    [SerializeField] protected Define.State m_State = Define.State.Idle; // 상태 변수
 
-    protected int attackNumber = 1;           // 일반 공격 콤보 체크
+    protected int m_AttackNumber = 1;           // 일반 공격 콤보 체크
 
-    protected Animator anim;
+    protected Animator m_Anim;
     protected RaycastHit hit;
 
     // 캐릭터 상태에 따라 애니메이션 작동
     public virtual Define.State State
     {
-        get { return _state; }
+        get { return m_State; }
         set
         {
-            _state = value;
+            m_State = value;
 
-            switch (_state)
+            switch (m_State)
             {
                 case Define.State.Moving:
-                    anim.CrossFade("Run", 0.1f);
+                    m_Anim.CrossFade("Run", 0.1f);
                     break;
                 case Define.State.Idle:
-                    anim.CrossFade("Idle", 0.4f);
+                    m_Anim.CrossFade("Idle", 0.4f);
                     break;
                 case Define.State.DiveRoll:
-                    anim.CrossFade("Roll", 0.1f, 0);
+                    m_Anim.CrossFade("Roll", 0.1f, 0);
                     break;
                 case Define.State.Attack:
                     AnimAttack();
                     break;
                 case Define.State.Hit:
-                    anim.CrossFade("Hit", 0.1f, 0);
+                    m_Anim.CrossFade("Hit", 0.1f, 0);
                     break;
                 case Define.State.Down:
-                    anim.CrossFade("Down", 0.1f, 0);
+                    m_Anim.CrossFade("Down", 0.1f, 0);
                     break;
                 case Define.State.Die:
-                    anim.CrossFade("Die", 0.1f, 0);
+                    m_Anim.CrossFade("Die", 0.1f, 0);
                     break;
             }
         }
@@ -62,14 +58,13 @@ public abstract class BaseController : MonoBehaviour
     void Start()
     {
         Init();
-        _lockTarget = null;
+        m_LockTarget = null;
     }
 
     // Playe, NPC 전용 ( 키 입력이 필요한 경우 )
     void Update()
     {
-        if (WorldObjectType == Define.WorldObject.Monster)
-            return;
+        if (WorldObjectType == Define.WorldObject.Monster) return;
 
         switch (State)
         {
@@ -131,12 +126,14 @@ public abstract class BaseController : MonoBehaviour
     // 기본 공격 애니메이션
     protected virtual void AnimAttack()
     {
-        anim.CrossFade("Attack" + attackNumber, 0.1f, 0);
+        m_Anim.CrossFade("Attack" + m_AttackNumber, 0.1f, 0);
 
-        if (attackNumber == 1)
-            attackNumber = 2;
-        else if (attackNumber == 2)
-            attackNumber = 1;
+        if (m_AttackNumber == 1)
+            m_AttackNumber = 2;
+
+        else if (m_AttackNumber == 2)
+            m_AttackNumber = 1;
+
     }
 
     protected virtual void UpdateMoving() { }

@@ -17,29 +17,27 @@ public class PlayerController : BaseController
 	public SkillData currentSkill;       // 현재 스킬
 
 	// Click LayerMask
-	int _mask = (1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Npc);
+	int m_Mask = 
+		(1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Npc);
 
-	bool _stopAttack = true;     // 공격 가능 여부
-	bool _isDiveRoll = false;    // 구르기 여부
-	bool _isDown = false;    // 넘어진 상태 여부
+	bool stopAttack = true;     // 공격 가능 여부
+	bool IsDiveRoll = false;    // 구르기 여부
+	bool IsDown = false;    // 넘어진 상태 여부
 
 	float currentDiveTime = 0f;   // 현재 구르는 시간
-	float _attackCloseTime = 0;   // 공격 취소 시간
+	float m_AttackCloseTime = 0;   // 공격 취소 시간
 
-	Vector3 dir;
+	Vector3 m_Dir;
 
-	[SerializeField]
-	GameObject rootBone;               // SkinnedMeshRenderer 대표 뼈대
+	[SerializeField] GameObject m_RootBone;               // SkinnedMeshRenderer 대표 뼈대
 
-	[SerializeField]
-	GameObject waeponObjList;          // 무기 Prefab List
+	[SerializeField] GameObject m_WeaponObjList;          // 무기 Prefab List
 
-	[SerializeField]
-	List<EffectData> effects;           // 이펙트 관리 변수
+	[SerializeField] List<EffectData> m_Effects;           // 이펙트 관리 변수
 
 	public override void Init()
 	{
-		anim = GetComponent<Animator>();
+        m_Anim = GetComponent<Animator>();
 
 		charEquipment = new Dictionary<int, List<GameObject>>();
 		currentEffect = null;
@@ -60,8 +58,7 @@ public class PlayerController : BaseController
 	Coroutine co_HitDown;
 	public void OnHitDown(MonsterStat attacker, int addDamge = 0)
 	{
-		if (_isDiveRoll == true)
-			return;
+		if (IsDiveRoll == true) return;
 
 		if (co_HitDown.IsNull() == false) StopCoroutine(co_HitDown);
 		co_HitDown = StartCoroutine(HitDown(attacker, addDamge));
@@ -79,37 +76,37 @@ public class PlayerController : BaseController
 
 	protected override void UpdateIdle()
 	{
-
-		if (_stopAttack == false) StopAttack();
+        //Idle일때는 공격 중지
+        if (stopAttack == false) StopAttack();
 	}
 
 	float _scanTargetRange = 1.5f;
 	protected override void UpdateMoving()
 	{
 		// 이동한 곳에 타겟이 있으면 멈추기
-		if (_lockTarget.IsNull() == false)
+		if (m_LockTarget.IsNull() == false)
 		{
-			float distance = (_lockTarget.transform.position - transform.position).magnitude;
+			float distance = (m_LockTarget.transform.position - transform.position).magnitude;
 			if (distance <= _scanTargetRange)
 			{
 				State = Define.State.Idle;
 
 				// 타겟이 NPC라면 상호작용
-				if (_lockTarget.GetComponent<NpcController>().IsNull() == false)
-					_lockTarget.GetComponent<NpcController>().GetInteract();
+				if (m_LockTarget.GetComponent<NpcController>().IsNull() == false)
+					m_LockTarget.GetComponent<NpcController>().GetInteract();
 
 				return;
 			}
 		}
 
 		// 타겟 대상을 클릭했을 때 콜라이더 위쪽을 클릭하게 된다면 그쪽을 바라보고 달리기 때문에 y값을 0으로 준다.
-		_destPos.y = 0;
+		m_DestPos.y = 0;
 
-		// 타겟과의 거리
-		dir = _destPos - transform.position;
+        // 타겟과의 거리
+        m_Dir = m_DestPos - transform.position;
 
 		// 0.1만큼 가깝다면 멈추기
-		if (dir.magnitude < 0.1f)
+		if (m_Dir.magnitude < 0.1f)
 			State = Define.State.Idle;
 		else
 		{
@@ -122,19 +119,19 @@ public class PlayerController : BaseController
 			}
 
 			// 회전
-			float moveDist = Mathf.Clamp(Managers.Game.MoveSpeed * Time.deltaTime, 0, dir.magnitude);
+			float moveDist = Mathf.Clamp(Managers.Game.MoveSpeed * Time.deltaTime, 0, m_Dir.magnitude);
 
-			transform.position += dir.normalized * moveDist;
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20f * Time.deltaTime);
+			transform.position += m_Dir.normalized * moveDist;
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_Dir), 20f * Time.deltaTime);
 		}
 	}
 
-	float diveTime = 0.8f;
+	float a_DiveTime = 0.8f;
 	protected override void UpdateDiveRoll()
 	{
 		// 구르기 타이머
 		currentDiveTime += Time.deltaTime;
-		if (currentDiveTime >= diveTime)
+		if (currentDiveTime >= a_DiveTime)
 		{
 			ClearDiveRoll();
 			return;
@@ -143,38 +140,39 @@ public class PlayerController : BaseController
 		// 공격 중지
 		StopAttack();
 
-		// 도착 위치 받기
-		_destPos = GetMousePoint();
-		float moveDist = Mathf.Clamp(Managers.Game.MoveSpeed * Time.deltaTime, 0, dir.magnitude);
+        // 도착 위치 받기
+        m_DestPos = GetMousePoint();
+		float moveDist = Mathf.Clamp(Managers.Game.MoveSpeed * Time.deltaTime, 0, m_Dir.magnitude);
 
 		// 이동
-		transform.position += dir.normalized * moveDist;
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20f * Time.deltaTime);
+		transform.position += m_Dir.normalized * moveDist;
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_Dir), 20f * Time.deltaTime);
 
 		// 벽 확인
 		if (BlockCheck() == true)
 		{
-			_isDiveRoll = false;
+			IsDiveRoll = false;
 			Managers.Game.MoveSpeed = 5;
-			return;
+			State = Define.State.Idle;
+            return;
 		}
 	}
 
 	protected override void UpdateAttack()
 	{
-		_attackCloseTime += Time.deltaTime;
+        m_AttackCloseTime += Time.deltaTime;
 		// 콤보 공격이 너무 오래 지속되면 강제 Idle 전환
-		if (_onComboAttack && _attackCloseTime > 2.0f)
+		if (_onComboAttack && m_AttackCloseTime > 2.0f)
 		{
 			StopAttack();
 			State = Define.State.Idle;
 			return;
 		}
 		// 공격이 시간이 끝나면 종료 || 공격 했는데 가만히 있다면
-		if ((anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack") == true &&
-			_attackCloseTime > 0.94f && _onComboAttack == false) ||
-			(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") == true &&
-			 anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.2f))
+		if ((m_Anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack") == true &&
+            m_AttackCloseTime > 0.94f && _onComboAttack == false) ||
+			(m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") == true &&
+             m_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.2f))
 		{
 			StopAttack();
 			State = Define.State.Idle;
@@ -203,38 +201,38 @@ public class PlayerController : BaseController
 		}
 	}
 
-	float minDistance = 0.3f;
+	float a_MinDist = 0.3f;
 	void GetMouseEvent(Define.MouseEvent evt)
 	{
 		// 메인 카메라에서 마우스가 가르키는 위치의 ray를 저장
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		bool raycastHit = Physics.Raycast(ray, out hit, 150f, _mask);
+		bool raycastHit = Physics.Raycast(ray, out hit, 150f, m_Mask);
 
 		// 자신 캐릭터 클릭 시 진행 X
-		float distance = (hit.point - transform.position).magnitude;
-		if (distance <= minDistance)
-			return;
+		float a_Dist = (hit.point - transform.position).magnitude;
+
+		if (a_Dist <= a_MinDist) return;
 
 		switch (evt)
 		{
 			// 마우스를 클릭했을 때 [ 클릭한 위치로 이동 ]
 			case Define.MouseEvent.RightDown:
 				{
-					_destPos = hit.point;   // 해당 좌표 저장
-					if (raycastHit && _stopAttack)
+                    m_DestPos = hit.point;   // 해당 좌표 저장
+					if (raycastHit && stopAttack)
 					{
 						State = Define.State.Moving;
 
 						// 클릭 장소에 파란 원 활성화시키기
 						clickMoveEffect.SetActive(false);
 						clickMoveEffect.SetActive(true);
-						clickMoveEffect.transform.position = _destPos;
+						clickMoveEffect.transform.position = m_DestPos;
 
 						// 클릭 위치에 타겟이 있다면 저장
 						if (hit.collider.gameObject.layer == (int)Define.Layer.Npc)
-							_lockTarget = hit.collider.gameObject;
+							m_LockTarget = hit.collider.gameObject;
 						else
-							_lockTarget = null;
+							m_LockTarget = null;
 					}
 				}
 				break;
@@ -242,16 +240,16 @@ public class PlayerController : BaseController
 			case Define.MouseEvent.RightPress:
 				{
 					// 공격 상태가 아니라면
-					if (_stopAttack == true)
+					if (stopAttack == true)
 					{
 						// 멈추고 있으면 움직이기
 						if (State == Define.State.Idle)
 							State = Define.State.Moving;
 
-						if (_lockTarget.IsNull() == false)
-							_destPos = _lockTarget.transform.position;
+						if (m_LockTarget.IsNull() == false)
+                            m_DestPos = m_LockTarget.transform.position;
 						else if (raycastHit)
-							_destPos = hit.point;
+                            m_DestPos = hit.point;
 					}
 				}
 				break;
@@ -261,9 +259,9 @@ public class PlayerController : BaseController
 					// 무기가 있다면 공격 가능
 					if (Managers.Game.CurrentWeapon.IsNull() == false)
 					{
-						_stopAttack = false;
-						_destPos = hit.point;
-						_destPos.y = 0;
+                        stopAttack = false;
+                        m_DestPos = hit.point;
+						m_DestPos.y = 0;
 						OnAttack();
 					}
 				}
@@ -271,10 +269,10 @@ public class PlayerController : BaseController
 			// 왼쪽 누르는 중이면 다음 공격 진행
 			case Define.MouseEvent.LeftPress:
 				{
-					if (_stopAttack == false)
+					if (stopAttack == false)
 					{
-						_destPos = hit.point;
-						_destPos.y = 0;
+                        m_DestPos = hit.point;
+                        m_DestPos.y = 0;
 						OnAttack();
 					}
 				}
@@ -288,8 +286,8 @@ public class PlayerController : BaseController
 	{
 		// 콤보 체크 (공격 중에 다음 공격을 할 것인지?)
 		if (_onAttack &&
-			anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack") &&
-			anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f)
+			m_Anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack") &&
+			m_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f)
 		{
 			_onComboAttack = true;
 		}
@@ -301,7 +299,7 @@ public class PlayerController : BaseController
 			_onAttack = true;
 
 			// 회전
-			dir = _destPos - transform.position;
+			m_Dir = m_DestPos - transform.position;
 			transform.rotation = Quaternion.LookRotation(GetMousePoint() - transform.position);
 		}
 	}
@@ -313,11 +311,10 @@ public class PlayerController : BaseController
 	// 키보드 클릭
 	void OnKeyEvent()
 	{
-		if (State == Define.State.Die)
-			return;
+		if (State == Define.State.Die) return;
 
 		// 구르지 않을 때 가능
-		if (_isDiveRoll == false)
+		if (IsDiveRoll == false)
 		{
 			GetDiveRoll();  // 구르기
 			GetSkill();     // 스킬
@@ -329,11 +326,11 @@ public class PlayerController : BaseController
 
 	// F Key로 아이템 줍기
 	[SerializeField]
-	float itemMaxRadius = 5f;
+	float ItemMaxRadius = 5f;
 	void GetPickUp()
 	{
 		// 주변 아이템 탐색
-		Collider[] colliders = Physics.OverlapSphere(transform.position, itemMaxRadius, 1 << 12); // 12 : Item
+		Collider[] colliders = Physics.OverlapSphere(transform.position, ItemMaxRadius, 1 << 12); // 12 : Item
 
 		// F 키를 누르면 줍기
 		if (Input.GetKeyDown(KeyCode.F))
@@ -367,15 +364,15 @@ public class PlayerController : BaseController
 				return;
 			}
 
-			_isDown = false;
-			_isDiveRoll = true;
+			IsDown = false;
+			IsDiveRoll = true;
 
 			// 넘어진 상태라면 취소시키기
 			StopCoroutine(HitDown(null));
 
-			// 도착 좌표
-			_destPos = GetMousePoint();
-			dir = _destPos - transform.position;
+            // 도착 좌표
+            m_DestPos = GetMousePoint();
+			m_Dir = m_DestPos - transform.position;
 
 			Managers.Game.Mp -= 10;
 			Managers.Game.MoveSpeed = 8;
@@ -394,11 +391,11 @@ public class PlayerController : BaseController
 		else if (Input.GetKeyDown(KeyCode.Alpha2)) Managers.Game._playScene.UsingItem(2);
 	}
 
-	// 스킬 사용 (Q, W, E, A, S, D, R)
+	// 스킬 사용 (Q, W, E, A, S, R)
 	void GetSkill()
 	{
-		// 스킬 사용 중이면 x
-		if (State == Define.State.Skill || _isDown == true) return;
+        // 스킬 사용 중이거나 넘어져있다면 불가
+        if (State == Define.State.Skill || IsDown == true) return;
 
 		// 무기가 없으면 스킬 사용 불가
 		if (Managers.Game.CurrentWeapon.IsNull() == true) return;
@@ -440,17 +437,17 @@ public class PlayerController : BaseController
 		StopAttack();
 
 		// 마우스 방향으로 회전
-		_destPos = GetMousePoint();
-		dir = _destPos - transform.position;
-		transform.rotation = Quaternion.LookRotation(dir);
+		m_DestPos = GetMousePoint();
+		m_Dir = m_DestPos - transform.position;
+		transform.rotation = Quaternion.LookRotation(m_Dir);
 
         // 현재 스킬 설정(저장할필요 없으니 설정만)
         currentSkill = a_Skill;
 
 		// 스킬 이펙트 찾기
-		foreach (EffectData effect in effects)
+		foreach (EffectData effect in m_Effects)
 		{
-			if (currentSkill.skillId == effect.id)
+			if (currentSkill.skillId == effect.Id)
 			{
 				currentEffect = effect.gameObject;
 				break;
@@ -460,7 +457,7 @@ public class PlayerController : BaseController
 		// 스킬 진행
 		State = Define.State.Skill;
         // 스킬 애니메이션 재생(Id로 구분해 재생)
-        anim.CrossFade("Skill" + currentSkill.skillId, 0.1f, 0);
+        m_Anim.CrossFade("Skill" + currentSkill.skillId, 0.1f, 0);
 
 		currentSkill.isCoolDown = true;
 		Managers.Game.Mp -= currentSkill.skillConsumMp;
@@ -482,7 +479,7 @@ public class PlayerController : BaseController
 
 		// 넘어지게 상태를 변경
 		State = Define.State.Down;
-		_isDown = true;
+		IsDown = true;
 
 		// 공격자 바라보기
 		Vector3 a_Dir = attacker.transform.position - transform.position;
@@ -491,9 +488,9 @@ public class PlayerController : BaseController
 		yield return new WaitForSeconds(2f);
 
 		// 구르는게 아니면 Idle 변경
-		if (_isDiveRoll == false) State = Define.State.Idle;
+		if (IsDiveRoll == false) State = Define.State.Idle;
 
-		_isDown = false;
+		IsDown = false;
 	}
 
 	// 레벨업 이펙트
@@ -513,7 +510,7 @@ public class PlayerController : BaseController
 	{
 		// 마우스 Ray 쏘기
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Physics.Raycast(ray, out hit, 150f, _mask);
+		Physics.Raycast(ray, out hit, 150f, m_Mask);
 
 		// 마우스 포인트 좌표 반환
 		Vector3 a_HitPoint = hit.point;
@@ -535,7 +532,7 @@ public class PlayerController : BaseController
 	bool BlockCheck()
 	{
 		// 전방 Block 체크하여 멈추기(자연스러운 멈춤을 위해 1에서 멈춤)
-		if (Physics.Raycast(transform.position + (Vector3.up * 0.5f), dir, 1.0f, 1 << 10)) return true;
+		if (Physics.Raycast(transform.position + (Vector3.up * 0.5f), m_Dir, 1.0f, 1 << 10)) return true;
 
 		return false;
 	}
@@ -554,7 +551,7 @@ public class PlayerController : BaseController
 
 
 			// 회전
-			dir = _destPos - transform.position;
+			m_Dir = m_DestPos - transform.position;
 			transform.rotation = Quaternion.LookRotation(GetMousePoint() - transform.position);
 		}
 	}
@@ -581,15 +578,15 @@ public class PlayerController : BaseController
 	{
 		_onAttack = false;
 		_onComboAttack = false;
-		_stopAttack = true;
-		_attackCloseTime = 0;
-		attackNumber = 1;
+		stopAttack = true;
+        m_AttackCloseTime = 0;
+		m_AttackNumber = 1;
 	}
 
 	// 구르기 초기화
 	void ClearDiveRoll()
 	{
-		_isDiveRoll = false;
+		IsDiveRoll = false;
 		currentDiveTime = 0f;
 		Managers.Game.MoveSpeed = 5;
 		State = Define.State.Idle;
@@ -601,8 +598,9 @@ public class PlayerController : BaseController
 		// Null Check
 		if (currentEffect.IsFakeNull() == true) return;
 
-		// Effect 비활성화 진행
-		currentEffect.GetComponent<EffectData>().EffectDisableDelay();
+        // Effect 비활성화 진행
+        if (currentEffect.activeInHierarchy)
+            currentEffect.GetComponent<EffectData>().EffectDisableDelay();
 	}
 
 	#region 캐릭터 파츠 세팅
@@ -610,33 +608,33 @@ public class PlayerController : BaseController
 	void SetPart()
 	{
 		// 캐릭터 파츠 가져오기
-		GameObject goChild = Util.FindChild(gameObject, "Modular_Characters");
-		foreach (Transform child in goChild.GetComponentsInChildren<Transform>())
+		GameObject a_ObjChild = Util.FindChild(gameObject, "Modular_Characters");
+		foreach (Transform a_Child in a_ObjChild.GetComponentsInChildren<Transform>())
 		{
 			// 캐릭터의 커스텀 파츠 저장
-			if (child.CompareTag("Custom"))
+			if (a_Child.CompareTag("Custom"))
 			{
-				string result = Regex.Replace(child.name, "Base", "");
-				Define.DefaultPart partType = (Define.DefaultPart)System.Enum.Parse(typeof(Define.DefaultPart), result);
+				string result = Regex.Replace(a_Child.name, "Base", "");
+				Define.DefaultPart a_PartType = (Define.DefaultPart)System.Enum.Parse(typeof(Define.DefaultPart), result);
 
-				SetSkinned(partType, child);
+				SetSkinned(a_PartType, a_Child);
 				continue;
 			}
 
 			// 장비 파츠 가져오기
-			if (child.CompareTag("Equipment"))
+			if (a_Child.CompareTag("Equipment"))
 			{
 				// 기본 옷이라면 커스텀했던 옷 입혀주기
-				if (child.name.Contains("Default") == true)
+				if (a_Child.name.Contains("Default") == true)
 				{
-					string defualtResult = Regex.Replace(child.name, "Default", "");
+					string defualtResult = Regex.Replace(a_Child.name, "Default", "");
 					defualtResult = Regex.Replace(defualtResult, @"\d", "");
-					Define.DefaultPart partType = (Define.DefaultPart)System.Enum.Parse(typeof(Define.DefaultPart), defualtResult);
+					Define.DefaultPart a_PartType = (Define.DefaultPart)System.Enum.Parse(typeof(Define.DefaultPart), defualtResult);
 
-					SetSkinned(partType, child);
+					SetSkinned(a_PartType, a_Child);
 				}
 
-				string result = Regex.Replace(child.name, @"\D", "");
+				string result = Regex.Replace(a_Child.name, @"\D", "");
 				int id = int.Parse(result);
 
 				// 아이템 안에 장비 파츠 저장
@@ -644,59 +642,60 @@ public class PlayerController : BaseController
 				if (armor.charEquipment.IsNull() == true)
 					armor.charEquipment = new List<GameObject>();
 
-				armor.charEquipment.Add(child.gameObject);
+				armor.charEquipment.Add(a_Child.gameObject);
 
 				// 플레이어 안에서 장비 파츠 저장
-				List<GameObject> equipList;
-				if (charEquipment.TryGetValue(id, out equipList) == false)
+				List<GameObject> a_EquipList;
+				if (charEquipment.TryGetValue(id, out a_EquipList) == false)
 				{
-					equipList = new List<GameObject>();
-					charEquipment.Add(id, equipList);
+                    a_EquipList = new List<GameObject>();
+					charEquipment.Add(id, a_EquipList);
 				}
 
-				equipList.Add(child.gameObject);
+				a_EquipList.Add(a_Child.gameObject);
 
-				child.gameObject.SetActive(false);
-			}
+                a_Child.gameObject.SetActive(false);
+
+            }
 		}
 
 		// 장착할 무기 객체 아이템 안에 저장
-		foreach (Transform child in waeponObjList.transform)
+		foreach (Transform a_Child in m_WeaponObjList.transform)
 		{
-			string result = Regex.Replace(child.name, @"\D", "");
+			string result = Regex.Replace(a_Child.name, @"\D", "");
 			int id = int.Parse(result);
 
 			// Data 저장
-			WeaponItemData weapon = Managers.Data.Item[id] as WeaponItemData;
-			weapon.charEquipment = child.gameObject;
+			WeaponItemData a_Weapon = Managers.Data.Item[id] as WeaponItemData;
+            a_Weapon.charEquipment = a_Child.gameObject;
 
-			child.gameObject.SetActive(false);
+            a_Child.gameObject.SetActive(false);
 		}
 	}
 
 	// SkinnedMeshReaderer 변경
-	void SetSkinned(Define.DefaultPart partType, Transform go)
+	void SetSkinned(Define.DefaultPart a_PartType, Transform a_Obj)
 	{
 		// SkinnedMeshRenderer 컴포넌트 받기
-		SkinnedMeshRenderer objSkinned = go.GetComponent<SkinnedMeshRenderer>();
+		SkinnedMeshRenderer a_ObjSkinned = a_Obj.GetComponent<SkinnedMeshRenderer>();
 
-		SkinnedData skinnedInfo = Managers.Game.DefaultPart[partType];
+		SkinnedData skinnedInfo = Managers.Game.DefaultPart[a_PartType];
 
 		// 파츠를 가지고 있는 Model FBX를 찾아 파츠 이름 검색하여 Mesh 받기
 		GameObject meshObj = Managers.Resource.Load<GameObject>("Models/Modular_Character");
 
-		// SkinnedMeshRenderer 세팅
-		objSkinned.sharedMesh = Util.FindChild<SkinnedMeshRenderer>(meshObj, skinnedInfo.sharedMeshName, true).sharedMesh;
-		objSkinned.localBounds = skinnedInfo.bounds;
-		objSkinned.rootBone = Util.FindChild<Transform>(rootBone, skinnedInfo.rootBoneName, true);
+        // SkinnedMeshRenderer 세팅
+        a_ObjSkinned.sharedMesh = Util.FindChild<SkinnedMeshRenderer>(meshObj, skinnedInfo.sharedMeshName, true).sharedMesh;
+        a_ObjSkinned.localBounds = skinnedInfo.bounds;
+        a_ObjSkinned.rootBone = Util.FindChild<Transform>(m_RootBone, skinnedInfo.rootBoneName, true);
 
-		Transform[] newBones = new Transform[skinnedInfo.bones.Count];
+		Transform[] a_NewBones = new Transform[skinnedInfo.bones.Count];
 		for (int i = 0; i < skinnedInfo.bones.Count; i++)
 		{
-			newBones[i] = Util.FindChild<Transform>(rootBone, skinnedInfo.bones[i], true);
+            a_NewBones[i] = Util.FindChild<Transform>(m_RootBone, skinnedInfo.bones[i], true);
 		}
 
-		objSkinned.bones = newBones;
+        a_ObjSkinned.bones = a_NewBones;
 	}
 	#endregion
 

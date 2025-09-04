@@ -47323,16 +47323,16 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: OnAttackEvent()
+    functionName: OnAttackEvent
     data: 
-    objectReferenceParameter: {fileID: 4047888768333959288, guid: 04f0395bbf096a34e9262416d3f91776, type: 3}
+    objectReferenceParameter: {fileID: 8210207690257594047, guid: 2121f266f5d975c42a21d667318c537a, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1333333
-    functionName: ExitAttack()
+    functionName: ExitAttack
     data: 
-    objectReferenceParameter: {fileID: 4047888768333959288, guid: 04f0395bbf096a34e9262416d3f91776, type: 3}
+    objectReferenceParameter: {fileID: 8210207690257594047, guid: 2121f266f5d975c42a21d667318c537a, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

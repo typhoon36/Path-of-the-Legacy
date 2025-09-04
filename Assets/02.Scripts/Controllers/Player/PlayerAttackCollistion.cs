@@ -54,7 +54,10 @@ public class PlayerAttackCollistion : MonoBehaviour
             }
             //일반 공격
             else
+            {
                 coll.GetComponent<MonsterStat>().OnAttacked(); // 기본 공격
+                Debug.Log("PlayerAttackCollistion - 기본 공격");
+            }
         }
     }
 
@@ -64,11 +67,11 @@ public class PlayerAttackCollistion : MonoBehaviour
     // 기본 콜라이더 사이즈
     void BasicColliderSize()
     {
-   
-        if(capsuleCollider.IsNull() == true) return;
 
-        capsuleCollider.center = new Vector3(0, 0, 0.4f);
-        capsuleCollider.radius = 1.2f;
+        if (capsuleCollider.IsNull() == true) return;
+
+        capsuleCollider.center = new Vector3(0, 1, 0.4f);
+        capsuleCollider.radius = 1.6f;
         capsuleCollider.height = 2.4f;
     }
 }

@@ -6,26 +6,11 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 
-/*
- * File :   UI_NumberCheckPopup.cs
- * Desc :   개수 확인 Popup UI ( 현재 상점에서 사용 중 )
- *
- & Functions
- &  [Public]
- &  : Init()    - 초기 설정
- &  : SetInfo() - 기능 설정
- &
- &  []
- &  : OnClickMinusButton()  - 마이너스 버튼
- &  : OnClickPlusButton()   - 플러스 버튼
- &  : OnClickYesButton()    - 확인 버튼
- &  : OnClickNoButton()     - 취소 버튼
- &  : RefreshUI()           - 새로고침 UI
- *
- */
 
+
+// 개수 확인 Popup UI 
 public class UI_NumberCheckPopup : UI_Popup
-{   
+{
     enum Gameobjects
     {
         Background,
@@ -39,17 +24,15 @@ public class UI_NumberCheckPopup : UI_Popup
         YesButton,
     }
 
-     int             itemCount = 0;      // 현재 개수
-     int             itemMaxCount = 0;   // 최대 개수
+    int ItemCount = 0;      // 현재 개수
+    int ItemMaxCount = 0;   // 최대 개수
 
-     Action<int>     _onClickYesButton;  // 확인 버튼 누를 시 호출
-     UI_InvenSlot    _invenItem;         // 인벤토리 슬롯
+    Action<int> _onClickYesButton;  // 확인 버튼 누를 시 호출
+    UI_InvenSlot m_InvenItem;         // 인벤토리 슬롯
 
-    [SerializeField]
-     Slider          numberSlider;
+    [SerializeField] Slider m_NumberSlider;
 
-    [SerializeField]
-     Text _itemCountText;
+    [SerializeField] Text m_ItemCountText;
 
     public override bool Init()
     {
@@ -67,83 +50,83 @@ public class UI_NumberCheckPopup : UI_Popup
         GetButton((int)Buttons.YesButton).onClick.AddListener(OnClickYesButton);
 
         // Order 설정
-        GetObject((int)Gameobjects.Background).BindEvent((PointerEventData eventData)=>
+        GetObject((int)Gameobjects.Background).BindEvent((PointerEventData eventData) =>
         {
             Managers.UI.SetOrder(GetComponent<Canvas>());
         }, Define.UIEvent.Click);
-        
+
         // 슬라이더 사용 시 기능 등록
-        numberSlider.onValueChanged.AddListener((float value)=>
+        m_NumberSlider.onValueChanged.AddListener((float value) =>
         {
-            itemCount = (int)value;
-            _itemCountText.text = itemCount.ToString();
+            ItemCount = (int)value;
+            m_ItemCountText.text = ItemCount.ToString();
         });
 
         return true;
     }
 
     // 인벤토리 받으며 세팅 (판매할 때 사용 중)
-    public void SetInfo(UI_InvenSlot invenItem, Action<int> onClickYesButton)
+    public void SetInfo(UI_InvenSlot a_InvenItem, Action<int> onClickYesButton)
     {
         _onClickYesButton = onClickYesButton;
-        _invenItem = invenItem;
+        m_InvenItem = a_InvenItem;
 
-        itemMaxCount = invenItem.itemCount;
+        ItemMaxCount = a_InvenItem.ItemCount;
 
         RefreshUI();
     }
-    
+
     // 아이템 받으며 세팅 (구매할 때 사용 중)
     public void SetInfo(ItemData item, Action<int> onClickYesButton)
     {
         _onClickYesButton = onClickYesButton;
 
-        itemMaxCount = (int)(Managers.Game.Gold / item.itemPrice);
+        ItemMaxCount = (int)(Managers.Game.Gold / item.itemPrice);
 
         RefreshUI();
     }
 
     // 마이너스 버튼
-     void OnClickMinusButton()
+    void OnClickMinusButton()
     {
-        itemCount = Mathf.Clamp(--itemCount, 1, itemMaxCount);
-        numberSlider.value = itemCount;
-        _itemCountText.text = itemCount.ToString();
+        ItemCount = Mathf.Clamp(--ItemCount, 1, ItemMaxCount);
+        m_NumberSlider.value = ItemCount;
+        m_ItemCountText.text = ItemCount.ToString();
     }
 
     // 플러스 버튼
-     void OnClickPlusButton()
+    void OnClickPlusButton()
     {
-        itemCount = Mathf.Clamp(++itemCount, 1, itemMaxCount);
-        numberSlider.value = itemCount;
-        _itemCountText.text = itemCount.ToString();
+        ItemCount = Mathf.Clamp(++ItemCount, 1, ItemMaxCount);
+        m_NumberSlider.value = ItemCount;
+        m_ItemCountText.text = ItemCount.ToString();
     }
 
     // 확인 버튼
-     void OnClickYesButton()
+    void OnClickYesButton()
     {
         Managers.UI.ClosePopupUI(this);
 
         if (_onClickYesButton.IsNull() == false)
-            _onClickYesButton.Invoke(itemCount);
+            _onClickYesButton.Invoke(ItemCount);
     }
 
     // 취소 버튼
-     void OnClickNoButton()
+    void OnClickNoButton()
     {
         Managers.UI.ClosePopupUI(this);
     }
 
-     void RefreshUI()
+    void RefreshUI()
     {
         Managers.UI.SetOrder(GetComponent<Canvas>());
 
-        itemCount = 1;
+        ItemCount = 1;
 
-        numberSlider.minValue = itemCount;
-        numberSlider.maxValue = itemMaxCount;
-        numberSlider.value = itemCount;
+        m_NumberSlider.minValue = ItemCount;
+        m_NumberSlider.maxValue = ItemMaxCount;
+        m_NumberSlider.value = ItemCount;
 
-        _itemCountText.text = itemCount.ToString();
+        m_ItemCountText.text = ItemCount.ToString();
     }
 }

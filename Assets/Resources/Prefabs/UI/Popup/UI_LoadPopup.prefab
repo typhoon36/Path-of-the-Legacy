@@ -229,8 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupType: 0
-  loadSlider: {fileID: 6764367527696072724}
-  tipText: {fileID: 6663432203496827079}
+  m_LoadSlider: {fileID: 6764367527696072724}
+  m_TipText: {fileID: 6663432203496827079}
 --- !u!114 &7728534538063475308
 MonoBehaviour:
   m_ObjectHideFlags: 0

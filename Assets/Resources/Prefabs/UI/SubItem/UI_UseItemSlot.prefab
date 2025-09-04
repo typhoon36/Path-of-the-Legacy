@@ -286,8 +286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1618330704225053628}
   itemCount: 0
-  key: 0
-  keyText: {fileID: 1998325775068503427}
+  m_Key: 0
+  m_KeyText: {fileID: 1998325775068503427}
 --- !u!114 &4822790294951644586
 MonoBehaviour:
   m_ObjectHideFlags: 0

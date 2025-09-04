@@ -51,7 +51,7 @@ public class MonsterController : BaseController
         WorldObjectType = Define.WorldObject.Monster;
 
         _stat = GetComponent<MonsterStat>();
-        anim = GetComponent<Animator>();
+        m_Anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
 
         // 체력바 생성
@@ -65,7 +65,7 @@ public class MonsterController : BaseController
     protected virtual void IdleTargetDetection()
     {
         hpBarUI.SetActive(true);                    // 체력바 활성화
-        _lockTarget = Managers.Game.GetPlayer();    // 타겟 설정
+        m_LockTarget = Managers.Game.GetPlayer();    // 타겟 설정
 
         State = Define.State.Moving;
     }
@@ -90,7 +90,7 @@ public class MonsterController : BaseController
 
         // 플레이어가 죽었거나, 타겟이 Null이면
         if (Managers.Game.GetPlayer().GetComponent<PlayerController>().State == Define.State.Die ||
-            _lockTarget.IsNull() == true)
+            m_LockTarget.IsNull() == true)
         {
             StartCoroutine(SpawnMoving());  // 스폰 지점으로 이동
             return;
@@ -104,7 +104,7 @@ public class MonsterController : BaseController
             return;
         }
 
-        distance = TargetDistance(_lockTarget);         // 타겟 거리값
+        distance = TargetDistance(m_LockTarget);         // 타겟 거리값
         Managers.Game._playScene.OnMonsterBar(_stat);   // Scene UI 몬스터 정보 활성화
 
         // 타겟과의 거리가 일정 범위 벗어나면
@@ -115,7 +115,7 @@ public class MonsterController : BaseController
         }
 
         // nav 도착좌표 설정
-        nav.SetDestination(_lockTarget.transform.position);
+        nav.SetDestination(m_LockTarget.transform.position);
 
         // 타겟이 공격사거리안에 들어오면
         if (distance <= attackRange)
@@ -147,8 +147,8 @@ public class MonsterController : BaseController
         nav.SetDestination(transform.position);
 
         // 피격 애니메이션 시간 체크
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") &&
-            anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        if (m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") &&
+            m_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             State = Define.State.Moving;
         }
@@ -243,7 +243,7 @@ public class MonsterController : BaseController
     // 전투 종료 
     public void BattleClose()
     {
-        _lockTarget = null;
+        m_LockTarget = null;
         Managers.Game._playScene.CloseMonsterBar();
 
         nav.SetDestination(transform.position);

@@ -1,29 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_SkillPopupSlot.cs
- * Desc :   UI_SkillPopup.cs에서 사용되며 스킬을 저장한다.
- *          레벨이 충족 되면 우클릭을 통해 스킬을 활성화할 수 있다.
- *
- & Functions
- &  [Public]
- &  : SetInfo()         - 기능 설정
- &  : ClearSlot()       - 초기화
- &
- &  [Protected]
- &  : OnClickSlot()     - 우클릭하여 스킬 활성화
- &  : OnBeginDragSlot() - 슬롯 드래그 시작
- &  : OnDragSlot()      - 슬롯 드래그 진행
- &  : OnEndDragSlot()   - 슬롯 드래그 끝
- &
- &  [Prviate]
- &  : LevelCheck()      - 스킬 레벨 확인
- *
- */
+
+
+//UI_SkillPopup.cs에서 사용되며 스킬을 저장한다.
 
 public class UI_SkillPopupSlot : UI_SkillSlot
 {
@@ -37,8 +19,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
         SkillLevelText,
     }
 
-    [SerializeField]
-     int     skillId;
+    [SerializeField] int     skillId;
 
     public override void SetInfo()
     {
@@ -47,25 +28,24 @@ public class UI_SkillPopupSlot : UI_SkillSlot
         BindText(typeof(Texts));
 
         // 게임데이터에 스킬 아이디 존재 확인
-        if (Managers.Data.Skill.TryGetValue(skillId, out skillData) == false)
+        if (Managers.Data.Skill.TryGetValue(skillId, out SkillData) == false)
             Debug.Log($"SkillData {skillId} : Failed");
 
-        GetText((int)Texts.SkillLevelText).text = skillData.minLevel.ToString();
-        icon.sprite = skillData.skillSprite;
+        GetText((int)Texts.SkillLevelText).text = SkillData.minLevel.ToString();
+        icon.sprite = SkillData.skillSprite;
 
         // 시작 시 스킬이 흭득 상태인지 확인
-        foreach(SkillData skill in Managers.Game.CurrentSkill)
+        foreach(SkillData a_Skill in Managers.Game.CurrentSkill)
         {
             // 획득 상태면 Lock 해제
-            if (skillId == skill.skillId)
+            if (skillId == a_Skill.skillId)
             {
-                skillData.isLock = skill.isLock;
-                Debug.Log($"Skill {skillId} : UnLock");
+                SkillData.isLock = a_Skill.isLock;
                 break;
             }
         }
 
-        if (skillData.isLock == false)
+        if (SkillData.isLock == false)
             Managers.Resource.Destroy(GetObject((int)Gameobjects.LevelBlock));
         
         base.SetInfo();
@@ -73,7 +53,7 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
     protected override void OnClickSlot(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonUp(1) && skillData.isLock == true)
+        if (Input.GetMouseButtonUp(1) && SkillData.isLock == true)
         {
             if (LevelCheck() == true)
             {
@@ -82,8 +62,8 @@ public class UI_SkillPopupSlot : UI_SkillSlot
                 
                 confirmPopup.SetInfo(()=>
                 {
-                    skillData.isLock = false;
-                    Managers.Game.CurrentSkill.Add(this.skillData);
+                    SkillData.isLock = false;
+                    Managers.Game.CurrentSkill.Add(this.SkillData);
                     Managers.Resource.Destroy(GetObject((int)Gameobjects.LevelBlock));
                 }, Define.SkillOpenMessage);
             }
@@ -94,25 +74,22 @@ public class UI_SkillPopupSlot : UI_SkillSlot
 
     protected override void OnBeginDragSlot(PointerEventData eventData)
     {
-        if (skillData.isLock == false)
+        if (SkillData.isLock == false)
             base.OnBeginDragSlot(eventData);
-        Debug.Log($"Skill {skillId} : OnBeginDragSlot");
     }
 
     protected override void OnDragSlot(PointerEventData eventData)
     {
-        if (skillData.isLock == false)
+        if (SkillData.isLock == false)
             base.OnDragSlot(eventData);
-        Debug.Log($"Skill {skillId} : OnDragSlot");
     }
 
     protected override void OnEndDragSlot(PointerEventData eventData)
     {
-        if (skillData.isLock == false && skillData.IsNull() == false)
+        if (SkillData.isLock == false && SkillData.IsNull() == false)
             base.OnEndDragSlot(eventData);
-        Debug.Log($"Skill {skillId} : OnEndDragSlot");
     }
 
     // 스킬 레벨 체크
-     bool LevelCheck() { return Managers.Game.Level >= skillData.minLevel; }
+     bool LevelCheck() { return Managers.Game.Level >= SkillData.minLevel; }
 }

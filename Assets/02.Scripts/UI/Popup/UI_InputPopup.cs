@@ -5,20 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-/*
- * File :   UI_InputPopup.cs
- * Desc :   입력이 필요할 때 Popup UI (닉네임 입력 등..)
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : SetInfo()             - 새 정보 설정 ( 확인 클릭 시 Invoke 호출할 Action 받기 )
- &
- &  []
- &  : OnClickYesButton()    - 확인 버튼 클릭 시 호출
- &  : OnClickNoButton()     - 취소 버튼 클릭 시 호출
- *
- */
+
+
+// 입력이 필요할 때 Popup UI (닉네임 입력 등..)
+
 
 public class UI_InputPopup : UI_Popup
 {
@@ -28,18 +18,15 @@ public class UI_InputPopup : UI_Popup
         YesButton,
     }
 
-    [SerializeField]
-     InputField  _inputField;
+    [SerializeField] InputField m_InputField;
 
-    [SerializeField]
-     Text _messageText;
+    [SerializeField] Text m_MessageText;
 
-     string          _regex;         // 정규식
+    string m_Regex;         // 정규식
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         BindButton(typeof(Buttons));
 
@@ -53,27 +40,27 @@ public class UI_InputPopup : UI_Popup
     // 기능 설정
     Action<string> _onClickYesButton;
     Action _onClickNoButton;
-    public void SetInfo(Action<string> onClickYesButton, string messageText, string placeholderText, string regex, Action onClickNoButton=null)
+    public void SetInfo(Action<string> a_OnClickYesButton, string messageText, string placeholderText, string regex, Action a_OnClickNoButton = null)
     {
-        _onClickYesButton = onClickYesButton;
-        _onClickNoButton = onClickNoButton;
-        _messageText.text = messageText;
-        _regex = regex;
+        _onClickYesButton = a_OnClickYesButton;
+        _onClickNoButton = a_OnClickNoButton;
+        m_MessageText.text = messageText;
+        m_Regex = regex;
 
-        _inputField.placeholder.GetComponent<Text>().text = placeholderText;
-        _inputField.Select();
+        m_InputField.placeholder.GetComponent<Text>().text = placeholderText;
+        m_InputField.Select();
     }
 
-     void OnClickYesButton()
+    void OnClickYesButton()
     {
-        Regex regex = new Regex(_regex);
-        if (regex.IsMatch(_inputField.text))
+        Regex a_Regex = new Regex(m_Regex);
+        if (a_Regex.IsMatch(m_InputField.text))
         {
             Managers.UI.ClosePopupUI(this);
 
             // 확인 기능 실행
             if (_onClickYesButton.IsNull() == false)
-                _onClickYesButton.Invoke(_inputField.text);
+                _onClickYesButton.Invoke(m_InputField.text);
         }
         else
         {
@@ -82,7 +69,7 @@ public class UI_InputPopup : UI_Popup
         }
     }
 
-     void OnClickNoButton()
+    void OnClickNoButton()
     {
         Managers.UI.ClosePopupUI(this);
 

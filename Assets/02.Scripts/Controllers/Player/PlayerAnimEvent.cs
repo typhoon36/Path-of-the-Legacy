@@ -25,7 +25,7 @@ public class PlayerAnimEvent : MonoBehaviour
         public int direction;   // x: 0, y: 1, z: 2
     }
 
-    // Id 101 공격 범위 (트리플 슬래쉬)
+    // Id 101 공격 범위 
     AttackSize skill101 = new AttackSize()
     {
         x = 0,
@@ -36,7 +36,7 @@ public class PlayerAnimEvent : MonoBehaviour
         direction = Y_Axis,
     };
 
-    // Id 102 공격 범위 (라이징 슬래쉬)
+    // Id 102 공격 범위
     AttackSize[] skill102 = new AttackSize[]
     {
         new AttackSize()
@@ -53,7 +53,7 @@ public class PlayerAnimEvent : MonoBehaviour
         },
     };
 
-    // Id 103 공격 범위 (회전의 칼날)
+    // Id 103 공격 범위 
     AttackSize skill103 = new AttackSize()
     {
         x = -0.4f,
@@ -64,7 +64,7 @@ public class PlayerAnimEvent : MonoBehaviour
         direction = Y_Axis,
     };
 
-    // Id 104 공격 범위 (어둠의 칼날)
+    // Id 104 공격 범위 
     AttackSize skill104 = new AttackSize()
     {
         x = 0,
@@ -75,7 +75,7 @@ public class PlayerAnimEvent : MonoBehaviour
         direction = Y_Axis,
     };
 
-    // Id 105 공격 범위 (궁극의 일격)
+    // Id 105 공격 범위 
     AttackSize skill105 = new AttackSize()
     {
         x = 0,
@@ -86,7 +86,7 @@ public class PlayerAnimEvent : MonoBehaviour
         direction = Z_Axis,
     };
 
-    // Id 106 공격 범위 (칼날 섬멸)
+    // Id 106 공격 범위 
     AttackSize[] skill106 = new AttackSize[]
     {
         new AttackSize()
@@ -121,19 +121,19 @@ public class PlayerAnimEvent : MonoBehaviour
     #endregion
 
     // 기본 검 공격
-    void OnBasicAttack()
+    public void OnBasicAttack()
     {
         capsuleCollider.gameObject.SetActive(true);
     }
 
-    // skill 101 : 트리플 슬래쉬
-    void OnTripleSlash()
+    // skill 101 
+    public void OnTripleSlash()
     {
         OnSize(skill101);
     }
 
-    // skill 102 : 라이징 슬래쉬
-    void OnRisingSlash()
+    // skill 102 
+    public void OnRisingSlash()
     {
         OnSize(skill102[nextSkillIndex]);
 
@@ -142,26 +142,26 @@ public class PlayerAnimEvent : MonoBehaviour
             nextSkillIndex = 0;
     }
 
-    // skill 103 : 회전의 칼날
-    void OnRotationBlade()
+    // skill 103 
+    public void OnRotationBlade()
     {
         OnSize(skill103);
     }
 
-    // skill 104 : 어둠의 칼날
-    void OnDarkBlade()
+    // skill 104 
+    public void OnDarkBlade()
     {
         OnSize(skill104);
     }
 
-    // skill 105 : 궁극의 일격
-    void OnBigSwordSlash()
+    // skill 105 
+    public void OnBigSwordSlash()
     {
         OnSize(skill105);
     }
 
-    // skill 106 : 칼날 섬멸
-    void OnBladeAnnihilation()
+    // skill 106 
+    public void OnBladeAnnihilation()
     {
         OnSize(skill106[nextSkillIndex]);
 
@@ -171,7 +171,7 @@ public class PlayerAnimEvent : MonoBehaviour
     }
 
     // skill 107 : 궁극의 칼날
-    void OnEventualityBlade()
+    public void OnEventualityBlade()
     {
         OnSize(skill107);
     }

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede8558188cdf1f42a46fc9bdffaea08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitText: {fileID: 9017326817149377311}
+  m_HitText: {fileID: 9017326817149377311}
   upSpeed: 0.1
 --- !u!223 &8154637278990626485
 Canvas:

@@ -31,21 +31,19 @@ public class UI_TalkPopup : UI_Popup
         QuestRewardExpText,
     }
 
-    TalkData talkData;               // 대화 데이터
-    QuestData questData;              // 퀘스트 데이터
+    TalkData TalkData;               // 대화 데이터
+    QuestData QuestData;              // 퀘스트 데이터
 
-    int nextTalkIndex = 0;
+    int m_NextTalkIdx = 0;
 
-    bool isNext = false;         // 다음 대화로 넘어갈 수 있는지
-    bool isNextTalk = false;     // 다음 대화가 있는지
+    bool IsNext = false;         // 다음 대화로 넘어갈 수 있는지
+    bool IsNextTalk = false;     // 다음 대화가 있는지
 
-    [SerializeField]
-    float talkDelayTime = 0.1f;   // 대화 속도 딜레이  
+    [SerializeField] float m_TalkDelayTime = 0.1f;   // 대화 속도 딜레이  
 
     public override bool Init()
     {
-        if (base.Init() == false)
-            return false;
+        if (base.Init() == false) return false;
 
         popupType = Define.Popup.Talk;
 
@@ -78,10 +76,10 @@ public class UI_TalkPopup : UI_Popup
         if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             // 말이 다 안 끝났다면
-            if (isNext == false)
+            if (IsNext == false)
             {
                 // 대화 속도 빠르게
-                talkDelayTime = talkDelayTime / 2;
+                m_TalkDelayTime = m_TalkDelayTime / 2;
                 return;
             }
 
@@ -90,7 +88,7 @@ public class UI_TalkPopup : UI_Popup
                 return;
 
             // 다음 대화가 있으면 진행
-            if (isNextTalk == true)
+            if (IsNextTalk == true)
                 OnClickNextButton();
             else
                 Clear();
@@ -98,36 +96,36 @@ public class UI_TalkPopup : UI_Popup
     }
 
     // 일반 대화 세팅
-    public void SetInfo(string text, string npcName = null)
+    public void SetInfo(string a_Text, string a_NpcName = null)
     {
-        if (text.IsNull() == false)
+        if (a_Text.IsNull() == false)
         {
-            if (npcName.IsNull() == false)
-                GetText((int)Texts.NameText).text = npcName;
+            if (a_NpcName.IsNull() == false)
+                GetText((int)Texts.NameText).text = a_NpcName;
 
             // 대화 진행 후 종료
-            isNextTalk = false;
-            StartCoroutine(TypingText(text));
+            IsNextTalk = false;
+            StartCoroutine(TypingText(a_Text));
             return;
         }
     }
 
     // 퀘스트 대화 세팅
-    public void SetInfo(TalkData talk, QuestData quest, string npcName = null)
+    public void SetInfo(TalkData a_Talk, QuestData a_Quest, string a_NpcName = null)
     {
-        if (talk.IsNull() == true || quest.IsNull() == true)
+        if (a_Talk.IsNull() == true || a_Quest.IsNull() == true)
         {
             Debug.Log("talk or quest Data Null");
             return;
         }
 
-        if (npcName.IsNull() == false)
-            GetText((int)Texts.NameText).text = npcName;
+        if (a_NpcName.IsNull() == false)
+            GetText((int)Texts.NameText).text = a_NpcName;
 
-        talkData = talk;
-        questData = quest;
+        TalkData = a_Talk;
+        QuestData = a_Quest;
 
-        nextTalkIndex = 0;
+        m_NextTalkIdx = 0;
 
         SetQuestUI();       // 퀘스트 정보 설정
         NextTalk();         // 대화 시작
@@ -136,46 +134,46 @@ public class UI_TalkPopup : UI_Popup
     void NextTalk()
     {
         // 할 대화가 없으면 종료
-        if (nextTalkIndex >= talkData.questStartTalk.Count)
+        if (m_NextTalkIdx >= TalkData.questStartTalk.Count)
         {
             Clear();
             return;
         }
 
         // 대화 시작
-        StartCoroutine(TypingText(talkData.questStartTalk[nextTalkIndex]));
+        StartCoroutine(TypingText(TalkData.questStartTalk[m_NextTalkIdx]));
 
-        nextTalkIndex++;
+        m_NextTalkIdx++;
 
         // 다음 대화가 없으면 퀘스트 정보 활성화
-        if (nextTalkIndex >= talkData.questStartTalk.Count)
+        if (m_NextTalkIdx >= TalkData.questStartTalk.Count)
         {
-            isNextTalk = false;
+            IsNextTalk = false;
             GetObject((int)Gameobejcts.QuestJournal).SetActive(true);
         }
         else
-            isNextTalk = true;
+            IsNextTalk = true;
     }
 
     // 타이핑 모션 코루틴
-    IEnumerator TypingText(string sentence)
+    IEnumerator TypingText(string a_Sentence)
     {
         GetText((int)Texts.TalkText).text = "";
 
-        isNext = false;
-        talkDelayTime = 0.05f;
+        IsNext = false;
+        m_TalkDelayTime = 0.05f;
 
         // 대화 타이밍 모션 실행
-        foreach (var letter in sentence)
+        foreach (var a_Letter in a_Sentence)
         {
-            GetText((int)Texts.TalkText).text += letter;
-            yield return new WaitForSeconds(talkDelayTime);
+            GetText((int)Texts.TalkText).text += a_Letter;
+            yield return new WaitForSeconds(m_TalkDelayTime);
         }
 
-        isNext = true;
+        IsNext = true;
 
         // 다음 대화가 있다면 다음 버튼 On
-        if (isNextTalk == true)
+        if (IsNextTalk == true)
             GetButton((int)Buttons.NextButton).gameObject.SetActive(true);
 
         // 퀘스트가 켜지면 수락 or 거절 버튼 On
@@ -194,18 +192,18 @@ public class UI_TalkPopup : UI_Popup
     void OnClickRefusalButton()
     {
         IsQuestActive(false);
-        SetInfo(talkData.refusalTalk);
+        SetInfo(TalkData.refusalTalk);
     }
 
     // 수락 버튼
     void OnClickAcceptButton()
     {
-        Managers.Game._playScene._quest.SetQeust(questData);
+        Managers.Game._playScene._quest.SetQeust(QuestData);
 
         IsQuestActive(false);
-        SetInfo(talkData.acceptTalk);
+        SetInfo(TalkData.acceptTalk);
 
-        Managers.UI.MakeWorldSpaceUI<UI_Navigation>().SetInfo(questData.targetPos);
+        Managers.UI.MakeWorldSpaceUI<UI_Navigation>().SetInfo(QuestData.targetPos);
     }
 
     // 퀘스트 활성화/비활성화
@@ -219,20 +217,20 @@ public class UI_TalkPopup : UI_Popup
     // 퀘스트 정보 설정
     void SetQuestUI()
     {
-        GetText((int)Texts.QuestTitleText).text = questData.titleName;
-        GetText((int)Texts.QuestDescText).text = questData.description;
-        GetText((int)Texts.QuestTargetText).text = questData.targetDescription;
-        GetText((int)Texts.QuestRewardGoldText).text = "Gold:" + questData.rewardGold.ToString();
-        GetText((int)Texts.QuestRewardExpText).text = "Exp:"+ questData.rewardExp.ToString();
+        GetText((int)Texts.QuestTitleText).text = QuestData.titleName;
+        GetText((int)Texts.QuestDescText).text = QuestData.description;
+        GetText((int)Texts.QuestTargetText).text = QuestData.targetDescription;
+        GetText((int)Texts.QuestRewardGoldText).text = "Gold:" + QuestData.rewardGold.ToString();
+        GetText((int)Texts.QuestRewardExpText).text = "Exp:"+ QuestData.rewardExp.ToString();
 
         foreach (Transform child in GetObject((int)Gameobejcts.QuestRewardGrid).transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        for (int i = 0; i < questData.rewardItems.Count; i++)
+        for (int i = 0; i < QuestData.rewardItems.Count; i++)
         {
-            UI_ItemSlot rewardItem = Managers.UI.MakeSubItem<UI_ItemSlot>(parent: GetObject((int)Gameobejcts.QuestRewardGrid).transform);
-            rewardItem.SetInfo();
-            rewardItem.AddItem(Managers.Data.Item[questData.rewardItems[i].ItemId], questData.rewardItems[i].itemCount);
+            UI_ItemSlot a_RewardItem = Managers.UI.MakeSubItem<UI_ItemSlot>(parent: GetObject((int)Gameobejcts.QuestRewardGrid).transform);
+            a_RewardItem.SetInfo();
+            a_RewardItem.AddItem(Managers.Data.Item[QuestData.rewardItems[i].ItemId], QuestData.rewardItems[i].itemCount);
         }
     }
 

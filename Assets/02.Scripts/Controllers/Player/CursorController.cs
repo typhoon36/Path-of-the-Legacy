@@ -15,68 +15,64 @@ public class CursorController : MonoBehaviour
         Loot,
     }
 
-     CursorType  _cursorType = CursorType.None;
+    CursorType m_CursorType = CursorType.None;
 
-     RaycastHit  hit;
-     Texture2D   _attackIcon;  // 공격 icon
-     Texture2D   _handIcon;    // 기본 icon
-     Texture2D   _lootIcon;    // npc icon
+    RaycastHit hit;
+    Texture2D m_AttackIcon;  // 공격 icon
+    Texture2D m_HandIcon;    // 기본 icon
+    Texture2D m_LootIcon;    // npc icon
 
-     int         _mask = (1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Npc);
+    int m_Mask = (1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster) | (1 << (int)Define.Layer.Npc);
 
     void Start()
     {
         // 커서 텍스쳐 가져오기
-        _attackIcon = Managers.Resource.Load<Texture2D>("Textures/Cursor/Attack");
-        _handIcon = Managers.Resource.Load<Texture2D>("Textures/Cursor/Hand");
-        _lootIcon = Managers.Resource.Load<Texture2D>("Textures/Cursor/Loot");
+        m_AttackIcon = Managers.Resource.Load<Texture2D>("Textures/Cursor/Attack");
+        m_HandIcon = Managers.Resource.Load<Texture2D>("Textures/Cursor/Hand");
+        m_LootIcon = Managers.Resource.Load<Texture2D>("Textures/Cursor/Loot");
 
         // Hand icon 커서에 적용 
-        Cursor.SetCursor(_handIcon, new Vector2(_handIcon.width / 3.1f, 0), CursorMode.Auto);
-        _cursorType = CursorType.Hand;
+        Cursor.SetCursor(m_HandIcon, new Vector2(m_HandIcon.width / 3.1f, 0), CursorMode.Auto);
+        m_CursorType = CursorType.Hand;
     }
 
-    void Update()
-    {
-        CursorUpdate();
-    }
+    void Update() { CursorUpdate(); }
 
-     void CursorUpdate()
+    void CursorUpdate()
     {
         // 꾹 누르면 아이콘 유지
-        if (Input.GetMouseButton(0))
-            return;
+        if (Input.GetMouseButton(0)) return;
 
         // 마우스 포인트 가져오기
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 100f, _mask))
+        if (Physics.Raycast(ray, out hit, 100f, m_Mask))
         {
             // NPC
             if (hit.collider.gameObject.layer == (int)Define.Layer.Npc)
             {
-                if (_cursorType != CursorType.Loot)
+                if (m_CursorType != CursorType.Loot)
                 {
-                    Cursor.SetCursor(_lootIcon, new Vector2(_lootIcon.width / 4.5f, _lootIcon.height / 2), CursorMode.Auto);
-                    _cursorType = CursorType.Loot;
+                    Cursor.SetCursor(m_LootIcon, new Vector2(m_LootIcon.width / 4.5f, m_LootIcon.height / 2), CursorMode.Auto);
+                    m_CursorType = CursorType.Loot;
                 }
                 return;
             }
             // Monster
             else if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
             {
-                if (_cursorType != CursorType.Attack)
+                if (m_CursorType != CursorType.Attack)
                 {
-                    Cursor.SetCursor(_attackIcon, new Vector2(_attackIcon.width / 3.9f, 0), CursorMode.Auto);
-                    _cursorType = CursorType.Attack;
+                    Cursor.SetCursor(m_AttackIcon, new Vector2(m_AttackIcon.width / 3.9f, 0), CursorMode.Auto);
+                    m_CursorType = CursorType.Attack;
                 }
                 return;
             }
             // Default
-            else if (_cursorType != CursorType.Hand)
+            else if (m_CursorType != CursorType.Hand)
             {
-                Cursor.SetCursor(_handIcon, new Vector2(_handIcon.width / 3.1f, 0), CursorMode.Auto);
-                _cursorType = CursorType.Hand;
+                Cursor.SetCursor(m_HandIcon, new Vector2(m_HandIcon.width / 3.1f, 0), CursorMode.Auto);
+                m_CursorType = CursorType.Hand;
             }
         }
     }

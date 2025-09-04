@@ -7273,12 +7273,12 @@ GameObject:
   - component: {fileID: 8888499305850737352}
   - component: {fileID: 2141710601711335860}
   m_Layer: 0
-  m_Name: Chest Armor Type 5 Color 3
-  m_TagString: Untagged
+  m_Name: Chest2
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8888499305850737352
 Transform:
   m_ObjectHideFlags: 0
@@ -7292,7 +7292,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5964679100841181829}
+  m_Father: {fileID: 6146416746057084839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2141710601711335860
 SkinnedMeshRenderer:
@@ -18646,7 +18646,6 @@ Transform:
   - {fileID: 5094165470723711721}
   - {fileID: 5683985010932072967}
   - {fileID: 1436031110105456452}
-  - {fileID: 8888499305850737352}
   - {fileID: 6299645594840102011}
   m_Father: {fileID: 5964679101850162228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18680,7 +18679,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2820563629631007277}
-  - {fileID: 1325953255466550859}
   - {fileID: 5218497808955579725}
   - {fileID: 2803165402806144394}
   - {fileID: 4754345883441553079}
@@ -21314,6 +21312,8 @@ Transform:
   - {fileID: 5877494499534350515}
   - {fileID: 3269034218405797307}
   - {fileID: 7188103048439157237}
+  - {fileID: 8888499305850737352}
+  - {fileID: 1325953255466550859}
   - {fileID: 1816412700327864848}
   - {fileID: 8989737789060455157}
   - {fileID: 6703475299885813650}
@@ -25606,12 +25606,12 @@ GameObject:
   - component: {fileID: 1325953255466550859}
   - component: {fileID: 3424584311386751125}
   m_Layer: 0
-  m_Name: Legs Armor Type 1 Color 3
-  m_TagString: Untagged
+  m_Name: Pants3
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1325953255466550859
 Transform:
   m_ObjectHideFlags: 0
@@ -25625,7 +25625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5964679100924468442}
+  m_Father: {fileID: 6146416746057084839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3424584311386751125
 SkinnedMeshRenderer:

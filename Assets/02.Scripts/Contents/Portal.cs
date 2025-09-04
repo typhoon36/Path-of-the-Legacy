@@ -6,35 +6,34 @@ using UnityEngine;
 // 포탈 생성 및 Scene 이동
 public class Portal : MonoBehaviour
 {
-     float           m_ScanRange = 3.2f;   // 플레이어 스캔 거리
-     bool            isPortal  = false;  // 포탈 접촉 여부
+    float m_ScanRange = 6f;   // 플레이어 스캔 거리
+    bool IsPortal = false;  // 포탈 접촉 여부
 
-    [SerializeField]
-     Define.Scene    sceneType;          // Load할 Scene 타입
+    [SerializeField] Define.Scene m_SceneType;          // Load할 Scene 타입
 
-    [SerializeField]
-     GameObject      portalObject;       // 포탈 객체
+    [SerializeField] GameObject m_PortalObj;       // 포탈 객체
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider coll)
     {
         // 플레이어 체크
-        if (other.CompareTag("Player"))
+        if (coll.CompareTag("Player"))
         {
-            isPortal = false;
-            portalObject.SetActive(true);
+            IsPortal = false;
+            m_PortalObj.SetActive(true);
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider coll)
     {
         // 포탈 활성화 체크
-        if (portalObject.activeSelf == true && isPortal == false)
+        if (m_PortalObj.activeSelf == true && IsPortal == false)
         {
             // 플레이어와 포탈이 근접한지 체크
-            float distance = (Managers.Game.GetPlayer().transform.position - portalObject.transform.position).magnitude;
-            if (distance <= m_ScanRange)
+            float a_Dist = (Managers.Game.GetPlayer().transform.position - m_PortalObj.transform.position).magnitude;
+
+            if (a_Dist <= m_ScanRange)
             {
-                isPortal = true;
+                IsPortal = true;
 
                 // 플레이어 정지
                 Managers.Game.StopPlayer();
@@ -43,12 +42,12 @@ public class Portal : MonoBehaviour
                 if (Managers.Scene.CurrentScene.SceneType == Define.Scene.Game)
                 {
                     // 확인 Popup 활성화
-                    UI_ConfirmPopup confirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
-                    if (confirmPopup.IsNull() == true)
-                        return;
-                    
+                    UI_ConfirmPopup a_ConfirmPopup = Managers.UI.ShowPopupUI<UI_ConfirmPopup>();
+                    if (a_ConfirmPopup.IsNull() == true) return;
+
+
                     // 확인 Popup 설정
-                    confirmPopup.SetInfo(()=>
+                    a_ConfirmPopup.SetInfo(() =>
                     {
                         // 게임 세이브
                         Managers.Game.SaveGame();
@@ -57,20 +56,20 @@ public class Portal : MonoBehaviour
                         Managers.Game.CurrentPos += Vector3.forward * (-3f);
 
                         // 씬 로드
-                        Managers.Scene.LoadScene(sceneType);
+                        Managers.Scene.LoadScene(m_SceneType);
                     }, Define.DungeonMessage);
                 }
                 else
-                    Managers.Scene.LoadScene(sceneType);
+                    Managers.Scene.LoadScene(m_SceneType);
             }
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider coll)
     {
-        if (other.CompareTag("Player"))
+        if (coll.CompareTag("Player"))
         {
-            portalObject.SetActive(false);
+            m_PortalObj.SetActive(false);
         }
     }
 }

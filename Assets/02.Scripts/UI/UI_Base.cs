@@ -5,120 +5,107 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/*
- * File :   UI_Base.cs
- * Desc :   UI 자동화
- *          Bind()를 사용하여 Enum으로 필요한 하위 객체를 찾아 딕셔너리로 저장하여 관리한다.
- *          BindEvent()를 사용하여 EventHandler를 간단하게 등록하여 사용할 수 있다.
- *          [ Rookiss의 MMORPG Game Part 3 참고. ]
- */
 
-// 모든 UI의 부모
+// 모든 UI의 부모(UI자동화)
 public abstract class UI_Base : MonoBehaviour
 {
     // 컴포넌트 타입 별로 담기
-    protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
+    protected Dictionary<Type, UnityEngine.Object[]> m_Objects = new Dictionary<Type, UnityEngine.Object[]>();
 
-    protected bool _init = false;
+    protected bool init = false;
 
-	public virtual bool Init()
-	{
-		if (_init)
-			return false;
-
-		return _init = true;
-	}
-
-	 void Start()
-	{
-		Init();
-	}
-
-    protected void Bind<T>(Type type) where T : UnityEngine.Object
+    public virtual bool Init()
     {
-        // C++과 다르게 C#은 enum안에 있는 내용을 읽을 수 있다!
-        string[] names = Enum.GetNames(type);
+        if (init) return false;
 
-        if (_objects.ContainsKey(typeof(T)) == true)
-            return;
-        
-        // enum의 개수만큼 배열 생성 후 _objects에 추가
-        UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
-        _objects.Add(typeof(T), objects);
+        return init = true;
+    }
 
-        for(int i = 0; i < names.Length; i++)
+    void Start() { Init(); }
+
+    protected void Bind<T>(Type a_Type) where T : UnityEngine.Object
+    {
+        // enum 타입이 맞는지 확인
+        string[] a_Names = Enum.GetNames(a_Type);
+
+        if (m_Objects.ContainsKey(typeof(T)) == true) return;
+
+        // enum의 개수만큼 배열 생성 후 m_Objects에 추가
+        UnityEngine.Object[] a_Objects = new UnityEngine.Object[a_Names.Length];
+        m_Objects.Add(typeof(T), a_Objects);
+
+        for (int i = 0; i < a_Names.Length; i++)
         {
             if (typeof(T) == typeof(GameObject))
-                objects[i] = Util.FindChild(gameObject, names[i], true);
+                a_Objects[i] = Util.FindChild(gameObject, a_Names[i], true);
             else
-                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+                a_Objects[i] = Util.FindChild<T>(gameObject, a_Names[i], true);
 
-            if (objects[i].IsNull() == true)
-                Debug.Log($"Failed to bind({names[i]})");
+            if (a_Objects[i].IsNull() == true)
+                Debug.Log($"Failed to bind({a_Names[i]})");
         }
     }
 
-    protected void BindObject(Type type) { Bind<GameObject>(type);  }
-	protected void BindImage(Type type) { Bind<Image>(type);  }
-	protected void BindText(Type type) { Bind<Text>(type);  }
-	protected void BindButton(Type type) { Bind<Button>(type);  }
+    protected void BindObject(Type a_Type) { Bind<GameObject>(a_Type); }
+    protected void BindImage(Type a_Type) { Bind<Image>(a_Type); }
+    protected void BindText(Type a_Type) { Bind<Text>(a_Type); }
+    protected void BindButton(Type a_Type) { Bind<Button>(a_Type); }
 
     // 사용 메소드
-    protected T Get<T>(int idx) where T : UnityEngine.Object
+    protected T Get<T>(int a_Idx) where T : UnityEngine.Object
     {
         // Dictionary의 Value를 받을 변수 생성
-        UnityEngine.Object[] objects = null;
+        UnityEngine.Object[] a_Objects = null;
 
         // 해당 Key 컴포넌트에 Value가 존재하는지 확인
-        if (_objects.TryGetValue(typeof(T), out objects) == false)
-            return null;
+        if (m_Objects.TryGetValue(typeof(T), out a_Objects) == false) return null;
 
-        return objects[idx] as T;
+        return a_Objects[a_Idx] as T;
     }
 
     // 자주 사용하는 컴포넌트는 사용하기 좋게 메소드 생성
-    protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-    protected Text GetText(int idx) { return Get<Text>(idx); }
-    protected Button GetButton(int idx) { return Get<Button>(idx); }
-    protected Image GetImage(int idx) { return Get<Image>(idx); }
+    protected GameObject GetObject(int a_Idx) { return Get<GameObject>(a_Idx); }
+    protected Text GetText(int a_Idx) { return Get<Text>(a_Idx); }
+    protected Button GetButton(int a_Idx) { return Get<Button>(a_Idx); }
+    protected Image GetImage(int a_Idx) { return Get<Image>(a_Idx); }
 
     // Event 핸들러에 관한 메소드 (Command 패턴)
-    public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
+    public static void BindEvent(GameObject a_Obj, Action<PointerEventData> a_Action, Define.UIEvent a_Type = Define.UIEvent.Click)
     {
         // 객체에 컴포넌트 추가 및 읽어오기
         // EventSystem 관련 클래스이기 때문에 스크립트를 추가하면 클릭 드래그에 관한 메소드를 바로 사용 가능하다.
-        UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
+        UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(a_Obj);
 
-        // UI_EventHandler 안에 action을 받을 Action이 있음!
-        switch (type)
+        // UI_EventHandler 안에 Action이 있음!
+        switch (a_Type)
         {
             case Define.UIEvent.Enter:
-                evt.OnEnterHandler -= action;
-                evt.OnEnterHandler += action;
+                evt.OnEnterHandler -= a_Action;
+                evt.OnEnterHandler += a_Action;
                 break;
             case Define.UIEvent.Exit:
-                evt.OnExitHandler -= action;
-                evt.OnExitHandler += action;
+                evt.OnExitHandler -= a_Action;
+                evt.OnExitHandler += a_Action;
                 break;
             case Define.UIEvent.Click:
-                evt.OnClickHandler -= action;
-                evt.OnClickHandler += action;
+                evt.OnClickHandler -= a_Action;
+                evt.OnClickHandler += a_Action;
                 break;
             case Define.UIEvent.Drag:
-                evt.OnDragHandler -= action;
-                evt.OnDragHandler += action;
+                evt.OnDragHandler -= a_Action;
+                evt.OnDragHandler += a_Action;
                 break;
             case Define.UIEvent.BeginDrag:
-                evt.OnBeginDragHandler -= action;
-                evt.OnBeginDragHandler += action;
+                evt.OnBeginDragHandler -= a_Action;
+                evt.OnBeginDragHandler += a_Action;
                 break;
             case Define.UIEvent.EndDrag:
-                evt.OnEndDragHandler -= action;
-                evt.OnEndDragHandler += action;
+                evt.OnEndDragHandler -= a_Action;
+                evt.OnEndDragHandler += a_Action;
                 break;
             case Define.UIEvent.Drop:
-                evt.OnDropHandler -= action;
-                evt.OnDropHandler += action;
+                evt.OnDropHandler -= a_Action;
+                evt.OnDropHandler += a_Action;
                 break;
         }
     }

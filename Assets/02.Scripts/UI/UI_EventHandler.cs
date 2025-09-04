@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_EventHandler.cs
- * Desc :   각각의 PointerEvetntData를 Action으로 받아 한번에 처리
- *          [ Rookiss의 MMORPG Game Part 3 참고. ]
- */
+
+// 각각의 PointerEvetntData를 Action으로 받아 한번에 처리
 
 public class UI_EventHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {

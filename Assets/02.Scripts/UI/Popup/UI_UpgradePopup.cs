@@ -46,12 +46,12 @@ public class UI_UpgradePopup : UI_Popup
         return true;
     }
 
-    public void RefreshUI(EquipmentData equipment)
+    public void RefreshUI(EquipmentData a_Equipment)
     {
-        m_Equipment = equipment;
+        m_Equipment = a_Equipment;
 
         // 풀강 확인
-        if (equipment.upgradeCount >= m_MaxUpgradeCount)
+        if (a_Equipment.upgradeCount >= m_MaxUpgradeCount)
         {
             GetText((int)Texts.ItemNameText).text = m_Equipment.itemName;
             GetText((int)Texts.UpgradeResultText).text = $"Max";

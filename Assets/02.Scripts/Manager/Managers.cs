@@ -2,33 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   Managers.cs
- * Desc :   싱글톤 패턴을 사용하여 모든 매니저에 접근 가능
- *          [ Rookiss의 MMORPG Game Part 3 참고. ]
- */
 
+//  싱글톤 패턴을 사용하여 모든 매니저에 접근 가능
 public class Managers : MonoBehaviour
 {
-     static Managers s_instance;
-     static Managers Instance { get { Init(); return s_instance; } }
+    static Managers s_instance;
+    static Managers Instance { get { Init(); return s_instance; } }
 
-#region Contents
+    #region Contents
 
-     GameManager _game = new GameManager();
+    GameManager _game = new GameManager();
 
     public static GameManager Game { get { return Instance._game; } }
 
-#endregion
+    #endregion
 
-#region Core
+    #region Core
 
-     DataManager _data = new DataManager();
-     InputManager _input = new InputManager();
-     PoolManager _pool = new PoolManager();
-     ResourceManager _resource = new ResourceManager();
-     SceneManagerEx _scene = new SceneManagerEx();
-     UIManager _ui = new UIManager();
+    DataManager _data = new DataManager();
+    InputManager _input = new InputManager();
+    PoolManager _pool = new PoolManager();
+    ResourceManager _resource = new ResourceManager();
+    SceneManagerEx _scene = new SceneManagerEx();
+    UIManager _ui = new UIManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -37,7 +33,7 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static UIManager UI { get { return Instance._ui; } }
 
-#endregion
+    #endregion
 
     void Start()
     {
@@ -61,18 +57,17 @@ public class Managers : MonoBehaviour
 
             if (go.IsNull() == true)
             {
-                go = new GameObject{name = "@Manager"};
+                go = new GameObject { name = "@Manager" };
                 go.AddComponent<Managers>();
                 Debug.Log("@Manager 생성.");
             }
 
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
-            
+
             s_instance._data.Init();
             s_instance._game.Init();
             s_instance._pool.Init();
-            // s_instance._data.Init();
         }
     }
 

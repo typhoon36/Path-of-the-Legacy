@@ -3,49 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-/*
- * File :   SpawningPool.cs
- * Desc :   몬스터 생성
- *
- & Functions
- &  [Public]
- &  : AddMonsterCount()     - 몬스터 수 증가
- &  : SetKeepMonsterCount() - 최대 몬스터 지정
- &
- &  []
- &  : ReserveSpawn()  - 몬스터 스폰 코루틴
- *
- */
 
+//몬스터 스폰 관리
 public class SpawningPool : MonoBehaviour
 {
-    public GameObject   _spawnMonsterNumber;    // 몬스터 Prefab
+    public GameObject m_MonsterObj;    // 몬스터 Prefab
 
-    [SerializeField]
-     Vector3     _spawnPos;              // 스폰 위치
+    [SerializeField] Vector3 m_SpawnPos;              // 스폰 위치
 
-    [SerializeField]
-     float       _spawnRedius = 5f;      // 스폰 최대 거리
+    [SerializeField] float m_SpawnRadius = 5f;      // 스폰 최대 거리
 
-    [SerializeField]
-     float       _spawnTime = 5f;        // 스폰 최대 시간
+    [SerializeField] float m_SpawnTime = 5f;        // 스폰 최대 시간
 
-    [SerializeField]
-     int         _monsterCount = 0;      // 현재 몬스터 수
-     int         _reserveCount = 0;      // 임시 변수 (에러 방지)
+    [SerializeField] int m_MonsterCount = 0;      // 현재 몬스터 수
+    int m_OldCount = 0;     
 
-    [SerializeField]
-     int         _keepMonsterCount = 0;  // 최대 몬스터 수
+    [SerializeField] int m_MaxCount = 0;  // 최대 몬스터 수
 
     // 몬스터 수 증가
-    public void AddMonsterCount(Transform parent, int value)
+    public void AddMonsterCount(Transform a_Parent, int a_Value)
     {
         // 스포너 부모 체크
-        if (transform == parent) 
-            this._monsterCount += value;
+        if (transform == a_Parent) this.m_MonsterCount += a_Value;
     }
+
     // 최대 몬스터 지정
-    public void SetKeepMonsterCount(int count) { this._keepMonsterCount = count; }
+    public void SetKeepMonsterCount(int a_Count) { this.m_MaxCount = a_Count; }
 
     void Start()
     {
@@ -53,48 +36,42 @@ public class SpawningPool : MonoBehaviour
         Managers.Game.OnSpawnEvent += AddMonsterCount;
     }
 
-    void Update()
-    {
-        // 최대 몬스터 수 만큼 생성
-        while((_reserveCount + _monsterCount) < _keepMonsterCount)
-            StartCoroutine("ReserveSpawn");
-    }
+    void Update() { while ((m_OldCount + m_MonsterCount) < m_MaxCount) StartCoroutine("ReserveSpawn"); }
 
     // 몬스터 스폰 설정
-     IEnumerator ReserveSpawn()
+    IEnumerator ReserveSpawn()
     {
-        // 코루틴이 시작하자마자 시간을 기다리므로 _monsterCount가 증가하지 못해 Update의 while에서 Error가 발생할 수 있다.
-        // 그러므로 _reserveCount를 사용해 while을 끝내도록 한다.
-        _reserveCount++;
+   
+        m_OldCount++;
 
-        yield return new WaitForSeconds(Random.Range(1, _spawnTime));
+        yield return new WaitForSeconds(Random.Range(1, m_SpawnTime));
 
         // 몬스터 생성
-        GameObject obj = Managers.Game.Spawn(Define.WorldObject.Monster, _spawnMonsterNumber, transform);
-        NavMeshAgent nav = obj.GetOrAddComponent<NavMeshAgent>();
+        GameObject a_Obj = Managers.Game.Spawn(Define.WorldObject.Monster, m_MonsterObj, transform);
+        NavMeshAgent a_Nav = a_Obj.GetOrAddComponent<NavMeshAgent>();
 
-        Vector3 randPos;
+        Vector3 a_RandPos;
 
         // 소환 가능한 위치를 찾을 때까지 루프
-        while(true)
+        while (true)
         {
-            Vector3 randDir = Random.insideUnitSphere * _spawnRedius;   // 원 형태 랜덤 벡터 지정
-            randDir.y = 0;
-            randPos = _spawnPos + randDir;
+            // 원 형태 랜덤 벡터 지정
+            Vector3 a_RandDir = Random.insideUnitSphere * m_SpawnRadius;
+            a_RandDir.y = 0;
+            a_RandPos = m_SpawnPos + a_RandDir;
 
-            NavMeshPath path = new NavMeshPath();
-            if (nav.CalculatePath(randPos, path))   // randPos 위치에 소환 가능 여부 확인
+            NavMeshPath a_Path = new NavMeshPath();
+            if (a_Nav.CalculatePath(a_RandPos, a_Path))   // randPos 위치에 소환 가능 여부 확인
             {
-                obj.transform.position = randPos;
+                a_Obj.transform.position = a_RandPos;
                 break;
             }
         }
 
         // 위치 설정
-        nav.nextPosition = randPos;
-        obj.GetComponent<MonsterController>().spawnPos = randPos;
+        a_Nav.nextPosition = a_RandPos;
+        a_Obj.GetComponent<MonsterController>().spawnPos = a_RandPos;
 
-        // while의 에러 예방 목적인 변수이므로 코루틴이 끝날땐 --를 해준다.
-        _reserveCount--;
+        m_OldCount--;
     }
 }

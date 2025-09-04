@@ -757,8 +757,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupType: 0
-  _inputField: {fileID: 1048154819388899582}
-  _messageText: {fileID: 8748862483053528779}
+  m_InputField: {fileID: 1048154819388899582}
+  m_MessageText: {fileID: 8748862483053528779}
 --- !u!114 &7539532232083590436
 MonoBehaviour:
   m_ObjectHideFlags: 0

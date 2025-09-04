@@ -21379,21 +21379,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6c11ef7c46ccc43a9ac84e1016838c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRotation: 0
-  rotationSpeed: 3.5
-  hairList:
+  StopRotation: 0
+  m_RotSpeed: 3.5
+  HairList:
   - {fileID: 3442597554284206547}
   - {fileID: 8202211770378345447}
   - {fileID: 2490811851444744295}
   - {fileID: 1058453544913611657}
   - {fileID: 7491643015379732556}
-  eyebrowsList:
+  EyebrowsList:
   - {fileID: 3001089383425484858}
   - {fileID: 5452009481675157093}
   - {fileID: 8308127397752642465}
   - {fileID: 4950793691378248640}
   - {fileID: 1801974572980112541}
-  facialHairList:
+  FacialHairList:
   - {fileID: 7437592724212852442}
   - {fileID: 4921865303676252572}
   - {fileID: 7532183586594798225}

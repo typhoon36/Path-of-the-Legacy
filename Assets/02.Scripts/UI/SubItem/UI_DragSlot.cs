@@ -3,16 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
- * File :   UI_DragSlot.cs
- * Desc :   마우스로 슬롯이 옮겨지는 과정을 보여주기 위한 슬롯
- *
- & Functions
- &  [Public]
- &  : DragSetImage()    - 드래그할 경우 이미지 활성화
- &  : SetColor()        - 색깔 설정
- *
- */
+
+// 마우스로 슬롯이 옮겨지는 과정을 보여주기 위한 슬롯
 
 public class UI_DragSlot : MonoBehaviour
 {
@@ -27,17 +19,17 @@ public class UI_DragSlot : MonoBehaviour
     }
 
     // 드래그 할 경우 활성화
-    public void DragSetImage(Image _icon)
+    public void DragSetImage(Image a_Icon)
     {
         Managers.UI.SetOrder(GetComponent<Canvas>());
-        icon.sprite = _icon.sprite;
+        icon.sprite = a_Icon.sprite;
         SetColor(1);
     }
 
-    public void SetColor(float _alpha)
+    public void SetColor(float a_Alpha)
     {
         Color color = icon.color;
-        color.a = _alpha;
+        color.a = a_Alpha;
         icon.color = color;
     }
 }

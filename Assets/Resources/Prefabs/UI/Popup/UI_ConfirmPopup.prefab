@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupType: 0
-  _Messagetext: {fileID: 5331229524144399329}
+  m_Messagetext: {fileID: 5331229524144399329}
 --- !u!114 &8547482232830463739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303a0936d494e6d4398abaabf632b6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsUsing: 0
+  IsUsing: 1
 --- !u!1 &8585130013171938413
 GameObject:
   m_ObjectHideFlags: 0

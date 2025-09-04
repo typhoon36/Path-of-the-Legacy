@@ -2,43 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using UnityEngine;
 
-/*
- * File :   GameManager.cs
- * Desc :   1인 게임이기 때문에 이 곳에서 플레이어의 데이터를 관리한다.
- *          새로고침, 세이브 등을 담당
- *          [ Rookiss의 MMORPG Game Part 3 참고. ]
- *
- & Functions
- &  [Public]
- &  : GetPlayer()           - 플레이어 반환
- &  : StopPlayer()          - 플레이어 정지
- &  : RefreshExp()          - 경험치 레벨업 확인
- &  : RefreshStat()         - 레벨에 맞는 스탯 가져오기
- &  : RefreshQuest()        - 퀘스트 클리어 확인
- &  : RefreshAllEquipment() - 모든 장비의 스탯 적용
- &  : RefreshArmor()        - 방어구 스탯 적용
- &  : GetSlotInteract()     - 슬롯 상호작용 (인벤토리 <-> NPC간 사용)
- &  : OnAttacked()          - 플레이어 피격
- &  : OnDead()              - 플레이어 사망
- &  : OnResurrection()      - 플레이어 부활
- &  : UpdateStatRecovery()  - 체력/마나 재생
- &  : Init()                - 초기 설정
- &  : Spawn()               - 캐릭터 스폰 (플레이어 or 몬스터)
- &  : GetWorldObjectType()  - 오브젝트 타입 반환
- &  : Despawn()             - 캐릭터 삭제
- &  : IsSaveLoad()          - 세이브 불러올 수 있는지 확인
- &  : SaveGame()            - 세이브 진행
- &  : LoadGame()            - 세이브 로드
- &  : ToInvenItem()         - 인벤토리 세이브 진행
- &  : FromInvenItem()       - 인벤토리 세이브 로드
- &  : ToDictionary()        - 딕셔너리 세이브 진행
- &  : FromDictionary()      - 딕셔너리 세이브 로드
- &  : Clear()               - 초기화
- *
- */
+// 1인 게임이기 때문에 이 곳에서 플레이어의 데이터를 관리한다.
 
 [Serializable]
 public class DataDictionary<TKey,TValue>

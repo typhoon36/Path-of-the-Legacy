@@ -43,7 +43,7 @@ public class BossController : MonsterController
         base.Init();
 
         // 파티클 피격 설정
-        particleCollider.SetInfo(() => { _lockTarget.GetComponent<PlayerController>().OnHitDown(_stat, (int)(_stat.Attack * 0.8f)); });
+        particleCollider.SetInfo(() => { m_LockTarget.GetComponent<PlayerController>().OnHitDown(_stat, (int)(_stat.Attack * 0.8f)); });
 
         // 데미지 스탯 적용
         skillCollider.damage = (int)(_stat.Attack * 1.5f);
@@ -72,10 +72,10 @@ public class BossController : MonsterController
         Managers.Game._playScene.OnMonsterBar(_stat);
 
         // 도착좌표 설정
-        nav.SetDestination(_lockTarget.transform.position);
+        nav.SetDestination(m_LockTarget.transform.position);
 
         // 거리 체크
-        distance = TargetDistance(_lockTarget);
+        distance = TargetDistance(m_LockTarget);
 
         OnRotation();   // 회전
         AttackCheck();  // 거리에 따른 공격 체크
@@ -223,7 +223,7 @@ public class BossController : MonsterController
                 break;
 
             currentTime += Time.deltaTime;
-            transform.rotation = Quaternion.LookRotation(_lockTarget.transform.position - transform.position);
+            transform.rotation = Quaternion.LookRotation(m_LockTarget.transform.position - transform.position);
 
             yield return null;
         }
@@ -246,14 +246,14 @@ public class BossController : MonsterController
     void SetAnimation(string animName)
     {
         // 플레이어와 거리값
-        Vector3 distance = _lockTarget.transform.position - transform.position;
+        Vector3 distance = m_LockTarget.transform.position - transform.position;
 
         // Nav 도착 좌표 설정
         nav.SetDestination(transform.position);
         transform.rotation = Quaternion.LookRotation(distance);
 
         // 애니메이션 실행
-        anim.CrossFade(animName, 0.1f, 0);
+        m_Anim.CrossFade(animName, 0.1f, 0);
     }
 
     // 네비게이션 자연스러운 즉각 회전 (떨림 완화)
@@ -273,7 +273,7 @@ public class BossController : MonsterController
     // 애니메이션 움직임으로 설정
     void OnAnimationMove()
     {
-        Vector3 rootPosition = anim.targetPosition; // 애니메이션의 다음 위치
+        Vector3 rootPosition = m_Anim.targetPosition; // 애니메이션의 다음 위치
         rootPosition.y = nav.nextPosition.y;        // Nav Y
 
         // 현재 위치와 Nav 도착좌표 rootPosition으로 설정

@@ -47325,14 +47325,14 @@ AnimationClip:
   - time: 0
     functionName: OnAttackEvent
     data: 
-    objectReferenceParameter: {fileID: 4047888768333959288, guid: 827f15675c613934681feaf90ab18df4, type: 3}
+    objectReferenceParameter: {fileID: 8210207690257594047, guid: 35881a42c87dca04c876b755f516f8a4, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1333333
     functionName: ExitAttack
     data: 
-    objectReferenceParameter: {fileID: 4047888768333959288, guid: 827f15675c613934681feaf90ab18df4, type: 3}
+    objectReferenceParameter: {fileID: 8210207690257594047, guid: 35881a42c87dca04c876b755f516f8a4, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

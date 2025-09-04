@@ -3,21 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
- * File :   UI_ShopSaleSlot.cs
- * Desc :   UI_ShopPopup.cs에서 생성되며 아이템 판매가 등록됐을 때 기능
- *
- & Functions
- &  [Public]
- &  : Init()                - 초기 설정
- &  : SetInfo()             - 기능 설정
- &  : GetSale()             - 판매 진행
- &  : Clear()               - 초기화
- &
- &  [Prviate]
- &  : OnClickCloseButton()  - 판매 등록 취소
- *
- */
+
+//UI_ShopPopup.cs에서 생성되며 아이템 판매가 등록됐을 때 기능
 
 public class UI_ShopSaleSlot : UI_Base
 {
@@ -36,11 +23,11 @@ public class UI_ShopSaleSlot : UI_Base
         SaleItemCountText,
     }
 
-     UI_InvenSlot    _invenItem;             // 인벤토리 슬롯
-     Image           _icon;
+    UI_InvenSlot m_InvenItem;             // 인벤토리 슬롯
+    Image m_Icon;
 
-     int             _saleItemCount = 0;     // 판매될 개수
-     string          _itemCountText;
+    int m_SaleItemCount = 0;     // 판매될 개수
+    string m_ItemCountText;
 
     public override bool Init()
     {
@@ -53,57 +40,57 @@ public class UI_ShopSaleSlot : UI_Base
 
         GetButton((int)Buttons.CloseButton).onClick.AddListener(OnClickCloseButton);
 
-        GetImage((int)Images.SaleItemIcon).sprite = _icon.sprite;
-        GetText((int)Texts.SaleItemCountText).text = _itemCountText;
+        GetImage((int)Images.SaleItemIcon).sprite = m_Icon.sprite;
+        GetText((int)Texts.SaleItemCountText).text = m_ItemCountText;
 
         return true;
     }
 
     public void SetInfo(UI_InvenSlot invenItem, int subItemCount = 1)
     {
-        _invenItem = invenItem;
-        _saleItemCount = subItemCount;
-        _icon = _invenItem.icon;
+        m_InvenItem = invenItem;
+        m_SaleItemCount = subItemCount;
+        m_Icon = m_InvenItem.icon;
 
         // 판매할 인벤토리의 슬롯 잠그기
-        _invenItem.IsLock = true;
+        m_InvenItem.IsLock = true;
 
         // 소비 아이템이면 개수 활성화
-        if (invenItem.item is UseItemData)
-            _itemCountText = _saleItemCount.ToString();
+        if (invenItem.Item is UseItemData)
+            m_ItemCountText = m_SaleItemCount.ToString();
         else
-            _itemCountText = "";
+            m_ItemCountText = "";
     }
 
     // 판매 진행
     public void GetSale()
     {
         // 장비면 강화 확인 후 판매
-        if ((_invenItem.item is EquipmentData) == true)
+        if ((m_InvenItem.Item is EquipmentData) == true)
         {
-            EquipmentData equipment = _invenItem.item as EquipmentData;
-            Managers.Game.Gold += _invenItem.item.itemPrice + (int)((equipment.itemPrice / 4) * (equipment.upgradeCount));
+            EquipmentData equipment = m_InvenItem.Item as EquipmentData;
+            Managers.Game.Gold += m_InvenItem.Item.itemPrice + (int)((equipment.itemPrice / 4) * (equipment.upgradeCount));
         }
         else
-            Managers.Game.Gold += _invenItem.item.itemPrice * _saleItemCount;
+            Managers.Game.Gold += m_InvenItem.Item.itemPrice * m_SaleItemCount;
 
         // 판매된 슬롯에 개수 차감
-        _invenItem.SetCount(-_saleItemCount);
+        m_InvenItem.SetCount(-m_SaleItemCount);
 
         Clear();
     }
 
     // 판매 등록 취소
-     void OnClickCloseButton()
+    void OnClickCloseButton()
     {
-        Managers.Game._playScene._shop.saleList.Remove(this);
+        Managers.Game._playScene._shop.SaleList.Remove(this);
 
         Clear();
     }
 
     public void Clear()
     {
-        _invenItem.IsLock = false;
+        m_InvenItem.IsLock = false;
 
         Managers.Resource.Destroy(this.gameObject);
     }

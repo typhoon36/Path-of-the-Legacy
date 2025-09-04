@@ -10,9 +10,9 @@ public class EffectParticle : Effect
     Action OnParticleCollider;     // 파티클 접촉 시 실행시킬 기능 저장
 
     // 설정
-    public void SetInfo(Action onParticleCollider)
+    public void SetInfo(Action onParticleColl)
     {
-        OnParticleCollider = onParticleCollider;
+        OnParticleCollider = onParticleColl;
     }
 
     // 파티클 접촉 시 호출
@@ -26,10 +26,10 @@ public class EffectParticle : Effect
     }
 
     // 파티클 물리적 접촉 확인
-    void OnParticleCollision(GameObject other)
+    void OnParticleCollision(GameObject coll)
     {
         // 플레이어가 접촉하면 True
-        if (other.CompareTag("Player"))
+        if (coll.CompareTag("Player"))
             ParticleCollider();
     }
 }

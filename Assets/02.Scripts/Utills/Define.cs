@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * File :   Define.cs
- * Desc :   타입 정의
- */
 
+// 모든 enum,정의 관련
 public class Define : MonoBehaviour
 {
     public enum DefaultPart // 캐릭터 기본 부위, 커스텀
@@ -203,7 +200,7 @@ public class Define : MonoBehaviour
     public const string DungeonMessage = "던전에 입장하시겠습니까?";
 
     public const string LoadMessage1 = "장비는 최대 10강까지 강화할 수 있습니다.";
-    public const string LoadMessage2 = "7레벨이 되면 강력한 스킬을 사용할 수 있습니다.";
+    public const string LoadMessage2 = "5레벨이 되면 강력한 스킬을 사용할 수 있습니다.";
     public const string LoadMessage3 = "미니맵은 던전과 보스전에서 사용불가능합니다.";
 
     public const string NameRegex = @"^[0-9a-zA-Z가-힣]{2,9}$";

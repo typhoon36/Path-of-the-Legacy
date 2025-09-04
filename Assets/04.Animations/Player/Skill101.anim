@@ -50202,10 +50202,17 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: 
+  - time: 0.4
+    functionName: OnTripleSlash
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 8409660151486619955, guid: e220cca089367484d8c1f9b301732ecc, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2666667
+    functionName: EventEndSkill
+    data: 
+    objectReferenceParameter: {fileID: 8409660151486619955, guid: e220cca089367484d8c1f9b301732ecc, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

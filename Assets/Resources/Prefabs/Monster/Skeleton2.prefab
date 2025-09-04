@@ -460,7 +460,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5ade65a359a3c4d86b7d68bf05665f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 40
+  damage: 20
   boxCollider: {fileID: 8959632729046103680}
 --- !u!1 &533228846543428209
 GameObject:
@@ -3069,7 +3069,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8843755518075579397}
@@ -3464,7 +3464,7 @@ GameObject:
   - component: {fileID: 3179433558662813367}
   m_Layer: 8
   m_Name: Skeleton2
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3546,9 +3546,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6e99dc61a11a7409595273c89bef95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockTarget: {fileID: 0}
-  _destPos: {x: 0, y: 0, z: 0}
-  _state: 2
+  m_LockTarget: {fileID: 0}
+  m_DestPos: {x: 0, y: 0, z: 0}
+  m_State: 2
   monsterType: 0
   spawnPos: {x: 0, y: 0, z: 0}
   hpBarUI: {fileID: 0}

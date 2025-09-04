@@ -56,10 +56,9 @@ public class UI_TitleScene : UI_Scene
     // 세이브 로드 버튼
     void OnClickLoadButton()
     {
-        // 세이브 파일이 없으면 리턴
         if (Managers.Game.LoadGame() == false) return;
 
-        // 로드 팝업 실행(네트워크 연결 확인)
+        //인터넷 연결 상태 확인
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             // 인터넷 연결이 안되었을 때 행동
@@ -67,8 +66,13 @@ public class UI_TitleScene : UI_Scene
         }
         else if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)
         {
-            // 데이터로 연결이 되었을 때 행동
+            // 모바일 네트워크에 연결되었을 때 행동
             Managers.UI.ShowPopupUI<UI_LoadPopup>().SetInfo(Define.Scene.Game, 6);
+        }
+        else
+        {
+            // 와이파이에 연결되었을 때 행동
+            Managers.UI.ShowPopupUI<UI_LoadPopup>().SetInfo(Define.Scene.Game, 7);
         }
     }
 

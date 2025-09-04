@@ -3,18 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/*
- * File :   UI_ItemDragSlot.cs
- * Desc :   Drag, Drop PointerEvent가 필요한 Slot이 상속 받는다.
- *
- & Functions
- &  [Protected]
- &  : OnBeginDragSlot()     - 드래그 시작 "DragSlot 생성"
- &  : OnDragSlot()          - 드래그 진행 "드래그 방향으로 DragSlot 이동"
- &  : OnEndDragSlot()       - 드래그 종료 "DragSlot 초기화"
- &  : ChangeSlot()          - 슬롯 교체
- *
- */
+
+// Drag, Drop PointerEvent가 필요한 Slot이 상속 받는다.
 
 public class UI_ItemDragSlot : UI_ItemSlot
 {
@@ -22,8 +12,7 @@ public class UI_ItemDragSlot : UI_ItemSlot
     protected override void OnBeginDragSlot(PointerEventData eventData)
     {
         // 아이템이 존재할 시 마우스로 들기 가능.
-        if (item.IsNull() == true)
-            return;
+        if (Item.IsNull() == true) return;
 
         // dragSlot 활성화
         UI_DragSlot.instance.dragSlotItem = this;
@@ -36,7 +25,7 @@ public class UI_ItemDragSlot : UI_ItemSlot
     protected override void OnDragSlot(PointerEventData eventData)
     {
         // 마우스 드래그 방향으로 아이템 이동
-        if (item.IsNull() == false && UI_DragSlot.instance.dragSlotItem.IsNull() == false)
+        if (Item.IsNull() == false && UI_DragSlot.instance.dragSlotItem.IsNull() == false)
             UI_DragSlot.instance.icon.transform.position = eventData.position;
 
     }
@@ -50,5 +39,5 @@ public class UI_ItemDragSlot : UI_ItemSlot
     }
 
     // 슬롯 바꾸기
-    protected virtual void ChangeSlot(UI_ItemSlot itemSlot) { Debug.Log("Changeed"); }
+    protected virtual void ChangeSlot(UI_ItemSlot a_ItemSlot) { Debug.Log("Changeed"); }
 }

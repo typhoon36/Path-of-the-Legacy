@@ -13,6 +13,9 @@ public class Util
         if (component.IsNull() == true)
             component = a_Obj.AddComponent<T>();
 
+        else if (component.IsNull() == false)
+            return component;
+
         return component;
     }
 

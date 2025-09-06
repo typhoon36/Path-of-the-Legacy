@@ -154,10 +154,6 @@ public class PlayerAnimEvent : MonoBehaviour
     public void OnBladeAnnihilation()
     {
         OnSize(skill106[nextSkillIndex]);
-
-        //++nextSkillIndex;
-        //if (nextSkillIndex == skill106.Length)
-        //    nextSkillIndex = 0;
     }
 
 

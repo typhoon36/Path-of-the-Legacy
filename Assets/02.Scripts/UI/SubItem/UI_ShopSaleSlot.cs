@@ -43,6 +43,11 @@ public class UI_ShopSaleSlot : UI_Base
         GetImage((int)Images.SaleItemIcon).sprite = m_Icon.sprite;
         GetText((int)Texts.SaleItemCountText).text = m_ItemCountText;
 
+        // 판매아이템의 아이콘 제대로 갱신
+        if (m_Icon.sprite != null)
+            GetImage((int)Images.SaleItemIcon).sprite = m_Icon.sprite;
+
+
         return true;
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MonsterAttackCollistion : MonoBehaviour
 {
-    public int          damage;
+    public int damage;
 
     [SerializeField] BoxCollider boxCollider;
 
@@ -15,6 +15,10 @@ public class MonsterAttackCollistion : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") == true)
-            Managers.Game.OnAttacked(damage);
+        { 
+            Managers.Game.OnAttacked(damage); 
+            Managers.Game.Hp = Mathf.Max(Managers.Game.Hp - damage, 0);
+            Managers.Game._playScene.RefreshUI();
+        }
     }
 }

@@ -60469,6 +60469,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.43333334
+    functionName: OnTrail
+    data: 
+    objectReferenceParameter: {fileID: 4840143931281882133, guid: 2f6c13b8c6aff554aa64077ae19d77c0, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4
+    functionName: OffTrail
+    data: 
+    objectReferenceParameter: {fileID: 4840143931281882133, guid: 2f6c13b8c6aff554aa64077ae19d77c0, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.4333333
     functionName: ExitAttack
     data: 

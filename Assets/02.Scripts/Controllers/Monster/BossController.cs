@@ -8,29 +8,30 @@ using UnityEngine;
 public class BossController : MonsterController
 {
     // 스킬, 공격 애니메이션 이름
-    string[] skills = new string[] { "Skill1", "Skill2" };
-    string[] meleeAttacks = new string[] { "Attack1", "Attack2" };
-    string[] rangedAttacks = new string[] { "Attack3", "Attack4", "Attack5" };
+    private string[] skills = new string[] { "Skill1", "Skill2" };
+    private string[] meleeAttacks = new string[] { "Attack1", "Attack2" };
 
-    int attackCount = 0;        // 공격 횟수 ( 스킬을 사용하기 위함. )
-    int onSkillCount = 3;        // 스킬 시작 횟수 
+    private int attackCount = 0;        // 공격 횟수 ( 스킬을 사용하기 위함. )
+    private int onSkillCount = 3;        // 스킬 시작 횟수 
 
-    bool isRangedAttack = false;    // 원거리 공격 체크
-    bool isSkill = false;    // 다음 스킬 공격 확인
+    private bool isSkill = false;    // 다음 스킬 공격 확인
 
-    [SerializeField] float rangedAttackRange = 2.4f;     // 원거리 수치
+    private Portal exitPortal;                 // 포탈 Prefab
 
-    Portal exitPortal;                 // 포탈 Prefab
+    [SerializeField]
+    private EffectParticle particleCollider;           // 파티클 접촉 확인
 
-    [SerializeField] EffectParticle particleCollider;           // 파티클 접촉 확인
+    [SerializeField]
+    private GameObject swingTrail;                 // 검기 Trail
 
-    [SerializeField]  GameObject swingTrail;                 // 검기 Trail
+    [SerializeField]
+    private Transform attackRangeObj;             // 공격 예상 범위 오브젝트
 
-    [SerializeField]  Transform attackRangeObj;             // 공격 예상 범위 오브젝트
+    [SerializeField]
+    private MonsterAttackCollistion skillCollider;      // 스킬 사용 접촉 확인
 
-    [SerializeField]  MonsterAttackCollistion skillCollider;      // 스킬 사용 접촉 확인
-
-    [SerializeField] MonsterAttackCollistion attackCollider;     // 일반 공격 사용 접촉 확인
+    [SerializeField]
+    private MonsterAttackCollistion attackCollider;     // 일반 공격 사용 접촉 확인
 
     public override void Init()
     {
@@ -39,11 +40,11 @@ public class BossController : MonsterController
         // 파티클 피격 설정
         particleCollider.SetInfo(() => { m_LockTarget.GetComponent<PlayerController>().OnHitDown(_stat, (int)(_stat.Attack * 0.8f)); });
 
-        // 스킬  데미지 스탯 적용
+        // 데미지 스탯 적용
         skillCollider.damage = (int)(_stat.Attack * 1.5f);
         attackCollider.damage = _stat.Attack;
 
-        // 포탈 객체 찾아오기 
+        // 포탈 객체 찾아오기 ( 사망 시 활성화하기 위함 )
         exitPortal = GameObject.FindObjectOfType<Portal>();
         if (exitPortal.IsNull() == false)
             exitPortal.gameObject.SetActive(false);
@@ -54,9 +55,7 @@ public class BossController : MonsterController
     // Idle 상태에서 타겟 감지
     protected override void IdleTargetDetection()
     {
-        // 50% 확률로 원거리, 근거리 공격 결정
-        isRangedAttack = Random.Range(0, 2) == 0;
-
+   
         base.IdleTargetDetection();
     }
 
@@ -127,34 +126,25 @@ public class BossController : MonsterController
     }
 
     // 다음 공격 확인
-    void AttackCheck()
+    private void AttackCheck()
     {
         // 스킬 공격이 가능하다면
         if (isSkill == true)
         {
-            if (distance <= rangedAttackRange + 1)
+            if (distance <= attackRange)
                 OnSkill(skills[Random.Range(0, 2)]);
 
             return;
         }
 
-        // 원거리에서 공격 시작할지
-        if (isRangedAttack == true)
-        {
-            if (distance <= rangedAttackRange)
-                OnAttack(rangedAttacks[Random.Range(0, 3)]);
-            Debug.Log(distance);
-        }
-        else
-        {
-            if (distance <= attackRange)
-                OnAttack(meleeAttacks[Random.Range(0, 2)]);
-            Debug.Log(distance);
-        }
+
+        if (distance <= attackRange)
+            OnAttack(meleeAttacks[Random.Range(0, 2)]);
+
     }
 
     // 공격 시작
-    void OnAttack(string attackName)
+    private void OnAttack(string attackName)
     {
         // 공격 애니메이션 실행
         SetAnimation(attackName);
@@ -162,7 +152,7 @@ public class BossController : MonsterController
     }
 
     // 스킬 시작
-    void OnSkill(string skillName)
+    private void OnSkill(string skillName)
     {
         // 스킬 애니메이션 실행
         SetAnimation(skillName);
@@ -185,22 +175,21 @@ public class BossController : MonsterController
     }
 
     // 찌르기 스킬 코루틴
-    IEnumerator Skill01_Prick()
+    private IEnumerator Skill01_Prick()
     {
         // 공격 예상 범위 사이즈 설정
         attackRangeObj.gameObject.SetActive(true);
-        attackRangeObj.localPosition = new Vector3(0, 12, 2.33f);
+        attackRangeObj.localPosition = new Vector3(0, 10, 2.33f);
         attackRangeObj.localScale = new Vector3(1, 0.00055f, 4.66f);
 
         yield return new WaitForSeconds(0.4f);  // 찌르기 준비
 
         skillCollider.IsCollider(true);         // 스킬 콜라이더 활성화
-        Debug.Log(skillCollider.enabled);
 
         yield return new WaitForSeconds(0.8f);  // 찌르기
 
-        skillCollider.IsCollider(false);        // 스킬 콜라이더 비활성화
         attackRangeObj.gameObject.SetActive(false);
+        skillCollider.IsCollider(false);        // 스킬 콜라이더 비활성화
 
         yield return new WaitForSeconds(1.2f);  // 가만히 있기
 
@@ -208,11 +197,10 @@ public class BossController : MonsterController
     }
 
     // 내려찍기 스킬 코루틴
-    IEnumerator Skill02_WeaponDown()
+    private IEnumerator Skill02_WeaponDown()
     {
         // 공격 예상 범위 사이즈 설정
-        attackRangeObj.gameObject.SetActive(true);
-        attackRangeObj.localPosition = new Vector3(0, 12, 4.5f);
+        attackRangeObj.localPosition = new Vector3(0, 10, 4.5f);
         attackRangeObj.localScale = new Vector3(1, 0.00055f, 9f);
 
         // 0.9초 동안 플레이어를 바라본 후 공격
@@ -224,22 +212,20 @@ public class BossController : MonsterController
 
             currentTime += Time.deltaTime;
             transform.rotation = Quaternion.LookRotation(m_LockTarget.transform.position - transform.position);
-            particleCollider.gameObject.SetActive(true);   // 파티클 콜라이더 활성화
 
-            yield return new WaitForSeconds(0.6f);
-            particleCollider.gameObject.SetActive(false);  // 파티클 콜라이더 비활성화
+            if(State != Define.State.Skill)
+                yield break;
 
             yield return null;
         }
 
-        attackRangeObj.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);  // 가만히 있기
+        yield return new WaitForSeconds(2f);  // 가만히 있기
 
         State = Define.State.Idle;
     }
 
     // 무기 콜라이더 비활성화 코루틴
-    IEnumerator WeaponColliderDisable()
+    private IEnumerator WeaponColliderDisable()
     {
         // 0.15초 뒤 비활성화
         yield return new WaitForSeconds(0.15f);
@@ -248,7 +234,7 @@ public class BossController : MonsterController
     }
 
     // 애니메이션 및 방향 설정
-    void SetAnimation(string animName)
+    private void SetAnimation(string animName)
     {
         // 플레이어와 거리값
         Vector3 distance = m_LockTarget.transform.position - transform.position;
@@ -258,11 +244,11 @@ public class BossController : MonsterController
         transform.rotation = Quaternion.LookRotation(distance);
 
         // 애니메이션 실행
-        m_Anim.CrossFade(animName, 0);
+        m_Anim.CrossFade(animName, 0.15f);
     }
 
     // 네비게이션 자연스러운 즉각 회전 (떨림 완화)
-    void OnRotation()
+    private void OnRotation()
     {
         Vector2 forward = new Vector2(transform.position.z, transform.position.x);
         Vector2 steeringTarget = new Vector2(nav.steeringTarget.z, nav.steeringTarget.x);
@@ -276,7 +262,7 @@ public class BossController : MonsterController
     }
 
     // 애니메이션 움직임으로 설정
-    void OnAnimationMove()
+    private void OnAnimationMove()
     {
         Vector3 rootPosition = m_Anim.targetPosition; // 애니메이션의 다음 위치
         rootPosition.y = nav.nextPosition.y;        // Nav Y
@@ -287,8 +273,8 @@ public class BossController : MonsterController
     }
 
     // 검기 Animation Event
-    void OnTrail() { swingTrail.SetActive(true); }
-    void OffTrail() { swingTrail.SetActive(false); }
+    private void OnTrail() { swingTrail.SetActive(true); }
+    private void OffTrail() { swingTrail.SetActive(false); }
 
     // 보스는 변칙적인 공격이 있기 때문에 사용 x (이대로만 두기)
     protected override void AnimAttack() { }

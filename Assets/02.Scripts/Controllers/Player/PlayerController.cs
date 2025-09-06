@@ -391,7 +391,6 @@ public class PlayerController : BaseController
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Managers.Game._playScene.UsingItem(2);
-            //Debug.Log("usign");
         }
     }
 

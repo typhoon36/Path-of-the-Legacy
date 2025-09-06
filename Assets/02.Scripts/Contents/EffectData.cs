@@ -11,7 +11,7 @@ public class EffectData : Effect
 
      bool    IsEffect = false;       // 이펙트가 실행 중인가?
 
-    // ~ PlayerController.cs 에서 스킬 이펙트 비활성화를 위해 호출
+    // PlayerController에서 스킬 이펙트 비활성화를 위해 호출
     public void EffectDisableDelay()
     {
         if (!gameObject.activeInHierarchy)
@@ -44,8 +44,6 @@ public class EffectData : Effect
 
         // 부모 빠져나오기
         transform.SetParent(null);
-
-        Debug.Log("df");
 
         // 이펙트 비활성화 기다리기
         yield return new WaitForSeconds(DisableDelayTime);

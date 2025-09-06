@@ -56,8 +56,8 @@ public class UI_SkillPopup : UI_Popup
         {
             a_SkillPopupPos.anchoredPosition = new Vector2
             (
-                Mathf.Clamp(a_SkillPopupPos.anchoredPosition.x + eventData.delta.x, -655, 655),
-                Mathf.Clamp(a_SkillPopupPos.anchoredPosition.y + eventData.delta.y, -253, 217)
+                Mathf.Clamp(a_SkillPopupPos.anchoredPosition.x + eventData.delta.x, -900, 655),
+                Mathf.Clamp(a_SkillPopupPos.anchoredPosition.y + eventData.delta.y, -122, 122)
             );
         }, Define.UIEvent.Drag);
 

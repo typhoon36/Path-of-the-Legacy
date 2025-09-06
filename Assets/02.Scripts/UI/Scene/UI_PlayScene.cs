@@ -125,24 +125,23 @@ public class UI_PlayScene : UI_Scene
     // 소비 아이템 사용
     public void UsingItem(int key)
     {
-        // 소비아이템 퀵슬롯 List 확인
         for (int i = 0; i < UseItemBarList.Count; i++)
         {
-            // 키가 같으면 사용
             if (key == UseItemBarList[i].m_Key)
             {
                 UseItemData useItem = UseItemBarList[i].Item as UseItemData;
-                if (useItem.UseItem(useItem) == true)
+                if (useItem != null && useItem.UseItem(useItem) == true)
                 {
                     UseItemBarList[i].SetCount(-1);
                     return;
                 }
+                else
+                {
+                    Debug.Log("해당 슬롯에 사용 가능한 아이템이 없습니다.");
+                    return;
+                }
             }
-
-            else
-                return;
         }
-
         Debug.Log("장착된 소비 아이템이 없습니다.");
     }
 

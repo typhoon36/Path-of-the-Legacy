@@ -477,7 +477,7 @@ public class GameManager
 
     public void Init()
     {
-        _savePath = $"{Application.persistentDataPath}/SaveData.json";
+        a_SavePath = $"{Application.persistentDataPath}/SaveData.json";
 
         // 첫 시작일 경우
         if (isSaveLoad == false && Managers.Data.Start.IsNull() == false)
@@ -597,14 +597,13 @@ public class GameManager
     }
 
     #region Save & Load	
-	public string _savePath;
+	public string a_SavePath;
 
     public bool IsSaveLoad()
     {
-        if (File.Exists(_savePath) == false)
-			return false;
+        if (File.Exists(a_SavePath) == false) return false;
         
-        Debug.Log($"Save Data True : {_savePath}");
+        Debug.Log($"Save Data True : {a_SavePath}");
 
         return true;
     }
@@ -623,9 +622,9 @@ public class GameManager
 
 		string jsonStr = JsonUtility.ToJson(Managers.Game.SaveData, true);
 
-        File.WriteAllText(_savePath, jsonStr);
+        File.WriteAllText(a_SavePath, jsonStr);
 
-		Debug.Log($"Save Game Completed : {_savePath}");
+		Debug.Log($"Save Game Completed : {a_SavePath}");
 	}
 
 	public bool LoadGame()
@@ -633,23 +632,23 @@ public class GameManager
 		if (IsSaveLoad() == false)
 			return false;
 
-		string fileStr = File.ReadAllText(_savePath);
-		GameData data = JsonUtility.FromJson<GameData>(fileStr);
-		if (data.IsNull() == false)
+		string fileStr = File.ReadAllText(a_SavePath);
+		GameData a_Data = JsonUtility.FromJson<GameData>(fileStr);
+		if (a_Data.IsNull() == false)
 		{
-            data.DefaultPart = FromDictionary<Define.DefaultPart, SkinnedData>(data.DefaultPartData);
-            data.SkillBarList = FromDictionary<Define.KeySkill, SkillData>(data.SkillBarListData);
-            data.UseItemBarList = FromDictionary<int, UseItemData>(data.UseItemBarListData);
-            data.CurrentArmor = FromDictionary<Define.ArmorType, ArmorItemData>(data.CurrentArmorData);
+            a_Data.DefaultPart = FromDictionary<Define.DefaultPart, SkinnedData>(a_Data.DefaultPartData);
+            a_Data.SkillBarList = FromDictionary<Define.KeySkill, SkillData>(a_Data.SkillBarListData);
+            a_Data.UseItemBarList = FromDictionary<int, UseItemData>(a_Data.UseItemBarListData);
+            a_Data.CurrentArmor = FromDictionary<Define.ArmorType, ArmorItemData>(a_Data.CurrentArmorData);
 
-            FromInvenItem<UseItemData>(data.InvenUseItemData, data);
-            FromInvenItem<ArmorItemData>(data.InvenArmorItemData, data);
-            FromInvenItem<WeaponItemData>(data.InvenWeaponItemData, data);
+            FromInvenItem<UseItemData>(a_Data.InvenUseItemData, a_Data);
+            FromInvenItem<ArmorItemData>(a_Data.InvenArmorItemData, a_Data);
+            FromInvenItem<WeaponItemData>(a_Data.InvenWeaponItemData, a_Data);
 
-			Managers.Game.SaveData = data;
+			Managers.Game.SaveData = a_Data;
 		}
 
-		Debug.Log($"Save Game Loaded : {_savePath}");
+		Debug.Log($"Save Game Loaded : {a_SavePath}");
 
         isSaveLoad = true;
 		return true;

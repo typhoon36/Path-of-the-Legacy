@@ -8,7 +8,7 @@ using UnityEngine;
 public class BossController : MonsterController
 {
     // 스킬, 공격 애니메이션 이름
-    string[] skills = new string[] { "Skill1", "SKill2" };
+    string[] skills = new string[] { "Skill1", "Skill2" };
     string[] meleeAttacks = new string[] { "Attack1", "Attack2" };
     string[] rangedAttacks = new string[] { "Attack3", "Attack4", "Attack5" };
 
@@ -18,25 +18,19 @@ public class BossController : MonsterController
     bool isRangedAttack = false;    // 원거리 공격 체크
     bool isSkill = false;    // 다음 스킬 공격 확인
 
-    [SerializeField]
-    float rangedAttackRange = 5f;     // 원거리 수치
+    [SerializeField] float rangedAttackRange = 2.4f;     // 원거리 수치
 
     Portal exitPortal;                 // 포탈 Prefab
 
-    [SerializeField]
-    EffectParticle particleCollider;           // 파티클 접촉 확인
+    [SerializeField] EffectParticle particleCollider;           // 파티클 접촉 확인
 
-    [SerializeField]
-    GameObject swingTrail;                 // 검기 Trail
+    [SerializeField]  GameObject swingTrail;                 // 검기 Trail
 
-    [SerializeField]
-    Transform attackRangeObj;             // 공격 예상 범위 오브젝트
+    [SerializeField]  Transform attackRangeObj;             // 공격 예상 범위 오브젝트
 
-    [SerializeField]
-    MonsterAttackCollistion skillCollider;      // 스킬 사용 접촉 확인
+    [SerializeField]  MonsterAttackCollistion skillCollider;      // 스킬 사용 접촉 확인
 
-    [SerializeField]
-    MonsterAttackCollistion attackCollider;     // 일반 공격 사용 접촉 확인
+    [SerializeField] MonsterAttackCollistion attackCollider;     // 일반 공격 사용 접촉 확인
 
     public override void Init()
     {
@@ -45,11 +39,11 @@ public class BossController : MonsterController
         // 파티클 피격 설정
         particleCollider.SetInfo(() => { m_LockTarget.GetComponent<PlayerController>().OnHitDown(_stat, (int)(_stat.Attack * 0.8f)); });
 
-        // 데미지 스탯 적용
+        // 스킬  데미지 스탯 적용
         skillCollider.damage = (int)(_stat.Attack * 1.5f);
         attackCollider.damage = _stat.Attack;
 
-        // 포탈 객체 찾아오기 ( 사망 시 활성화하기 위함 )
+        // 포탈 객체 찾아오기 
         exitPortal = GameObject.FindObjectOfType<Portal>();
         if (exitPortal.IsNull() == false)
             exitPortal.gameObject.SetActive(false);
@@ -149,11 +143,13 @@ public class BossController : MonsterController
         {
             if (distance <= rangedAttackRange)
                 OnAttack(rangedAttacks[Random.Range(0, 3)]);
+            Debug.Log(distance);
         }
         else
         {
             if (distance <= attackRange)
                 OnAttack(meleeAttacks[Random.Range(0, 2)]);
+            Debug.Log(distance);
         }
     }
 
@@ -192,16 +188,19 @@ public class BossController : MonsterController
     IEnumerator Skill01_Prick()
     {
         // 공격 예상 범위 사이즈 설정
-        attackRangeObj.localPosition = new Vector3(0, 0, 2.33f);
+        attackRangeObj.gameObject.SetActive(true);
+        attackRangeObj.localPosition = new Vector3(0, 12, 2.33f);
         attackRangeObj.localScale = new Vector3(1, 0.00055f, 4.66f);
 
         yield return new WaitForSeconds(0.4f);  // 찌르기 준비
 
         skillCollider.IsCollider(true);         // 스킬 콜라이더 활성화
+        Debug.Log(skillCollider.enabled);
 
         yield return new WaitForSeconds(0.8f);  // 찌르기
 
         skillCollider.IsCollider(false);        // 스킬 콜라이더 비활성화
+        attackRangeObj.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(1.2f);  // 가만히 있기
 
@@ -212,7 +211,8 @@ public class BossController : MonsterController
     IEnumerator Skill02_WeaponDown()
     {
         // 공격 예상 범위 사이즈 설정
-        attackRangeObj.localPosition = new Vector3(0, 0, 4.5f);
+        attackRangeObj.gameObject.SetActive(true);
+        attackRangeObj.localPosition = new Vector3(0, 12, 4.5f);
         attackRangeObj.localScale = new Vector3(1, 0.00055f, 9f);
 
         // 0.9초 동안 플레이어를 바라본 후 공격
@@ -224,11 +224,16 @@ public class BossController : MonsterController
 
             currentTime += Time.deltaTime;
             transform.rotation = Quaternion.LookRotation(m_LockTarget.transform.position - transform.position);
+            particleCollider.gameObject.SetActive(true);   // 파티클 콜라이더 활성화
+
+            yield return new WaitForSeconds(0.6f);
+            particleCollider.gameObject.SetActive(false);  // 파티클 콜라이더 비활성화
 
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);  // 가만히 있기
+        attackRangeObj.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);  // 가만히 있기
 
         State = Define.State.Idle;
     }
@@ -253,7 +258,7 @@ public class BossController : MonsterController
         transform.rotation = Quaternion.LookRotation(distance);
 
         // 애니메이션 실행
-        m_Anim.CrossFade(animName, 0.1f, 0);
+        m_Anim.CrossFade(animName, 0);
     }
 
     // 네비게이션 자연스러운 즉각 회전 (떨림 완화)

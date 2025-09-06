@@ -56,7 +56,6 @@ public class PlayerAttackCollistion : MonoBehaviour
             else
             {
                 coll.GetComponent<MonsterStat>().OnAttacked(); // 기본 공격
-                Debug.Log("PlayerAttackCollistion - 기본 공격");
             }
         }
     }

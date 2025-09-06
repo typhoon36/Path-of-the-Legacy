@@ -293,8 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupType: 7
-  shopType: 0
-  saleList: []
+  m_ShopType: 0
+  SaleList: []
 --- !u!114 &2481378096782380486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_CellSize: {x: 300, y: 300}
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 1
-  m_ConstraintCount: 2
+  m_ConstraintCount: 4
 --- !u!114 &7440024309024417368
 MonoBehaviour:
   m_ObjectHideFlags: 0

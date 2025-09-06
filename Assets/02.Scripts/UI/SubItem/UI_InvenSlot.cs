@@ -33,12 +33,6 @@ public class UI_InvenSlot : UI_ItemDragSlot
         BindObject(typeof(GameObjects));
 
         GetObject((int)GameObjects.Lock).SetActive(false);
-
-        //제대로 갱신
-        if (Item.IsNull() == false && Item.itemIcon.IsNull() == false)
-            icon.sprite = Item.itemIcon;
-        else
-            icon.sprite = null;
     }
 
     // 아이템 등록
@@ -46,19 +40,12 @@ public class UI_InvenSlot : UI_ItemDragSlot
     {
         base.AddItem(a_Item, a_Count);
 
-     
+
         // 매니저에 저장
         if (Managers.Game.InvenItem.ContainsKey(InvenNumber) == false)
             Managers.Game.InvenItem.Add(InvenNumber, a_Item);
         else
             Managers.Game.InvenItem[InvenNumber] = a_Item;
-
-
-        //아이콘 제대로 갱신
-        if (a_Item.IsNull() == false && a_Item.itemIcon.IsNull() == false)
-            icon.sprite = a_Item.itemIcon;
-        else
-            icon.sprite = null;
     }
 
     // 슬롯 우클릭

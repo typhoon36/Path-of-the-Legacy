@@ -2807,6 +2807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6146416746057084839}
   - component: {fileID: -2779483123960313290}
+  - component: {fileID: 840821322055096567}
   m_Layer: 12
   m_Name: Gloves4
   m_TagString: Untagged
@@ -2843,7 +2844,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCount: 1
+  ItemCount: 1
+--- !u!65 &840821322055096567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775566527582106909}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6907114868656634249
 GameObject:
   m_ObjectHideFlags: 0

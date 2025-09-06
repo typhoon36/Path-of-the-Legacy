@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6774373405257588116}
   - component: {fileID: 8784165458433255774}
   - component: {fileID: -2414908487710527316}
+  - component: {fileID: 484791604136399858}
   m_Layer: 12
   m_Name: Ring
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,4 +99,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCount: 1
+  ItemCount: 1
+--- !u!65 &484791604136399858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126774343463602315}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.033859245, y: 0.03332265, z: 0.019781105}
+  m_Center: {x: 0, y: 0.016661325, z: -0.0005536047}

@@ -34,12 +34,6 @@ public class UI_UseItemSlot : UI_ItemDragSlot
             Managers.Game.UseItemBarList.Add(m_Key, a_Item as UseItemData);
         else
             Managers.Game.UseItemBarList[m_Key] = a_Item as UseItemData;
-
-        // 아이콘 갱신 코드 추가
-        if (a_Item != null && a_Item.itemIcon != null)
-            icon.sprite = a_Item.itemIcon;
-        else
-            icon.sprite = null;
     }
 
     protected override void OnEndDragSlot(PointerEventData eventData)

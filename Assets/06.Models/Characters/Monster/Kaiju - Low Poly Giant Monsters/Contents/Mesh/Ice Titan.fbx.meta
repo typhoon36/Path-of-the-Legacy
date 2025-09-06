@@ -1,174 +1,500 @@
 fileFormatVersion: 2
 guid: 69cd9ac7146f9774289edbf00e8951ee
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: foot.L
-    100002: foot.R
-    100004: forearm.L
-    100006: forearm.R
-    100008: hand.L
-    100010: hand.R
-    100012: Head.L
-    100014: Head.L_end
-    100016: heel.02.L
-    100018: heel.02.L_end
-    100020: heel.02.R
-    100022: heel.02.R_end
-    100024: Ice Titan
-    100026: //RootNode
-    100028: Ice Titan Bones
-    100030: Index 1.L
-    100032: Index 1.R
-    100034: Index 2.L
-    100036: Index 2.R
-    100038: Index 3.L
-    100040: Index 3.L_end
-    100042: Index 3.R
-    100044: Index 3.R_end
-    100046: Middle 1.L
-    100048: Middle 1.R
-    100050: Middle 2.L
-    100052: Middle 2.R
-    100054: Middle 3.L
-    100056: Middle 3.L_end
-    100058: Middle 3.R
-    100060: Middle 3.R_end
-    100062: Neck.L
-    100064: pelvis.L
-    100066: pelvis.L_end
-    100068: pelvis.R
-    100070: pelvis.R_end
-    100072: Pinky 1.L
-    100074: Pinky 1.R
-    100076: Pinky 2.L
-    100078: Pinky 2.R
-    100080: Pinky 3.L
-    100082: Pinky 3.L_end
-    100084: Pinky 3.R
-    100086: Pinky 3.R_end
-    100088: RIng 1.L
-    100090: RIng 1.R
-    100092: RIng 2.L
-    100094: RIng 2.R
-    100096: RIng 3.L
-    100098: RIng 3.L_end
-    100100: RIng 3.R
-    100102: RIng 3.R_end
-    100104: shin.L
-    100106: shin.R
-    100108: shoulder.L
-    100110: shoulder.R
-    100112: spine
-    100114: spine.001
-    100116: spine.002
-    100118: spine.003
-    100120: thigh.L
-    100122: thigh.R
-    100124: Thumb 1.L
-    100126: Thumb 1.R
-    100128: Thumb 2.L
-    100130: Thumb 2.R
-    100132: Thumb 3.L
-    100134: Thumb 3.L_end
-    100136: Thumb 3.R
-    100138: Thumb 3.R_end
-    100140: toe.L
-    100142: toe.L_end
-    100144: toe.R
-    100146: toe.R_end
-    100148: upper_arm.L
-    100150: upper_arm.R
-    400000: foot.L
-    400002: foot.R
-    400004: forearm.L
-    400006: forearm.R
-    400008: hand.L
-    400010: hand.R
-    400012: Head.L
-    400014: Head.L_end
-    400016: heel.02.L
-    400018: heel.02.L_end
-    400020: heel.02.R
-    400022: heel.02.R_end
-    400024: Ice Titan
-    400026: //RootNode
-    400028: Ice Titan Bones
-    400030: Index 1.L
-    400032: Index 1.R
-    400034: Index 2.L
-    400036: Index 2.R
-    400038: Index 3.L
-    400040: Index 3.L_end
-    400042: Index 3.R
-    400044: Index 3.R_end
-    400046: Middle 1.L
-    400048: Middle 1.R
-    400050: Middle 2.L
-    400052: Middle 2.R
-    400054: Middle 3.L
-    400056: Middle 3.L_end
-    400058: Middle 3.R
-    400060: Middle 3.R_end
-    400062: Neck.L
-    400064: pelvis.L
-    400066: pelvis.L_end
-    400068: pelvis.R
-    400070: pelvis.R_end
-    400072: Pinky 1.L
-    400074: Pinky 1.R
-    400076: Pinky 2.L
-    400078: Pinky 2.R
-    400080: Pinky 3.L
-    400082: Pinky 3.L_end
-    400084: Pinky 3.R
-    400086: Pinky 3.R_end
-    400088: RIng 1.L
-    400090: RIng 1.R
-    400092: RIng 2.L
-    400094: RIng 2.R
-    400096: RIng 3.L
-    400098: RIng 3.L_end
-    400100: RIng 3.R
-    400102: RIng 3.R_end
-    400104: shin.L
-    400106: shin.R
-    400108: shoulder.L
-    400110: shoulder.R
-    400112: spine
-    400114: spine.001
-    400116: spine.002
-    400118: spine.003
-    400120: thigh.L
-    400122: thigh.R
-    400124: Thumb 1.L
-    400126: Thumb 1.R
-    400128: Thumb 2.L
-    400130: Thumb 2.R
-    400132: Thumb 3.L
-    400134: Thumb 3.L_end
-    400136: Thumb 3.R
-    400138: Thumb 3.R_end
-    400140: toe.L
-    400142: toe.L_end
-    400144: toe.R
-    400146: toe.R_end
-    400148: upper_arm.L
-    400150: upper_arm.R
-    2100000: Rock
-    2100002: Snow
-    2100004: Eye
-    2100006: Glyph
-    2100008: Hair
-    2100010: Tusk
-    2100012: Hair Snow
-    4300000: Ice Titan
-    9500000: //RootNode
-    13700000: Ice Titan
-    2186277476908879412: ImportLogs
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: foot.L
+  - first:
+      1: 100002
+    second: foot.R
+  - first:
+      1: 100004
+    second: forearm.L
+  - first:
+      1: 100006
+    second: forearm.R
+  - first:
+      1: 100008
+    second: hand.L
+  - first:
+      1: 100010
+    second: hand.R
+  - first:
+      1: 100012
+    second: Head.L
+  - first:
+      1: 100014
+    second: Head.L_end
+  - first:
+      1: 100016
+    second: heel.02.L
+  - first:
+      1: 100018
+    second: heel.02.L_end
+  - first:
+      1: 100020
+    second: heel.02.R
+  - first:
+      1: 100022
+    second: heel.02.R_end
+  - first:
+      1: 100024
+    second: Ice Titan
+  - first:
+      1: 100026
+    second: //RootNode
+  - first:
+      1: 100028
+    second: Ice Titan Bones
+  - first:
+      1: 100030
+    second: Index 1.L
+  - first:
+      1: 100032
+    second: Index 1.R
+  - first:
+      1: 100034
+    second: Index 2.L
+  - first:
+      1: 100036
+    second: Index 2.R
+  - first:
+      1: 100038
+    second: Index 3.L
+  - first:
+      1: 100040
+    second: Index 3.L_end
+  - first:
+      1: 100042
+    second: Index 3.R
+  - first:
+      1: 100044
+    second: Index 3.R_end
+  - first:
+      1: 100046
+    second: Middle 1.L
+  - first:
+      1: 100048
+    second: Middle 1.R
+  - first:
+      1: 100050
+    second: Middle 2.L
+  - first:
+      1: 100052
+    second: Middle 2.R
+  - first:
+      1: 100054
+    second: Middle 3.L
+  - first:
+      1: 100056
+    second: Middle 3.L_end
+  - first:
+      1: 100058
+    second: Middle 3.R
+  - first:
+      1: 100060
+    second: Middle 3.R_end
+  - first:
+      1: 100062
+    second: Neck.L
+  - first:
+      1: 100064
+    second: pelvis.L
+  - first:
+      1: 100066
+    second: pelvis.L_end
+  - first:
+      1: 100068
+    second: pelvis.R
+  - first:
+      1: 100070
+    second: pelvis.R_end
+  - first:
+      1: 100072
+    second: Pinky 1.L
+  - first:
+      1: 100074
+    second: Pinky 1.R
+  - first:
+      1: 100076
+    second: Pinky 2.L
+  - first:
+      1: 100078
+    second: Pinky 2.R
+  - first:
+      1: 100080
+    second: Pinky 3.L
+  - first:
+      1: 100082
+    second: Pinky 3.L_end
+  - first:
+      1: 100084
+    second: Pinky 3.R
+  - first:
+      1: 100086
+    second: Pinky 3.R_end
+  - first:
+      1: 100088
+    second: RIng 1.L
+  - first:
+      1: 100090
+    second: RIng 1.R
+  - first:
+      1: 100092
+    second: RIng 2.L
+  - first:
+      1: 100094
+    second: RIng 2.R
+  - first:
+      1: 100096
+    second: RIng 3.L
+  - first:
+      1: 100098
+    second: RIng 3.L_end
+  - first:
+      1: 100100
+    second: RIng 3.R
+  - first:
+      1: 100102
+    second: RIng 3.R_end
+  - first:
+      1: 100104
+    second: shin.L
+  - first:
+      1: 100106
+    second: shin.R
+  - first:
+      1: 100108
+    second: shoulder.L
+  - first:
+      1: 100110
+    second: shoulder.R
+  - first:
+      1: 100112
+    second: spine
+  - first:
+      1: 100114
+    second: spine.001
+  - first:
+      1: 100116
+    second: spine.002
+  - first:
+      1: 100118
+    second: spine.003
+  - first:
+      1: 100120
+    second: thigh.L
+  - first:
+      1: 100122
+    second: thigh.R
+  - first:
+      1: 100124
+    second: Thumb 1.L
+  - first:
+      1: 100126
+    second: Thumb 1.R
+  - first:
+      1: 100128
+    second: Thumb 2.L
+  - first:
+      1: 100130
+    second: Thumb 2.R
+  - first:
+      1: 100132
+    second: Thumb 3.L
+  - first:
+      1: 100134
+    second: Thumb 3.L_end
+  - first:
+      1: 100136
+    second: Thumb 3.R
+  - first:
+      1: 100138
+    second: Thumb 3.R_end
+  - first:
+      1: 100140
+    second: toe.L
+  - first:
+      1: 100142
+    second: toe.L_end
+  - first:
+      1: 100144
+    second: toe.R
+  - first:
+      1: 100146
+    second: toe.R_end
+  - first:
+      1: 100148
+    second: upper_arm.L
+  - first:
+      1: 100150
+    second: upper_arm.R
+  - first:
+      4: 400000
+    second: foot.L
+  - first:
+      4: 400002
+    second: foot.R
+  - first:
+      4: 400004
+    second: forearm.L
+  - first:
+      4: 400006
+    second: forearm.R
+  - first:
+      4: 400008
+    second: hand.L
+  - first:
+      4: 400010
+    second: hand.R
+  - first:
+      4: 400012
+    second: Head.L
+  - first:
+      4: 400014
+    second: Head.L_end
+  - first:
+      4: 400016
+    second: heel.02.L
+  - first:
+      4: 400018
+    second: heel.02.L_end
+  - first:
+      4: 400020
+    second: heel.02.R
+  - first:
+      4: 400022
+    second: heel.02.R_end
+  - first:
+      4: 400024
+    second: Ice Titan
+  - first:
+      4: 400026
+    second: //RootNode
+  - first:
+      4: 400028
+    second: Ice Titan Bones
+  - first:
+      4: 400030
+    second: Index 1.L
+  - first:
+      4: 400032
+    second: Index 1.R
+  - first:
+      4: 400034
+    second: Index 2.L
+  - first:
+      4: 400036
+    second: Index 2.R
+  - first:
+      4: 400038
+    second: Index 3.L
+  - first:
+      4: 400040
+    second: Index 3.L_end
+  - first:
+      4: 400042
+    second: Index 3.R
+  - first:
+      4: 400044
+    second: Index 3.R_end
+  - first:
+      4: 400046
+    second: Middle 1.L
+  - first:
+      4: 400048
+    second: Middle 1.R
+  - first:
+      4: 400050
+    second: Middle 2.L
+  - first:
+      4: 400052
+    second: Middle 2.R
+  - first:
+      4: 400054
+    second: Middle 3.L
+  - first:
+      4: 400056
+    second: Middle 3.L_end
+  - first:
+      4: 400058
+    second: Middle 3.R
+  - first:
+      4: 400060
+    second: Middle 3.R_end
+  - first:
+      4: 400062
+    second: Neck.L
+  - first:
+      4: 400064
+    second: pelvis.L
+  - first:
+      4: 400066
+    second: pelvis.L_end
+  - first:
+      4: 400068
+    second: pelvis.R
+  - first:
+      4: 400070
+    second: pelvis.R_end
+  - first:
+      4: 400072
+    second: Pinky 1.L
+  - first:
+      4: 400074
+    second: Pinky 1.R
+  - first:
+      4: 400076
+    second: Pinky 2.L
+  - first:
+      4: 400078
+    second: Pinky 2.R
+  - first:
+      4: 400080
+    second: Pinky 3.L
+  - first:
+      4: 400082
+    second: Pinky 3.L_end
+  - first:
+      4: 400084
+    second: Pinky 3.R
+  - first:
+      4: 400086
+    second: Pinky 3.R_end
+  - first:
+      4: 400088
+    second: RIng 1.L
+  - first:
+      4: 400090
+    second: RIng 1.R
+  - first:
+      4: 400092
+    second: RIng 2.L
+  - first:
+      4: 400094
+    second: RIng 2.R
+  - first:
+      4: 400096
+    second: RIng 3.L
+  - first:
+      4: 400098
+    second: RIng 3.L_end
+  - first:
+      4: 400100
+    second: RIng 3.R
+  - first:
+      4: 400102
+    second: RIng 3.R_end
+  - first:
+      4: 400104
+    second: shin.L
+  - first:
+      4: 400106
+    second: shin.R
+  - first:
+      4: 400108
+    second: shoulder.L
+  - first:
+      4: 400110
+    second: shoulder.R
+  - first:
+      4: 400112
+    second: spine
+  - first:
+      4: 400114
+    second: spine.001
+  - first:
+      4: 400116
+    second: spine.002
+  - first:
+      4: 400118
+    second: spine.003
+  - first:
+      4: 400120
+    second: thigh.L
+  - first:
+      4: 400122
+    second: thigh.R
+  - first:
+      4: 400124
+    second: Thumb 1.L
+  - first:
+      4: 400126
+    second: Thumb 1.R
+  - first:
+      4: 400128
+    second: Thumb 2.L
+  - first:
+      4: 400130
+    second: Thumb 2.R
+  - first:
+      4: 400132
+    second: Thumb 3.L
+  - first:
+      4: 400134
+    second: Thumb 3.L_end
+  - first:
+      4: 400136
+    second: Thumb 3.R
+  - first:
+      4: 400138
+    second: Thumb 3.R_end
+  - first:
+      4: 400140
+    second: toe.L
+  - first:
+      4: 400142
+    second: toe.L_end
+  - first:
+      4: 400144
+    second: toe.R
+  - first:
+      4: 400146
+    second: toe.R_end
+  - first:
+      4: 400148
+    second: upper_arm.L
+  - first:
+      4: 400150
+    second: upper_arm.R
+  - first:
+      21: 2100000
+    second: Rock
+  - first:
+      21: 2100002
+    second: Snow
+  - first:
+      21: 2100004
+    second: Eye
+  - first:
+      21: 2100006
+    second: Glyph
+  - first:
+      21: 2100008
+    second: Hair
+  - first:
+      21: 2100010
+    second: Tusk
+  - first:
+      21: 2100012
+    second: Hair Snow
+  - first:
+      43: 4300000
+    second: Ice Titan
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Ice Titan
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -177,6 +503,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -201,25 +528,36 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -228,10 +566,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: spine
       humanName: Hips
@@ -1037,13 +1375,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -38,15 +38,17 @@ public class UI_WeaponSlot : UI_ItemDragSlot
             // 장비 파츠 확인
             GetPart(Managers.Game.CurrentWeapon);
 
-            Managers.Game.CurrentWeapon.charEquipment.SetActive(false);
+            // charEquipment가 null이 아니면 SetActive 호출
+            if (Managers.Game.CurrentWeapon.charEquipment != null)
+                Managers.Game.CurrentWeapon.charEquipment.SetActive(false);
         }
 
         // 장비 파츠 확인
         GetPart(WeaponItem);
         Managers.Game.CurrentWeapon = WeaponItem;
 
-
-        WeaponItem.charEquipment.SetActive(true);
+        if (WeaponItem != null && WeaponItem.charEquipment != null)
+            WeaponItem.charEquipment.SetActive(true);
     }
 
     protected override void OnClickSlot(PointerEventData eventData)
@@ -128,7 +130,9 @@ public class UI_WeaponSlot : UI_ItemDragSlot
     {
         base.ClearSlot();
 
-        Managers.Game.CurrentWeapon.charEquipment.SetActive(false);
+        if (Managers.Game.CurrentWeapon != null && Managers.Game.CurrentWeapon.charEquipment != null)
+            Managers.Game.CurrentWeapon.charEquipment.SetActive(false);
+
         Managers.Game.CurrentWeapon = null;
         WeaponItem = null;
     }

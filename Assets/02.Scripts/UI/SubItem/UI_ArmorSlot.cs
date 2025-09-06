@@ -23,9 +23,6 @@ public class UI_ArmorSlot : UI_ItemDragSlot
 
         base.SetInfo();
 
-        //제대로 갱신
-        if (ArmorItem.IsNull() == false && ArmorItem.itemIcon.IsNull() == false)
-            icon.sprite = ArmorItem.itemIcon;
     }
 
     // 방어구 교체

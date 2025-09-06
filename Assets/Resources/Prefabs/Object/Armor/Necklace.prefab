@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3922804822169332799}
   - component: {fileID: 1266757767134664949}
   - component: {fileID: 2838684625639873534}
+  - component: {fileID: 5054595495242153872}
   m_Layer: 12
   m_Name: Necklace
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,4 +99,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9dabeac4606f2e4c9829b6ed4d58d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCount: 1
+  ItemCount: 1
+--- !u!65 &5054595495242153872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762393710949890336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2199959, y: 0.1784809, z: 0.22199942}
+  m_Center: {x: 0, y: 0.21363242, z: 0.041175433}

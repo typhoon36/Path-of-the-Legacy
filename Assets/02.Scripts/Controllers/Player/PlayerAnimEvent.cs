@@ -80,9 +80,9 @@ public class PlayerAnimEvent : MonoBehaviour
     {
         x = 0,
         y = 0,
-        z = 6.1f,
+        z = 0,
         redius = 1.2f,
-        height = 11.7f,
+        height = 12f,
         direction = Z_Axis,
     };
 
@@ -91,32 +91,22 @@ public class PlayerAnimEvent : MonoBehaviour
     {
         new AttackSize()
         {
-            x = 0f, y = 0, z = 0.13f, redius = 1.23f, height = 3.4f, direction = X_Axis,
+            x = 0f, y = 0, z = 0.13f, redius = 1.23f, height = 3.4f, direction = Y_Axis,
         },
         new AttackSize()
         {
-            x = 0f, y = 0f, z = 3.5f, redius = 3f, height = 9.4f, direction = X_Axis,
+            x = 0f, y = 0f, z = 3.5f, redius = 3f, height = 9.4f, direction = Y_Axis,
         },
         new AttackSize()
         {
-            x = 0f, y = 0f, z = 3.5f, redius = 3f, height = 9.4f, direction = X_Axis,
+            x = 0f, y = 0f, z = 3.5f, redius = 3f, height = 9.4f, direction = Y_Axis,
         },
         new AttackSize()
         {
-            x = 0f, y = 0f, z = 3.5f, redius = 3f, height = 9.4f, direction = X_Axis,
+            x = 0f, y = 0f, z = 3.5f, redius = 3f, height = 9.4f, direction = Y_Axis,
         },
     };
 
-    // Id 107 공격 범위 (궁극의 칼날)
-    AttackSize skill107 = new AttackSize()
-    {
-        x = 0f,
-        y = 0f,
-        z = -0.4f,
-        redius = 7f,
-        height = 0f,
-        direction = Y_Axis,
-    };
 
     #endregion
 
@@ -165,16 +155,11 @@ public class PlayerAnimEvent : MonoBehaviour
     {
         OnSize(skill106[nextSkillIndex]);
 
-        ++nextSkillIndex;
-        if (nextSkillIndex == skill106.Length)
-            nextSkillIndex = 0;
+        //++nextSkillIndex;
+        //if (nextSkillIndex == skill106.Length)
+        //    nextSkillIndex = 0;
     }
 
-    // skill 107 : 궁극의 칼날
-    public void OnEventualityBlade()
-    {
-        OnSize(skill107);
-    }
 
     void OnSize(AttackSize size)
     {

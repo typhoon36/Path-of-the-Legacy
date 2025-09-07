@@ -43,8 +43,8 @@
   * Upgrade NPC
   * Quest NPC
 * 아이템
- * HP 회복 물약, MP 회복 물약
- * 무기, 방어구, 장신구
+  * HP 회복 물약, MP 회복 물약
+  * 무기, 방어구, 장신구
 
 * UI
   * Scene :

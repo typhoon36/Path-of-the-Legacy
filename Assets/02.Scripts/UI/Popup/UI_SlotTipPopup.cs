@@ -73,6 +73,30 @@ public class UI_SlotTipPopup : UI_Popup
         slotTipPos.y = slotTipPos.y - (tipRect.rect.height * 0.65f);
         m_Background.anchoredPosition = slotTipPos;
 
+        // 화면 경계 체크 및 보정
+        RectTransform canvasRect = m_Background.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+        Vector2 size = tipRect.sizeDelta;
+        Vector2 pos = slotTipPos;
+
+        // 좌측 경계
+        if (pos.x < 0)
+            pos.x = 0;
+        // 우측 경계
+        if (pos.x + size.x > canvasRect.sizeDelta.x)
+            pos.x = canvasRect.sizeDelta.x - size.x;
+        // 상단 경계
+        if (pos.y + size.y > canvasRect.sizeDelta.y)
+            pos.y = canvasRect.sizeDelta.y - size.y;
+        // 하단 경계
+        if (pos.y < 0)
+            pos.y = 0;
+
+        m_Background.anchoredPosition = pos;
+
+
+
+
+
         GetImage((int)Images.ItemImage).sprite = a_Item.itemIcon;
 
         GetText((int)Texts.ItemNameText).text = a_Item.itemName;

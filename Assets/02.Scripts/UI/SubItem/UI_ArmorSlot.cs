@@ -158,10 +158,10 @@ public class UI_ArmorSlot : UI_ItemDragSlot
         }
 
         // 모른다면 id로 찾기
-        PlayerController player = Managers.Game.GetPlayer().GetComponent<PlayerController>();
+        PlayerController a_Player = Managers.Game.GetPlayer().GetComponent<PlayerController>();
 
         List<GameObject> objList = new List<GameObject>();
-        if (player.charEquipment.TryGetValue(a_Armor.id, out objList) == false)
+        if (a_Player.charEquipment.TryGetValue(a_Armor.id, out objList) == false)
         {
             Debug.Log($"{a_Armor.id} : 활성화 실패");
             return;

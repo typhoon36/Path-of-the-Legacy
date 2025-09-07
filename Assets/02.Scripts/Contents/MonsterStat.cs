@@ -101,26 +101,31 @@ public class MonsterStat : MonoBehaviour
     // 드랍 아이템
     void OnDropItem()
     {
-        // DataManager에서 DropItem List가져오기
         List<int> a_ItemList = Managers.Data.DropItem[_dropItemId];
-
-        // 아이탬 개수 0~2 + Luk (최대 5개까지)
         int maxCount = Mathf.Clamp(2 + Managers.Game.LUK, 0, 5);
 
         for (int i = 0; i < Random.Range(0, maxCount); i++)
         {
-            // Random으로 아이템 id 뽑기
             int a_RandomId = Random.Range(0, a_ItemList.Count - 1);
-
-            // 아이템 소환
             ItemData a_Item = Managers.Data.CallItem(a_ItemList[a_RandomId]);
+
+            if (a_Item == null || a_Item.itemObject == null)
+            {
+                Debug.LogError($"드랍 아이템 데이터 또는 프리팹이 null입니다. id: {a_ItemList[a_RandomId]}");
+                continue;
+            }
+
             GameObject a_Obj = Managers.Resource.Instantiate(a_Item.itemObject);
 
-            // ItemPickUp 컴포넌트 붙이기
+            if (a_Obj == null)
+            {
+                Debug.LogError($"Instantiate 실패: {a_Item.itemObject.name}");
+                continue;
+            }
+
             ItemPickUp PickUp = a_Obj.GetOrAddComponent<ItemPickUp>();
             PickUp.Item = a_Item;
 
-            // 드랍 위치 설정
             float ranPos = Random.Range(-0.5f, 0.5f);
             a_Obj.transform.position = new Vector3(transform.position.x + ranPos, 0f, transform.position.z + ranPos);
         }

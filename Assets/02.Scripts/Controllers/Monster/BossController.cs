@@ -185,10 +185,12 @@ public class BossController : MonsterController
         yield return new WaitForSeconds(0.4f);  // 찌르기 준비
 
         skillCollider.IsCollider(true);         // 스킬 콜라이더 활성화
+        particleCollider.gameObject.SetActive(true);  // 파티클 콜라이더 활성화
 
         yield return new WaitForSeconds(0.8f);  // 찌르기
 
         attackRangeObj.gameObject.SetActive(false);
+        particleCollider.gameObject.SetActive(false); // 파티클 콜라이더 비활성화
         skillCollider.IsCollider(false);        // 스킬 콜라이더 비활성화
 
         yield return new WaitForSeconds(1.2f);  // 가만히 있기
@@ -200,6 +202,7 @@ public class BossController : MonsterController
     private IEnumerator Skill02_WeaponDown()
     {
         // 공격 예상 범위 사이즈 설정
+        attackRangeObj.gameObject.SetActive(true);
         attackRangeObj.localPosition = new Vector3(0, 10, 4.5f);
         attackRangeObj.localScale = new Vector3(1, 0.00055f, 9f);
 
@@ -207,14 +210,21 @@ public class BossController : MonsterController
         float currentTime = 0f;
         while (true)
         {
-            if (currentTime >= 0.9f)
-                break;
+            if (currentTime >= 0.9f) break;
 
             currentTime += Time.deltaTime;
             transform.rotation = Quaternion.LookRotation(m_LockTarget.transform.position - transform.position);
 
-            if(State != Define.State.Skill)
+            particleCollider.gameObject.SetActive(true);  // 파티클 콜라이더 활성화
+            skillCollider.IsCollider(true);         // 스킬 콜라이더 활성화
+
+
+            if (State != Define.State.Skill)
                 yield break;
+
+            particleCollider.gameObject.SetActive(false); // 파티클 콜라이더 비활성화
+            skillCollider.IsCollider(false);        // 스킬 콜라이더 비활성화
+            attackRangeObj.gameObject.SetActive(false);
 
             yield return null;
         }

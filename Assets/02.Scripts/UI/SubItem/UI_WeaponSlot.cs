@@ -97,8 +97,7 @@ public class UI_WeaponSlot : UI_ItemDragSlot
 
         // 같은 부위 확인
         WeaponItemData a_Weapon = a_ItemSlot.Item as WeaponItemData;
-        if (weaponType != a_Weapon.weaponType)
-            return;
+        if (weaponType != a_Weapon.weaponType) return;
 
         // 레벨 체크
         if (Managers.Game.Level < a_Weapon.minLevel)

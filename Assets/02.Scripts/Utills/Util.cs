@@ -8,13 +8,16 @@ public class Util
     // 컴포넌트 찾은 후 추가하기
     public static T GetOrAddComponent<T>(GameObject a_Obj) where T : UnityEngine.Component
     {
+        if (a_Obj == null)
+        {
+            Debug.LogError("GetOrAddComponent: a_Obj가 null입니다.");
+            return null;
+        }
+
         T component = a_Obj.GetComponent<T>();
 
         if (component.IsNull() == true)
             component = a_Obj.AddComponent<T>();
-
-        else if (component.IsNull() == false)
-            return component;
 
         return component;
     }

@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\assets\\02.scripts\\controllers\\monster\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|solutionrelative:assets\\02.scripts\\controllers\\monster\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|c:\\users\\leeyeonjun\\desktop\\path-of-the-legacy\\assets\\02.scripts\\manager\\contents\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|solutionrelative:assets\\02.scripts\\manager\\contents\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\assets\\02.scripts\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|solutionrelative:assets\\02.scripts\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\assets\\02.scripts\\contents\\effectdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A00788D-BB0F-A443-F659-0E8686C7A490}|Assembly-CSharp.csproj|solutionrelative:assets\\02.scripts\\contents\\effectdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Manager\\Contents\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\02.Scripts\\Manager\\Contents\\GameManager.cs",
+              "ToolTip": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Manager\\Contents\\GameManager.cs",
+              "RelativeToolTip": "Assets\\02.Scripts\\Manager\\Contents\\GameManager.cs",
+              "ViewState": "AgIAAHYCAAAAAAAAAABQwHkCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T11:18:16.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EffectData.cs",
+              "DocumentMoniker": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Contents\\EffectData.cs",
+              "RelativeDocumentMoniker": "Assets\\02.Scripts\\Contents\\EffectData.cs",
+              "ToolTip": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Contents\\EffectData.cs",
+              "RelativeToolTip": "Assets\\02.Scripts\\Contents\\EffectData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvw0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T10:59:17.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseController.cs",
+              "DocumentMoniker": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Controllers\\BaseController.cs",
+              "RelativeDocumentMoniker": "Assets\\02.Scripts\\Controllers\\BaseController.cs",
+              "ToolTip": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Controllers\\BaseController.cs",
+              "RelativeToolTip": "Assets\\02.Scripts\\Controllers\\BaseController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAA0wGcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T10:44:45.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BossController.cs",
+              "DocumentMoniker": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Controllers\\Monster\\BossController.cs",
+              "RelativeDocumentMoniker": "Assets\\02.Scripts\\Controllers\\Monster\\BossController.cs",
+              "ToolTip": "C:\\Users\\leeyeonjun\\Desktop\\Path-of-the-Legacy\\Assets\\02.Scripts\\Controllers\\Monster\\BossController.cs",
+              "RelativeToolTip": "Assets\\02.Scripts\\Controllers\\Monster\\BossController.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAkwJ0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T10:01:05.082Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

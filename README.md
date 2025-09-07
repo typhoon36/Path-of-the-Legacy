@@ -70,6 +70,10 @@
 | SkinnedMesh| 캐릭터의 얼굴을 커스텀하고, 장비 장착 시 의상 변경 가능|
 | UI 자동화 | 유니티 UI 상에서 컴포넌트로 Drag&Drop의 실수를 줄이기위한 편의 기능|
 
+## GoogleSpreadSheet
+[스프레드시트](https://docs.google.com/spreadsheets/d/1JrR2gxJniIMkQcb9BAhsMUXlrcaJXhBNavmh5Zs4IpY/edit?usp=sharing)
+
+
 ## 기술 문서
 [기술 문서](https://docs.google.com/presentation/d/1x-NVuzHHo0Xo09vtEFiucUgF4Dag3MydWzX7uFv4jh8/edit?usp=sharing)
 

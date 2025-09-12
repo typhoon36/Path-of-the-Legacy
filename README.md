@@ -1,7 +1,7 @@
 # Path-of-the-Legacy
 <table>
   <tr>
-    <td><img src="" width="600"></td>
+    <td><img src="https://github.com/user-attachments/assets/7fc18565-daeb-4429-bfc0-19a83d21500b" width="600"></td>
       <td><img src="" width="600"></td>
 
   </tr>

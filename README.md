@@ -81,4 +81,4 @@
 [블로그](https://velog.io/@typhoon760/3DRPG%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-1)
 
 ## 영상
-[플레이 영상]()
+[플레이 영상](https://youtu.be/6YmqXNLgF1c)
